@@ -5,6 +5,8 @@ A Remake / Celebration of the original 'Super Mario Bros.' games. Features new l
 
 ### Art by [@krystalphantasm.bsky.social](https://bsky.app/profile/krystalphantasm.bsky.social/post/3lvgmgvjeks2f)
 
+### Download: https://github.com/JHDev2006/Super-Mario-Bros.-Remastered-Public/releases
+
 # Requires an original SMB1 NES ROM to play! None of the original assets are contained in the source code, unless it was originally made by us!
 
 # This does NOT act as a replacement for the original Super Mario Bros. games. Super Mario Bros. & Super Mario Bros.: The Lost Levels, can be played now on Nintendo Switch, through Nintendo Switch Online
