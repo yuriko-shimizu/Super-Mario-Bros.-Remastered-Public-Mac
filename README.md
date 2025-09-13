@@ -40,6 +40,7 @@ When opening an issue, please keep it to one report, per post, and try and be as
 
 ## Known Issues
 There are a couple known issues, mainly due to being built off of Godot, and these issues existing in the engine itself.
+- Steam deck controls do not work natively, you can circumvent this by setting up controller bindings to emulate keys instead, apologies.
 - Physics are weird, when interacting with corners + the camera barrier
 - Drop shadows jitter when playing with "Smooth Rendering"
 - Several entities jitter at times.
