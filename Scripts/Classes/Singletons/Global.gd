@@ -197,7 +197,7 @@ func _process(delta: float) -> void:
 		log_comment("Reloaded resource packs!")
 
 	handle_p_switch(delta)
-	if Input.is_key_label_pressed(KEY_F11) and debug_mode == false:
+	if Input.is_key_label_pressed(KEY_F11) and debug_mode == false and OS.is_debug_build():
 		AudioManager.play_global_sfx("switch")
 		debug_mode = true
 		log_comment("Debug Mode enabled! some bugs may occur!")

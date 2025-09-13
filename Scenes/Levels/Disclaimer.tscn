@@ -165,7 +165,7 @@ bus = &"SFX"
 [node name="Title" type="Label" parent="."]
 visible = false
 modulate = Color(0.968627, 0.223529, 0.0627451, 1)
-anchors_preset = -1
+anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 17.0
 grow_horizontal = 2
