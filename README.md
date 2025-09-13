@@ -5,6 +5,8 @@ A Remake / Celebration of the original 'Super Mario Bros.' games. Features new l
 
 ### Art by [@krystalphantasm.bsky.social](https://bsky.app/profile/krystalphantasm.bsky.social/post/3lvgmgvjeks2f)
 
+### Download: https://github.com/JHDev2006/Super-Mario-Bros.-Remastered-Public/releases
+
 # Requires an original SMB1 NES ROM to play! None of the original assets are contained in the source code, unless it was originally made by us!
 
 # This does NOT act as a replacement for the original Super Mario Bros. games. Super Mario Bros. & Super Mario Bros.: The Lost Levels, can be played now on Nintendo Switch, through Nintendo Switch Online
@@ -35,9 +37,11 @@ You are more than welcome to contribute any fixes / improvements you'd like, sim
 
 ## Issues
 When opening an issue, please keep it to one report, per post, and try and be as helpful as possible, when telling me what has occured, so that its as easy to fix as possible.
+Please do not open issues, for feature requests, suggestions, or opinions. BUG REPORTS ONLY
 
 ## Known Issues
 There are a couple known issues, mainly due to being built off of Godot, and these issues existing in the engine itself.
+- Steam deck controls do not work natively, you can circumvent this by setting up controller bindings to emulate keys instead, apologies.
 - Physics are weird, when interacting with corners + the camera barrier
 - Drop shadows jitter when playing with "Smooth Rendering"
 - Several entities jitter at times.
