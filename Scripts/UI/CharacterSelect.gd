@@ -74,11 +74,11 @@ func handle_input() -> void:
 		selected_index = wrap(selected_index + 1, 0, Player.CHARACTERS.size())
 		update_sprites()
 	if Input.is_action_just_pressed("ui_accept"):
-		Global.player_characters[player_id] = str(selected_index)
+		Global.player_characters[player_id] = (selected_index)
 		var characters := Global.player_characters
 		for i in characters:
 			if int(i) > 3:
-				characters = "0000"
+				characters = [0, 0, 0, 0]
 		Settings.file.game.characters = characters
 		Settings.save_settings()
 		selected.emit()

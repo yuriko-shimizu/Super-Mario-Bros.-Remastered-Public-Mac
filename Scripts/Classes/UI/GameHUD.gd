@@ -1,7 +1,7 @@
 class_name GameHUD
 extends CanvasLayer
 
-var current_chara := ""
+var current_chara := 0
 
 static var character_icons := [preload("res://Assets/Sprites/Players/Mario/LifeIcon.json"),preload("res://Assets/Sprites/Players/Luigi/LifeIcon.json"), preload("res://Assets/Sprites/Players/Toad/LifeIcon.json"), preload("res://Assets/Sprites/Players/Toadette/LifeIcon.json")]
 

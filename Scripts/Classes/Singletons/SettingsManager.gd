@@ -110,4 +110,7 @@ func apply_settings() -> void:
 	for i in file.audio.keys():
 		$Apply/Audio.set_value(i, file.audio[i])
 	if Settings.file.game.has("characters"):
-		Global.player_characters = Settings.file.game.characters
+		var idx := 0
+		for i in Settings.file.game.characters:
+			Global.player_characters[idx] = int(i)
+			idx += 1
