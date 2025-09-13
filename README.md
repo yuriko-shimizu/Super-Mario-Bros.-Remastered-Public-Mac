@@ -37,6 +37,7 @@ You are more than welcome to contribute any fixes / improvements you'd like, sim
 
 ## Issues
 When opening an issue, please keep it to one report, per post, and try and be as helpful as possible, when telling me what has occured, so that its as easy to fix as possible.
+Please do not open issues, for feature requests, suggestions, or opinions. BUG REPORTS ONLY
 
 ## Known Issues
 There are a couple known issues, mainly due to being built off of Godot, and these issues existing in the engine itself.
