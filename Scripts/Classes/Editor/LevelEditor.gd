@@ -425,7 +425,7 @@ func pick_tile(tile_position := Vector2i.ZERO) -> void:
 		mode = 0
 		current_tile_source = tile_layer_nodes[current_layer].get_cell_source_id(tile_position)
 		current_tile_coords = tile_layer_nodes[current_layer].get_cell_atlas_coords(tile_position)
-	elif entity_tiles[current_layer].has(tile_position):
+	elif entity_tiles[current_layer].has(tile_position) and entity_tiles[current_layer][tile_position] is not Player:
 		mode = 1
 		current_entity_scene = load(entity_tiles[current_layer][tile_position].scene_file_path)
 		current_spawn_offset = entity_tiles[current_layer][tile_position].get_meta("tile_offset")
