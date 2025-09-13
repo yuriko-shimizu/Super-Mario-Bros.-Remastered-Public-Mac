@@ -25,10 +25,10 @@ var current_device_brand := 0
 var input_event: InputEvent = null
 
 const button_id_translation := [
-	["A", "B", "~"],
-	["B", "A", "&"],
-	["X", "Y", "%"],
-	["Y", "X", "{"],
+	["A", "B", "✕"],
+	["B", "A", "○"],
+	["X", "Y", "□"],
+	["Y", "X", "△"],
 	["Select", "-", "Share"],
 	"Home",
 	["Start", "+", "Options"],

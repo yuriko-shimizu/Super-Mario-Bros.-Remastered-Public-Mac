@@ -171,9 +171,6 @@ func _ready() -> void:
 	set_power_state_frame()
 	if Global.level_editor == null:
 		recenter_camera()
-	await get_tree().create_timer(0.1, false).timeout
-	for i in [$CameraCenterJoint/LeftWall/CollisionShape2D, $CameraCenterJoint/RightWall/CollisionShape2D]:
-		i.set_deferred("disabled", false)
 
 func apply_character_physics() -> void:
 	var path = "res://Assets/Sprites/Players/" + character + "/CharacterInfo.json"

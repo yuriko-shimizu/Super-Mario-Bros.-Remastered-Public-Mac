@@ -74,10 +74,10 @@ var coins := 0:
 	set(value):
 		coins = value
 		if coins >= 100:#
-			coins = coins % 100
 			if Settings.file.difficulty.inf_lives == 0 and (Global.current_game_mode != Global.GameMode.CHALLENGE and Global.current_campaign != "SMBANN"):
-				lives += 1
+				lives += floor(coins / 100.0)
 				AudioManager.play_sfx("1_up", get_viewport().get_camera_2d().get_screen_center_position())
+			coins = coins % 100
 var time := 300
 var lives := 3
 var world_num := 1
