@@ -12,7 +12,8 @@ Port of Super Mario Bros. Remastered to macOS!
 
 ## System requirements
 This port is built as a Universal 2 binary (natively compatible with Intel and Apple Silicon) and will run on macOS 10.12 Sierra or higher.
+
 Note that not every Mac compatible with macOS Sierra will be able to run this game, due to it using Apple's Metal API for graphics rendering.
 
 ## Reporting issues
-IF you want to submit an SMBR-specific issue that is on all platforms, please do so on the source GitHub repo! Otherwise, feel free to open up an issue in this repo.
+If you want to submit an SMBR-specific issue that is on all platforms, please do so on the source GitHub repo! Otherwise, feel free to open up an issue in this repo.
