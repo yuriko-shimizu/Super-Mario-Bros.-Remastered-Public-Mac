@@ -148,6 +148,12 @@ func delete_everything(campaign := \"SMB1\") -> void:
 	delete_challenge(campaign)
 	delete_achievement(campaign)
 	delete_boo(campaign)
+
+func regen_rom() -> void:
+	DirAccess.remove_absolute(Global.ROM_PATH)
+	DirAccess.remove_absolute(Global.ROM_ASSETS_PATH)
+	Global.check_for_rom()
+	Global.transition_to_scene(\"res://Scenes/Levels/RomVerifier.tscn\")
 "
 
 [node name="SettingsMenu" type="Control" node_paths=PackedStringArray("containers")]
@@ -764,12 +770,11 @@ script = SubResource("GDScript_ksnto")
 type = 1
 
 [node name="Data" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_DATA"
-options = [NodePath("CampaignData"), NodePath("ChallengeModeData"), NodePath("BooRaceData"), NodePath("MarathonData"), NodePath("AchievementData"), NodePath("Everything")]
+options = [NodePath("CampaignData"), NodePath("ChallengeModeData"), NodePath("BooRaceData"), NodePath("MarathonData"), NodePath("AchievementData"), NodePath("Everything"), NodePath("RegenROM")]
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Data"]
 layout_mode = 2
@@ -821,6 +826,14 @@ extra_confirm = true
 
 [node name="DataDeletion" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Data"]
 script = SubResource("GDScript_oh4w7")
+
+[node name="Control2" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Data"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="RegenROM" parent="PanelContainer/MarginContainer/VBoxContainer/Data" instance=ExtResource("9_t6b48")]
+layout_mode = 2
+title = "Delete Generated Resource Pack"
 
 [node name="Control" type="Control" parent="PanelContainer"]
 custom_minimum_size = Vector2(24, 0)
@@ -907,6 +920,7 @@ script = ExtResource("19_k6yev")
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/MarathonData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_marathon"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/AchievementData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_achievement"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/Everything" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_everything"]
+[connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/Data/RegenROM" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="regen_rom"]
 
 [editable path="PanelContainer/MarginContainer/VBoxContainer/Video/Language"]
 [editable path="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode"]
