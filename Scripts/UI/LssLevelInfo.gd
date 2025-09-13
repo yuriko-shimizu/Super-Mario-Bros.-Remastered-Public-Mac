@@ -70,11 +70,11 @@ func level_downloaded(result: int, response_code: int, headers: PackedStringArra
 	var json = JSON.parse_string(string)
 	var file = FileAccess.open("user://custom_levels/downloaded/" + level_id + ".lvl", FileAccess.WRITE)
 	var data = null
-	if json.levelData is Array:
-		data = get_json_from_bytes(json.levelData)
+	if json.levelData.data is Array:
+		data = get_json_from_bytes(json.levelData.data)
 	else:
 		data = json.levelData
-	file.store_string(JSON.stringify(data))
+	file.store_string(JSON.stringify(str_to_var(data)))
 	file.close()
 	%Download.hide()
 	%OnlinePlay.show()
@@ -82,7 +82,11 @@ func level_downloaded(result: int, response_code: int, headers: PackedStringArra
 
 func play_level() -> void:
 	var file_path := "user://custom_levels/downloaded/" + level_id + ".lvl"
-	LevelEditor.level_file = JSON.parse_string(FileAccess.open(file_path, FileAccess.READ).get_as_text())
+	var file = JSON.parse_string(FileAccess.open(file_path, FileAccess.READ).get_as_text())
+	LevelEditor.level_file = file
+	var info = file["Info"]
+	LevelEditor.level_author = info["Author"]
+	LevelEditor.level_name = info["Name"]
 	level_play.emit()
 
 func get_json_from_bytes(json := []) -> String:

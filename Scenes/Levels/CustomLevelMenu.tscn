@@ -368,11 +368,11 @@ layout_mode = 2
 focus_mode = 0
 
 [node name="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" index="0"]
-scroll_horizontal = 46
+scroll_horizontal = 232
 is_active = true
 
 [node name="ScrollContainer2" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" index="1"]
-scroll_horizontal = 55
+scroll_horizontal = 29
 is_active = true
 
 [node name="Panel" type="PanelContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo"]
@@ -383,7 +383,7 @@ theme_override_styles/panel = ExtResource("8_psbt7")
 [node name="AutoScrollContainer" type="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo/Panel"]
 layout_mode = 2
 mouse_filter = 2
-scroll_vertical = 33
+scroll_vertical = 14
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 script = ExtResource("24_wf6nb")
@@ -569,12 +569,12 @@ layout_mode = 2
 focus_mode = 0
 
 [node name="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/SelectedOnlineLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" index="0"]
-scroll_horizontal = 7
+scroll_horizontal = 27
 is_active = true
 auto_connect_focus = false
 
 [node name="ScrollContainer2" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/SelectedOnlineLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" index="1"]
-scroll_horizontal = 55
+scroll_horizontal = 29
 is_active = true
 auto_connect_focus = false
 
@@ -587,7 +587,7 @@ theme_override_styles/panel = ExtResource("8_psbt7")
 [node name="AutoScrollContainer" type="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/Panel"]
 layout_mode = 2
 mouse_filter = 0
-scroll_vertical = 33
+scroll_vertical = 14
 horizontal_scroll_mode = 3
 script = ExtResource("24_wf6nb")
 direction = 1
@@ -703,6 +703,7 @@ focus_mode = 2
 [connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo/HBoxContainer/ViewOnLSS" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="open_lss"]
 [connection signal="request_completed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo/Description" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="on_request_completed"]
 [connection signal="request_completed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo/DownloadLevel" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="level_downloaded"]
+[connection signal="sprites_updated" from="BGM/ResourceSetter" to="BGM" method="play"]
 [connection signal="cancelled" from="CharacterSelect" to="BG/Border/Levels/VBoxContainer/LevelInfo" method="reopen"]
 
 [editable path="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel"]
