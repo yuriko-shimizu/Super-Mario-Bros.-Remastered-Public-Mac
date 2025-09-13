@@ -1,0 +1,154 @@
+[gd_scene load_steps=10 format=3 uid="uid://8wnmuhtwu8ib"]
+
+[ext_resource type="Script" uid="uid://cfoivmjplms0g" path="res://Scripts/UI/AchievementContainer.gd" id="1_mcb14"]
+[ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="3_d3cm7"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_pjc6k"]
+[ext_resource type="Texture2D" uid="uid://bul3c11keqjfi" path="res://Assets/Sprites/UI/AchievementIcons.png" id="4_ptsd0"]
+[ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="5_0kyuu"]
+[ext_resource type="Script" uid="uid://d63p6qr5a748" path="res://Scripts/UI/AutoScrollContainer.gd" id="5_pjc6k"]
+[ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="6_d3cm7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mcb14"]
+bg_color = Color(0.27387273, 0.27387276, 0.27387264, 1)
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13icg"]
+expand_margin_bottom = 2.0
+
+[node name="AchievementContainer" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+focus_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 1
+script = ExtResource("1_mcb14")
+
+[node name="Cursor" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+stretch_mode = 3
+
+[node name="ResourceSetterNew" type="Node" parent="Cursor" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_pjc6k")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("5_0kyuu")
+use_cache = false
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+modulate = Color(0.5689727, 0.56897277, 0.5689727, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("3_d3cm7")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_top = -4
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = -4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="NinePatchRect" parent="PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("4_ptsd0")
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="AutoScrollContainer2" type="ScrollContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+script = ExtResource("5_pjc6k")
+metadata/_custom_type_script = "uid://d63p6qr5a748"
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/AutoScrollContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "aaa"
+uppercase = true
+
+[node name="Progress" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = -4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Progress"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = -8
+
+[node name="TotalGot" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Progress/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3"
+
+[node name="TotalNeeded" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Progress/HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.52906674, 0.5290667, 0.5290667, 1)
+layout_mode = 2
+text = "/32"
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Progress"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_mcb14")
+theme_override_styles/fill = SubResource("StyleBoxFlat_13icg")
+max_value = 32.0
+value = 12.0
+show_percentage = false
+
+[node name="AutoScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+mouse_filter = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+script = ExtResource("5_pjc6k")
+direction = 1
+metadata/_custom_type_script = "uid://d63p6qr5a748"
+
+[node name="Description" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/AutoScrollContainer"]
+unique_name_in_owner = true
+modulate = Color(0.45840502, 0.45840508, 0.45840502, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Achievement Desc"
+autowrap_mode = 3
+uppercase = true
+
+[node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+script = ExtResource("6_d3cm7")
+labels = [NodePath("../PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/AutoScrollContainer2/Title"), NodePath("../PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Progress/HBoxContainer/TotalGot"), NodePath("../PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Progress/HBoxContainer/TotalNeeded"), NodePath("../PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/AutoScrollContainer/Description")]
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
+
+[connection signal="focus_entered" from="." to="." method="set_active" binds= [true]]
+[connection signal="focus_exited" from="." to="." method="set_active" binds= [false]]
+[connection signal="ready" from="." to="." method="grab_focus"]

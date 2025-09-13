@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://jnun56lervsy"]
+
+[ext_resource type="PackedScene" uid="uid://c8cxhsod82kwm" path="res://Scenes/Prefabs/Entities/Objects/OnOffSidewaysPlatform.tscn" id="1_bcqgw"]
+
+[node name="SidewaysPlatform" instance=ExtResource("1_bcqgw")]
+
+[node name="Sprite" parent="AnimatableBody2D" index="0"]
+region_rect = Rect2(0, 8, 24, 8)
+
+[node name="Sprite2D" parent="AnimatableBody2D/Sprite" index="1"]
+frame = 1
+region_rect = Rect2(24, 8, 16, 8)
+
+[node name="AnimationPauser" parent="." index="4"]
+paused = false

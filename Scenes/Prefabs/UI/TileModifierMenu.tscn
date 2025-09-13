@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://kag5i607liua"]
+
+[ext_resource type="Script" uid="uid://dxjp3pfd77xxa" path="res://Scripts/UI/TileModifierMenu.gd" id="2_0slfq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wognt"]
+bg_color = Color(0, 0, 0, 0.768627)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[node name="TileModifierMenu" type="PanelContainer"]
+self_modulate = Color(1, 1, 1, 0.497)
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wognt")
+script = ExtResource("2_0slfq")
+
+[node name="Container" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

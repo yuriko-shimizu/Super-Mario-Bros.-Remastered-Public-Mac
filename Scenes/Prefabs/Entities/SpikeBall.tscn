@@ -1,0 +1,91 @@
+[gd_scene load_steps=17 format=3 uid="uid://c7il83r4ab05d"]
+
+[ext_resource type="Script" uid="uid://dlq222ogmfken" path="res://Scripts/Classes/Entities/Objects/SpikeBall.gd" id="1_orfe8"]
+[ext_resource type="Texture2D" uid="uid://dtn3el3cobo42" path="res://Assets/Sprites/Items/SpikeBall.png" id="2_2juko"]
+[ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="3_a2kgo"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_d8yxl"]
+[ext_resource type="Texture2D" uid="uid://fvuqvh62n6ks" path="res://Assets/Sprites/Particles/SpikeBallDestructionParticles.png" id="4_d8yxl"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/SpikeBall.json" id="4_vgefa"]
+[ext_resource type="Script" uid="uid://15cikmjhl2f8" path="res://Scripts/Classes/Resources/RandomizedResource.gd" id="5_vgefa"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="6_1nkq5"]
+[ext_resource type="Script" uid="uid://dkjpfs3sm3go3" path="res://Scripts/Classes/Components/BlockHitter.gd" id="9_d8yxl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wpvvo"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d8yxl"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dtofu"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44ci5"]
+atlas = ExtResource("4_d8yxl")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pv3w6"]
+atlas = ExtResource("4_d8yxl")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="Resource" id="Resource_dkcgl"]
+script = ExtResource("5_vgefa")
+resources = Array[Resource]([SubResource("AtlasTexture_44ci5"), SubResource("AtlasTexture_pv3w6")])
+metadata/_custom_type_script = "uid://15cikmjhl2f8"
+
+[sub_resource type="Resource" id="Resource_os7rd"]
+script = ExtResource("6_1nkq5")
+Overworld = SubResource("Resource_dkcgl")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[node name="SpikeBall" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 2
+floor_constant_speed = true
+floor_max_angle = 1.37881
+floor_snap_length = 8.0
+script = ExtResource("1_orfe8")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_2juko")
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_d8yxl")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("4_vgefa")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wpvvo")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_d8yxl")
+
+[node name="BlockHitbox" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockHitbox"]
+shape = SubResource("CircleShape2D_dtofu")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[node name="ThemedToJSONConverter" type="Node" parent="."]
+script = ExtResource("3_a2kgo")
+resource = SubResource("Resource_os7rd")
+json_file_path = "res://Assets/Sprites/Particles/SpikeBallDestructionParticles.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"
+
+[node name="BlockHitter" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("9_d8yxl")
+hitbox = NodePath("../BlockHitbox")
+can_break_bricks = true
+enabled = null
+metadata/_custom_type_script = "uid://dkjpfs3sm3go3"
+
+[connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
+[connection signal="area_entered" from="BlockHitbox" to="." method="on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="queue_free"]

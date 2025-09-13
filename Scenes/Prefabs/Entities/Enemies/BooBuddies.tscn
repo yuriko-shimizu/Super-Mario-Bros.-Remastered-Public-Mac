@@ -1,0 +1,392 @@
+[gd_scene load_steps=16 format=3 uid="uid://coasuq2vsmlce"]
+
+[ext_resource type="Texture2D" uid="uid://c3l6ynlufxcfp" path="res://Assets/Sprites/Enemies/Boo.png" id="1_bek6j"]
+[ext_resource type="Script" uid="uid://djdtghrjbpv2i" path="res://Scripts/Classes/Entities/Enemies/BooBuddies.gd" id="1_vavt3"]
+[ext_resource type="Texture2D" uid="uid://dsncqqhfsnq6s" path="res://Assets/Sprites/Editor/RotationIcon.png" id="2_1eh5v"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_vavt3"]
+[ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="3_5b8ig"]
+[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="4_4rg7w"]
+[ext_resource type="Resource" uid="uid://c8ojbqg4q4qh6" path="res://Resources/ThemedResources/EditorRotationIcon.tres" id="5_4rg7w"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="6_5b8ig"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="8_ifdhg"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BooBuddy.json" id="9_ifdhg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u2yg"]
+atlas = ExtResource("1_bek6j")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wu7y3"]
+atlas = ExtResource("1_bek6j")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8qb0a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u2yg")
+}],
+"loop": true,
+"name": &"Hide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wu7y3")
+}],
+"loop": true,
+"name": &"WhiteMove",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1eh5v"]
+size = Vector2(12, 12)
+
+[sub_resource type="GDScript" id="GDScript_vavt3"]
+script/source = "extends Node
+
+var length := 80
+
+func _physics_process(delta: float) -> void:
+	var idx := 0
+	var spread = 30
+	length = owner.length
+	%RotationJoint.flip_h = owner.direction == 1
+	if owner.spread_boos:
+		spread = (360 / owner.boo_amount)
+	for i in %Boos.get_children():
+		i.show()
+		if idx < owner.boo_amount:
+			i.global_position = owner.global_position + Vector2.from_angle(deg_to_rad(%RotationJoint.global_rotation_degrees + (spread * idx))).normalized() * length
+		else:
+			i.global_position = Vector2(-999, 999)
+		idx += 1
+"
+
+[node name="BooBuddies" type="Node2D" groups=["Enemies"]]
+script = ExtResource("1_vavt3")
+
+[node name="RotationJoint" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 50
+z_as_relative = false
+texture = ExtResource("2_1eh5v")
+script = ExtResource("3_5b8ig")
+
+[node name="ResourceSetter" type="Node" parent="RotationJoint" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_4rg7w")
+node_to_affect = NodePath("..")
+property_name = "texture"
+themed_resource = ExtResource("5_4rg7w")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="Boos" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Boo1" type="Node2D" parent="Boos"]
+visible = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Boos/Boo1"]
+sprite_frames = SubResource("SpriteFrames_8qb0a")
+animation = &"WhiteMove"
+autoplay = "WhiteMove"
+flip_h = true
+script = ExtResource("2_vavt3")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Boos/Boo1/Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("8_ifdhg")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("9_ifdhg")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Hitbox" type="Area2D" parent="Boos/Boo1"]
+
+[node name="Shape" type="CollisionShape2D" parent="Boos/Boo1/Hitbox"]
+shape = SubResource("RectangleShape2D_1eh5v")
+
+[node name="Boo2" type="Node2D" parent="Boos"]
+visible = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Boos/Boo2"]
+sprite_frames = SubResource("SpriteFrames_8qb0a")
+animation = &"WhiteMove"
+autoplay = "WhiteMove"
+flip_h = true
+script = ExtResource("2_vavt3")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Boos/Boo2/Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("8_ifdhg")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("9_ifdhg")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Hitbox" type="Area2D" parent="Boos/Boo2"]
+
+[node name="Shape" type="CollisionShape2D" parent="Boos/Boo2/Hitbox"]
+shape = SubResource("RectangleShape2D_1eh5v")
+
+[node name="Boo3" type="Node2D" parent="Boos"]
+visible = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Boos/Boo3"]
+sprite_frames = SubResource("SpriteFrames_8qb0a")
+animation = &"WhiteMove"
+autoplay = "WhiteMove"
+flip_h = true
+script = ExtResource("2_vavt3")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Boos/Boo3/Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("8_ifdhg")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("9_ifdhg")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Hitbox" type="Area2D" parent="Boos/Boo3"]
+
+[node name="Shape" type="CollisionShape2D" parent="Boos/Boo3/Hitbox"]
+shape = SubResource("RectangleShape2D_1eh5v")
+
+[node name="Boo4" type="Node2D" parent="Boos"]
+visible = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Boos/Boo4"]
+sprite_frames = SubResource("SpriteFrames_8qb0a")
+animation = &"WhiteMove"
+autoplay = "WhiteMove"
+flip_h = true
+script = ExtResource("2_vavt3")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Boos/Boo4/Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("8_ifdhg")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("9_ifdhg")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Hitbox" type="Area2D" parent="Boos/Boo4"]
+
+[node name="Shape" type="CollisionShape2D" parent="Boos/Boo4/Hitbox"]
+shape = SubResource("RectangleShape2D_1eh5v")
+
+[node name="Boo5" type="Node2D" parent="Boos"]
+visible = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Boos/Boo5"]
+sprite_frames = SubResource("SpriteFrames_8qb0a")
+animation = &"WhiteMove"
+autoplay = "WhiteMove"
+flip_h = true
+script = ExtResource("2_vavt3")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Boos/Boo5/Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("8_ifdhg")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("9_ifdhg")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Hitbox" type="Area2D" parent="Boos/Boo5"]
+
+[node name="Shape" type="CollisionShape2D" parent="Boos/Boo5/Hitbox"]
+shape = SubResource("RectangleShape2D_1eh5v")
+
+[node name="Boo6" type="Node2D" parent="Boos"]
+visible = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Boos/Boo6"]
+sprite_frames = SubResource("SpriteFrames_8qb0a")
+animation = &"WhiteMove"
+autoplay = "WhiteMove"
+flip_h = true
+script = ExtResource("2_vavt3")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Boos/Boo6/Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("8_ifdhg")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("9_ifdhg")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Hitbox" type="Area2D" parent="Boos/Boo6"]
+
+[node name="Shape" type="CollisionShape2D" parent="Boos/Boo6/Hitbox"]
+shape = SubResource("RectangleShape2D_1eh5v")
+
+[node name="Boo7" type="Node2D" parent="Boos"]
+visible = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Boos/Boo7"]
+sprite_frames = SubResource("SpriteFrames_8qb0a")
+animation = &"WhiteMove"
+autoplay = "WhiteMove"
+flip_h = true
+script = ExtResource("2_vavt3")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Boos/Boo7/Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("8_ifdhg")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("9_ifdhg")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Hitbox" type="Area2D" parent="Boos/Boo7"]
+
+[node name="Shape" type="CollisionShape2D" parent="Boos/Boo7/Hitbox"]
+shape = SubResource("RectangleShape2D_1eh5v")
+
+[node name="Boo8" type="Node2D" parent="Boos"]
+visible = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Boos/Boo8"]
+sprite_frames = SubResource("SpriteFrames_8qb0a")
+animation = &"WhiteMove"
+autoplay = "WhiteMove"
+flip_h = true
+script = ExtResource("2_vavt3")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Boos/Boo8/Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("8_ifdhg")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("9_ifdhg")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Hitbox" type="Area2D" parent="Boos/Boo8"]
+
+[node name="Shape" type="CollisionShape2D" parent="Boos/Boo8/Hitbox"]
+shape = SubResource("RectangleShape2D_1eh5v")
+
+[node name="Boo9" type="Node2D" parent="Boos"]
+visible = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Boos/Boo9"]
+sprite_frames = SubResource("SpriteFrames_8qb0a")
+animation = &"WhiteMove"
+autoplay = "WhiteMove"
+flip_h = true
+script = ExtResource("2_vavt3")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Boos/Boo9/Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("8_ifdhg")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("9_ifdhg")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Hitbox" type="Area2D" parent="Boos/Boo9"]
+
+[node name="Shape" type="CollisionShape2D" parent="Boos/Boo9/Hitbox"]
+shape = SubResource("RectangleShape2D_1eh5v")
+
+[node name="Boo10" type="Node2D" parent="Boos"]
+visible = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Boos/Boo10"]
+sprite_frames = SubResource("SpriteFrames_8qb0a")
+animation = &"WhiteMove"
+autoplay = "WhiteMove"
+flip_h = true
+script = ExtResource("2_vavt3")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Boos/Boo10/Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("8_ifdhg")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("9_ifdhg")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Hitbox" type="Area2D" parent="Boos/Boo10"]
+
+[node name="Shape" type="CollisionShape2D" parent="Boos/Boo10/Hitbox"]
+shape = SubResource("RectangleShape2D_1eh5v")
+
+[node name="Boo11" type="Node2D" parent="Boos"]
+visible = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Boos/Boo11"]
+sprite_frames = SubResource("SpriteFrames_8qb0a")
+animation = &"WhiteMove"
+autoplay = "WhiteMove"
+flip_h = true
+script = ExtResource("2_vavt3")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Boos/Boo11/Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("8_ifdhg")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("9_ifdhg")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Hitbox" type="Area2D" parent="Boos/Boo11"]
+
+[node name="Shape" type="CollisionShape2D" parent="Boos/Boo11/Hitbox"]
+shape = SubResource("RectangleShape2D_1eh5v")
+
+[node name="Boo12" type="Node2D" parent="Boos"]
+visible = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Boos/Boo12"]
+sprite_frames = SubResource("SpriteFrames_8qb0a")
+animation = &"WhiteMove"
+autoplay = "WhiteMove"
+flip_h = true
+script = ExtResource("2_vavt3")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Boos/Boo12/Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("8_ifdhg")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("9_ifdhg")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Hitbox" type="Area2D" parent="Boos/Boo12"]
+
+[node name="Shape" type="CollisionShape2D" parent="Boos/Boo12/Hitbox"]
+shape = SubResource("RectangleShape2D_1eh5v")
+
+[node name="BooPositioner" type="Node" parent="."]
+process_mode = 3
+script = SubResource("GDScript_vavt3")
+
+[node name="EditorPropertyExposer" type="Node" parent="."]
+script = ExtResource("6_5b8ig")
+properties = Array[String](["length", "direction", "boo_amount", "spread_boos"])
+
+[connection signal="area_entered" from="Boos/Boo1/Hitbox" to="." method="on_area_entered"]
+[connection signal="area_entered" from="Boos/Boo2/Hitbox" to="." method="on_area_entered"]
+[connection signal="area_entered" from="Boos/Boo3/Hitbox" to="." method="on_area_entered"]
+[connection signal="area_entered" from="Boos/Boo4/Hitbox" to="." method="on_area_entered"]
+[connection signal="area_entered" from="Boos/Boo5/Hitbox" to="." method="on_area_entered"]
+[connection signal="area_entered" from="Boos/Boo6/Hitbox" to="." method="on_area_entered"]
+[connection signal="area_entered" from="Boos/Boo7/Hitbox" to="." method="on_area_entered"]
+[connection signal="area_entered" from="Boos/Boo8/Hitbox" to="." method="on_area_entered"]
+[connection signal="area_entered" from="Boos/Boo9/Hitbox" to="." method="on_area_entered"]
+[connection signal="area_entered" from="Boos/Boo10/Hitbox" to="." method="on_area_entered"]
+[connection signal="area_entered" from="Boos/Boo11/Hitbox" to="." method="on_area_entered"]
+[connection signal="area_entered" from="Boos/Boo12/Hitbox" to="." method="on_area_entered"]

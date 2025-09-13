@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5cw2667exll"]
+
+[ext_resource type="PackedScene" uid="uid://by6ndsjhlkmbt" path="res://Scenes/Prefabs/Blocks/BooRaceBlocks/BooOnOffBlock.tscn" id="1_gov4d"]
+[ext_resource type="Texture2D" uid="uid://dql2td7sut6m8" path="res://Assets/Sprites/Blocks/OnOffBlock.png" id="2_pg6um"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/BlueOnOffBlock.json" id="3_pg6um"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pg6um"]
+atlas = ExtResource("2_pg6um")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85gn6"]
+atlas = ExtResource("2_pg6um")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m455b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pg6um")
+}],
+"loop": false,
+"name": &"Off",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85gn6")
+}],
+"loop": false,
+"name": &"On",
+"speed": 15.0
+}]
+
+[node name="OnOffBlock" instance=ExtResource("1_gov4d")]
+active = true
+
+[node name="Sprite" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_m455b")
+animation = &"On"
+autoplay = "On"
+
+[node name="ResourceSetter" parent="Sprite" index="0"]
+resource_json = ExtResource("3_pg6um")
+
+[node name="Collision" parent="." index="1"]
+disabled = false

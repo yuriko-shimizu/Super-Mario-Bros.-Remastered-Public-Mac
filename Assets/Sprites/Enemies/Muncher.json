@@ -1,0 +1,53 @@
+{
+	"animations": {
+		"default": {
+			"frames": [
+				[
+					0.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					16.0,
+					0.0,
+					16.0,
+					16.0
+				]
+			],
+			"speed": 5.0,
+			"loop": true
+		}
+	},
+	"variations": {
+		"default": {
+			"source": "Muncher.png",
+			"rect": [0, 0, 32, 16]
+		},
+		"Underground": {
+			"source": "Muncher.png",
+			"rect": [0, 16, 32, 16]
+		},
+		"GhostHouse": {"link": "Underground"},
+		"Castle": {
+			"source": "Muncher.png",
+			"rect": [0, 32, 32, 16]
+		},
+		"Snow": {
+			"source": "Muncher.png",
+			"rect": [0, 48, 32, 16]
+		},
+		"Space": {
+			"source": "Muncher.png",
+			"rect": [0, 64, 32, 16]
+		},
+		"Volcano": {
+			"source": "Muncher.png",
+			"rect": [0, 80, 32, 16]
+		},
+		"Bonus": {
+			"source": "Muncher.png",
+			"rect": [0, 96, 32, 16]
+		}
+	}
+}

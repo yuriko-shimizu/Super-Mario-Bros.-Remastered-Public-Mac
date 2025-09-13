@@ -1,0 +1,98 @@
+[gd_scene load_steps=14 format=3 uid="uid://0q874wkbxcrr"]
+
+[ext_resource type="PackedScene" uid="uid://d2ainv86lt68a" path="res://Scenes/Prefabs/Blocks/SwitchSpikeBlock.tscn" id="1_nuql5"]
+[ext_resource type="Texture2D" uid="uid://cv27sth0k3amk" path="res://Assets/Sprites/Blocks/SwitchSpike.png" id="2_s2uey"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/SwitchSpikeBlockAlt.json" id="3_s2uey"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8y7p"]
+atlas = ExtResource("2_s2uey")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyfhm"]
+atlas = ExtResource("2_s2uey")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jo8o0"]
+atlas = ExtResource("2_s2uey")
+region = Rect2(112, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbjhk"]
+atlas = ExtResource("2_s2uey")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aevfu"]
+atlas = ExtResource("2_s2uey")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cf4e"]
+atlas = ExtResource("2_s2uey")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6uvi"]
+atlas = ExtResource("2_s2uey")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2f4s2"]
+atlas = ExtResource("2_s2uey")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lvdt"]
+atlas = ExtResource("2_s2uey")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_twrdj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8y7p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyfhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jo8o0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbjhk")
+}],
+"loop": false,
+"name": &"Off",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aevfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cf4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6uvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2f4s2")
+}],
+"loop": false,
+"name": &"On",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lvdt")
+}],
+"loop": true,
+"name": &"Rest",
+"speed": 5.0
+}]
+
+[node name="SwitchSpikeBlock" instance=ExtResource("1_nuql5")]
+active = true
+
+[node name="Sprite" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_twrdj")
+
+[node name="ResourceSetter" parent="Sprite" index="0"]
+resource_json = ExtResource("3_s2uey")
+
+[node name="CollisionShape2D" parent="PlayerHurtBox" index="0"]
+disabled = false

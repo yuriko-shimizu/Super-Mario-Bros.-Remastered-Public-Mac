@@ -1,0 +1,133 @@
+[gd_scene load_steps=19 format=3 uid="uid://5ua3p0lfl1bf"]
+
+[ext_resource type="Script" uid="uid://bm72ggve5kda5" path="res://Scripts/Classes/Blocks/BooOnOffSwitch.gd" id="1_ldgc7"]
+[ext_resource type="Texture2D" uid="uid://b00h2ocjft42e" path="res://Assets/Sprites/Blocks/BooOnOffSwitch.png" id="2_b0kgh"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_afw5n"]
+[ext_resource type="PackedScene" uid="uid://cijkvfkthetn5" path="res://Scenes/Parts/BlockAnimations.tscn" id="3_b0kgh"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/BooOnOffSwitch.json" id="4_bllja"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh77s"]
+atlas = ExtResource("2_b0kgh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldgc7"]
+atlas = ExtResource("2_b0kgh")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcsv7"]
+atlas = ExtResource("2_b0kgh")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60tvi"]
+atlas = ExtResource("2_b0kgh")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7t61"]
+atlas = ExtResource("2_b0kgh")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbxxr"]
+atlas = ExtResource("2_b0kgh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8ett"]
+atlas = ExtResource("2_b0kgh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykmgv"]
+atlas = ExtResource("2_b0kgh")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whks1"]
+atlas = ExtResource("2_b0kgh")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_la0ug"]
+atlas = ExtResource("2_b0kgh")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxm0r"]
+atlas = ExtResource("2_b0kgh")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yh77s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yh77s")
+}],
+"loop": true,
+"name": &"Default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldgc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcsv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60tvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7t61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbxxr")
+}],
+"loop": false,
+"name": &"Off",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8ett")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykmgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whks1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_la0ug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxm0r")
+}],
+"loop": false,
+"name": &"On",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwq65"]
+size = Vector2(16, 16)
+
+[node name="BooOnOffSwitch" type="AnimatableBody2D" node_paths=PackedStringArray("visuals") groups=["BooBlocks", "BooSwitchBlocks"]]
+collision_layer = 6
+collision_mask = 0
+script = ExtResource("1_ldgc7")
+visuals = NodePath("Sprite")
+metadata/_custom_type_script = "uid://b5ejlbl0vp1gm"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yh77s")
+animation = &"On"
+autoplay = "Default"
+
+[node name="ResourceSetter" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_afw5n")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("4_bllja")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_uwq65")
+
+[node name="BlockAnimations" parent="." instance=ExtResource("3_b0kgh")]
+
+[connection signal="player_block_hit" from="." to="." method="on_block_hit" unbinds=1]
+[connection signal="player_block_hit" from="." to="BlockAnimations" method="bounce_block" unbinds=1]

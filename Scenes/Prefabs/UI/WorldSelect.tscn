@@ -1,0 +1,680 @@
+[gd_scene load_steps=8 format=3 uid="uid://dntk2js0tu3y2"]
+
+[ext_resource type="Script" uid="uid://col2kvunpua7l" path="res://Scripts/UI/WorldSelect.gd" id="1_isg11"]
+[ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="2_otmop"]
+[ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="3_isg11"]
+[ext_resource type="Texture2D" uid="uid://chtjq1vr0rpso" path="res://Assets/Sprites/UI/CustomLevelIconDay.png" id="3_ldq6u"]
+[ext_resource type="Texture2D" uid="uid://dsi25p0odieg2" path="res://Assets/Sprites/UI/Numbers.png" id="4_bxh4e"]
+[ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="5_6gt41"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_d8v6d"]
+color = Color(1, 1, 1, 1)
+grow_begin = -4.0
+grow_end = -4.0
+
+[node name="WorldSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 180.0
+offset_bottom = 65.0
+script = ExtResource("1_isg11")
+num_of_worlds = 12
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_otmop")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = -8
+theme_override_constants/margin_top = -4
+theme_override_constants/margin_right = -8
+theme_override_constants/margin_bottom = -4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MENU_WORLD_SELECT"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer/Title"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_d8v6d")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "◄"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="SlotContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Slot1" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("3_ldq6u")
+region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_bxh4e")
+region_rect = Rect2(0, 0, 12, 12)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_bottom = -4
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Cursor"]
+layout_mode = 2
+text = "^"
+horizontal_alignment = 1
+
+[node name="Slot2" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("3_ldq6u")
+region_rect = Rect2(96, 96, 32, 32)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_bxh4e")
+region_rect = Rect2(0, 0, 12, 12)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_bottom = -4
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Cursor"]
+layout_mode = 2
+text = "^"
+horizontal_alignment = 1
+
+[node name="Slot3" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("3_ldq6u")
+region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_bxh4e")
+region_rect = Rect2(0, 0, 12, 12)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_bottom = -4
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Cursor"]
+layout_mode = 2
+text = "^"
+horizontal_alignment = 1
+
+[node name="Slot4" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("3_ldq6u")
+region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_bxh4e")
+region_rect = Rect2(0, 0, 12, 12)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_bottom = -4
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Cursor"]
+layout_mode = 2
+text = "^"
+horizontal_alignment = 1
+
+[node name="Slot5" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("3_ldq6u")
+region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_bxh4e")
+region_rect = Rect2(0, 0, 12, 12)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_bottom = -4
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Cursor"]
+layout_mode = 2
+text = "^"
+horizontal_alignment = 1
+
+[node name="Slot6" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("3_ldq6u")
+region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_bxh4e")
+region_rect = Rect2(0, 0, 12, 12)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_bottom = -4
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Cursor"]
+layout_mode = 2
+text = "^"
+horizontal_alignment = 1
+
+[node name="Slot7" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("3_ldq6u")
+region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_bxh4e")
+region_rect = Rect2(0, 0, 12, 12)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_bottom = -4
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Cursor"]
+layout_mode = 2
+text = "^"
+horizontal_alignment = 1
+
+[node name="Slot8" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("3_ldq6u")
+region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_bxh4e")
+region_rect = Rect2(0, 0, 12, 12)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_bottom = -4
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Cursor"]
+layout_mode = 2
+text = "^"
+horizontal_alignment = 1
+
+[node name="Slot9" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("3_ldq6u")
+region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_bxh4e")
+region_rect = Rect2(0, 0, 12, 12)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_bottom = -4
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Cursor"]
+layout_mode = 2
+text = "^"
+horizontal_alignment = 1
+
+[node name="Slot10" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("3_ldq6u")
+region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_bxh4e")
+region_rect = Rect2(0, 0, 12, 12)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_bottom = -4
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Cursor"]
+layout_mode = 2
+text = "^"
+horizontal_alignment = 1
+
+[node name="Slot11" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("3_ldq6u")
+region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_bxh4e")
+region_rect = Rect2(0, 0, 12, 12)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_bottom = -4
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Cursor"]
+layout_mode = 2
+text = "^"
+horizontal_alignment = 1
+
+[node name="Slot12" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("3_ldq6u")
+region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_bxh4e")
+region_rect = Rect2(0, 0, 12, 12)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_bottom = -4
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Cursor"]
+layout_mode = 2
+text = "^"
+horizontal_alignment = 1
+
+[node name="Slot13" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_neighbor_right = NodePath("../Slot1")
+focus_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("3_ldq6u")
+region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_bxh4e")
+region_rect = Rect2(0, 0, 12, 12)
+script = ExtResource("5_6gt41")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_bottom = -4
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Cursor"]
+layout_mode = 2
+text = "^"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "►"
+
+[node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+script = ExtResource("3_isg11")
+labels = [NodePath("../Panel/MarginContainer/VBoxContainer/Title")]
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
+
+[connection signal="focus_entered" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Cursor" method="show"]
+[connection signal="focus_exited" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Cursor" method="hide"]
+[connection signal="ready" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" method="grab_focus"]
+[connection signal="focus_entered" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Cursor" method="show"]
+[connection signal="focus_exited" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Cursor" method="hide"]
+[connection signal="focus_entered" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Cursor" method="show"]
+[connection signal="focus_exited" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Cursor" method="hide"]
+[connection signal="focus_entered" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Cursor" method="show"]
+[connection signal="focus_exited" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Cursor" method="hide"]
+[connection signal="focus_entered" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Cursor" method="show"]
+[connection signal="focus_exited" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Cursor" method="hide"]
+[connection signal="focus_entered" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Cursor" method="show"]
+[connection signal="focus_exited" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Cursor" method="hide"]
+[connection signal="focus_entered" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Cursor" method="show"]
+[connection signal="focus_exited" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Cursor" method="hide"]
+[connection signal="focus_entered" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Cursor" method="show"]
+[connection signal="focus_exited" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Cursor" method="hide"]
+[connection signal="focus_entered" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Cursor" method="show"]
+[connection signal="focus_exited" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Cursor" method="hide"]
+[connection signal="focus_entered" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Cursor" method="show"]
+[connection signal="focus_exited" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Cursor" method="hide"]
+[connection signal="focus_entered" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Cursor" method="show"]
+[connection signal="focus_exited" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Cursor" method="hide"]
+[connection signal="focus_entered" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Cursor" method="show"]
+[connection signal="focus_exited" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Cursor" method="hide"]
+[connection signal="focus_entered" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Cursor" method="show"]
+[connection signal="focus_exited" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Cursor" method="hide"]

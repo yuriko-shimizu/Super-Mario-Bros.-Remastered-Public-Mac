@@ -1,0 +1,401 @@
+[gd_scene load_steps=36 format=3 uid="uid://ctx0nbkjf2osn"]
+
+[ext_resource type="Script" uid="uid://c0c5ctrmxhpk7" path="res://Scripts/Classes/Entities/Items/YoshiEgg.gd" id="1_byuma"]
+[ext_resource type="Texture2D" uid="uid://c7jq6t1d2mhur" path="res://Assets/Sprites/Items/YoshiEgg.png" id="1_xcoq2"]
+[ext_resource type="Texture2D" uid="uid://hdpdek7jitea" path="res://Assets/Sprites/Players/Yoshi.png" id="2_byuma"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_peoeq"]
+[ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="4_f5bm0"]
+[ext_resource type="AudioStream" uid="uid://uc55fu866hkj" path="res://Assets/Audio/SFX/YoshiEgg.wav" id="4_ljpfp"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/YoshiEgg.json" id="4_r541a"]
+[ext_resource type="AudioStream" uid="uid://cl4e0p4fnpjn1" path="res://Assets/Audio/SFX/Yoshi.wav" id="5_ovuko"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Players/Yoshi.json" id="6_3ntsy"]
+[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="6_swra8"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="7_jen1s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jlbu"]
+atlas = ExtResource("1_xcoq2")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_peoeq"]
+atlas = ExtResource("1_xcoq2")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5bm0"]
+atlas = ExtResource("1_xcoq2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6uhp"]
+atlas = ExtResource("1_xcoq2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swra8"]
+atlas = ExtResource("1_xcoq2")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jen1s"]
+atlas = ExtResource("1_xcoq2")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljpfp"]
+atlas = ExtResource("1_xcoq2")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovuko"]
+atlas = ExtResource("1_xcoq2")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r541a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jlbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_peoeq")
+}],
+"loop": true,
+"name": &"Blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5bm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6uhp")
+}],
+"loop": true,
+"name": &"Green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swra8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jen1s")
+}],
+"loop": true,
+"name": &"Red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljpfp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovuko")
+}],
+"loop": true,
+"name": &"Yellow",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh1gf"]
+atlas = ExtResource("2_byuma")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qdj5"]
+atlas = ExtResource("2_byuma")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ntsy"]
+atlas = ExtResource("2_byuma")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6x77t"]
+atlas = ExtResource("2_byuma")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhwve"]
+atlas = ExtResource("2_byuma")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvhj2"]
+atlas = ExtResource("2_byuma")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vchd"]
+atlas = ExtResource("2_byuma")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8mei"]
+atlas = ExtResource("2_byuma")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ytyif"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh1gf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qdj5")
+}],
+"loop": true,
+"name": &"Blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ntsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6x77t")
+}],
+"loop": true,
+"name": &"Green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhwve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvhj2")
+}],
+"loop": true,
+"name": &"Red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vchd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8mei")
+}],
+"loop": true,
+"name": &"Yellow",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0v6r"]
+size = Vector2(10, 10)
+
+[sub_resource type="Animation" id="Animation_f5bm0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Egg:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Egg:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Yoshi:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("YoshiHatch:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("YoshiSFX:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_xcoq2"]
+resource_name = "new_animation"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Egg:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Egg:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Yoshi:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show_smoke"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("YoshiHatch:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("YoshiSFX:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_byuma"]
+_data = {
+&"RESET": SubResource("Animation_f5bm0"),
+&"new_animation": SubResource("Animation_xcoq2")
+}
+
+[sub_resource type="Resource" id="Resource_2jlbu"]
+script = ExtResource("7_jen1s")
+Overworld = ExtResource("4_ljpfp")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[sub_resource type="Resource" id="Resource_peoeq"]
+script = ExtResource("7_jen1s")
+Overworld = ExtResource("5_ovuko")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[node name="YoshiEgg" type="CharacterBody2D"]
+z_index = -1
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_byuma")
+
+[node name="Egg" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_r541a")
+animation = &"Yellow"
+speed_scale = 0.0
+
+[node name="ResourceSetterNew" type="Node" parent="Egg" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_peoeq")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("4_r541a")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Yoshi" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_ytyif")
+animation = &"Green"
+autoplay = "Green"
+
+[node name="ResourceSetterNew" type="Node" parent="Yoshi" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_peoeq")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("6_3ntsy")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_h0v6r")
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_byuma")
+}
+autoplay = "new_animation"
+
+[node name="ScoreNoteSpawner" type="Node" parent="."]
+script = ExtResource("4_f5bm0")
+add_score = true
+metadata/_custom_type_script = "uid://5octqlf4ohel"
+
+[node name="YoshiHatch" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ljpfp")
+bus = &"SFX"
+
+[node name="ResourceSetter" type="Node" parent="YoshiHatch" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_swra8")
+node_to_affect = NodePath("..")
+property_name = "stream"
+themed_resource = SubResource("Resource_2jlbu")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="YoshiSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ovuko")
+bus = &"SFX"
+
+[node name="ResourceSetter" type="Node" parent="YoshiSFX" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_swra8")
+node_to_affect = NodePath("..")
+property_name = "stream"
+themed_resource = SubResource("Resource_peoeq")
+metadata/_custom_type_script = "uid://cq6f682453q6o"

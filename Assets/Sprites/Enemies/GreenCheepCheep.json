@@ -1,0 +1,50 @@
+{
+	"animations": {
+		"default": {
+			"frames": [
+				[
+					0.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					16.0,
+					0.0,
+					16.0,
+					16.0
+				]
+			],
+			"speed": 5.0,
+			"loop": true
+		}
+	},
+	"variations": {
+		"default": {
+			"source": "CheepCheep.png",
+			"rect": [0, 0, 32, 16]
+		},
+		"Underground": {
+			"source": "CheepCheep.png",
+			"rect": [32, 0, 32, 16]
+		},
+		"Castle": {"link": "Underground"},
+		"GhostHouse": {"link": "Underground"},
+		"Snow": {
+			"source": "CheepCheep.png",
+			"rect": [0, 16, 32, 16]
+		},
+		"Space": {
+			"source": "CheepCheep.png",
+			"rect": [32, 16, 32, 16]
+		},
+		"Volcano": {
+			"source": "CheepCheep.png",
+			"rect": [64, 16, 32, 16]
+		},
+		"Bonus": {
+			"source": "CheepCheep.png",
+			"rect": [0, 32, 32, 16]
+		}
+	}
+}

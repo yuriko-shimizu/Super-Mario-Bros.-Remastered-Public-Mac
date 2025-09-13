@@ -1,0 +1,22 @@
+{
+	"palettes": {
+		"default": [
+			"00000000",
+			"FFFFFF",
+			"FFaa47",
+			"1f1f1f"
+		],
+		"Underground": [
+			"00000000",
+			"FFFFFF",
+			"FFaa47",
+			"86310e"
+		],
+		"Snow": [
+			"00000000",
+			"FFFFFF",
+			"bcbce6",
+			"4c4c78"
+		],
+	}
+}

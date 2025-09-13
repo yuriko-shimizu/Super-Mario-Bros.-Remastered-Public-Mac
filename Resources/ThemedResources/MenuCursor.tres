@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="ThemedResource" load_steps=10 format=3 uid="uid://pfjse0r2ibwi"]
+
+[ext_resource type="Texture2D" uid="uid://3p2l7rec0gh5" path="res://Assets/Sprites/UI/Cursor.png" id="1_iwnb3"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="2_wgcxa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwnb3"]
+atlas = ExtResource("1_iwnb3")
+region = Rect2(0, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgcxa"]
+atlas = ExtResource("1_iwnb3")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c772u"]
+atlas = ExtResource("1_iwnb3")
+region = Rect2(8, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uqsm"]
+atlas = ExtResource("1_iwnb3")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ve3u"]
+atlas = ExtResource("1_iwnb3")
+region = Rect2(8, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6jd3"]
+atlas = ExtResource("1_iwnb3")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kg6g2"]
+atlas = ExtResource("1_iwnb3")
+region = Rect2(0, 16, 8, 8)
+
+[resource]
+script = ExtResource("2_wgcxa")
+Overworld = SubResource("AtlasTexture_2uqsm")
+Underground = SubResource("AtlasTexture_q6jd3")
+Desert = SubResource("AtlasTexture_wgcxa")
+Snow = SubResource("AtlasTexture_1ve3u")
+Jungle = SubResource("AtlasTexture_c772u")
+Underwater = SubResource("AtlasTexture_kg6g2")
+Castle = SubResource("AtlasTexture_iwnb3")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"

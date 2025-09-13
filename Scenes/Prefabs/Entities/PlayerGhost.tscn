@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://btiev75x1wtvk"]
+
+[ext_resource type="Script" uid="uid://0cmcgxyt0akj" path="res://Scripts/Parts/PlayerGhost.gd" id="1_nj8xm"]
+[ext_resource type="Shader" uid="uid://cjfd0fbhvx370" path="res://Scenes/Parts/DitheredTransparency.gdshader" id="2_ovt7x"]
+[ext_resource type="SpriteFrames" uid="uid://328p7l1rmy00" path="res://Resources/SpriteFrames/Player/Toad/Big.tres" id="2_wegel"]
+[ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="3_r56m0"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_nj8xm"]
+[ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="5_r56m0"]
+[ext_resource type="Resource" uid="uid://8dcuxbc3h2u2" path="res://Resources/ThemedResources/Font.tres" id="6_ovt7x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nj8xm"]
+shader = ExtResource("2_ovt7x")
+
+[node name="PlayerGhost" type="Node2D"]
+process_mode = 3
+physics_interpolation_mode = 1
+visibility_layer = 2
+script = ExtResource("1_nj8xm")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("resource_setter")]
+modulate = Color(1, 1, 1, 0.75)
+clip_children = 2
+material = SubResource("ShaderMaterial_nj8xm")
+position = Vector2(0, 1)
+sprite_frames = ExtResource("2_wegel")
+animation = &"Move"
+speed_scale = 0.0
+offset = Vector2(0, 1)
+script = ExtResource("3_r56m0")
+resource_setter = NodePath("ResourceSetterNew")
+metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
+
+[node name="Tint" type="ColorRect" parent="PlayerSprite"]
+visible = false
+offset_left = -521.0
+offset_top = -482.0
+offset_right = 478.0
+offset_bottom = 517.0
+color = Color(0.968627, 0.223529, 0.0627451, 1)
+
+[node name="ResourceSetterNew" type="Node" parent="PlayerSprite"]
+script = ExtResource("4_nj8xm")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -11.0
+offset_top = -27.0
+offset_right = 5.0
+offset_bottom = -19.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "PB"
+
+[node name="LabelFontChanger" type="Node" parent="Label" node_paths=PackedStringArray("labels")]
+script = ExtResource("5_r56m0")
+labels = [NodePath("..")]
+resource = ExtResource("6_ovt7x")
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"

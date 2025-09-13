@@ -1,0 +1,219 @@
+[gd_scene load_steps=14 format=3 uid="uid://c7w8dmlmj0hoh"]
+
+[ext_resource type="Script" uid="uid://cae4v54jq1gs3" path="res://Scripts/UI/CampaignSelect.gd" id="1_ngr5x"]
+[ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="2_36wrd"]
+[ext_resource type="Texture2D" uid="uid://v2lub78wus46" path="res://Assets/Sprites/UI/CampaignIcons.png" id="3_6ft85"]
+[ext_resource type="Script" uid="uid://ca3bew33g45eq" path="res://Scripts/Classes/UI/PackTextureRect.gd" id="4_uaivh"]
+[ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="6_1wxv0"]
+[ext_resource type="Resource" uid="uid://8dcuxbc3h2u2" path="res://Resources/ThemedResources/Font.tres" id="7_l766q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ft85"]
+atlas = ExtResource("3_6ft85")
+region = Rect2(0, 0, 68, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uaivh"]
+atlas = ExtResource("3_6ft85")
+region = Rect2(68, 0, 68, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l766q"]
+atlas = ExtResource("3_6ft85")
+region = Rect2(136, 0, 68, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n66kg"]
+atlas = ExtResource("3_6ft85")
+region = Rect2(204, 0, 68, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8lhv"]
+atlas = ExtResource("3_6ft85")
+region = Rect2(272, 0, 68, 68)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_0j631"]
+color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wxv0"]
+atlas = ExtResource("3_6ft85")
+region = Rect2(0, 0, 68, 68)
+
+[node name="CampaignSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 128.0
+script = ExtResource("1_ngr5x")
+campaign_icons = Array[Texture2D]([SubResource("AtlasTexture_6ft85"), SubResource("AtlasTexture_uaivh"), SubResource("AtlasTexture_l766q"), SubResource("AtlasTexture_n66kg"), SubResource("AtlasTexture_q8lhv")])
+campaign = ["SMB1", "SMBLL", "SMBS", "SMBANN", "SMB1"]
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_36wrd")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_right = -4
+theme_override_constants/margin_bottom = -8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="SelectWorld" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MENU_GAME_SELECT"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/SelectWorld"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_0j631")
+
+[node name="Buffer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 9)
+layout_mode = 2
+
+[node name="CampaignNames" type="BoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+alignment = 1
+
+[node name="SMB1" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/CampaignNames"]
+custom_minimum_size = Vector2(190, 32)
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0.5254902, 0.19215687, 0.05490196, 1)
+text = "CAMPAIGN_SMB1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="SMBLL" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/CampaignNames"]
+visible = false
+custom_minimum_size = Vector2(164, 32)
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0.12941177, 0.6784314, 0.0627451, 1)
+text = "CAMPAIGN_SMBLL"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="SMBS" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/CampaignNames"]
+visible = false
+custom_minimum_size = Vector2(190, 32)
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0.25882354, 0.25882354, 1, 1)
+text = "CAMPAIGN_SMBS"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="SMBANN" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/CampaignNames"]
+visible = false
+custom_minimum_size = Vector2(190, 32)
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(1, 0.25882354, 1, 1)
+text = "CAMPAIGN_SMBANN"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="Custom" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/CampaignNames"]
+visible = false
+custom_minimum_size = Vector2(190, 32)
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0.8901961, 0.54901963, 0.22352941, 1)
+text = "CUSTOM_LEVELS"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="Buffer2" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 9)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Left" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.5370987, 0.5370987, 0.5370987, 1)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_1wxv0")
+stretch_mode = 2
+script = ExtResource("4_uaivh")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="Middle" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_1wxv0")
+stretch_mode = 2
+script = ExtResource("4_uaivh")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="Right" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.5411765, 0.5411765, 0.5411765, 1)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_1wxv0")
+stretch_mode = 2
+script = ExtResource("4_uaivh")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="Buffer3" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BarLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "◄--┼--►"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+script = ExtResource("6_1wxv0")
+labels = [NodePath("../PanelContainer/MarginContainer/VBoxContainer/CampaignNames/SMB1"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/SelectWorld"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/CampaignNames/SMBLL"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/CampaignNames/SMBS"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/CampaignNames/SMBANN"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/CampaignNames/Custom"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/BarLabel")]
+resource = ExtResource("7_l766q")
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"

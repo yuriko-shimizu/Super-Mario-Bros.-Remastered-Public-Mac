@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://n8logm5jpkgm"]
+
+[ext_resource type="Script" uid="uid://bwlrdsclxd15j" path="res://Scripts/UI/RomResourceGenerator.gd" id="1_qfw87"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfw87"]
+bg_color = Color(0.12156863, 0.12156863, 0.12156863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ff7p"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="RomResourceGenerator" type="Node"]
+script = ExtResource("1_qfw87")
+
+[node name="BG" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_qfw87")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4ff7p")
+show_percentage = false
+
+[node name="Label" type="Label" parent="MarginContainer/ProgressBar"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "EXTRACTING ASSETS..."
+horizontal_alignment = 1
+
+[node name="Error" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "ERROR
+MISSING SPRITE JSON(S)"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Error"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25552174, 2.5118234e-07, 6.016344e-08, 1)

@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://bpsrc21amnlgb"]
+
+[ext_resource type="Script" uid="uid://bbp3jg7yg1700" path="res://Scripts/Classes/Entities/Enemies/Boo.gd" id="1_ilcde"]
+[ext_resource type="Texture2D" uid="uid://c3l6ynlufxcfp" path="res://Assets/Sprites/Enemies/Boo.png" id="1_mkqqf"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_ilcde"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Boo.json" id="3_xhmhl"]
+[ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="5_xhmhl"]
+[ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="6_7u2yg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wu7y3"]
+atlas = ExtResource("1_mkqqf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u2yg"]
+atlas = ExtResource("1_mkqqf")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i46bk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wu7y3")
+}],
+"loop": true,
+"name": &"Move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u2yg")
+}],
+"loop": true,
+"name": &"WhiteIdle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ilcde"]
+size = Vector2(12, 12)
+
+[node name="Boo" type="Node2D" groups=["Enemies"]]
+script = ExtResource("1_ilcde")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_i46bk")
+animation = &"WhiteIdle"
+flip_h = true
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("2_ilcde")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("3_xhmhl")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_ilcde")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="ScoreNoteSpawner" type="Node" parent="."]
+script = ExtResource("5_xhmhl")
+add_score = true
+play_sfx = true
+metadata/_custom_type_script = "uid://5octqlf4ohel"
+
+[node name="TrackJoint" type="Node" parent="."]
+script = ExtResource("6_7u2yg")
+disable_physics = false
+metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
+
+[connection signal="killed" from="." to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
+[connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]

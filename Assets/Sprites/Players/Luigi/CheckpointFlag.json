@@ -1,0 +1,12 @@
+{
+	"animations": {
+		"default": {
+			"frames": [[0, 0, 32, 32]],
+			"speed": 1.0,
+			"loop": true
+		}
+	},
+	"variations": {
+		"default": {"source": "CheckpointFlag.png"}
+	}
+}

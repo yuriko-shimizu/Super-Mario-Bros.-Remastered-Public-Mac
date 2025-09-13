@@ -1,0 +1,171 @@
+[gd_scene load_steps=16 format=3 uid="uid://rruc6lnk16rr"]
+
+[ext_resource type="Script" uid="uid://dryofl8epgget" path="res://Scripts/Classes/Entities/Items/ClockItem.gd" id="1_heiyr"]
+[ext_resource type="Texture2D" uid="uid://dal8md4ms07j2" path="res://Assets/Sprites/Items/Clock.png" id="1_ybxan"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_heiyr"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ov4xw"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/Clock.json" id="4_newwu"]
+[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="5_fg0gx"]
+[ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="6_ggci8"]
+[ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="7_eol0e"]
+[ext_resource type="Resource" uid="uid://8dcuxbc3h2u2" path="res://Resources/ThemedResources/Font.tres" id="8_34q7a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c30tx"]
+atlas = ExtResource("1_ybxan")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qa2fo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c30tx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydslq"]
+size = Vector2(12, 12)
+
+[sub_resource type="Animation" id="Animation_heiyr"]
+resource_name = "Appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-24, -8), Vector2(-24, -16)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Sprite")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ybxan"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-24, -8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ov4xw"]
+_data = {
+&"Appear": SubResource("Animation_heiyr"),
+&"RESET": SubResource("Animation_ybxan")
+}
+
+[node name="ClockItem" type="CharacterBody2D"]
+script = ExtResource("1_heiyr")
+metadata/_custom_type_script = "uid://cjkurwybsaywm"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_qa2fo")
+offset = Vector2(0, 1)
+script = ExtResource("2_heiyr")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_ov4xw")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("4_newwu")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Hitbox" type="Area2D" parent="Sprite"]
+script = ExtResource("5_fg0gx")
+metadata/_custom_type_script = "uid://cnheej0sxmoxg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Hitbox"]
+shape = SubResource("RectangleShape2D_ydslq")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 24.0
+offset_bottom = 8.0
+text = "+100"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="TextShadowColourChanger" type="Node" parent="Label" node_paths=PackedStringArray("labels")]
+script = ExtResource("6_ggci8")
+labels = [NodePath("..")]
+metadata/_custom_type_script = "uid://dt2p68xl462v2"
+
+[node name="LabelFontChanger" type="Node" parent="Label" node_paths=PackedStringArray("labels")]
+script = ExtResource("7_eol0e")
+labels = [NodePath("..")]
+resource = ExtResource("8_34q7a")
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label"]
+libraries = {
+&"": SubResource("AnimationLibrary_ov4xw")
+}
+
+[connection signal="player_entered" from="Sprite/Hitbox" to="." method="collect_item"]

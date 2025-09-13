@@ -1,0 +1,61 @@
+{
+	"animations": {
+		"Idle": {
+			"frames": [
+				[
+					0.0,
+					0.0,
+					16.0,
+					24.0
+				]
+			],
+			"speed": 5.0,
+			"loop": true
+		},
+		"Throw": {
+			"frames": [
+				[
+					16.0,
+					0.0,
+					16.0,
+					24.0
+				]
+			],
+			"speed": 5.0,
+			"loop": true
+		}
+	},
+	"variations": {
+		"default": {
+			"source": "Lakitu.png",
+			"rect": [0, 0, 32, 24]
+		},
+		"Underground": {
+			"source": "Lakitu.png",
+			"rect": [32, 0, 32, 24]
+		},
+		"Castle": {"link": "Underground"},
+		"GhostHouse": {"link": "Underground"},
+		"Underwater": {
+			"source": "Lakitu.png",
+			"rect": [64, 0, 32, 24]
+		},
+		"CastleWater": {"link": "Underwater"},
+		"Snow": {
+			"source": "Lakitu.png",
+			"rect": [0, 24, 32, 24]
+		},
+		"Space": {
+			"source": "Lakitu.png",
+			"rect": [32, 24, 32, 24]
+		},
+		"Volcano": {
+			"source": "Lakitu.png",
+			"rect": [64, 24, 32, 24]
+		},
+		"Bonus": {
+			"source": "Lakitu.png",
+			"rect": [0, 48, 32, 24]
+		}
+	}
+}

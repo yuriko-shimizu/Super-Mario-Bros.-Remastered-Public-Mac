@@ -1,0 +1,331 @@
+[gd_scene load_steps=36 format=3 uid="uid://kr7i2kf6rew0"]
+
+[ext_resource type="Script" uid="uid://b8gdlotx0at6x" path="res://Scripts/Classes/Entities/Enemies/HammerBro.gd" id="1_8mo24"]
+[ext_resource type="Texture2D" uid="uid://l3l3icupve4t" path="res://Assets/Sprites/Enemies/HammerBro.png" id="2_8mo24"]
+[ext_resource type="Texture2D" uid="uid://3xmhfi556p3s" path="res://Assets/Sprites/Items/Hammer.png" id="3_dywvb"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_hx42c"]
+[ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="5_i0wjw"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/Hammer.json" id="6_0w8yj"]
+[ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="6_1mp8k"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="6_hx42c"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="7_pvn5i"]
+[ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="7_scjjh"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/HammerBro.json" id="8_0w8yj"]
+[ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="8_1mp8k"]
+[ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="9_scjjh"]
+[ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="12_hx42c"]
+[ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="15_2r2js"]
+[ext_resource type="Script" uid="uid://ba18grqjixded" path="res://Scripts/Classes/Components/ExplosionDetection.gd" id="16_0w8yj"]
+[ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="17_2r2js"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvn5i"]
+atlas = ExtResource("2_8mo24")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0w8yj"]
+atlas = ExtResource("2_8mo24")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r2js"]
+atlas = ExtResource("2_8mo24")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dq4jl"]
+atlas = ExtResource("2_8mo24")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cl1av"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvn5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0w8yj")
+}],
+"loop": true,
+"name": &"Hammer",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2r2js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dq4jl")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hx42c"]
+atlas = ExtResource("3_dywvb")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="Animation" id="Animation_1mp8k"]
+resource_name = "Movement"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(8, -12), Vector2(-8, -12)]
+}
+
+[sub_resource type="Animation" id="Animation_scjjh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2vqj5"]
+_data = {
+&"Movement": SubResource("Animation_1mp8k"),
+&"RESET": SubResource("Animation_scjjh")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dywvb"]
+size = Vector2(8, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2vqj5"]
+size = Vector2(12, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eel5y"]
+atlas = ExtResource("2_8mo24")
+region = Rect2(32, 24, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cl1av"]
+atlas = ExtResource("2_8mo24")
+region = Rect2(48, 24, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccgvu"]
+atlas = ExtResource("2_8mo24")
+region = Rect2(0, 24, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u435"]
+atlas = ExtResource("2_8mo24")
+region = Rect2(16, 24, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6r0gb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eel5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cl1av")
+}],
+"loop": true,
+"name": &"Hammer",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccgvu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u435")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5o1ie"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eel5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cl1av")
+}],
+"loop": true,
+"name": &"Hammer",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccgvu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u435")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_pvn5i"]
+script = ExtResource("6_hx42c")
+Overworld = SubResource("SpriteFrames_cl1av")
+Underground = SubResource("SpriteFrames_5o1ie")
+Castle = SubResource("SpriteFrames_6r0gb")
+metadata/_custom_type_script = ExtResource("6_hx42c")
+
+[node name="HammerBro" type="CharacterBody2D" node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Enemies"]]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_8mo24")
+on_screen_enabler = NodePath("VisibleOnScreenEnabler2D")
+score_note_adder = NodePath("ScoreNoteSpawner")
+metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_cl1av")
+animation = &"Idle"
+frame_progress = 0.755197
+offset = Vector2(2, 0)
+flip_h = true
+script = ExtResource("3_hx42c")
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="Hammer" type="Sprite2D" parent="Sprite"]
+visible = false
+show_behind_parent = true
+position = Vector2(0, -17)
+texture = SubResource("AtlasTexture_hx42c")
+flip_h = true
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite/Hammer" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("7_pvn5i")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("6_0w8yj")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("7_pvn5i")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("8_0w8yj")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="MovementAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2vqj5")
+}
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_dywvb")
+
+[node name="BlockDetect" type="RayCast2D" parent="."]
+position = Vector2(0, 17)
+target_position = Vector2(0, 24)
+collision_mask = 2
+hit_from_inside = true
+
+[node name="UpBlock" type="RayCast2D" parent="."]
+visible = false
+position = Vector2(0, -32)
+target_position = Vector2(0, -24)
+collision_mask = 2
+hit_from_inside = true
+
+[node name="JumpTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="HammerTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="EnemyPlayerDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("5_i0wjw")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+visible = false
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_2vqj5")
+
+[node name="BlockBouncingDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("6_1mp8k")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://cmg61722ktg2m"
+
+[node name="FireballDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("7_scjjh")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://dri2d5jtu0fbq"
+
+[node name="GibSpawner" type="Node" parent="." node_paths=PackedStringArray("visuals")]
+script = ExtResource("8_1mp8k")
+visuals = NodePath("../Sprite")
+metadata/_custom_type_script = "uid://c3gg32ivrlq8n"
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -15)
+scale = Vector2(1, 1.7)
+
+[node name="ScoreNoteSpawner" type="Node" parent="."]
+script = ExtResource("9_scjjh")
+add_score = true
+metadata/_custom_type_script = "uid://5octqlf4ohel"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="ShellDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("12_hx42c")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://bbww34oiexbx2"
+
+[node name="ThemedToJSONConverter" type="Node" parent="."]
+script = ExtResource("15_2r2js")
+resource = SubResource("Resource_pvn5i")
+json_file_path = "res://Assets/Sprites/Enemies/HammerBro.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"
+
+[node name="ExplosionDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("16_0w8yj")
+hitbox = NodePath("../Hitbox")
+
+[node name="TrackJoint" type="Node" parent="."]
+script = ExtResource("17_2r2js")
+metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
+
+[connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
+[connection signal="timeout" from="JumpTimer" to="." method="jump" binds= [false]]
+[connection signal="timeout" from="HammerTimer" to="." method="do_hammer_throw"]
+[connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
+[connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="EnemyPlayerDetection" to="GibSpawner" method="stomp_die" binds= [false]]
+[connection signal="player_stomped_on" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
+[connection signal="block_bounced" from="BlockBouncingDetection" to="." method="die_from_object"]
+[connection signal="block_bounced" from="BlockBouncingDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
+[connection signal="fireball_hit" from="FireballDetection" to="." method="die_from_object"]
+[connection signal="fireball_hit" from="FireballDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
+[connection signal="gib_about_to_spawn" from="GibSpawner" to="Sprite/Hammer" method="hide"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="on_screen_entered"]
+[connection signal="timeout" from="Timer" to="." method="charge"]
+[connection signal="moving_shell_entered" from="ShellDetection" to="." method="die_from_object"]
+[connection signal="explosion_entered" from="ExplosionDetection" to="." method="die_from_object"]
+[connection signal="explosion_entered" from="ExplosionDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
+[connection signal="attached" from="TrackJoint" to="MovementAnimations" method="play" binds= ["RESET"]]

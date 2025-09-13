@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhs5ly6bbaahk"]
+
+[ext_resource type="PackedScene" uid="uid://cyw7kk1em8h16" path="res://Scenes/Parts/Particles/BlockDestructionParticles.tscn" id="1_wkb5x"]
+[ext_resource type="Texture2D" uid="uid://6gt1kugyj6sb" path="res://Assets/Sprites/Particles/DryBonesDestructionParticles.png" id="2_x32ly"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Particles/DryBonesDestructionParticles.json" id="3_78pcs"]
+
+[node name="BlockDestructionParticles" instance=ExtResource("1_wkb5x")]
+
+[node name="Sprite" parent="TL" index="0"]
+texture = ExtResource("2_x32ly")
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="ResourceSetterNew" parent="TL/Sprite" index="0"]
+resource_json = ExtResource("3_78pcs")
+
+[node name="Sprite" parent="TR" index="0"]
+texture = ExtResource("2_x32ly")
+region_rect = Rect2(32, 0, 16, 16)
+
+[node name="ResourceSetterNew" parent="TR/Sprite" index="0"]
+resource_json = ExtResource("3_78pcs")
+
+[node name="Sprite" parent="BL" index="0"]
+texture = ExtResource("2_x32ly")
+region_rect = Rect2(32, 0, 16, 16)
+
+[node name="ResourceSetterNew" parent="BL/Sprite" index="0"]
+resource_json = ExtResource("3_78pcs")
+
+[node name="Sprite" parent="BR" index="0"]
+texture = ExtResource("2_x32ly")
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="ResourceSetterNew" parent="BR/Sprite" index="0"]
+resource_json = ExtResource("3_78pcs")

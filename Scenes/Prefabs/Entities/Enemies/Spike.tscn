@@ -1,0 +1,310 @@
+[gd_scene load_steps=30 format=3 uid="uid://dbob4iexex6yp"]
+
+[ext_resource type="Script" uid="uid://4isgtypd8yqc" path="res://Scripts/Classes/Entities/Enemies/Spike.gd" id="1_5cp2h"]
+[ext_resource type="Texture2D" uid="uid://drf0xqp7af1bx" path="res://Assets/Sprites/Enemies/Spike.png" id="2_dd7on"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_5cp2h"]
+[ext_resource type="Texture2D" uid="uid://dtn3el3cobo42" path="res://Assets/Sprites/Items/SpikeBall.png" id="3_m8jkd"]
+[ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="3_wml2i"]
+[ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="4_w6nqc"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="5_ddx5o"]
+[ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="5_w6nqc"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Spike.json" id="6_dhnkc"]
+[ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="6_iboug"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/SpikeBall.json" id="7_l0d5l"]
+[ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="7_m8jkd"]
+[ext_resource type="Script" uid="uid://dlq6o2rg1x7in" path="res://Scripts/Classes/Components/BasicEnemyMovement.gd" id="12_dhnkc"]
+[ext_resource type="Script" uid="uid://bx6r8sjar6cwr" path="res://Scripts/Classes/Components/BasicStaticMovement.gd" id="13_vg6vt"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="14_px5di"]
+[ext_resource type="Script" uid="uid://ba18grqjixded" path="res://Scripts/Classes/Components/ExplosionDetection.gd" id="15_5pdnx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cp2h"]
+atlas = ExtResource("2_dd7on")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1p0q"]
+atlas = ExtResource("2_dd7on")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddx5o"]
+atlas = ExtResource("2_dd7on")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhnkc"]
+atlas = ExtResource("2_dd7on")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wml2i"]
+atlas = ExtResource("2_dd7on")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6nqc"]
+atlas = ExtResource("2_dd7on")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0q3vy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cp2h")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_w1p0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddx5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhnkc")
+}],
+"loop": false,
+"name": &"GrabBall",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wml2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6nqc")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_vg6vt"]
+resource_name = "BallSpawn"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"GrabBall", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/Ball:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite/Ball:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.866667, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1e-05, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -17), Vector2(0, -14), Vector2(0, -14), Vector2(-3, -14), Vector2(0, -14)]
+}
+
+[sub_resource type="Animation" id="Animation_5cp2h"]
+resource_name = "Idle"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Idle", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/Ball:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_w1p0q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Ball:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/Ball:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_px5di"]
+_data = {
+&"BallSpawn": SubResource("Animation_vg6vt"),
+&"Idle": SubResource("Animation_5cp2h"),
+&"RESET": SubResource("Animation_w1p0q")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r5um5"]
+size = Vector2(10, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dd7on"]
+size = Vector2(10, 12)
+
+[node name="Spike" type="CharacterBody2D" node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Enemies"]]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_5cp2h")
+on_screen_enabler = NodePath("VisibleOnScreenEnabler2D")
+score_note_adder = NodePath("ScoreNoteSpawner")
+metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_0q3vy")
+animation = &"GrabBall"
+autoplay = "Idle"
+frame = 3
+frame_progress = 1.0
+offset = Vector2(0, 1)
+flip_h = true
+script = ExtResource("3_5cp2h")
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="Animations" type="AnimationPlayer" parent="Sprite"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_px5di")
+}
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("5_ddx5o")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("6_dhnkc")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Ball" type="Sprite2D" parent="Sprite"]
+unique_name_in_owner = true
+visible = false
+show_behind_parent = true
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("3_m8jkd")
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite/Ball" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("5_ddx5o")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("7_l0d5l")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_r5um5")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_dd7on")
+
+[node name="EnemyPlayerDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("3_wml2i")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
+[node name="GibSpawner" type="Node" parent="." node_paths=PackedStringArray("visuals")]
+script = ExtResource("4_w6nqc")
+visuals = NodePath("../Sprite")
+metadata/_custom_type_script = "uid://c3gg32ivrlq8n"
+
+[node name="ScoreNoteSpawner" type="Node" parent="."]
+script = ExtResource("5_w6nqc")
+metadata/_custom_type_script = "uid://5octqlf4ohel"
+
+[node name="FireballDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("6_iboug")
+hitbox = NodePath("../Hitbox")
+play_sfx_on_hit = true
+metadata/_custom_type_script = "uid://dri2d5jtu0fbq"
+
+[node name="ShellDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("7_m8jkd")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://bbww34oiexbx2"
+
+[node name="ThrowTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0, -9)
+
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("visuals")]
+script = ExtResource("12_dhnkc")
+auto_call = false
+visuals = NodePath("../Sprite")
+
+[node name="TurnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="StaticMovement" type="Node" parent="." node_paths=PackedStringArray("visuals")]
+script = ExtResource("13_vg6vt")
+auto_call = false
+visuals = NodePath("../Sprite")
+
+[node name="EditorPropertyExposer" type="Node" parent="."]
+script = ExtResource("14_px5di")
+properties = Array[String](["can_move"])
+
+[node name="ExplosionDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("15_5pdnx")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://ba18grqjixded"
+
+[connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
+[connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [500]]
+[connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="EnemyPlayerDetection" to="GibSpawner" method="stomp_die"]
+[connection signal="fireball_hit" from="FireballDetection" to="." method="die_from_object"]
+[connection signal="fireball_hit" from="FireballDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [500]]
+[connection signal="moving_shell_entered" from="ShellDetection" to="." method="die_from_object"]
+[connection signal="timeout" from="ThrowTimer" to="." method="throw_ball"]
+[connection signal="timeout" from="TurnTimer" to="." method="on_timeout"]
+[connection signal="explosion_entered" from="ExplosionDetection" to="." method="die_from_object"]
+[connection signal="explosion_entered" from="ExplosionDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [500]]

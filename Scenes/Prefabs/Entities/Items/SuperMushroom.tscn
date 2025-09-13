@@ -1,0 +1,78 @@
+[gd_scene load_steps=13 format=3 uid="uid://beq7b3hp44onn"]
+
+[ext_resource type="Script" uid="uid://dlrdjo1ksvp7q" path="res://Scripts/Classes/Entities/Items/SuperMushroom.gd" id="1_j8f56"]
+[ext_resource type="Texture2D" uid="uid://hfh5i32uji5t" path="res://Assets/Sprites/Items/SuperMushroom.png" id="2_kycr3"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_20ogn"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_i28px"]
+[ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="3_kycr3"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/SuperMushroom.json" id="4_waj2c"]
+[ext_resource type="Script" uid="uid://dlq6o2rg1x7in" path="res://Scripts/Classes/Components/BasicEnemyMovement.gd" id="6_waj2c"]
+[ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="7_xop20"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xop20"]
+atlas = ExtResource("2_kycr3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_20ogn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xop20")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eg5wg"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i28px"]
+size = Vector2(4, 8)
+
+[node name="SuperMushroom" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_j8f56")
+
+[node name="Mushroom" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_20ogn")
+offset = Vector2(0, 1)
+script = ExtResource("3_20ogn")
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Mushroom" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_i28px")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("4_waj2c")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_eg5wg")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_i28px")
+
+[node name="BlockBouncingDetection" type="Node" parent="."]
+script = ExtResource("3_kycr3")
+can_change_direction = true
+metadata/_custom_type_script = "uid://cmg61722ktg2m"
+
+[node name="BasicEnemyMovement" type="Node" parent="."]
+script = ExtResource("6_waj2c")
+auto_call = false
+move_speed = 65
+
+[node name="TrackJoint" type="Node" parent="." node_paths=PackedStringArray("movement_node")]
+script = ExtResource("7_xop20")
+movement_node = NodePath("../BasicEnemyMovement")
+metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
+
+[connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
+[connection signal="block_bounced" from="BlockBouncingDetection" to="." method="block_bounce_up" unbinds=1]

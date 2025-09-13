@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://clxssds8sj8pf"]
+
+[ext_resource type="Script" uid="uid://dixhffcqfnyku" path="res://Scripts/Classes/Entities/Items/SpinningCoin.gd" id="1_pvx50"]
+[ext_resource type="Texture2D" uid="uid://bnomivkphlt60" path="res://Assets/Sprites/Items/SpinningCoin.png" id="2_6slgd"]
+[ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="3_6slgd"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_7mdmn"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/SpinningCoin.json" id="4_b5lmc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0qq2"]
+atlas = ExtResource("2_6slgd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mdmn"]
+atlas = ExtResource("2_6slgd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5lmc"]
+atlas = ExtResource("2_6slgd")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqre6"]
+atlas = ExtResource("2_6slgd")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sax2u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0qq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mdmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5lmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqre6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="SpinningCoin" type="Node2D"]
+script = ExtResource("1_pvx50")
+metadata/block_spawn_offset = Vector2(0, -4)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sax2u")
+autoplay = "default"
+frame_progress = 0.710764
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_7mdmn")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("4_b5lmc")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="ScoreNoteSpawner" type="Node" parent="."]
+script = ExtResource("3_6slgd")
+metadata/_custom_type_script = "uid://5octqlf4ohel"
+
+[connection signal="timeout" from="Timer" to="." method="vanish"]
+[connection signal="timeout" from="Timer" to="ScoreNoteSpawner" method="spawn_note" binds= [0, 200]]

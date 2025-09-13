@@ -1,0 +1,179 @@
+[gd_scene load_steps=20 format=4 uid="uid://byqmn8yi7iuac"]
+
+[ext_resource type="Script" uid="uid://qq26qw7ltflb" path="res://Scripts/Parts/EndCastle.gd" id="1_4yifo"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_l3xjf"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_7xlhl"]
+[ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="4_1x3lf"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/CastleFlag.json" id="4_7xlhl"]
+[ext_resource type="PackedScene" uid="uid://qn4g0qkjcuiy" path="res://Scenes/Parts/SmallCastleVisual.tscn" id="5_an8pi"]
+[ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="7_xg4af"]
+[ext_resource type="Script" uid="uid://73oviwf6bbys" path="res://Scripts/Classes/Components/TilesetTextureSetter.gd" id="8_l3xjf"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="9_oyrq2"]
+[ext_resource type="Texture2D" uid="uid://dbacecqyfwr1m" path="res://Assets/Sprites/Tilesets/EndingCastleSprite.png" id="11_2hcdu"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/SmallCastle.json" id="12_xg4af"]
+[ext_resource type="Script" uid="uid://b8vmbtoaaq5nc" path="res://Scripts/Parts/EditorToggleDetection.gd" id="14_oyrq2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7xlhl"]
+
+[sub_resource type="Animation" id="Animation_fyn5h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -56)]
+}
+
+[sub_resource type="Animation" id="Animation_7xlhl"]
+resource_name = "Raise"
+length = 0.5
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -56), Vector2(0, -80)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2hcdu"]
+_data = {
+&"RESET": SubResource("Animation_fyn5h"),
+&"Raise": SubResource("Animation_7xlhl")
+}
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2hcdu"]
+texture = ExtResource("7_xg4af")
+texture_region_size = Vector2i(8, 8)
+5:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+7:20/0 = 0
+13:20/0 = 0
+14:14/0 = 0
+14:15/0 = 0
+15:15/0 = 0
+15:14/0 = 0
+12:20/0 = 0
+12:14/0 = 0
+12:15/0 = 0
+13:15/0 = 0
+13:14/0 = 0
+10:20/0 = 0
+10:21/0 = 0
+11:21/0 = 0
+11:20/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xg4af"]
+tile_size = Vector2i(8, 8)
+sources/0 = SubResource("TileSetAtlasSource_2hcdu")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4yifo"]
+size = Vector2(6, 20)
+
+[node name="EndSmallCastle" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_4yifo")
+
+[node name="FlagJoint" type="Node2D" parent="."]
+z_index = -5
+position = Vector2(0, -56)
+
+[node name="Flag" type="AnimatedSprite2D" parent="FlagJoint"]
+show_behind_parent = true
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_7xlhl")
+autoplay = "default"
+script = ExtResource("2_l3xjf")
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="FlagJoint/Flag" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_7xlhl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("4_7xlhl")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FlagJoint/Flag"]
+libraries = {
+&"": SubResource("AnimationLibrary_2hcdu")
+}
+
+[node name="CameraRightLimit" type="Node2D" parent="."]
+position = Vector2(128, 0)
+script = ExtResource("4_1x3lf")
+metadata/_custom_type_script = "uid://bdq0373j5n5o0"
+
+[node name="Framerule" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.351
+autostart = true
+
+[node name="SmallCastleVisual" parent="." instance=ExtResource("5_an8pi")]
+position = Vector2(0, -40)
+
+[node name="Overlay" type="TileMapLayer" parent="."]
+visible = false
+z_index = 10
+position = Vector2(-8, -32)
+tile_map_data = PackedByteArray("AAABAAAAAAANABQAAAACAAAAAAAOAA4AAAACAAEAAAAOAA8AAAADAAAAAAAPAA4AAAADAAEAAAAPAA8AAAACAAIAAAAOAA4AAAACAAMAAAAOAA8AAAADAAIAAAAPAA4AAAADAAMAAAAPAA8AAAAEAAAAAAAOAA4AAAAEAAEAAAAOAA8AAAAFAAAAAAAPAA4AAAAFAAEAAAAPAA8AAAAEAAIAAAAOAA4AAAAEAAMAAAAOAA8AAAAFAAIAAAAPAA4AAAAFAAMAAAAPAA8AAAAAAP7/AAAKABQAAAAAAP//AAAKABUAAAABAP7/AAALABQAAAABAP//AAALABUAAAACAP7/AAAKABQAAAACAP//AAAKABUAAAADAP7/AAALABQAAAADAP//AAALABUAAAAEAP7/AAAMAA4AAAAEAP//AAAMAA8AAAAFAP7/AAANAA4AAAAFAP//AAANAA8AAAA=")
+tile_set = SubResource("TileSet_xg4af")
+
+[node name="TilesetTextureSetter" type="Node" parent="Overlay" node_paths=PackedStringArray("tile_map")]
+script = ExtResource("8_l3xjf")
+tile_map = NodePath("..")
+metadata/_custom_type_script = "uid://73oviwf6bbys"
+
+[node name="ResourceSetter" type="Node" parent="Overlay/TilesetTextureSetter" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_7xlhl")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("9_oyrq2")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="PlayerDetection" type="StaticBody2D" parent="Overlay"]
+position = Vector2(24, 32)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Overlay/PlayerDetection"]
+position = Vector2(21, -9)
+shape = SubResource("RectangleShape2D_4yifo")
+
+[node name="OverlaySprite" type="Sprite2D" parent="."]
+visible = false
+z_index = 10
+position = Vector2(0, -40)
+texture = ExtResource("11_2hcdu")
+hframes = 2
+frame = 1
+region_rect = Rect2(0, 80, 80, 80)
+
+[node name="ResourceSetterNew" type="Node" parent="OverlaySprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_7xlhl")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("12_xg4af")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="LevelEditorToggleDetection" type="Node" parent="."]
+script = ExtResource("14_oyrq2")
+metadata/_custom_type_script = "uid://b8vmbtoaaq5nc"
+
+[connection signal="timeout" from="Framerule" to="." method="on_timeout"]

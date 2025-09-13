@@ -1,0 +1,914 @@
+[gd_scene load_steps=27 format=3 uid="uid://dnksdgorle8su"]
+
+[ext_resource type="Script" uid="uid://cj6858gmexp11" path="res://Scripts/UI/SettingsMenu.gd" id="1_hnwhb"]
+[ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="2_t6b48"]
+[ext_resource type="Texture2D" uid="uid://0ffyi283pret" path="res://Assets/Sprites/UI/SettingsIcon.png" id="3_7l5ko"]
+[ext_resource type="PackedScene" uid="uid://dbvy0rhwpv4w4" path="res://Scenes/Parts/SelectableOptionNode.tscn" id="3_dl6kk"]
+[ext_resource type="Script" uid="uid://dcmjifllvi3qd" path="res://Scripts/UI/SettingsCategory.gd" id="4_avtty"]
+[ext_resource type="Script" uid="uid://26yissv8bnqw" path="res://Scripts/UI/WindowChanger.gd" id="5_hnwhb"]
+[ext_resource type="Texture2D" uid="uid://deooy8040yx2u" path="res://Assets/Sprites/UI/LocaleFlags.png" id="5_q6iis"]
+[ext_resource type="PackedScene" uid="uid://dtiqcfrw110kd" path="res://Scenes/Parts/SelectableSliderNode.tscn" id="7_om3lc"]
+[ext_resource type="Script" uid="uid://bdgvsycico544" path="res://Scripts/UI/AudioAdjuster.gd" id="8_yclde"]
+[ext_resource type="Script" uid="uid://idiqu54si1n4" path="res://Scripts/Parts/ResourcePackLoader.gd" id="9_2qqpf"]
+[ext_resource type="Script" uid="uid://hb401vacltfw" path="res://Scripts/Parts/VisualsSetter.gd" id="9_kfq5n"]
+[ext_resource type="PackedScene" uid="uid://bflpf2fdtbgkt" path="res://Scenes/Parts/SelectableInputOptionNode.tscn" id="9_ksnto"]
+[ext_resource type="PackedScene" uid="uid://bhaekyi2jfwok" path="res://Scenes/Parts/SelectableOptionButton.tscn" id="9_t6b48"]
+[ext_resource type="Script" uid="uid://cxkumlifwb0s6" path="res://Scripts/Parts/DifficultySetter.gd" id="10_2qqpf"]
+[ext_resource type="Script" uid="uid://d63p6qr5a748" path="res://Scripts/UI/AutoScrollContainer.gd" id="12_oh4w7"]
+[ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="13_iwu7d"]
+[ext_resource type="PackedScene" uid="uid://bqy0nm0h7f5sl" path="res://Scenes/Parts/DataDeletionNode.tscn" id="15_oh4w7"]
+[ext_resource type="PackedScene" uid="uid://bom2rstlk8fws" path="res://Scenes/Prefabs/UI/ResourcePackConfigMenu.tscn" id="16_78q3k"]
+[ext_resource type="Script" uid="uid://dcx77vdfvwq4y" path="res://Scripts/Parts/ResourcePackTemplateCreator.gd" id="19_k6yev"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ksnto"]
+color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_oh4w7"]
+color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_2qqpf"]
+content_margin_top = 0.0
+color = Color(1, 1, 1, 1)
+grow_begin = 3.0
+grow_end = -2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ksnto"]
+
+[sub_resource type="GDScript" id="GDScript_ksnto"]
+script/source = "extends Node
+
+var input_nodes := []
+
+var actions := [\"jump\", \"run\", \"action\", \"move_left\", \"move_right\", \"move_up\", \"move_down\"]
+
+@export_enum(\"Keyboard\", \"Controller\") var type := 0
+
+func _ready() -> void:
+	get_input_nodes()
+	load_inputs()
+
+func get_input_nodes() -> void:
+	input_nodes.clear()
+	for i in get_parent().get_children():
+		if i is SelectableInputOption:
+			input_nodes.append(i)
+
+func load_inputs() -> void:
+	for i in input_nodes:
+		var action = i.action_name
+		var value = Settings.file[[\"keyboard\", \"controller\"][type]].get(action, null)
+		var event: InputEvent = null
+		if value == null:
+			continue
+		if type == 0:
+			event = InputEventKey.new()
+			event.keycode = OS.find_keycode_from_string(value)
+		elif type == 1:
+			if value is String:
+				var array = value.split(\",\")
+				event = InputEventJoypadMotion.new()
+				event.axis = int(array[0])
+				event.axis_value = int(array[1])
+			elif value is int:
+				event = InputEventJoypadButton.new()
+				event.button_index = value
+		i.map_event_to_action(event)
+
+func update_starting_values() -> void:
+	load_inputs()
+
+func save_inputs() -> void:
+	for i in actions:
+		var event = InputMap.action_get_events(i + \"_0\")[type]
+		var rep
+		if event is InputEventKey:
+			rep = OS.get_keycode_string(event.keycode)
+		elif event is InputEventJoypadButton:
+			rep = event.button_index
+		elif event is InputEventJoypadMotion:
+			rep = str(event.axis) + \",\" + str(event.axis_value)
+		Settings.file[[\"keyboard\", \"controller\"][type]][i] = rep
+"
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_k6yev"]
+color = Color(1, 1, 1, 1)
+
+[sub_resource type="GDScript" id="GDScript_oh4w7"]
+script/source = "extends Node
+
+signal achievements_deleted
+
+func delete_story(campaign := \"SMB1\") -> void:
+	var save_json = SaveManager.load_save(campaign)
+	for i in [\"World\", \"Level\", \"Coins\", \"Score\", \"GameWin\", \"PowerStates\", \"LevelsVisited\", \"HighScore\", \"ExtraWorldWin\"]:
+		save_json[i] = SaveManager.SAVE_TEMPLATE[i]
+	if save_json.has(\"Ranks\"):
+		save_json[\"Ranks\"] = \"ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ\"
+	SaveManager.write_save_to_file(save_json, \"user://saves/\" + campaign + \".sav\")
+	SaveManager.apply_save(save_json)
+
+func delete_challenge(campaign := \"SMB1\") -> void:
+	var save_json = SaveManager.load_save(campaign)
+	for i in [\"ChallengeScores\", \"RedCoins\"]:
+		save_json[i] = SaveManager.SAVE_TEMPLATE[i]
+	SaveManager.write_save_to_file(save_json, \"user://saves/\" + campaign + \".sav\")
+	SaveManager.apply_save(save_json)
+
+func delete_boo(campaign := \"SMB1\") -> void:
+	var save_json = SaveManager.load_save(campaign)
+	for i in [\"ClearedBooLevels\", \"BooBestTimes\"]:
+		save_json[i] = SaveManager.SAVE_TEMPLATE[i]
+	SaveManager.write_save_to_file(save_json, \"user://saves/\" + campaign + \".sav\")
+	SaveManager.apply_save(save_json)
+
+func delete_marathon(campaign := \"SMB1\") -> void:
+	var save_json = SaveManager.load_save(campaign)
+	for i in [\"BestAnyTime\", \"BestWarplessTime\"]:
+		save_json[i] = SaveManager.SAVE_TEMPLATE[i]
+	SaveManager.write_save_to_file(save_json, \"user://saves/\" + campaign + \".sav\")
+	SaveManager.apply_save(save_json)
+	for i in DirAccess.get_files_at(\"user://marathon_recordings/\" + campaign + \"/\"):
+		DirAccess.remove_absolute(\"user://marathon_recordings/\" + campaign + \"/\" + i)
+	for world in 8:
+		for level in 4:
+			SpeedrunHandler.best_level_warpless_times[world][level] = -1
+	SpeedrunHandler.best_level_any_times.clear()
+	SpeedrunHandler.marathon_best_any_time = -1
+	SpeedrunHandler.marathon_best_warpless_time = -1
+
+func delete_achievement(_campaign := \"SMB1\") -> void:
+	for i in Global.achievements.length():
+		Global.achievements[i] = \"0\"
+	SaveManager.write_achievements()
+	achievements_deleted.emit()
+
+func delete_everything(campaign := \"SMB1\") -> void:
+	delete_story(campaign)
+	delete_marathon(campaign)
+	delete_challenge(campaign)
+	delete_achievement(campaign)
+	delete_boo(campaign)
+"
+
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("containers")]
+process_mode = 4
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 3
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+offset_left = -22.600006
+offset_right = 22.600006
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hnwhb")
+containers = [NodePath("PanelContainer/MarginContainer/VBoxContainer/Video"), NodePath("PanelContainer/MarginContainer/VBoxContainer/Audio"), NodePath("PanelContainer/MarginContainer/VBoxContainer/Visuals"), NodePath("PanelContainer/MarginContainer/VBoxContainer/ResourcePacks"), NodePath("PanelContainer/MarginContainer/VBoxContainer/Difficulty"), NodePath("PanelContainer/MarginContainer/VBoxContainer/KeyboardControls"), NodePath("PanelContainer/MarginContainer/VBoxContainer/Controller"), NodePath("PanelContainer/MarginContainer/VBoxContainer/Data")]
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(222, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_t6b48")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "MENU_SETTINGS"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/Title"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_ksnto")
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="CategorySelect" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -4
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/CategorySelect"]
+layout_mode = 2
+theme_override_constants/separation = -8
+
+[node name="LeftArrow" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "◄"
+
+[node name="Category" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "video"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer/Category"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_oh4w7")
+
+[node name="RightArrow" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "►"
+
+[node name="Video" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = -4
+script = ExtResource("4_avtty")
+category_name = "SETTINGS_VIDEO"
+options = [NodePath("Language"), NodePath("WindowMode"), NodePath("Size"), NodePath("Visuals"), NodePath("Scaling"), NodePath("VSync"), NodePath("DropShadows"), NodePath("HudStyle")]
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Video"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="Language" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "lang"
+title = "SETTINGS_LANGUAGE"
+values = ["LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME"]
+settings_category = "game"
+
+[node name="Flag" type="NinePatchRect" parent="PanelContainer/MarginContainer/VBoxContainer/Video/Language/HBoxContainer" index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("5_q6iis")
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="WindowMode" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "mode"
+title = "VIDEO_MODE"
+values = ["VIDEO_MODE_WINDOWED", "VIDEO_MODE_BORDERLESS", "VIDEO_MODE_FULLSCREEN"]
+
+[node name="Size" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "size"
+title = "VIDEO_SIZE"
+values = ["VIDEO_ASPECT_OG", "VIDEO_ASPECT_WIDE"]
+selected = true
+
+[node name="Visuals" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "visuals"
+title = "VIDEO_RENDER"
+values = ["VIDEO_VISUALS_PIXEL", "VIDEO_VISUALS_SMOOTH"]
+
+[node name="Scaling" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "scaling"
+title = "VIDEO_SCALING"
+values = ["VIDEO_SCALING_INT", "VIDEO_SCALING_FRACT"]
+
+[node name="VSync" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "vsync"
+title = "VIDEO_VSYNC"
+values = ["SETTING_OFF", "SETTING_ON"]
+
+[node name="DropShadows" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "drop_shadows"
+title = "VIDEO_SHADOWS"
+values = ["SETTING_OFF", "SETTING_ON"]
+
+[node name="HudStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "hud_scaling"
+title = "VIDEO_HUD_SCALING"
+values = ["VIDEO_HUD_STRETCHED", "VIDEO_HUD_CENTER"]
+
+[node name="WindowChanger" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Video"]
+script = ExtResource("5_hnwhb")
+
+[node name="Audio" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = -4
+script = ExtResource("4_avtty")
+category_name = "SETTINGS_AUDIO"
+options = [NodePath("SelectableOptionNode"), NodePath("SelectableOptionNode2"), NodePath("SelectableOptionNode3"), NodePath("AthleticMusic"), NodePath("SkidSFX"), NodePath("ExtraSFX"), NodePath("MenuBGM")]
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Audio"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="SelectableOptionNode" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("7_om3lc")]
+layout_mode = 2
+option_key = "master"
+title = "AUDIO_MASTER"
+
+[node name="SFX" parent="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode" index="3"]
+bus = &"Master"
+
+[node name="SelectableOptionNode2" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("7_om3lc")]
+layout_mode = 2
+option_key = "music"
+title = "AUDIO_MUSIC"
+
+[node name="SFX" parent="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode2" index="3"]
+bus = &"Music"
+
+[node name="SelectableOptionNode3" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("7_om3lc")]
+layout_mode = 2
+option_key = "sfx"
+title = "AUDIO_SFX"
+
+[node name="AthleticMusic" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "extra_bgm"
+title = "AUDIO_EXTRA_BGM"
+values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "audio"
+
+[node name="SkidSFX" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "skid_sfx"
+title = "AUDIO_SKID_SFX"
+values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "audio"
+
+[node name="ExtraSFX" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "extra_sfx"
+title = "AUDIO_EXTRA_SFX"
+values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "audio"
+
+[node name="MenuBGM" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "menu_bgm"
+title = "AUDIO_MENU_BGM"
+values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "audio"
+
+[node name="AudioAdjuster" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Audio"]
+script = ExtResource("8_yclde")
+
+[node name="Visuals" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = -4
+script = ExtResource("4_avtty")
+category_name = "SETTINGS_VISUALS"
+options = [NodePath("ParallaxStyle"), NodePath("BGParticles"), NodePath("HUDStyle"), NodePath("RainbowEffect"), NodePath("TransformationEffect"), NodePath("TextShadows"), NodePath("BridgeDestructionAnimation"), NodePath("VisibleTimers"), NodePath("TransitionAnimation"), NodePath("ColourfulPipes")]
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="ParallaxStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "parallax_style"
+title = "VISUALS_PARALLAX"
+values = ["VISUAL_PARALLAX_NONE", "VISUAL_PARALLAX_BASIC", "VISUAL_PARALLAX_DETAIL"]
+settings_category = "visuals"
+
+[node name="BGParticles" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "bg_particles"
+title = "VISUAL_PARTICLES"
+values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "visuals"
+
+[node name="HUDStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "modern_hud"
+title = "VISUAL_HUD_STYLE"
+values = ["SETTINGS_CLASSIC", "SETTINGS_MODERN"]
+settings_category = "visuals"
+
+[node name="RainbowEffect" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "rainbow_style"
+title = "VISUAL_RAINBOW"
+values = ["SETTINGS_CLASSIC", "SETTINGS_MODERN"]
+settings_category = "visuals"
+
+[node name="TransformationEffect" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "transform_style"
+title = "VISUAL_TRANSFORM"
+values = ["SETTINGS_CLASSIC", "SETTINGS_MODERN"]
+settings_category = "visuals"
+
+[node name="TextShadows" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "text_shadows"
+title = "VISUAL_TEXT_SHADOWS"
+values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "visuals"
+
+[node name="BridgeDestructionAnimation" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "bridge_animation"
+title = "VISUAL_BRIDGE_ANIMATION"
+values = ["SETTINGS_CLASSIC", "SETTINGS_MODERN"]
+settings_category = "visuals"
+
+[node name="VisibleTimers" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "visible_timers"
+title = "VISUAL_VISIBLE_TIMERS"
+values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "visuals"
+
+[node name="TransitionAnimation" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "transition_animation"
+title = "VISUAL_TRANSITION_EFFECT"
+values = ["VISUAL_TRANSITION_CLASSIC", "VISUAL_TRANSITION_SMOOTH"]
+settings_category = "visuals"
+
+[node name="ColourfulPipes" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "colour_pipes"
+title = "VISUAL_COLOURFUL_PIPES"
+values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "visuals"
+
+[node name="VisualsSetter" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals"]
+script = ExtResource("9_kfq5n")
+
+[node name="ResourcePacks" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
+visible = false
+custom_minimum_size = Vector2(0, 171)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = -4
+script = ExtResource("4_avtty")
+category_name = "SETTINGS_RESOURCE_PACK"
+options = [NodePath("SelectableOptionNode"), NodePath("SelectableOptionNode2"), NodePath("SelectableOptionNode3")]
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks"]
+visible = false
+modulate = Color(1, 1, 0, 1)
+layout_mode = 2
+text = "RESOURCE_PACK_WARNING"
+autowrap_mode = 2
+
+[node name="SelectableOptionNode" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks" groups=["Options"] instance=ExtResource("9_t6b48")]
+layout_mode = 2
+title = "RESOURCE_OPEN_FOLDER"
+
+[node name="SelectableOptionNode2" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks" groups=["Options"] instance=ExtResource("9_t6b48")]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+title = "RESOURCE_REFRESH"
+
+[node name="SelectableOptionNode3" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks" instance=ExtResource("9_t6b48")]
+layout_mode = 2
+title = "RESOURCE_PACK_CREATE"
+
+[node name="ResourcePackLoader" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks"]
+script = ExtResource("9_2qqpf")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 1
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Difficulty" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options", "description_node")]
+visible = false
+custom_minimum_size = Vector2(0, 134)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = -4
+script = ExtResource("4_avtty")
+category_name = "SETTINGS_DIFFICULTY"
+options = [NodePath("DamageStyle"), NodePath("Checkpoints"), NodePath("ExtraCheckpoints"), NodePath("Lives"), NodePath("FlagpoleLives"), NodePath("GameOverStyle"), NodePath("LevelDesign"), NodePath("BackScroll"), NodePath("TimeLimit"), NodePath("LakituStyle")]
+description_node = NodePath("Description/AutoScrollContainer/MarginContainer/Desc")
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="DamageStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "damage_style"
+title = "DIFFI_DAMAGE_STYLE"
+value_descs = Array[String](["DESC_DMG_STYLE_0", "DESC_DMG_STYLE_1"])
+values = ["SETTINGS_CLASSIC", "SETTINGS_MODERN"]
+settings_category = "difficulty"
+
+[node name="Checkpoints" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "checkpoint_style"
+title = "DIFFI_CHECKPOINT"
+value_descs = Array[String](["DESC_FLAG_0", "DESC_FLAG_1", "DESC_FLAG_2"])
+values = ["DIFFI_CHECK_NO_FLAG", "DIFFI_CHECK_FLAG", "DIFFI_CHECK_FLAG+"]
+settings_category = "difficulty"
+
+[node name="ExtraCheckpoints" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "extra_checkpoints"
+title = "DIFFI_EXTRA_CHECK"
+value_descs = Array[String](["DESC_EXTRA_CHECK_0", "DESC_EXTRA_CHECK_1"])
+values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "difficulty"
+
+[node name="Lives" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "inf_lives"
+title = "DIFFI_INF_LIVES"
+value_descs = Array[String](["DESC_INF_LIVES_0", "DESC_INF_LIVES_1"])
+values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "difficulty"
+
+[node name="FlagpoleLives" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "flagpole_lives"
+title = "DIFFI_FLAG_LIVES"
+value_descs = Array[String](["DESC_FLAG_LIVES_0", "DESC_FLAG_LIVES_1"])
+values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "difficulty"
+
+[node name="GameOverStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "game_over"
+title = "DIFFI_GAME_OVER"
+value_descs = Array[String](["DESC_GAME_OVER_0", "DESC_GAME_OVER_1", "DESC_GAME_OVER_2"])
+values = ["DIFFI_GAME_OVER_WLD", "DIFFI_GAME_OVER_LVL", "DIFFI_GAME_OVER_GME"]
+settings_category = "difficulty"
+
+[node name="LevelDesign" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "level_design"
+title = "DIFFI_LEVEL_DESIGN"
+value_descs = Array[String](["DESC_LEVEL_DESIGN_0", "DESC_LEVEL_DESIGN_1"])
+values = ["SETTINGS_CLASSIC", "SETTINGS_MODERN"]
+settings_category = "difficulty"
+
+[node name="BackScroll" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "back_scroll"
+title = "DIFFI_BACKSCROLL"
+value_descs = Array[String](["DESC_BACKSCROLL_0", "DESC_BACKSCROLL_1"])
+values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "difficulty"
+
+[node name="TimeLimit" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "time_limit"
+title = "DIFFI_TIME"
+value_descs = Array[String](["DESC_TIME_0", "DESC_TIME_1"])
+values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "difficulty"
+
+[node name="LakituStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "lakitu_style"
+title = "DIFFI_LAKITU"
+value_descs = Array[String](["DESC_LAKITU_0", "DESC_LAKITU_1"])
+values = ["DIFFI_LAKITU_0", "DIFFI_LAKITU_1"]
+settings_category = "difficulty"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty"]
+custom_minimum_size = Vector2(0, 11)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_2qqpf")
+
+[node name="Description" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ksnto")
+
+[node name="AutoScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty/Description"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("12_oh4w7")
+direction = 1
+is_active = true
+auto_connect_focus = false
+metadata/_custom_type_script = "uid://d63p6qr5a748"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty/Description/AutoScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = -4
+
+[node name="Desc" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty/Description/AutoScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+autowrap_mode = 2
+uppercase = true
+
+[node name="DifficultySetter" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty"]
+script = ExtResource("10_2qqpf")
+
+[node name="KeyboardControls" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = -4
+script = ExtResource("4_avtty")
+category_name = "SETTINGS_KEYBOARD"
+options = [NodePath("Jump"), NodePath("Run"), NodePath("Action"), NodePath("Left"), NodePath("Right"), NodePath("Up"), NodePath("Down")]
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="Jump" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+action_name = "jump"
+title = "ACTION_JUMP"
+
+[node name="Run" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+action_name = "run"
+title = "ACTION_RUN"
+
+[node name="Action" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+action_name = "action"
+title = "ACTION_ACTION"
+
+[node name="Left" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+action_name = "move_left"
+title = "ACTION_LEFT"
+
+[node name="Right" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+action_name = "move_right"
+title = "ACTION_RIGHT"
+
+[node name="Up" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+action_name = "move_up"
+title = "ACTION_UP"
+
+[node name="Down" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+action_name = "move_down"
+title = "ACTION_DOWN"
+
+[node name="InputMapSaving" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"]]
+script = SubResource("GDScript_ksnto")
+
+[node name="Controller" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = -4
+script = ExtResource("4_avtty")
+category_name = "SETTINGS_CONTROLLER"
+options = [NodePath("Jump"), NodePath("Run"), NodePath("Action"), NodePath("Left"), NodePath("Right"), NodePath("Up"), NodePath("Down")]
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Controller"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="Jump" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+settings_category = "controller"
+action_name = "jump"
+title = "ACTION_JUMP"
+type = 1
+
+[node name="Run" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+settings_category = "controller"
+action_name = "run"
+title = "ACTION_RUN"
+type = 1
+
+[node name="Action" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+settings_category = "controller"
+action_name = "action"
+title = "ACTION_ACTION"
+type = 1
+
+[node name="Left" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+settings_category = "controller"
+action_name = "move_left"
+title = "ACTION_LEFT"
+type = 1
+
+[node name="Right" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+settings_category = "controller"
+action_name = "move_right"
+title = "ACTION_RIGHT"
+type = 1
+
+[node name="Up" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+settings_category = "controller"
+action_name = "move_up"
+title = "ACTION_UP"
+type = 1
+
+[node name="Down" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+settings_category = "controller"
+action_name = "move_down"
+title = "ACTION_DOWN"
+type = 1
+
+[node name="InputMapSaving" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"]]
+script = SubResource("GDScript_ksnto")
+type = 1
+
+[node name="Data" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = -4
+script = ExtResource("4_avtty")
+category_name = "SETTINGS_DATA"
+options = [NodePath("CampaignData"), NodePath("ChallengeModeData"), NodePath("BooRaceData"), NodePath("MarathonData"), NodePath("AchievementData"), NodePath("Everything")]
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Data"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Data/MarginContainer"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+text = "DELETION_WARNING"
+autowrap_mode = 2
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/Data"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_k6yev")
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Data"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="CampaignData" parent="PanelContainer/MarginContainer/VBoxContainer/Data" instance=ExtResource("15_oh4w7")]
+layout_mode = 2
+title = "DELETION_CAMPAIGN"
+
+[node name="ChallengeModeData" parent="PanelContainer/MarginContainer/VBoxContainer/Data" instance=ExtResource("15_oh4w7")]
+layout_mode = 2
+title = "DELETION_CHALLENGE"
+campaigns = Array[String](["SMB1", "SMBLL", "SMBS"])
+
+[node name="BooRaceData" parent="PanelContainer/MarginContainer/VBoxContainer/Data" instance=ExtResource("15_oh4w7")]
+layout_mode = 2
+title = "DELETION_BOO"
+campaigns = Array[String](["SMB1", "SMBLL", "SMBS"])
+
+[node name="MarathonData" parent="PanelContainer/MarginContainer/VBoxContainer/Data" instance=ExtResource("15_oh4w7")]
+layout_mode = 2
+title = "DELETION_MARATHON"
+campaigns = Array[String](["SMB1", "SMBLL", "SMBS"])
+
+[node name="AchievementData" parent="PanelContainer/MarginContainer/VBoxContainer/Data" instance=ExtResource("15_oh4w7")]
+layout_mode = 2
+title = "DELETION_ACHIEVEMENT"
+campaigns = Array[String](["EDITOR_MAIN_LEVEL_DELETE"])
+
+[node name="Everything" parent="PanelContainer/MarginContainer/VBoxContainer/Data" instance=ExtResource("15_oh4w7")]
+layout_mode = 2
+title = "DELETION_ALL"
+extra_confirm = true
+
+[node name="DataDeletion" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Data"]
+script = SubResource("GDScript_oh4w7")
+
+[node name="Control" type="Control" parent="PanelContainer"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Icon" type="NinePatchRect" parent="PanelContainer/Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 23)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_right = 12.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_7l5ko")
+region_rect = Rect2(0, 0, 24, 23)
+
+[node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+script = ExtResource("13_iwu7d")
+labels = [NodePath("../PanelContainer/MarginContainer/VBoxContainer/Title"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer/Category"), null, null, null, null, null, null, null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode/Value"), null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode2/Value"), null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode3/Value"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/Difficulty/Description/AutoScrollContainer/MarginContainer/Desc")]
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
+
+[node name="ResourcePackConfigMenu" parent="." instance=ExtResource("16_78q3k")]
+visible = false
+layout_mode = 1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+
+[node name="ResourcePackTemplateCreator" type="Node" parent="."]
+script = ExtResource("19_k6yev")
+
+[connection signal="closed" from="." to="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls/InputMapSaving" method="save_inputs"]
+[connection signal="closed" from="." to="PanelContainer/MarginContainer/VBoxContainer/Controller/InputMapSaving" method="save_inputs"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/Language" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="language_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/WindowMode" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="window_mode_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/Size" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="window_size_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/Visuals" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="visuals_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/Scaling" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="scaling_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/VSync" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="vsync_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/DropShadows" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="drop_shadows_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/HudStyle" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="hud_style_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="master_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode2" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="music_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode3" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="sfx_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/AthleticMusic" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="athletic_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/SkidSFX" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="skid_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/ExtraSFX" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="extra_sfx_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/MenuBGM" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="menu_bgm_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/ParallaxStyle" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="parallax_style_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/BGParticles" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="bg_particles_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/HUDStyle" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="hud_style_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/RainbowEffect" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="rainbow_style_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/TransformationEffect" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="transform_style_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/TextShadows" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="text_shadows_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/BridgeDestructionAnimation" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="bridge_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisibleTimers" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="visible_timers_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/TransitionAnimation" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="transition_style_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/ColourfulPipes" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="colourful_pipes_changed"]
+[connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/ResourcePackLoader" method="open_folder"]
+[connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode2" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/ResourcePackLoader" method="get_resource_packs"]
+[connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" to="ResourcePackTemplateCreator" method="create_template"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DamageStyle" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="damage_style_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/Checkpoints" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="checkpoint_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ExtraCheckpoints" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="extra_checkpoints_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/Lives" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="inf_lives_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/FlagpoleLives" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="flag_lives_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/GameOverStyle" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="game_over_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/LevelDesign" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="level_design_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/BackScroll" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="backscroll_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/TimeLimit" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="time_limit_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/LakituStyle" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="lakitu_style_changed"]
+[connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/CampaignData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_story"]
+[connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/ChallengeModeData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_challenge"]
+[connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/BooRaceData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_boo"]
+[connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/MarathonData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_marathon"]
+[connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/AchievementData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_achievement"]
+[connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/Everything" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_everything"]
+
+[editable path="PanelContainer/MarginContainer/VBoxContainer/Video/Language"]
+[editable path="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode"]
+[editable path="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode2"]
+[editable path="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode3"]

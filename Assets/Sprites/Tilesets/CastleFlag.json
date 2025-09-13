@@ -1,0 +1,10 @@
+{
+	"variations":
+		{
+		"default":
+			{
+				"source": "CastleFlag.png",
+				"rect": [0, 0, 16, 16]
+			}
+		}
+}

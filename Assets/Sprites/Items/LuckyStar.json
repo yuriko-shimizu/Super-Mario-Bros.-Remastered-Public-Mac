@@ -1,0 +1,12 @@
+{
+	"animations": {
+		"default": {
+			"frames": [[0, 0, 16, 16], [16, 0, 16, 16]],
+			"speed": 15.0,
+			"loop": true
+		}
+	},
+	"variations": {
+		"default": {"source": "SPItems.png", "rect": [32, 64, 32, 16]}
+	}
+}

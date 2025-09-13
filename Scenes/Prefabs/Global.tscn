@@ -1,0 +1,437 @@
+[gd_scene load_steps=56 format=3 uid="uid://c3h2iqkvitqd2"]
+
+[ext_resource type="PackedScene" uid="uid://bod0jkf7jc5pm" path="res://Scenes/Prefabs/GameHud.tscn" id="1_ctvpw"]
+[ext_resource type="Script" uid="uid://bbxqn16ekbpcl" path="res://Scripts/Classes/Singletons/Global.gd" id="1_t23sr"]
+[ext_resource type="AudioStream" uid="uid://dhc2t3wbtsoss" path="res://Assets/Audio/SFX/ScoreLoop.wav" id="3_vjpdy"]
+[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="4_7puui"]
+[ext_resource type="Script" uid="uid://26yissv8bnqw" path="res://Scripts/UI/WindowChanger.gd" id="4_nxm2a"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="5_eyjoc"]
+[ext_resource type="Script" uid="uid://bdgvsycico544" path="res://Scripts/UI/AudioAdjuster.gd" id="5_l70br"]
+[ext_resource type="AudioStream" uid="uid://dsc21eiypsqnd" path="res://Assets/Audio/SFX/Score.wav" id="6_30rl1"]
+[ext_resource type="Script" uid="uid://hb401vacltfw" path="res://Scripts/Parts/VisualsSetter.gd" id="6_pamiy"]
+[ext_resource type="Script" uid="uid://cxkumlifwb0s6" path="res://Scripts/Parts/DifficultySetter.gd" id="7_3324c"]
+[ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="10_nptu4"]
+[ext_resource type="Script" uid="uid://cixtosud3mfaq" path="res://Scripts/Classes/Resources/CampaignResource.gd" id="13_30rl1"]
+[ext_resource type="PackedScene" uid="uid://btiev75x1wtvk" path="res://Scenes/Prefabs/Entities/PlayerGhost.tscn" id="14_6o310"]
+[ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="16_l7dvb"]
+[ext_resource type="Texture2D" uid="uid://bnv2ocqgws3p7" path="res://Assets/Sprites/UI/Panel.png" id="16_qalov"]
+[ext_resource type="Script" uid="uid://ctsjagoa5t33f" path="res://Scripts/Parts/FontUpdater.gd" id="18_1la0o"]
+[ext_resource type="Texture2D" uid="uid://dktb2ljmou31p" path="res://Resources/UI/Cursor.tres" id="18_xcxrh"]
+[ext_resource type="StyleBox" uid="uid://dlbdmqmnl30sq" path="res://Resources/UI/PanelSelected.tres" id="18_yyu8s"]
+[ext_resource type="Texture2D" uid="uid://3p2l7rec0gh5" path="res://Assets/Sprites/UI/Cursor.png" id="19_3l3ph"]
+[ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="19_l7dvb"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="19_okfpr"]
+[ext_resource type="Texture2D" uid="uid://bhgjvnslkt143" path="res://Assets/Sprites/UI/PanelSelected.png" id="19_xspbb"]
+[ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="20_3l3ph"]
+
+[sub_resource type="Animation" id="Animation_6jmk5"]
+resource_name = "FadeIn"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionBlock:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionBlock:modulate")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12, 0.14, 0.16, 0.18, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.023736842), Color(1, 1, 1, 0.08222634), Color(1, 1, 1, 0.17074619), Color(1, 1, 1, 0.28393906), Color(1, 1, 1, 0.41561413), Color(1, 1, 1, 0.5584373), Color(1, 1, 1, 0.7034065), Color(1, 1, 1, 0.8388471), Color(1, 1, 1, 0.94804496), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="Animation" id="Animation_1la0o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionBlock:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionBlock:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l7dvb"]
+_data = {
+&"FadeIn": SubResource("Animation_6jmk5"),
+&"RESET": SubResource("Animation_1la0o")
+}
+
+[sub_resource type="Resource" id="Resource_6jmk5"]
+script = ExtResource("5_eyjoc")
+Overworld = ExtResource("3_vjpdy")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[sub_resource type="Resource" id="Resource_l7dvb"]
+script = ExtResource("5_eyjoc")
+Overworld = ExtResource("6_30rl1")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vq00s"]
+region = Rect2(0, 16, 8, 8)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lkjq"]
+region = Rect2(0, 16, 8, 8)
+filter_clip = true
+
+[sub_resource type="Resource" id="Resource_0vgiw"]
+script = ExtResource("13_30rl1")
+SMB1 = SubResource("AtlasTexture_vq00s")
+SMBLL = SubResource("AtlasTexture_8lkjq")
+metadata/_custom_type_script = ExtResource("13_30rl1")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a21y1"]
+region = Rect2(8, 8, 8, 8)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fvob"]
+region = Rect2(8, 16, 8, 8)
+filter_clip = true
+
+[sub_resource type="Resource" id="Resource_0jga0"]
+script = ExtResource("13_30rl1")
+SMB1 = SubResource("AtlasTexture_a21y1")
+SMBLL = SubResource("AtlasTexture_6fvob")
+metadata/_custom_type_script = ExtResource("13_30rl1")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1damu"]
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d26fn"]
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="Resource" id="Resource_6b01v"]
+script = ExtResource("13_30rl1")
+SMB1 = SubResource("AtlasTexture_1damu")
+SMBLL = SubResource("AtlasTexture_d26fn")
+metadata/_custom_type_script = ExtResource("13_30rl1")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vgiw"]
+region = Rect2(8, 16, 8, 8)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00v33"]
+region = Rect2(0, 0, 8, 8)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xvoi"]
+region = Rect2(0, 0, 8, 8)
+filter_clip = true
+
+[sub_resource type="Resource" id="Resource_vq00s"]
+script = ExtResource("13_30rl1")
+SMB1 = SubResource("AtlasTexture_00v33")
+SMBLL = SubResource("AtlasTexture_3xvoi")
+metadata/_custom_type_script = ExtResource("13_30rl1")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljj1p"]
+region = Rect2(8, 0, 8, 8)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thm6r"]
+region = Rect2(8, 8, 8, 8)
+filter_clip = true
+
+[sub_resource type="Resource" id="Resource_ur71s"]
+script = ExtResource("13_30rl1")
+SMB1 = SubResource("AtlasTexture_ljj1p")
+SMBLL = SubResource("AtlasTexture_thm6r")
+metadata/_custom_type_script = ExtResource("13_30rl1")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rakp1"]
+region = Rect2(0, 8, 8, 8)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yds5h"]
+region = Rect2(0, 8, 8, 8)
+filter_clip = true
+
+[sub_resource type="Resource" id="Resource_pkswe"]
+script = ExtResource("13_30rl1")
+SMB1 = SubResource("AtlasTexture_rakp1")
+SMBLL = SubResource("AtlasTexture_yds5h")
+metadata/_custom_type_script = ExtResource("13_30rl1")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdt1c"]
+region = Rect2(0, 24, 8, 8)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrq0t"]
+region = Rect2(0, 24, 8, 8)
+filter_clip = true
+
+[sub_resource type="Resource" id="Resource_dvjn7"]
+script = ExtResource("13_30rl1")
+SMB1 = SubResource("AtlasTexture_vdt1c")
+SMBLL = SubResource("AtlasTexture_nrq0t")
+metadata/_custom_type_script = ExtResource("13_30rl1")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jga0"]
+region = Rect2(8, 24, 8, 8)
+
+[sub_resource type="Resource" id="Resource_qalov"]
+script = ExtResource("5_eyjoc")
+Overworld = SubResource("Resource_vq00s")
+Underground = SubResource("Resource_pkswe")
+Desert = SubResource("Resource_0jga0")
+Snow = SubResource("Resource_ur71s")
+Jungle = SubResource("Resource_6b01v")
+Underwater = SubResource("Resource_dvjn7")
+Mountain = SubResource("AtlasTexture_0vgiw")
+Volcano = SubResource("AtlasTexture_0jga0")
+Castle = SubResource("Resource_0vgiw")
+metadata/_custom_type_script = ExtResource("5_eyjoc")
+
+[sub_resource type="GDScript" id="GDScript_30rl1"]
+script/source = "extends Node
+
+@export var panel: StyleBoxTexture = null
+
+@onready var resource_getter := ResourceGetter.new()
+
+@export var texture: Texture = null
+
+func _ready() -> void:
+	update_texture()
+	Global.level_theme_changed.connect(update_texture)
+
+func update_texture() -> void:
+	print(name)
+	panel.texture = resource_getter.get_resource(texture)
+"
+
+[sub_resource type="GDScript" id="GDScript_l7dvb"]
+script/source = "extends Node
+
+@export var cursor: AtlasTexture = null
+@export var texture: Texture = null:
+	set(value):
+		texture = value
+		update_texture()
+
+func _ready() -> void:
+	update_texture()
+
+func update_texture() -> void:
+	cursor.atlas = texture
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6bur"]
+atlas = ExtResource("19_3l3ph")
+region = Rect2(0, 0, 8, 8)
+
+[node name="Global" type="Node"]
+process_mode = 3
+script = ExtResource("1_t23sr")
+
+[node name="Transition" type="CanvasLayer" parent="."]
+layer = 128
+visible = false
+
+[node name="TransitionBlock" type="ColorRect" parent="Transition"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Freeze" type="TextureRect" parent="Transition"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition"]
+libraries = {
+&"": SubResource("AnimationLibrary_l7dvb")
+}
+
+[node name="GameHUD" parent="." instance=ExtResource("1_ctvpw")]
+layer = 1
+
+[node name="ScoreTally" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vjpdy")
+bus = &"SFX"
+
+[node name="ResourceSetter" type="Node" parent="ScoreTally" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_7puui")
+node_to_affect = NodePath("..")
+property_name = "stream"
+themed_resource = SubResource("Resource_6jmk5")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="ScoreTallyEnd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_30rl1")
+bus = &"SFX"
+
+[node name="ResourceSetter" type="Node" parent="ScoreTallyEnd" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_7puui")
+node_to_affect = NodePath("..")
+property_name = "stream"
+themed_resource = SubResource("Resource_l7dvb")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="SettingsApply" type="Node" parent="."]
+
+[node name="Video" type="Node" parent="SettingsApply"]
+script = ExtResource("4_nxm2a")
+
+[node name="Audio" type="Node" parent="SettingsApply"]
+script = ExtResource("5_l70br")
+
+[node name="Visuals" type="Node" parent="SettingsApply"]
+script = ExtResource("6_pamiy")
+
+[node name="Difficulty" type="Node" parent="SettingsApply"]
+script = ExtResource("7_3324c")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Framerule" type="Timer" parent="."]
+wait_time = 0.351
+autostart = true
+
+[node name="SpriteFramesToJSONConverter" type="Node" parent="."]
+script = ExtResource("10_nptu4")
+resource = SubResource("Resource_qalov")
+json_file_path = "res://Assets/Sprites/Blocks/BrickDestructionParticles.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"
+
+[node name="PlayerGhost" parent="." instance=ExtResource("14_6o310")]
+process_mode = 1
+visible = false
+z_index = 50
+z_as_relative = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ErrorMessage" type="Label" parent="CanvasLayer/VBoxContainer"]
+visible = false
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.121569, 0.121569, 0.121569, 1)
+text = "ERROR! PLEASE REPORT!"
+autowrap_mode = 2
+uppercase = true
+
+[node name="Warning" type="Label" parent="CanvasLayer/VBoxContainer"]
+visible = false
+modulate = Color(1, 1, 0, 1)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.121569, 0.121569, 0.121569, 1)
+text = "Warning!"
+autowrap_mode = 2
+uppercase = true
+
+[node name="Comment" type="Label" parent="CanvasLayer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.121569, 0.121569, 0.121569, 1)
+text = "Comment"
+autowrap_mode = 2
+uppercase = true
+
+[node name="PanelSetter" type="Node" parent="."]
+script = SubResource("GDScript_30rl1")
+panel = ExtResource("16_l7dvb")
+texture = ExtResource("16_qalov")
+
+[node name="PanelSetter2" type="Node" parent="."]
+script = SubResource("GDScript_30rl1")
+panel = ExtResource("18_yyu8s")
+texture = ExtResource("19_xspbb")
+
+[node name="CursorSetter" type="Node" parent="."]
+script = SubResource("GDScript_l7dvb")
+cursor = ExtResource("18_xcxrh")
+texture = SubResource("AtlasTexture_m6bur")
+
+[node name="ResourceSetterNew" type="Node" parent="CursorSetter" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("19_okfpr")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("20_3l3ph")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="FontUpdater" type="Node" parent="."]
+script = ExtResource("18_1la0o")
+metadata/_custom_type_script = "uid://ctsjagoa5t33f"
+
+[node name="TextShadowColourChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+script = ExtResource("19_l7dvb")
+labels = [NodePath("../CanvasLayer/VBoxContainer/ErrorMessage"), NodePath("../CanvasLayer/VBoxContainer/Comment"), NodePath("../CanvasLayer/VBoxContainer/Warning")]
+metadata/_custom_type_script = "uid://dt2p68xl462v2"
+
+[connection signal="finished" from="ScoreTally" to="." method="on_score_sfx_finished"]
+[connection signal="finished" from="ScoreTallyEnd" to="." method="on_score_sfx_finished"]
+[connection signal="timeout" from="Timer" to="." method="refresh_discord_rpc"]
+[connection signal="timeout" from="Framerule" to="." method="emit_signal" binds= ["frame_rule"]]

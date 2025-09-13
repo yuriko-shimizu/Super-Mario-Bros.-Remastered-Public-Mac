@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwjae1h1airtr"]
+
+[ext_resource type="Script" uid="uid://denfttv4kn7f6" path="res://Scripts/Parts/BubbleParticle.gd" id="1_kkawp"]
+[ext_resource type="Texture2D" uid="uid://b7h6b0yqyi2kh" path="res://Assets/Sprites/Particles/Bubble.png" id="2_ky4x1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2b1vy"]
+radius = 2.0
+
+[node name="BubbleParticle" type="Node2D"]
+visibility_layer = 2
+script = ExtResource("1_kkawp")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_ky4x1")
+
+[node name="WaterDetection" type="Area2D" parent="."]
+position = Vector2(0, -8)
+collision_layer = 0
+collision_mask = 64
+
+[node name="Shape" type="CollisionShape2D" parent="WaterDetection"]
+shape = SubResource("CircleShape2D_2b1vy")
+
+[connection signal="body_exited" from="WaterDetection" to="." method="on_body_exited"]

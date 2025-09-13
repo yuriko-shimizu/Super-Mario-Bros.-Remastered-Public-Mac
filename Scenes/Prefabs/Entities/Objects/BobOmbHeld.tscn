@@ -1,0 +1,262 @@
+[gd_scene load_steps=28 format=3 uid="uid://d075e1520ngrv"]
+
+[ext_resource type="Texture2D" uid="uid://c7g10h3o7nevn" path="res://Assets/Sprites/Enemies/BobOmb.png" id="1_etkhh"]
+[ext_resource type="Script" uid="uid://baie518kyfenr" path="res://Scripts/Classes/Entities/Objects/BobOmbHeld.gd" id="1_j3rs3"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_dd5rd"]
+[ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="3_5qjsg"]
+[ext_resource type="Script" uid="uid://bx6r8sjar6cwr" path="res://Scripts/Classes/Components/BasicStaticMovement.gd" id="4_70th7"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_hgi3d"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BobOmb.json" id="5_pn2vf"]
+[ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="5_t0tau"]
+[ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="6_j3rs3"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/LitBobOmb.json" id="6_pn2vf"]
+[ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="7_yf454"]
+[ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="9_yf454"]
+[ext_resource type="Script" uid="uid://ba18grqjixded" path="res://Scripts/Classes/Components/ExplosionDetection.gd" id="13_tv0mo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjas1"]
+atlas = ExtResource("1_etkhh")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5mno"]
+atlas = ExtResource("1_etkhh")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rol8r"]
+atlas = ExtResource("1_etkhh")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tynh"]
+atlas = ExtResource("1_etkhh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xehcv"]
+atlas = ExtResource("1_etkhh")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5qjsg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjas1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5mno")
+}],
+"loop": true,
+"name": &"Flash",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rol8r")
+}],
+"loop": true,
+"name": &"Hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tynh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xehcv")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_hgi3d"]
+resource_name = "Flash"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlashSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_pn2vf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlashSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tv0mo"]
+_data = {
+&"Flash": SubResource("Animation_hgi3d"),
+&"RESET": SubResource("Animation_pn2vf")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70th7"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hagok"]
+size = Vector2(12, 12)
+
+[sub_resource type="Animation" id="Animation_j3rs3"]
+resource_name = "Explode"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScaleJoint:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.25, 1.25)]
+}
+
+[sub_resource type="Animation" id="Animation_yf454"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScaleJoint:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ll0jm"]
+_data = {
+&"Explode": SubResource("Animation_j3rs3"),
+&"RESET": SubResource("Animation_yf454")
+}
+
+[node name="BobOmbHeld" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_j3rs3")
+
+[node name="ScaleJoint" type="Node2D" parent="."]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="ScaleJoint"]
+unique_name_in_owner = true
+position = Vector2(0, -8)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_5qjsg")
+animation = &"Hit"
+offset = Vector2(-1, 1)
+flip_h = true
+script = ExtResource("2_dd5rd")
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="ScaleJoint/Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_hgi3d")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("5_pn2vf")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="FlashAnimation" type="AnimationPlayer" parent="ScaleJoint/Sprite"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_tv0mo")
+}
+
+[node name="FlashSprite" type="AnimatedSprite2D" parent="ScaleJoint/Sprite"]
+visible = false
+position = Vector2(-2, 0)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_5qjsg")
+animation = &"Hit"
+offset = Vector2(-1, 1)
+script = ExtResource("2_dd5rd")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="ScaleJoint/Sprite/FlashSprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_hgi3d")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("6_pn2vf")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_70th7")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 5
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_hagok")
+
+[node name="EnemyPlayerDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("3_5qjsg")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("visuals")]
+script = ExtResource("4_70th7")
+visuals = NodePath("../ScaleJoint/Sprite")
+
+[node name="FireballDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("5_t0tau")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://dri2d5jtu0fbq"
+
+[node name="ShellDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("6_j3rs3")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://bbww34oiexbx2"
+
+[node name="BlockBouncingDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("7_yf454")
+detection_type = 1
+hitbox = NodePath("../Hitbox")
+can_change_direction = true
+metadata/_custom_type_script = "uid://cmg61722ktg2m"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ll0jm")
+}
+
+[node name="GibSpawner" type="Node" parent="." node_paths=PackedStringArray("visuals")]
+script = ExtResource("9_yf454")
+visuals = NodePath("../ScaleJoint/Sprite")
+metadata/_custom_type_script = "uid://c3gg32ivrlq8n"
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="ExplosionDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("13_tv0mo")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://ba18grqjixded"
+
+[connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
+[connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="player_hit" from="EnemyPlayerDetection" to="." method="kick"]
+[connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="kick"]
+[connection signal="fireball_hit" from="FireballDetection" to="." method="kick"]
+[connection signal="moving_shell_entered" from="ShellDetection" to="." method="die_from_object"]
+[connection signal="block_bounced" from="BlockBouncingDetection" to="." method="kick"]
+[connection signal="explosion_entered" from="ExplosionDetection" to="." method="explode" unbinds=1]

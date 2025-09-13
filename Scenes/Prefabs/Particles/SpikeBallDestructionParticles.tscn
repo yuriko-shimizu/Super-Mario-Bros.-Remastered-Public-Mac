@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk0arhpyyila6"]
+
+[ext_resource type="PackedScene" uid="uid://cyw7kk1em8h16" path="res://Scenes/Parts/Particles/BlockDestructionParticles.tscn" id="1_0otqm"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Particles/SpikeBallDestructionParticles.json" id="2_u0wx7"]
+
+[node name="BlockDestructionParticles" instance=ExtResource("1_0otqm")]
+
+[node name="Sprite" parent="TL" index="0"]
+region_enabled = false
+
+[node name="ResourceSetterNew" parent="TL/Sprite" index="0"]
+resource_json = ExtResource("2_u0wx7")
+
+[node name="Sprite" parent="TR" index="0"]
+region_enabled = false
+
+[node name="ResourceSetterNew" parent="TR/Sprite" index="0"]
+resource_json = ExtResource("2_u0wx7")
+
+[node name="Sprite" parent="BL" index="0"]
+region_enabled = false
+
+[node name="ResourceSetterNew" parent="BL/Sprite" index="0"]
+resource_json = ExtResource("2_u0wx7")
+
+[node name="Sprite" parent="BR" index="0"]
+region_enabled = false
+
+[node name="ResourceSetterNew" parent="BR/Sprite" index="0"]
+resource_json = ExtResource("2_u0wx7")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbl8l51osppso"]
+
+[ext_resource type="PackedScene" uid="uid://bikdod5ra10ra" path="res://Scenes/Parts/LargeCastleVisual.tscn" id="2_lpq2f"]
+
+[node name="LargeCastleDeco" type="Sprite2D"]
+region_enabled = true
+region_rect = Rect2(0, 0, 144, 176)
+region_filter_clip_enabled = true
+
+[node name="SmallCastleVisual" parent="." instance=ExtResource("2_lpq2f")]
+position = Vector2(0, 48)

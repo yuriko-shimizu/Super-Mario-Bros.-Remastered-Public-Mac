@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1ytbn4cu7msu"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0guw6"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wdqt2"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 16.0
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 2.0
+anim_speed_max = 2.0
+
+[node name="CoinSparkle" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_0guw6")
+emitting = false
+amount = 3
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.7
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_wdqt2")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="ready" from="." to="." method="set_emitting" binds= [true]]
+[connection signal="timeout" from="Timer" to="." method="queue_free"]

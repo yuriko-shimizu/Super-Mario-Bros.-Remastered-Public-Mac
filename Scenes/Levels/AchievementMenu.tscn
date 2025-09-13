@@ -1,0 +1,369 @@
+[gd_scene load_steps=20 format=3 uid="uid://bxaeo8dtil8jy"]
+
+[ext_resource type="Script" uid="uid://d3jebf1trkaor" path="res://Scripts/UI/AchievementMenu.gd" id="1_85no8"]
+[ext_resource type="Theme" uid="uid://dtn507x2b5de7" path="res://Resources/Theme.tres" id="1_gq2qe"]
+[ext_resource type="Texture2D" uid="uid://bhuybr2gtuco5" path="res://Assets/Sprites/UI/MenuBG.png" id="2_khc1b"]
+[ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="4_85no8"]
+[ext_resource type="Texture2D" uid="uid://3ai0ggxah360" path="res://Assets/Sprites/UI/MenuBorder.png" id="6_25fff"]
+[ext_resource type="Texture2D" uid="uid://26v45a5r1gpd" path="res://Assets/Sprites/UI/AchievementBG.png" id="7_761rq"]
+[ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="7_khc1b"]
+[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="8_flkjp"]
+[ext_resource type="AudioStream" uid="uid://cj5eemp85esmq" path="res://Assets/Audio/BGM/Achievements.mp3" id="8_khc1b"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="9_25fff"]
+
+[sub_resource type="Shader" id="Shader_mm3k3"]
+code = "shader_type canvas_item;
+
+uniform vec2 motion = vec2(0.0);
+uniform float scale = 1.0;
+uniform vec2 offset = vec2(0.0);
+
+void vertex(){
+	UV = (VERTEX + offset + TIME * motion) * TEXTURE_PIXEL_SIZE * (1.0/scale);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6w7a6"]
+shader = SubResource("Shader_mm3k3")
+shader_parameter/motion = Vector2(-4, -4)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_khc1b"]
+color = Color(1, 1, 1, 1)
+
+[sub_resource type="Resource" id="Resource_761rq"]
+script = ExtResource("9_25fff")
+Overworld = ExtResource("8_khc1b")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[sub_resource type="GDScript" id="GDScript_lqtx1"]
+script/source = "extends AchievementProgressCalculator
+
+@export var campaign := \"SMB1\"
+
+func get_progress() -> int:
+	var save = JSON.parse_string(FileAccess.open(\"user://saves/\" + campaign + \".sav\", FileAccess.READ).get_as_text())
+	var levels_finished := 0
+	for world in 8:
+		for level in 4:
+			if save[\"ChallengeScores\"][world][level] >= ChallengeModeHandler.CHALLENGE_TARGETS[campaign][world][level]:
+				if save[\"RedCoins\"][world][level] >= 63:
+					levels_finished += 1
+	return levels_finished
+"
+
+[sub_resource type="GDScript" id="GDScript_gq2qe"]
+script/source = "extends AchievementProgressCalculator
+
+@export var campaign := \"SMB1\"
+
+func get_progress() -> int:
+	var save = JSON.parse_string(FileAccess.open(\"user://saves/\" + campaign + \".sav\", FileAccess.READ).get_as_text())
+	var levels_finished := 0
+	for i in save[\"ClearedBooLevels\"]:
+		if int(i) > 0:
+			levels_finished += 1
+	return levels_finished
+"
+
+[sub_resource type="GDScript" id="GDScript_khc1b"]
+script/source = "extends AchievementProgressCalculator
+
+@export var campaign := \"SMB1\"
+
+func get_progress() -> int:
+	var save = JSON.parse_string(FileAccess.open(\"user://saves/\" + campaign + \".sav\", FileAccess.READ).get_as_text())
+	var levels_finished := 0
+	for i in save[\"ClearedBooLevels\"]:
+		if int(i) >= 5:
+			levels_finished += 1
+	return levels_finished
+"
+
+[sub_resource type="GDScript" id="GDScript_85no8"]
+script/source = "extends AchievementProgressCalculator
+
+@export var campaign := \"SMB1\"
+
+@export var medal_index := 0
+
+func get_progress() -> int:
+	var medal_amount := 0
+	SpeedrunHandler.load_best_times(campaign)
+	print(SpeedrunHandler.best_level_warpless_times)
+	var world := 0
+	for x in SpeedrunHandler.best_level_warpless_times:
+		var level := 0
+		for i in x:
+			if i <= SpeedrunHandler.LEVEL_GOLD_WARPLESS_TIMES[campaign][world][level] * SpeedrunHandler.MEDAL_CONVERSIONS[medal_index] and i > 0:
+				medal_amount += 1
+			level += 1
+		world += 1
+	for x in SpeedrunHandler.best_level_any_times:
+		print(SpeedrunHandler.best_level_any_times)
+		if SpeedrunHandler.best_level_any_times[x] <= SpeedrunHandler.LEVEL_GOLD_ANY_TIMES[campaign][x] * SpeedrunHandler.MEDAL_CONVERSIONS[medal_index] and SpeedrunHandler.best_level_any_times[x] > 0:
+			medal_amount += 1
+	var save = JSON.parse_string(FileAccess.open(\"user://saves/\" + campaign + \".sav\", FileAccess.READ).get_as_text())
+	if save.get(\"BestWarplessTime\", -1) <= SpeedrunHandler.GOLD_WARPLESS_TIMES[campaign] and save.get(\"BestWarplessTime\", -1) > 0:
+		medal_amount += 1
+	if save.get(\"BestAnyTime\", -1) <= SpeedrunHandler.GOLD_ANY_TIMES[campaign] and save.get(\"BestAnyTime\", -1) > 0:
+		medal_amount += 1
+	return medal_amount
+"
+
+[sub_resource type="GDScript" id="GDScript_refm4"]
+script/source = "extends AchievementProgressCalculator
+
+func get_progress() -> int:
+	var p_amount := 0
+	var save = JSON.parse_string(FileAccess.open(\"user://saves/SMBANN.sav\", FileAccess.READ). get_as_text())
+	for i in save[\"Ranks\"]:
+		if i == \"P\":
+			p_amount += 1
+	print(p_amount)
+	return p_amount
+"
+
+[node name="AchievementMenu" type="Node"]
+script = ExtResource("1_85no8")
+
+[node name="BG" type="NinePatchRect" parent="."]
+texture_repeat = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_gq2qe")
+texture = ExtResource("2_khc1b")
+region_rect = Rect2(48, 0, 16, 16)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+script = ExtResource("4_85no8")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Border" type="NinePatchRect" parent="BG"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_right = 0.99
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_25fff")
+region_rect = Rect2(32, 32, 32, 32)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+script = ExtResource("4_85no8")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="BG" type="TextureRect" parent="BG/Border"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_6w7a6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_761rq")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BG/Border"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Border/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="BG/Border/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+text = "MENU_ACHIEVEMENTS"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="BG/Border/MarginContainer/VBoxContainer/Title"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_khc1b")
+
+[node name="Progress" type="Label" parent="BG/Border/MarginContainer/VBoxContainer/Title"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -232.0
+offset_right = 4.4400024
+offset_bottom = 24.0
+grow_horizontal = 0
+text = "0% "
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BG/Border/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 0
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Border/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_khc1b")
+bus = &"Music"
+
+[node name="ResourceSetter" type="Node" parent="BGM" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("8_flkjp")
+node_to_affect = NodePath("..")
+property_name = "stream"
+themed_resource = SubResource("Resource_761rq")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="ProgressCalculators" type="Node" parent="."]
+
+[node name="4" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_lqtx1")
+target_number = 32
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="5" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_lqtx1")
+campaign = "SMBLL"
+target_number = 32
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="6" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_lqtx1")
+campaign = "SMBS"
+target_number = 32
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="7" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_gq2qe")
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="8" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_gq2qe")
+campaign = "SMBLL"
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="9" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_gq2qe")
+campaign = "SMBS"
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="10" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_khc1b")
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="11" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_khc1b")
+campaign = "SMBLL"
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="12" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_khc1b")
+campaign = "SMBS"
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="13" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_85no8")
+target_number = 36
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="14" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_85no8")
+campaign = "SMBLL"
+target_number = 39
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="15" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_85no8")
+campaign = "SMBS"
+target_number = 35
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="16" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_85no8")
+medal_index = 1
+target_number = 36
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="17" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_85no8")
+campaign = "SMBLL"
+medal_index = 1
+target_number = 39
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="18" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_85no8")
+campaign = "SMBS"
+medal_index = 1
+target_number = 35
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="19" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_85no8")
+medal_index = 2
+target_number = 36
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="20" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_85no8")
+campaign = "SMBLL"
+medal_index = 2
+target_number = 39
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="21" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_85no8")
+campaign = "SMBS"
+medal_index = 2
+target_number = 35
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="25" type="Node" parent="ProgressCalculators"]
+script = SubResource("GDScript_refm4")
+target_number = 32
+metadata/_custom_type_script = "uid://dwrso5q5r5bak"
+
+[node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+script = ExtResource("7_khc1b")
+labels = [NodePath("../BG/Border/MarginContainer/VBoxContainer/Title/Progress"), NodePath("../BG/Border/MarginContainer/VBoxContainer/Title")]
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
+
+[connection signal="sprites_updated" from="BGM/ResourceSetter" to="BGM" method="play"]

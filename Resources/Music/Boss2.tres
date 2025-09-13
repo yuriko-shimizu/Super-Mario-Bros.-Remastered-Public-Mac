@@ -1,0 +1,9 @@
+[gd_resource type="AudioStreamInteractive" load_steps=2 format=3 uid="uid://bqykbqti0ndjr"]
+
+[ext_resource type="AudioStream" uid="uid://luu2iatu2kms" path="res://Assets/Audio/BGM/FinalBowser.mp3" id="1_monqx"]
+
+[resource]
+clip_count = 1
+clip_0/name = &"Normal"
+clip_0/stream = ExtResource("1_monqx")
+clip_0/auto_advance = 0

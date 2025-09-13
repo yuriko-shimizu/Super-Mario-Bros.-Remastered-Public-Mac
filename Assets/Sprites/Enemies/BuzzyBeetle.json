@@ -1,0 +1,159 @@
+{
+	"animations": {
+		"Walk": {
+			"frames": [
+				[
+					0.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					16.0,
+					0.0,
+					16.0,
+					16.0
+				]
+			],
+			"speed": 5.0,
+			"loop": true
+		}
+	},
+	"variations": {
+		"default": {
+			"source": "BuzzyBeetle.png",
+			"rect": [
+				0.0,
+				0.0,
+				32.0,
+				16.0
+			]
+		},
+		"Underground": {
+			"source": "BuzzyBeetle.png",
+			"rect": [
+				112.0,
+				0.0,
+				32.0,
+				16.0
+			]
+		},
+		"GhostHouse": {
+			"source": "BuzzyBeetle.png",
+			"rect": [
+				112.0,
+				0.0,
+				32.0,
+				16.0
+			]
+		},
+		"Castle": {
+			"source": "BuzzyBeetle.png",
+			"rect": [
+				224.0,
+				0.0,
+				32.0,
+				16.0
+			]
+		},
+		"Underwater": {
+			"source": "BuzzyBeetle.png",
+			"rect": [
+				336.0,
+				0.0,
+				32.0,
+				16.0
+			]
+		},
+		"CastleWater": {
+			"source": "BuzzyBeetle.png",
+			"rect": [
+				336.0,
+				0.0,
+				32.0,
+				16.0
+			]
+		},
+		"Desert": {
+			"source": "BuzzyBeetle.png",
+			"rect": [
+				0.0,
+				16.0,
+				32.0,
+				16.0
+			]
+		},
+		"Jungle": {
+			"source": "BuzzyBeetle.png",
+			"rect": [
+				112.0,
+				16.0,
+				32.0,
+				16.0
+			]
+		},
+		"Snow": {
+			"source": "BuzzyBeetle.png",
+			"rect": [
+				224.0,
+				16.0,
+				32.0,
+				16.0
+			]
+		},
+		"Volcano": {
+			"source": "BuzzyBeetle.png",
+			"rect": [
+				336.0,
+				16.0,
+				32.0,
+				16.0
+			]
+		},
+		"Autumn": {
+			"source": "BuzzyBeetle.png",
+			"rect": [
+				0.0,
+				32.0,
+				32.0,
+				16.0
+			]
+		},
+		"Beach": {
+			"source": "BuzzyBeetle.png",
+			"rect": [
+				112.0,
+				32.0,
+				32.0,
+				16.0
+			]
+		},
+		"Mountain": {
+			"source": "BuzzyBeetle.png",
+			"rect": [
+				224.0,
+				32.0,
+				32.0,
+				16.0
+			]
+		},
+		"Space": {
+			"source": "BuzzyBeetle.png",
+			"rect": [
+				336.0,
+				32.0,
+				32.0,
+				16.0
+			]
+		},
+		"Bonus": {
+			"source": "BuzzyBeetle.png",
+			"rect": [
+				0.0,
+				48.0,
+				32.0,
+				16.0
+			]
+		}
+	}
+}

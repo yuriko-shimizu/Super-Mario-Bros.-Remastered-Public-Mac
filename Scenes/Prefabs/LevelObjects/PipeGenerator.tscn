@@ -1,0 +1,135 @@
+[gd_scene load_steps=12 format=3 uid="uid://da31n0jwfyjo0"]
+
+[ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="1_4di0c"]
+[ext_resource type="Script" uid="uid://omwcucf0uvvj" path="res://Scripts/Parts/PipeGenerator.gd" id="1_amwyv"]
+[ext_resource type="Texture2D" uid="uid://dtx6lbaom4qld" path="res://Assets/Sprites/Editor/PipeGenerator.png" id="2_amwyv"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="4_f1jdk"]
+[ext_resource type="Texture2D" uid="uid://dlldh5aks0wff" path="res://Assets/Sprites/Editor/GhostTile.png" id="4_xu70c"]
+
+[sub_resource type="Animation" id="Animation_xu70c"]
+resource_name = "Down"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Joint:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a0wqs"]
+resource_name = "Left"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Joint:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-16, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_f1jdk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Joint:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6pkd4"]
+resource_name = "Right"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Joint:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(16, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_amwyv"]
+resource_name = "Up"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Joint:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -16), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6pkd4"]
+_data = {
+&"Down": SubResource("Animation_xu70c"),
+&"Left": SubResource("Animation_a0wqs"),
+&"RESET": SubResource("Animation_f1jdk"),
+&"Right": SubResource("Animation_6pkd4"),
+&"Up": SubResource("Animation_amwyv")
+}
+
+[node name="PipeGenerator" type="Node2D"]
+script = ExtResource("1_amwyv")
+
+[node name="Icon" type="Node2D" parent="."]
+z_index = 50
+z_as_relative = false
+script = ExtResource("1_4di0c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Icon"]
+texture = ExtResource("2_amwyv")
+
+[node name="ColorRect" type="TextureRect" parent="Icon"]
+offset_left = -16.0
+offset_bottom = 16.0
+texture = ExtResource("4_xu70c")
+
+[node name="Joint" type="RemoteTransform2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6pkd4")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="EditorPropertyExposer" type="Node" parent="."]
+script = ExtResource("4_f1jdk")
+properties = Array[String](["item", "direction"])
+filters = Dictionary[String, String]({
+"item": "can_be_stored"
+})
+
+[node name="Check" type="RayCast2D" parent="."]
+target_position = Vector2(0, 16)
+collision_mask = 6
+hit_from_inside = true
+
+[connection signal="timeout" from="Timer" to="." method="on_timeout"]

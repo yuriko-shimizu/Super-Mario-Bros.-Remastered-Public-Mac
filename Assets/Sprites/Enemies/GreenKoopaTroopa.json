@@ -1,0 +1,51 @@
+{
+	"animations": {
+		"Walk": {
+			"frames": [
+				[
+					0.0,
+					0.0,
+					16.0,
+					32.0
+				],
+				[
+					16.0,
+					0.0,
+					16.0,
+					32.0
+				]
+			],
+			"speed": 5.0,
+			"loop": true
+		}
+	},
+	"variations": {
+		"default": {
+			"source": "KoopaTroopa.png",
+			"rect": [0, 0, 32, 32]
+		},
+		"Underground": {
+			"source": "KoopaTroopa.png",
+			"rect": [96, 0, 32, 32]
+		},
+		"Castle": {"link": "Underground"},
+		"GhostHouse": {"link": "Underground"},
+		"Underwater": {"source": "KoopaTroopa.png", "rect": [192, 0, 32, 32]},
+		"Snow": {
+			"source": "KoopaTroopa.png",
+			"rect": [0, 32, 32, 32]
+		},
+		"Space": {
+			"source": "KoopaTroopa.png",
+			"rect": [96, 32, 32, 32]
+		},
+		"Volcano": {
+			"source": "KoopaTroopa.png",
+			"rect": [192, 32, 32, 32]
+		},
+		"Bonus": {
+			"source": "KoopaTroopa.png",
+			"rect": [0, 64, 32, 32]
+		}
+	}
+}

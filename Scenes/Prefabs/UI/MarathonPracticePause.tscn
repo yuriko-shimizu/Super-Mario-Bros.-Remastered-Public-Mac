@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://qeuxtmse7bde"]
+
+[ext_resource type="PackedScene" uid="uid://dekuqrdjmnr1m" path="res://Scenes/Prefabs/UI/BasePauseMenu.tscn" id="1_a8xej"]
+
+[sub_resource type="GDScript" id="GDScript_k4rkm"]
+script/source = "extends Node
+
+func restart_run() -> void:
+	Global.death_load = true
+	Global.clear_saved_values()
+	Global.reset_values()
+	Global.speed_run_timer = 0
+	Global.level_run_timer = 0
+	Global.speed_run_timer_active = false
+	Global.player_power_states = \"0000\"
+	if Global.marathon_practice:
+		Global.current_level.reload_level()
+	else:
+		Global.level_num = 1
+		Global.world_num = 1
+		Global.level_to_transition_to = Level.get_scene_string(1, 1)
+		Global.transition_to_scene(\"res://Scenes/Levels/LevelTransition.tscn\")
+
+func quit_to_menu() -> void:
+	Global.speed_run_timer = 0
+	Global.speed_run_timer_active = false
+	Global.speed_run_timer_enabled = false
+	Global.transition_to_scene(\"res://Scenes/Levels/TitleScreen.tscn\")
+	get_tree().paused = true
+	await Global.current_level.tree_exited
+	get_tree().paused = false
+"
+
+[node name="PauseMenu" instance=ExtResource("1_a8xej")]
+
+[node name="Label2" parent="Control/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+text = "Restart run"
+
+[node name="Label5" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+size_flags_vertical = 7
+text = "Ghost: On"
+uppercase = true
+
+[node name="Handler" type="Node" parent="." index="2"]
+script = SubResource("GDScript_k4rkm")
+
+[connection signal="option_2_selected" from="." to="Handler" method="restart_run"]
+[connection signal="option_3_selected" from="." to="Handler" method="quit_to_menu"]
+
+[editable path="SettingsMenu"]
+[editable path="SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Video/Language"]
+[editable path="SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode"]
+[editable path="SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode2"]
+[editable path="SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode3"]

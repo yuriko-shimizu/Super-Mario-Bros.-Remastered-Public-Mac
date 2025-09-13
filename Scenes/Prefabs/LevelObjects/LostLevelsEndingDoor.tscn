@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://k1krjice0kia"]
+
+[ext_resource type="Script" uid="uid://d23r1hm6jbgox" path="res://Scripts/Parts/LostLevelsEndingDoor.gd" id="1_nwrya"]
+[ext_resource type="Texture2D" uid="uid://dhpa5y7jlbyia" path="res://Assets/Sprites/Items/LostLevelsDoor.png" id="2_jriqu"]
+[ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="4_b0byr"]
+[ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="4_jriqu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_an0bx"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d5sl2"]
+normal = Vector2(-1, 0)
+
+[node name="LostLevelsEndingDoor" type="Node2D"]
+script = ExtResource("1_nwrya")
+scene = "uid://b0omfelsiothx"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_an0bx")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(40, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("RectangleShape2D_an0bx")
+
+[node name="CameraRightLimit" type="Node2D" parent="."]
+position = Vector2(128, -80)
+script = ExtResource("4_b0byr")
+metadata/_custom_type_script = "uid://bdq0373j5n5o0"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraRightLimit"]
+shape = SubResource("WorldBoundaryShape2D_d5sl2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(24, -13)
+texture = ExtResource("2_jriqu")
+script = ExtResource("4_jriqu")
+metadata/_custom_type_script = "uid://364rywt44hy6"

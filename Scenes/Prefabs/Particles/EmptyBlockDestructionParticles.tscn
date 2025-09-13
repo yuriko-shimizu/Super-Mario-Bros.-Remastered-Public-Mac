@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxxjd0qf60t5q"]
+
+[ext_resource type="PackedScene" uid="uid://cyw7kk1em8h16" path="res://Scenes/Parts/Particles/BlockDestructionParticles.tscn" id="1_ka7dr"]
+
+[node name="BlockDestructionParticles" instance=ExtResource("1_ka7dr")]
+
+[node name="Sprite" parent="TL" index="0"]
+region_rect = Rect2(16, 160, 16, 16)
+
+[node name="Sprite" parent="TR" index="0"]
+region_rect = Rect2(16, 160, 16, 16)
+
+[node name="Sprite" parent="BL" index="0"]
+region_rect = Rect2(16, 160, 16, 16)
+
+[node name="Sprite" parent="BR" index="0"]
+region_rect = Rect2(16, 160, 16, 16)

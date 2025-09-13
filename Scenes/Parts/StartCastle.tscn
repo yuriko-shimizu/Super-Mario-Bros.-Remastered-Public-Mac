@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://githt8ci1xal"]
+
+[ext_resource type="PackedScene" uid="uid://qn4g0qkjcuiy" path="res://Scenes/Parts/SmallCastleVisual.tscn" id="1_ntu57"]
+
+[node name="StartCastle" type="Node2D"]
+self_modulate = Color(0.449099, 0.449099, 0.449099, 1)
+z_index = -10
+
+[node name="SmallCastleVisual" parent="." instance=ExtResource("1_ntu57")]

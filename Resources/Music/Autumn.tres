@@ -1,0 +1,9 @@
+[gd_resource type="AudioStreamInteractive" load_steps=2 format=3 uid="uid://ciqophenlo3cp"]
+
+[ext_resource type="AudioStream" uid="uid://civdnmqkv3isa" path="res://Assets/Audio/BGM/Autumn.mp3" id="1_8xe73"]
+
+[resource]
+clip_count = 1
+clip_0/name = &"Normal"
+clip_0/stream = ExtResource("1_8xe73")
+clip_0/auto_advance = 0

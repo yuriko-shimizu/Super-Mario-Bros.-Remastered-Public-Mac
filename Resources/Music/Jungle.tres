@@ -1,0 +1,21 @@
+[gd_resource type="AudioStreamInteractive" load_steps=3 format=3 uid="uid://ls5wkt0y8nbg"]
+
+[ext_resource type="AudioStream" uid="uid://bg2437fggnfue" path="res://Assets/Audio/BGM/Jungle.mp3" id="1_bp4hc"]
+[ext_resource type="AudioStream" uid="uid://bg66fu4ojseh1" path="res://Assets/Audio/BGM/JungleHurry.mp3" id="2_l8ll3"]
+
+[resource]
+clip_count = 2
+clip_0/name = &"Normal"
+clip_0/stream = ExtResource("1_bp4hc")
+clip_0/auto_advance = 0
+clip_1/name = &"Hurry"
+clip_1/stream = ExtResource("2_l8ll3")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+}
+}

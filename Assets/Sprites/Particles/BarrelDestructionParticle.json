@@ -1,0 +1,296 @@
+{
+	"variations": {
+		"default": {
+			"choices": [
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						0.0,
+						0.0,
+						8.0,
+						8.0
+					]
+				},
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						8.0,
+						0.0,
+						8.0,
+						8.0
+					]
+				}
+			]
+		},
+		"Underground": {
+			"choices": [
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						16.0,
+						0.0,
+						8.0,
+						8.0
+					]
+				},
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						24.0,
+						0.0,
+						8.0,
+						8.0
+					]
+				}
+			]
+		},
+		"GhostHouse": {
+			"link": "Underground"
+		},
+		"Castle": {
+			"choices": [
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						32.0,
+						0.0,
+						8.0,
+						8.0
+					]
+				},
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						40.0,
+						0.0,
+						8.0,
+						8.0
+					]
+				}
+			]
+		},
+		"Underwater": {
+			"choices": [
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						48.0,
+						0.0,
+						8.0,
+						8.0
+					]
+				},
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						56.0,
+						0.0,
+						8.0,
+						8.0
+					]
+				}
+			]
+		},
+		"CastleWater": {
+			"link": "Underwater"
+		},
+		"Desert": {
+			"choices": [
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						0.0,
+						8.0,
+						8.0,
+						8.0
+					]
+				},
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						8.0,
+						8.0,
+						8.0,
+						8.0
+					]
+				}
+			]
+		},
+		"Jungle": {
+			"choices": [
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						16.0,
+						8.0,
+						8.0,
+						8.0
+					]
+				},
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						24.0,
+						8.0,
+						8.0,
+						8.0
+					]
+				}
+			]
+		},
+		"Snow": {
+			"choices": [
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						32.0,
+						8.0,
+						8.0,
+						8.0
+					]
+				},
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						40.0,
+						8.0,
+						8.0,
+						8.0
+					]
+				}
+			]
+		},
+		"Volcano": {
+			"choices": [
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						48.0,
+						8.0,
+						8.0,
+						8.0
+					]
+				},
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						56.0,
+						8.0,
+						8.0,
+						8.0
+					]
+				}
+			]
+		},
+		"Autumn": {
+			"choices": [
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						0.0,
+						16.0,
+						8.0,
+						8.0
+					]
+				},
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						8.0,
+						16.0,
+						8.0,
+						8.0
+					]
+				}
+			]
+		},
+		"Beach": {
+			"choices": [
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						16.0,
+						16.0,
+						8.0,
+						8.0
+					]
+				},
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						24.0,
+						16.0,
+						8.0,
+						8.0
+					]
+				}
+			]
+		},
+		"Mountain": {
+			"choices": [
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						32.0,
+						16.0,
+						8.0,
+						8.0
+					]
+				},
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						40.0,
+						16.0,
+						8.0,
+						8.0
+					]
+				}
+			]
+		},
+		"Space": {
+			"choices": [
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						48.0,
+						16.0,
+						8.0,
+						8.0
+					]
+				},
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						56.0,
+						16.0,
+						8.0,
+						8.0
+					]
+				}
+			]
+		},
+		"Bonus": {
+			"choices": [
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						0.0,
+						24.0,
+						8.0,
+						8.0
+					]
+				},
+				{
+					"source": "BarrelDestructionParticle.png",
+					"rect": [
+						8.0,
+						24.0,
+						8.0,
+						8.0
+					]
+				}
+			]
+		}
+	}
+}

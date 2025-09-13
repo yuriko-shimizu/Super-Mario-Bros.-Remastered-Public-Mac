@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://fvhrbog40cpp"]
+
+[ext_resource type="Script" uid="uid://bxfr63s2j3ts7" path="res://Scripts/Classes/Entities/Objects/Cannon.gd" id="1_g2yj6"]
+[ext_resource type="Texture2D" uid="uid://x45kf055ej53" path="res://Assets/Sprites/Blocks/Cannon.png" id="2_yrqqx"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="3_yrqqx"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ywjuo"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/Cannon.json" id="4_1iyc0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wj2h5"]
+atlas = ExtResource("2_yrqqx")
+region = Rect2(0, 0, 48, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywjuo"]
+size = Vector2(16, 16)
+
+[sub_resource type="GDScript" id="GDScript_ywjuo"]
+script/source = "extends Node
+@onready var head: Sprite2D = $\"../Head\"
+@onready var mount: Sprite2D = $\"../Mount\"
+
+func _process(_delta: float) -> void:
+	mount.global_rotation_degrees = owner.stand_angle * 90
+	head.frame = int(int(owner.head_angle * 45) % 90 != 0)
+	head.global_rotation_degrees = owner.head_angle * 45
+	if head.frame == 1:
+		head.global_rotation_degrees -= 45
+"
+
+[node name="Cannon" type="Node2D"]
+script = ExtResource("1_g2yj6")
+
+[node name="Head" type="Sprite2D" parent="."]
+physics_interpolation_mode = 2
+texture = SubResource("AtlasTexture_wj2h5")
+hframes = 2
+frame = 1
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 16)
+region_filter_clip_enabled = true
+
+[node name="ResourceSetterNew" type="Node" parent="Head" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_ywjuo")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("4_1iyc0")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Raycast" type="RayCast2D" parent="Head"]
+position = Vector2(0, -9)
+target_position = Vector2(0, -8)
+collision_mask = 6
+hit_from_inside = true
+
+[node name="Mount" type="Sprite2D" parent="."]
+physics_interpolation_mode = 2
+texture = SubResource("AtlasTexture_wj2h5")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)
+region_filter_clip_enabled = true
+
+[node name="ResourceSetterNew" type="Node" parent="Mount" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_ywjuo")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("4_1iyc0")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_ywjuo")
+
+[node name="EditorPropertyExposer" type="Node" parent="."]
+script = ExtResource("3_yrqqx")
+properties = Array[String](["item", "head_angle", "stand_angle"])
+filters = Dictionary[String, String]({
+"item": "cannon_ammo"
+})
+metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
+
+[node name="Node" type="Node" parent="."]
+process_mode = 3
+script = SubResource("GDScript_ywjuo")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="timeout" from="Timer" to="." method="shoot"]

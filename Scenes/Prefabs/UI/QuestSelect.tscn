@@ -1,0 +1,130 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpx20uohhikd7"]
+
+[ext_resource type="Script" uid="uid://dwiic1tdol4wh" path="res://Scripts/UI/QuestSelect.gd" id="1_6lbpd"]
+[ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="2_6lbpd"]
+[ext_resource type="Texture2D" uid="uid://d2wwuqt4udpvm" path="res://Assets/Sprites/UI/QuestSelect.png" id="3_ikyap"]
+[ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="4_35576"]
+[ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="5_6lbpd"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_6lbpd"]
+color = Color(1, 1, 1, 1)
+
+[node name="CampaignSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 136.0
+offset_bottom = 104.0
+script = ExtResource("1_6lbpd")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_6lbpd")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_top = -4
+theme_override_constants/margin_right = -4
+theme_override_constants/margin_bottom = -4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="SelectWorld" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MENU_QUEST_SELECT"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/SelectWorld"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_6lbpd")
+
+[node name="FirstQuest" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "QUEST_FIRST"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="SecondQuest" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "QUEST_SECOND"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="FirstQuest" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+focus_mode = 2
+
+[node name="FirstQuest" type="NinePatchRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FirstQuest"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 9
+texture = ExtResource("3_ikyap")
+region_rect = Rect2(0, 0, 48, 48)
+script = ExtResource("4_35576")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Cursor" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FirstQuest"]
+visible = false
+layout_mode = 2
+text = "^"
+horizontal_alignment = 1
+
+[node name="SecondQuest" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+focus_mode = 2
+
+[node name="SecondQuest" type="NinePatchRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SecondQuest"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 9
+texture = ExtResource("3_ikyap")
+region_rect = Rect2(48, 0, 48, 48)
+script = ExtResource("4_35576")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Cursor" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SecondQuest"]
+visible = false
+layout_mode = 2
+text = "^"
+horizontal_alignment = 1
+
+[node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+script = ExtResource("5_6lbpd")
+labels = [NodePath("../PanelContainer/MarginContainer/VBoxContainer/SelectWorld"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/FirstQuest"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/SecondQuest"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FirstQuest/Cursor"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SecondQuest/Cursor")]
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
+
+[connection signal="focus_entered" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FirstQuest" to="PanelContainer/MarginContainer/VBoxContainer/FirstQuest" method="show"]
+[connection signal="focus_entered" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FirstQuest" to="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FirstQuest/Cursor" method="show"]
+[connection signal="focus_entered" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FirstQuest" to="." method="set_index" binds= [false]]
+[connection signal="focus_exited" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FirstQuest" to="PanelContainer/MarginContainer/VBoxContainer/FirstQuest" method="hide"]
+[connection signal="focus_exited" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FirstQuest" to="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FirstQuest/Cursor" method="hide"]
+[connection signal="focus_entered" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SecondQuest" to="PanelContainer/MarginContainer/VBoxContainer/SecondQuest" method="show"]
+[connection signal="focus_entered" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SecondQuest" to="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SecondQuest/Cursor" method="show"]
+[connection signal="focus_entered" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SecondQuest" to="." method="set_index" binds= [true]]
+[connection signal="focus_exited" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SecondQuest" to="PanelContainer/MarginContainer/VBoxContainer/SecondQuest" method="hide"]
+[connection signal="focus_exited" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SecondQuest" to="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SecondQuest/Cursor" method="hide"]

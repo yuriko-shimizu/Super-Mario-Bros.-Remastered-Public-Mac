@@ -1,0 +1,124 @@
+{
+	"variations": {
+		"default": {
+			"source": "SPItems.png",
+			"rect": [
+				0.0,
+				0.0,
+				16.0,
+				16.0
+			]
+		},
+		"Underground": {
+			"source": "SPItems.png",
+			"rect": [
+				32.0,
+				0.0,
+				16.0,
+				16.0
+			]
+		},
+		"GhostHouse": {
+			"link": "Underground"
+		},
+		"Castle": {
+			"source": "SPItems.png",
+			"rect": [
+				64.0,
+				0.0,
+				16.0,
+				16.0
+			]
+		},
+		"Underwater": {
+			"source": "SPItems.png",
+			"rect": [
+				96.0,
+				0.0,
+				16.0,
+				16.0
+			]
+		},
+		"Desert": {
+			"source": "SPItems.png",
+			"rect": [
+				0.0,
+				16.0,
+				16.0,
+				16.0
+			]
+		},
+		"Jungle": {
+			"source": "SPItems.png",
+			"rect": [
+				32.0,
+				16.0,
+				16.0,
+				16.0
+			]
+		},
+		"Snow": {
+			"source": "SPItems.png",
+			"rect": [
+				64.0,
+				16.0,
+				16.0,
+				16.0
+			]
+		},
+		"Volcano": {
+			"source": "SPItems.png",
+			"rect": [
+				96.0,
+				16.0,
+				16.0,
+				16.0
+			]
+		},
+		"Autumn": {
+			"source": "SPItems.png",
+			"rect": [
+				0.0,
+				32.0,
+				16.0,
+				16.0
+			]
+		},
+		"Beach": {
+			"source": "SPItems.png",
+			"rect": [
+				32.0,
+				32.0,
+				16.0,
+				16.0
+			]
+		},
+		"Mountain": {
+			"source": "SPItems.png",
+			"rect": [
+				64.0,
+				32.0,
+				16.0,
+				16.0
+			]
+		},
+		"Space": {
+			"source": "SPItems.png",
+			"rect": [
+				96.0,
+				32.0,
+				16.0,
+				16.0
+			]
+		},
+		"Bonus": {
+			"source": "SPItems.png",
+			"rect": [
+				0.0,
+				48.0,
+				16.0,
+				16.0
+			]
+		}
+	}
+}

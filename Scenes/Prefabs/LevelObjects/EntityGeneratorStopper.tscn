@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://csngpd6px3dt4"]
+
+[ext_resource type="PackedScene" uid="uid://bn1kect7h2dlp" path="res://Scenes/Prefabs/LevelObjects/BulletBillGenerator.tscn" id="1_p6gmx"]
+[ext_resource type="Texture2D" uid="uid://cyohkov1cy2vb" path="res://Assets/Sprites/Editor/GeneratorStop.png" id="2_bd4qu"]
+
+[node name="EntityGeneratorStopper" instance=ExtResource("1_p6gmx")]
+threshold = 99999.0
+entity_scene = null
+
+[node name="Sprite" parent="LevelEditorVisibleNode" index="0"]
+texture = ExtResource("2_bd4qu")
+
+[connection signal="player_entered" from="PlayerDetection" to="." method="deactivate_all_generators" unbinds=1]

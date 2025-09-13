@@ -1,0 +1,498 @@
+{
+	"AA": [
+		"res://Scenes/Prefabs/Blocks/DecoBlock.tscn",
+		"0,0"
+	],
+	"AB": [
+		"res://Scenes/Prefabs/Entities/Enemies/Goomba.tscn",
+		"0,8"
+	],
+	"AC": [
+		"res://Scenes/Prefabs/Entities/Enemies/Goombrat.tscn",
+		"0,8"
+	],
+	"AD": [
+		"res://Scenes/Prefabs/Entities/Enemies/GreenKoopaTroopa.tscn",
+		"0,8"
+	],
+	"AE": [
+		"res://Scenes/Prefabs/Entities/Enemies/GreenKoopaParaTroopa.tscn",
+		"0,8"
+	],
+	"AF": [
+		"res://Scenes/Prefabs/Entities/Enemies/RedKoopaTroopa.tscn",
+		"0,8"
+	],
+	"AG": [
+		"res://Scenes/Prefabs/Entities/Enemies/RedKoopaParaTroopa.tscn",
+		"0,8"
+	],
+	"AH": [
+		"res://Scenes/Prefabs/Entities/Enemies/PiranhaPlant.tscn",
+		"8,8"
+	],
+	"AI": [
+		"res://Scenes/Prefabs/Entities/Enemies/RedPiranhaPlant.tscn",
+		"8,8"
+	],
+	"AJ": [
+		"res://Scenes/Prefabs/Entities/Enemies/BuzzyBeetle.tscn",
+		"0,8"
+	],
+	"AK": [
+		"res://Scenes/Prefabs/Entities/Enemies/Spiny.tscn",
+		"0,8"
+	],
+	"AL": [
+		"res://Scenes/Prefabs/Entities/Enemies/GreenCheepCheep.tscn",
+		"0,8"
+	],
+	"AM": [
+		"res://Scenes/Prefabs/Entities/Enemies/RedCheepCheep.tscn",
+		"0,8"
+	],
+	"AN": [
+		"res://Scenes/Prefabs/Entities/Enemies/Blooper.tscn",
+		"0,0"
+	],
+	"AO": [
+		"res://Scenes/Prefabs/Entities/Enemies/HammerBro.tscn",
+		"0,8"
+	],
+	"AP": [
+		"res://Scenes/Prefabs/Entities/Enemies/Bowser.tscn",
+		"0,8"
+	],
+	"AQ": [
+		"res://Scenes/Prefabs/Entities/Enemies/Lakitu.tscn",
+		"0,0"
+	],
+	"AR": [
+		"res://Scenes/Prefabs/Entities/Enemies/BulletBill.tscn",
+		"0,8"
+	],
+	"AS": [
+		"res://Scenes/Prefabs/Entities/Enemies/Podoboo.tscn",
+		"0,0"
+	],
+	"AT": [
+		"res://Scenes/Prefabs/Entities/Enemies/Boo.tscn",
+		"0,8"
+	],
+	"AU": [
+		"res://Scenes/Prefabs/Entities/Enemies/BooBuddies.tscn",
+		"0,0"
+	],
+	"AV": [
+		"res://Scenes/Prefabs/Entities/Enemies/Muncher.tscn",
+		"0,0"
+	],
+	"AW": [
+		"res://Scenes/Prefabs/Entities/Enemies/Spike.tscn",
+		"0,8"
+	],
+	"AX": [
+		"res://Scenes/Prefabs/Entities/Enemies/DryBones.tscn",
+		"0,8"
+	],
+	"AY": [
+		"res://Scenes/Prefabs/Entities/Enemies/MontyMole.tscn",
+		"0,8"
+	],
+	"AZ": [
+		"res://Scenes/Prefabs/Entities/Enemies/BobOmb.tscn",
+		"0,8"
+	],
+	"Aa": [
+		"res://Scenes/Prefabs/Entities/Enemies/LitBobOmb.tscn",
+		"0,8"
+	],
+	"Ab": [
+		"res://Scenes/Prefabs/Blocks/QuestionBlocks/QuestionBlock.tscn",
+		"0,0"
+	],
+	"Ac": [
+		"res://Scenes/Prefabs/Blocks/BrickBlocks/BrickBlock.tscn",
+		"0,0"
+	],
+	"Ad": [
+		"res://Scenes/Prefabs/Blocks/TurnBlock.tscn",
+		"0,0"
+	],
+	"Ae": [
+		"res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisibleQuestionBlock.tscn",
+		"0,0"
+	],
+	"Af": [
+		"res://Scenes/Prefabs/Entities/Objects/Trampoline.tscn",
+		"0,8"
+	],
+	"Ag": [
+		"res://Scenes/Prefabs/Blocks/OnOffSwitch.tscn",
+		"0,0"
+	],
+	"Ah": [
+		"res://Scenes/Prefabs/Blocks/OnOffBlockRed.tscn",
+		"0,0"
+	],
+	"Ai": [
+		"res://Scenes/Prefabs/Blocks/OnOffBlueBlock.tscn",
+		"0,0"
+	],
+	"Aj": [
+		"res://Scenes/Prefabs/Blocks/SpikeBlock.tscn",
+		"0,0"
+	],
+	"Ak": [
+		"res://Scenes/Prefabs/Entities/Objects/Firebar.tscn",
+		"0,0"
+	],
+	"Al": [
+		"res://Scenes/Prefabs/LevelObjects/BulletBillCannon.tscn",
+		"0,0"
+	],
+	"Am": [
+		"res://Scenes/Parts/PipeArea.tscn",
+		"8,-8"
+	],
+	"An": [
+		"res://Scenes/Prefabs/LevelObjects/PipeGenerator.tscn",
+		"8,-8"
+	],
+	"Ao": [
+		"res://Scenes/Prefabs/LevelObjects/EndFlagpole.tscn",
+		"0,24"
+	],
+	"Ap": [
+		"res://Scenes/Prefabs/LevelObjects/EndSmallCastle.tscn",
+		"0,8"
+	],
+	"Aq": [
+		"res://Scenes/Prefabs/LevelObjects/EndFinalCastle.tscn",
+		"0,8"
+	],
+	"Ar": [
+		"res://Scenes/Prefabs/Entities/Items/SuperMushroom.tscn",
+		"0,8"
+	],
+	"As": [
+		"res://Scenes/Prefabs/Entities/Items/PoisonMushroom.tscn",
+		"0,8"
+	],
+	"At": [
+		"res://Scenes/Prefabs/Entities/Items/OneUp.tscn",
+		"0,8"
+	],
+	"Au": [
+		"res://Scenes/Prefabs/Entities/Items/FireFlower.tscn",
+		"0,8"
+	],
+	"Av": [
+		"res://Scenes/Prefabs/Entities/Items/Coin.tscn",
+		"0,0"
+	],
+	"Aw": [
+		"res://Scenes/Prefabs/Entities/Items/SuperStar.tscn",
+		"0,8"
+	],
+	"Ax": [
+		"res://Scenes/Prefabs/LevelObjects/CheckpointFlag.tscn",
+		"0,8"
+	],
+	"Ay": [
+		"res://Scenes/Prefabs/Blocks/DeathBlock.tscn",
+		"0,0"
+	],
+	"Az": [
+		"res://Scenes/Prefabs/Blocks/DonutBlock.tscn",
+		"0,0"
+	],
+	"A0": [
+		"res://Scenes/Prefabs/Entities/Objects/SmallVerticalPlatform.tscn",
+		"8,-8"
+	],
+	"A1": [
+		"res://Scenes/Prefabs/Entities/Objects/VerticalPlatform.tscn",
+		"0,-8"
+	],
+	"A2": [
+		"res://Scenes/Prefabs/Entities/Objects/SmallSidewaysPlatform.tscn",
+		"8,-8"
+	],
+	"A3": [
+		"res://Scenes/Prefabs/Entities/Objects/SidewaysPlatform.tscn",
+		"0,-8"
+	],
+	"A4": [
+		"res://Scenes/Prefabs/Entities/Objects/FallingPlatform.tscn",
+		"8,-8"
+	],
+	"A5": [
+		"res://Scenes/Prefabs/Entities/Objects/LargeFallingPlatform.tscn",
+		"0,-8"
+	],
+	"A6": [
+		"res://Scenes/Prefabs/Entities/Items/SpinningCoin.tscn",
+		"0,8"
+	],
+	"A7": [
+		"res://Scenes/Parts/PlayerStartMarker.tscn",
+		"0,8"
+	],
+	"A8": [
+		"res://Scenes/Prefabs/Entities/Player.tscn",
+		"0,8"
+	],
+	"A9": [
+		"res://Scenes/Prefabs/Entities/Enemies/Pokey.tscn",
+		"0,8"
+	],
+	"A+": [
+		"res://Scenes/Prefabs/Entities/Objects/PSwitch.tscn",
+		"0,8"
+	],
+	"A/": [
+		"res://Scenes/Prefabs/Entities/Enemies/Thwomp.tscn",
+		"8,8"
+	],
+	"BA": [
+		"res://Scenes/Prefabs/Blocks/EmptyPSwitchBlock.tscn",
+		"0,0"
+	],
+	"BB": [
+		"res://Scenes/Prefabs/Blocks/PSwitchBlock.tscn",
+		"0,0"
+	],
+	"BC": [
+		"res://Scenes/Prefabs/Entities/Items/ClockItem.tscn",
+		"0,8"
+	],
+	"BD": [
+		"res://Scenes/Prefabs/Blocks/NoteBlock.tscn",
+		"0,0"
+	],
+	"BE": [
+		"res://Scenes/Prefabs/Blocks/MusicNoteBlock.tscn",
+		"0,0"
+	],
+	"BG": [
+		"res://Scenes/Prefabs/Entities/Enemies/SideStepper.tscn",
+		"0,8"
+	],
+	"BH": [
+		"res://Scenes/Prefabs/Entities/Enemies/FighterFly.tscn",
+		"0,8"
+	],
+	"BI": [
+		"res://Scenes/Prefabs/LevelObjects/HardCameraRightLimit.tscn",
+		"-8,0"
+	],
+	"BJ": [
+		"res://Scenes/Prefabs/LevelObjects/CameraScrollStop.tscn",
+		"-8,0"
+	],
+	"BK": [
+		"res://Scenes/Prefabs/LevelObjects/CastleBridge.tscn",
+		"-192,0"
+	],
+	"BL": [
+		"res://Scenes/Prefabs/LevelObjects/CastleToad.tscn",
+		"-24,8"
+	],
+	"BM": [
+		"res://Scenes/Prefabs/LevelObjects/CastlePeach.tscn",
+		"-24,8"
+	],
+	"BN": [
+		"res://Scenes/Prefabs/Entities/Objects/Track.tscn",
+		"0,0"
+	],
+	"BO": [
+		"res://Scenes/Prefabs/Entities/Objects/TrackRider.tscn",
+		"0,0"
+	],
+	"BP": [
+		"res://Scenes/Prefabs/Blocks/SpikeBlock.tscn",
+		"0,0"
+	],
+	"BR": [
+		"res://Scenes/Prefabs/LevelObjects/EntityGeneratorStopper.tscn",
+		"0,0"
+	],
+	"BF": [
+		"res://Scenes/Prefabs/Entities/Items/PoisonMushroom.tscn",
+		"0,8"
+	],
+	"BQ": [
+		"res://Scenes/Prefabs/Entities/Items/ClockItem.tscn",
+		"0,8"
+	],
+	"BS": [
+		"res://Scenes/Prefabs/Entities/Enemies/Barrel.tscn",
+		"0,8"
+	],
+	"BT": [
+		"res://Scenes/Prefabs/Entities/Objects/SuperTrampoline.tscn",
+		"0,8"
+	],
+	"BU": [
+		"res://Scenes/Prefabs/LevelObjects/TextLabelObj.tscn",
+		"0,0"
+	],
+	"BV": [
+		"res://Scenes/Prefabs/LevelObjects/BulletBillGenerator.tscn",
+		"0,0"
+	],
+	"BW": [
+		"res://Scenes/Prefabs/LevelObjects/CheepCheepGenerator.tscn",
+		"0,0"
+	],
+	"BX": [
+		"res://Scenes/Prefabs/LevelObjects/BowserFlameGenerator.tscn",
+		"0,0"
+	],
+	"BY": [
+		"res://Scenes/Prefabs/LevelObjects/WindGenerator.tscn",
+		"0,0"
+	],
+	"BZ": [
+		"res://Scenes/Prefabs/Entities/Items/HammerItem.tscn",
+		"0,8"
+	],
+	"Ba": [
+		"res://Scenes/Prefabs/Blocks/BooRaceBlocks/BooOnOffSwitch.tscn",
+		"0,0"
+	],
+	"Bb": [
+		"res://Scenes/Prefabs/Blocks/BooRaceBlocks/TimedBooBlock.tscn",
+		"0,0"
+	],
+	"Bc": [
+		"res://Scenes/Prefabs/Blocks/SwitchSpikeBlock.tscn",
+		"0,0"
+	],
+	"Bd": [
+		"res://Scenes/Prefabs/Blocks/SpringBlock.tscn",
+		"0,0"
+	],
+	"Be": [
+		"res://Scenes/Prefabs/Blocks/SuperSpringBlock.tscn",
+		"0,0"
+	],
+	"Bf": [
+		"res://Scenes/Prefabs/Blocks/TrickBlock.tscn",
+		"0,0"
+	],
+	"Bg": [
+		"res://Scenes/Prefabs/Blocks/OnOffFanRed.tscn",
+		"0,0"
+	],
+	"Bh": [
+		"res://Scenes/Prefabs/Blocks/OnOffFanBlue.tscn",
+		"0,0"
+	],
+	"Bi": [
+		"res://Scenes/Prefabs/Entities/Objects/OnOffVerticalPlatform.tscn",
+		"0,-8"
+	],
+	"Bj": [
+		"res://Scenes/Prefabs/Entities/Objects/OnOffVerticalPlatformBlue.tscn",
+		"0,-8"
+	],
+	"Bk": [
+		"res://Scenes/Prefabs/Entities/Objects/OnOffSidewaysPlatform.tscn",
+		"0,-8"
+	],
+	"Bl": [
+		"res://Scenes/Prefabs/Entities/Objects/OnOffSidewaysPlatformBlue.tscn",
+		"0,-8"
+	],
+	"Bm": [
+		"res://Scenes/Prefabs/Blocks/SwitchSpikeBlockAlt.tscn",
+		"0,0"
+	],
+	"Bn": [
+		"res://Scenes/Prefabs/Entities/Objects/CustomRaceBoo.tscn",
+		"0,0"
+	],
+	"Bo": [
+		"res://Scenes/Prefabs/Blocks/EmptyBlock.tscn",
+		"0,0"
+	],
+	"Bq": [
+		"res://Scenes/Prefabs/LevelObjects/EditorLinkedElevator.tscn",
+		"0, 0"
+	],
+	"Br": [
+		"res://Scenes/Prefabs/Entities/Items/Hachisuke.tscn",
+		"0,8"
+	],
+	"Bp": [
+		"res://Scenes/Prefabs/Entities/Items/LuckyStar.tscn",
+		"0,8"
+	],
+	"Bs": [
+		"res://Scenes/Prefabs/Entities/Enemies/Icicle.tscn",
+		"0,8"
+	],
+	"Bt": [
+		"res://Scenes/Prefabs/Entities/Enemies/GreenParaKoopaHori.tscn",
+		"0,8"
+	],
+	"Bu": [
+		"res://Scenes/Prefabs/Entities/Enemies/RockyWrench.tscn",
+		"0,8"
+	],
+	"Bv": [
+		"res://Scenes/Prefabs/Blocks/Fan.tscn",
+		"0,0"
+	],
+	"Bw": [
+		"res://Scenes/Prefabs/Entities/Objects/Burner.tscn",
+		"0,0"
+	],
+	"Bx": [
+		"res://Scenes/Prefabs/LevelObjects/EditorLinkedElevator.tscn",
+		"0,0"
+	],
+	"By": [
+		"res://Scenes/Prefabs/Entities/Objects/Cannon.tscn",
+		"0,0"
+	],
+	"Bz": [
+		"res://Scenes/Prefabs/Entities/Items/BlueCoinInactive.tscn",
+		"0,0"
+	],
+	"B0": [
+		"res://Scenes/Prefabs/Entities/Items/WingItem.tscn",
+		"0,8"
+	],
+	"B1": [
+		"res://Scenes/Prefabs/Entities/Objects/Bumper.tscn",
+		"0,0"
+	],
+	"B2": [
+		"res://Scenes/Prefabs/Entities/Objects/Door.tscn",
+		"0,8"
+	],
+	"B3": [
+		"res://Scenes/Prefabs/Entities/Items/KeyItem.tscn",
+		"0,8"
+	],
+	"B4": [
+		"res://Scenes/Prefabs/Entities/Objects/LockedDoor.tscn",
+		"0,8"
+	],
+	"B5": [
+		"res://Scenes/Prefabs/Entities/Objects/EmptyPDoor.tscn",
+		"0,8"
+	],
+	"B6": [
+		"res://Scenes/Prefabs/LevelObjects/GravityInverter.tscn",
+		"0,0"
+	],
+	"B7": [
+		"res://Scenes/Prefabs/LevelObjects/MoonGravityObj.tscn",
+		"0,0"
+	]
+}

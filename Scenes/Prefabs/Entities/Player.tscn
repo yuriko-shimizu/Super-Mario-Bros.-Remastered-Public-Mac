@@ -1,0 +1,1069 @@
+[gd_scene load_steps=79 format=3 uid="uid://cuh62hlq8errh"]
+
+[ext_resource type="Script" uid="uid://dt4rosa5o35xr" path="res://Scripts/Classes/Entities/Player.gd" id="1_f6bau"]
+[ext_resource type="Script" uid="uid://uribh0f1jttq" path="res://Scripts/Classes/States/StateMachine.gd" id="2_1y62l"]
+[ext_resource type="Texture2D" uid="uid://b0quveyqh25dn" path="res://Assets/Sprites/Players/InvinciblePalettes/InvinciblePalette.png" id="2_bl5al"]
+[ext_resource type="Texture2D" uid="uid://cqnw2x27uxb8i" path="res://Assets/Sprites/Players/InvinciblePalettes/Overworld.png" id="2_fqdtv"]
+[ext_resource type="Texture2D" uid="uid://bbdcmhyxmc3pu" path="res://Assets/Sprites/Items/SPItems.png" id="3_a1d2e"]
+[ext_resource type="Script" uid="uid://blxvov3jyx8gg" path="res://Scripts/Classes/States/Player/Normal.gd" id="3_f6bau"]
+[ext_resource type="Texture2D" uid="uid://bdurtsr7cld64" path="res://Assets/Sprites/Players/Mario/ColourPalette.png" id="3_x2idl"]
+[ext_resource type="SpriteFrames" uid="uid://df4enjjl84mji" path="res://Resources/SpriteFrames/Player/Mario/Small.tres" id="4_cekpg"]
+[ext_resource type="Script" uid="uid://dvbib1gtmmvui" path="res://Scripts/Classes/States/Player/Pipe.gd" id="5_hodem"]
+[ext_resource type="Script" uid="uid://c8xvkkv34fjr4" path="res://Scripts/Classes/PowerStates/PowerUpState.gd" id="5_rs3l8"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="5_x2idl"]
+[ext_resource type="Script" uid="uid://d0hnf0d6tudgj" path="res://Scripts/Classes/PowerStates/Fire.gd" id="6_7nbqp"]
+[ext_resource type="Script" uid="uid://cnjpqn05bfm57" path="res://Scripts/Classes/States/Player/PlayerState.gd" id="6_8f1du"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/HammerItem.json" id="7_2mfvl"]
+[ext_resource type="Script" uid="uid://ri1g4nllpkfj" path="res://Scripts/Classes/States/Player/FlagPole.gd" id="7_8f1du"]
+[ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="8_4ojwh"]
+[ext_resource type="Script" uid="uid://bx2kc62lpphxv" path="res://Scripts/Classes/States/Player/LevelExit.gd" id="8_mqpnb"]
+[ext_resource type="Texture2D" uid="uid://tidb7wgqraj2" path="res://Assets/Sprites/Items/Wings.png" id="8_t1xso"]
+[ext_resource type="Script" uid="uid://cvbj4qlyfat7e" path="res://Scripts/Classes/States/Player/Dead.gd" id="9_mqpnb"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/Wings.json" id="9_o70e0"]
+[ext_resource type="Script" uid="uid://c7kmriol0gj16" path="res://Scripts/Classes/States/Player/Climb.gd" id="10_shhao"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Players/Mario/ColourPalette.json" id="10_xy8gq"]
+[ext_resource type="Script" uid="uid://b10ui1x45l6ly" path="res://Scripts/Classes/States/Player/WallSlide.gd" id="11_057py"]
+[ext_resource type="Texture2D" uid="uid://dq58glgwf2l3" path="res://Assets/Sprites/UI/CheckpointIcon.png" id="13_uo1a1"]
+[ext_resource type="Script" uid="uid://ugfx3sb3h6rj" path="res://Scripts/Classes/States/Player/NoClip.gd" id="16_cekpg"]
+[ext_resource type="AudioStream" uid="uid://cbxnq518x3jqe" path="res://Assets/Audio/SFX/Skid.wav" id="18_hofol"]
+[ext_resource type="Texture2D" uid="uid://daaycq24wiiph" path="res://Assets/Sprites/UI/ControllerOverlay.png" id="19_bc3q3"]
+[ext_resource type="Texture2D" uid="uid://c6pd7cdhx78od" path="res://Assets/Sprites/UI/Tab.png" id="20_34tqy"]
+[ext_resource type="Script" uid="uid://dgmaoklmc0wfa" path="res://Scripts/Parts/CameraHandler.gd" id="20_d7xah"]
+[ext_resource type="Script" uid="uid://cp1bh6fi6tpa5" path="res://Scripts/Classes/Components/ScalableCollisionShape.gd" id="21_jl70t"]
+[ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="22_445e4"]
+[ext_resource type="SpriteFrames" uid="uid://dw8r8t7iqvrmq" path="res://Resources/SpriteFrames/Player/Luigi/Fire.tres" id="23_445e4"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="24_hu5lw"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="25_cekpg"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Players/Mario/Small.json" id="26_o4wvw"]
+[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="27_6ws8x"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="28_hu5lw"]
+[ext_resource type="Texture2D" uid="uid://cpoksuhnwvh5l" path="res://Assets/Sprites/UI/TimerIcons.png" id="29_uwhl4"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Players/InvinciblePalettes/InvinciblePalette.json" id="29_vphr8"]
+[ext_resource type="Script" uid="uid://dn5efttgugwvb" path="res://Scripts/Classes/Components/TimerSprite.gd" id="30_o70e0"]
+[ext_resource type="Script" uid="uid://cwti0ks5sfov3" path="res://Scripts/Classes/Components/ScalableCollisionPolygon.gd" id="35_nbkfn"]
+[ext_resource type="AudioStream" uid="uid://oghj2q665pfj" path="res://Assets/Audio/SFX/TimerRunningLow.wav" id="40_o70e0"]
+
+[sub_resource type="Shader" id="Shader_7nbqp"]
+code = "shader_type canvas_item;
+
+uniform int mode = 0;
+uniform float speed = 50;
+uniform bool enabled = false;
+uniform float palette_size = 3;
+uniform sampler2D player_palette: filter_nearest;
+uniform int palette_idx = 0;
+uniform sampler2D invincible_palette: filter_nearest;
+uniform float dist_1 = 0.0;
+
+vec4 mode_0(vec4 colour)
+{
+	float amount = abs(sin(TIME * speed));
+	vec4 inv = abs(colour - vec4(1.0, 1.0, 1.0, 0.0));
+	vec4 rainbow = vec4(abs(sin(TIME * 5.0)), abs(cos(TIME * 3.0)), abs(sin((TIME))), colour.a);
+	inv = vec4(mix(inv, rainbow, 0.5));
+	colour = vec4(mix(colour, inv, amount));
+	return colour;
+}
+
+vec4 mode_1(vec4 colour)
+{
+    // Determine invincible palette row (1–3)
+    int invincible_palette_idx = int(TIME * speed) % 3;
+
+    vec4 closest = colour;
+    float closest_distance = 99999.9;
+
+    int palette_count = int(palette_size); // number of colors
+
+    for (int i = 0; i < palette_count; i++)
+{
+    float x_coord = (float(i) + 0.5) / palette_size;
+    float y_coord = (float(palette_idx) + 0.5) / float(3);
+
+    vec4 sampled = texture(player_palette, vec2(x_coord, y_coord));
+
+    float d = distance(sampled, colour);
+    if (d < 0.01 && d <= closest_distance)
+    {
+        float inv_x_coord = (float(i) + 0.5) / palette_size;
+        float inv_y_coord = (float(invincible_palette_idx) + 0.5) / float(3);
+
+        closest = texture(invincible_palette, vec2(inv_x_coord, inv_y_coord));
+        closest_distance = d;
+    }
+}
+
+
+    return closest;
+}
+
+
+void fragment() {
+	if (enabled)
+		{
+			if (mode == 0)
+		{
+			COLOR = mode_0(COLOR);
+		} else if (mode == 1)
+		{
+			COLOR = mode_1(COLOR);
+		}
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ojwh"]
+resource_local_to_scene = true
+shader = SubResource("Shader_7nbqp")
+shader_parameter/mode = 1
+shader_parameter/speed = 15.0
+shader_parameter/enabled = false
+shader_parameter/palette_size = 3.0
+shader_parameter/player_palette = ExtResource("3_x2idl")
+shader_parameter/palette_idx = 0
+shader_parameter/invincible_palette = ExtResource("2_fqdtv")
+shader_parameter/dist_1 = 0.0
+
+[sub_resource type="Animation" id="Animation_bc3q3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_hofol"]
+resource_name = "Swing"
+length = 0.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bl5al"]
+_data = {
+&"RESET": SubResource("Animation_bc3q3"),
+&"Swing": SubResource("Animation_hofol")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a1d2e"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jl70t"]
+atlas = ExtResource("8_t1xso")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbkfn"]
+atlas = ExtResource("8_t1xso")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d20nf"]
+atlas = ExtResource("8_t1xso")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uwhl4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jl70t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbkfn")
+}],
+"loop": true,
+"name": &"Flap",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d20nf")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_t1xso"]
+resource_name = "Flash"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jl70t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nbkfn"]
+_data = {
+&"Flash": SubResource("Animation_t1xso"),
+&"RESET": SubResource("Animation_jl70t")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbkfn"]
+resource_local_to_scene = true
+size = Vector2(9, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d20nf"]
+resource_local_to_scene = true
+size = Vector2(9, 29.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6bau"]
+resource_local_to_scene = true
+size = Vector2(6, 15.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sda2e"]
+resource_local_to_scene = true
+size = Vector2(6, 29.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwhl4"]
+resource_local_to_scene = true
+size = Vector2(10, 16.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o70e0"]
+resource_local_to_scene = true
+size = Vector2(10, 30.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1xso"]
+size = Vector2(9999999, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jl70t"]
+size = Vector2(9999999, 8)
+
+[sub_resource type="Animation" id="Animation_057py"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_shhao"]
+resource_name = "Show"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 8), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:self_modulate")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.7, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f873f"]
+_data = {
+&"RESET": SubResource("Animation_057py"),
+&"Show": SubResource("Animation_shhao")
+}
+
+[sub_resource type="Resource" id="Resource_2mfvl"]
+script = ExtResource("24_hu5lw")
+Overworld = ExtResource("13_uo1a1")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[sub_resource type="Resource" id="Resource_cekpg"]
+script = ExtResource("24_hu5lw")
+Overworld = ExtResource("18_hofol")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bc3q3"]
+atlas = ExtResource("19_bc3q3")
+region = Rect2(0, 16, 2, 2)
+
+[sub_resource type="GDScript" id="GDScript_bl5al"]
+script/source = "extends Sprite2D
+
+@export var action_name := \"\"
+@export var idle_texture: Texture = null
+@export var pressed_texture: Texture = null
+
+func _process(_delta: float) -> void:
+	texture = pressed_texture if Input.is_action_pressed(action_name + \"_0\") else idle_texture
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bl5al"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2idl"]
+atlas = ExtResource("19_bc3q3")
+region = Rect2(2, 16, 2, 2)
+
+[sub_resource type="Resource" id="Resource_vphr8"]
+script = ExtResource("24_hu5lw")
+Overworld = ExtResource("23_445e4")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_6ws8x"]
+length = 4.0
+slide_on_slope = true
+
+[sub_resource type="GDScript" id="GDScript_hu5lw"]
+script/source = "extends Node
+
+var current_state := \"\"
+
+func _physics_process(_delta: float) -> void:
+	if Global.current_game_mode == Global.GameMode.LEVEL_EDITOR and LevelEditor.playing_level == false:
+		if Global.level_editor.current_state == LevelEditor.EditorState.IDLE == false:
+			return
+		var state = %PowerStates.get_child(owner.starting_power_state).name
+		if current_state != state:
+			current_state = state
+			%ResourceSetterNew.resource_json = load(\"res://Assets/Sprites/Players/\" + owner.character + \"/\" + state + \".json\")
+		if Input.is_action_just_pressed(\"editor_move_player\"):
+			var new_position = Global.level_editor.cursor_tile_position * 16
+			owner.global_position = new_position + Vector2i(8, 16)
+			Global.level_editor.entity_tiles[0].erase(owner.get_meta(\"tile_position\"))
+			var tile_position = Vector2i(new_position / 16)
+			Global.level_editor.entity_tiles[0].set(tile_position, owner)
+			owner.reset_physics_interpolation()
+			owner.set_meta(\"tile_position\", tile_position)
+			owner.recenter_camera()
+			print(Global.level_editor.entity_tiles)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7xah"]
+resource_local_to_scene = true
+size = Vector2(4, 6.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34tqy"]
+resource_local_to_scene = true
+size = Vector2(4, 12)
+
+[sub_resource type="Resource" id="Resource_xy8gq"]
+script = ExtResource("24_hu5lw")
+Overworld = ExtResource("40_o70e0")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("power_state") groups=["Players"]]
+process_priority = 1
+process_physics_priority = 1
+z_index = 1
+collision_layer = 0
+collision_mask = 3
+collision_priority = 10000000.0
+slide_on_ceiling = false
+floor_constant_speed = true
+floor_max_angle = 0.872665
+floor_snap_length = 4.0
+platform_on_leave = 2
+script = ExtResource("1_f6bau")
+power_state = NodePath("PowerStates/Small")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+physics_interpolation_mode = 2
+material = SubResource("ShaderMaterial_4ojwh")
+position = Vector2(0, -16)
+sprite_frames = ExtResource("4_cekpg")
+animation = &"Idle"
+offset = Vector2(0, 1)
+script = ExtResource("5_x2idl")
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="Hammer" type="Sprite2D" parent="Sprite"]
+visible = false
+position = Vector2(8, 8)
+texture = ExtResource("3_a1d2e")
+offset = Vector2(0, -8)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Animation" type="AnimationPlayer" parent="Sprite/Hammer"]
+libraries = {
+&"": SubResource("AnimationLibrary_bl5al")
+}
+autoplay = "Swing"
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite/Hammer" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("25_cekpg")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("7_2mfvl")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="HammerHitbox" type="Area2D" parent="Sprite"]
+visible = false
+position = Vector2(16, 16)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/HammerHitbox"]
+position = Vector2(-3.49691e-07, -8)
+shape = SubResource("RectangleShape2D_a1d2e")
+
+[node name="Wings" type="Node2D" parent="Sprite"]
+visible = false
+
+[node name="BigWing" type="AnimatedSprite2D" parent="Sprite/Wings"]
+unique_name_in_owner = true
+position = Vector2(-10, -3)
+sprite_frames = SubResource("SpriteFrames_uwhl4")
+animation = &"Idle"
+frame_progress = 0.9603284
+flip_h = true
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite/Wings/BigWing" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("25_cekpg")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("9_o70e0")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="SmallWing" type="AnimatedSprite2D" parent="Sprite/Wings"]
+unique_name_in_owner = true
+visible = false
+show_behind_parent = true
+position = Vector2(-10, 7)
+sprite_frames = SubResource("SpriteFrames_uwhl4")
+animation = &"Idle"
+flip_h = true
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite/Wings/SmallWing" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("25_cekpg")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("9_o70e0")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite/Wings"]
+libraries = {
+&"": SubResource("AnimationLibrary_nbkfn")
+}
+
+[node name="States" type="Node" parent="." node_paths=PackedStringArray("state")]
+script = ExtResource("2_1y62l")
+state = NodePath("Normal")
+
+[node name="Normal" type="Node" parent="States"]
+script = ExtResource("3_f6bau")
+
+[node name="Pipe" type="Node" parent="States"]
+script = ExtResource("5_hodem")
+metadata/_custom_type_script = "uid://cnjpqn05bfm57"
+
+[node name="FlagPole" type="Node" parent="States"]
+script = ExtResource("7_8f1du")
+metadata/_custom_type_script = "uid://cnjpqn05bfm57"
+
+[node name="LevelExit" type="Node" parent="States"]
+script = ExtResource("8_mqpnb")
+metadata/_custom_type_script = "uid://cnjpqn05bfm57"
+
+[node name="Dead" type="Node" parent="States"]
+script = ExtResource("9_mqpnb")
+metadata/_custom_type_script = "uid://cnjpqn05bfm57"
+
+[node name="Freeze" type="Node" parent="States"]
+script = ExtResource("6_8f1du")
+metadata/_custom_type_script = "uid://cnjpqn05bfm57"
+
+[node name="Climb" type="Node" parent="States"]
+script = ExtResource("10_shhao")
+metadata/_custom_type_script = "uid://cnjpqn05bfm57"
+
+[node name="WallSlide" type="Node" parent="States"]
+script = ExtResource("11_057py")
+metadata/_custom_type_script = "uid://cnjpqn05bfm57"
+
+[node name="NoClip" type="Node" parent="States"]
+script = ExtResource("16_cekpg")
+metadata/_custom_type_script = "uid://cnjpqn05bfm57"
+
+[node name="PowerStates" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Small" type="Node" parent="PowerStates"]
+script = ExtResource("5_rs3l8")
+state_name = "Small"
+metadata/_custom_type_script = "uid://c8xvkkv34fjr4"
+
+[node name="Big" type="Node" parent="PowerStates" node_paths=PackedStringArray("damage_state")]
+script = ExtResource("5_rs3l8")
+state_name = "Big"
+power_tier = 1
+hitbox_size = "Big"
+damage_state = NodePath("../Small")
+metadata/_custom_type_script = "uid://c8xvkkv34fjr4"
+
+[node name="Fire" type="Node" parent="PowerStates" node_paths=PackedStringArray("damage_state")]
+script = ExtResource("6_7nbqp")
+state_name = "Fire"
+power_tier = 2
+hitbox_size = "Big"
+damage_state = NodePath("../Big")
+metadata/_custom_type_script = "uid://c8xvkkv34fjr4"
+
+[node name="Camera" type="Camera2D" parent="."]
+process_mode = 3
+top_level = true
+position = Vector2(0, -64)
+ignore_rotation = false
+limit_enabled = false
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -10)
+collision_mask = 5
+
+[node name="SmallShape" type="CollisionShape2D" parent="Hitbox" groups=["SmallCollisions"]]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_nbkfn")
+debug_color = Color(1, 0, 0, 0.419608)
+script = ExtResource("21_jl70t")
+offset = Vector2(0, -10)
+
+[node name="BigShape" type="CollisionShape2D" parent="Hitbox" groups=["BigCollisions"]]
+position = Vector2(0, -4.75)
+shape = SubResource("RectangleShape2D_d20nf")
+disabled = true
+debug_color = Color(1, 0, 0, 0.419608)
+script = ExtResource("21_jl70t")
+offset = Vector2(0, -10)
+
+[node name="WaterDetect" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -13)
+collision_layer = 0
+collision_mask = 64
+
+[node name="SmallShape" type="CollisionShape2D" parent="WaterDetect" groups=["SmallCollisions"]]
+position = Vector2(0, 5.25)
+shape = SubResource("RectangleShape2D_f6bau")
+debug_color = Color(1, 0, 0, 0.419608)
+script = ExtResource("21_jl70t")
+offset = Vector2(0, -13)
+
+[node name="BigShape" type="CollisionShape2D" parent="WaterDetect" groups=["BigCollisions"]]
+position = Vector2(0, -1.75)
+shape = SubResource("RectangleShape2D_sda2e")
+disabled = true
+debug_color = Color(1, 0, 0, 0.419608)
+script = ExtResource("21_jl70t")
+offset = Vector2(0, -13)
+
+[node name="LavaPoisonDetect" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -13)
+collision_layer = 0
+collision_mask = 384
+
+[node name="SmallShape" type="CollisionShape2D" parent="LavaPoisonDetect"]
+position = Vector2(0, 5.75)
+shape = SubResource("RectangleShape2D_uwhl4")
+debug_color = Color(1, 0, 0, 0.419608)
+script = ExtResource("21_jl70t")
+offset = Vector2(0, -14)
+
+[node name="BigShape" type="CollisionShape2D" parent="LavaPoisonDetect" groups=["BigCollisions"]]
+position = Vector2(0, -1.25)
+shape = SubResource("RectangleShape2D_o70e0")
+disabled = true
+debug_color = Color(1, 0, 0, 0.419608)
+script = ExtResource("21_jl70t")
+offset = Vector2(0, -14)
+
+[node name="CameraCenterJoint" type="Node2D" parent="."]
+physics_interpolation_mode = 2
+top_level = true
+
+[node name="LeftWall" type="StaticBody2D" parent="CameraCenterJoint"]
+position = Vector2(128, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraCenterJoint/LeftWall"]
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_t1xso")
+disabled = true
+one_way_collision = true
+
+[node name="RightWall" type="StaticBody2D" parent="CameraCenterJoint"]
+position = Vector2(-128, 0)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraCenterJoint/RightWall"]
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_jl70t")
+disabled = true
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CameraCenterJoint"]
+visible = false
+texture = ExtResource("20_34tqy")
+
+[node name="ScoreNoteSpawner" type="Node" parent="."]
+script = ExtResource("8_4ojwh")
+metadata/_custom_type_script = "uid://5octqlf4ohel"
+
+[node name="StarTimer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 10.0
+one_shot = true
+
+[node name="Checkpoint" type="Sprite2D" parent="."]
+process_mode = 3
+physics_interpolation_mode = 2
+self_modulate = Color(1, 1, 1, 0)
+z_index = 4096
+z_as_relative = false
+position = Vector2(0, -40)
+texture = ExtResource("13_uo1a1")
+
+[node name="Animation" type="AnimationPlayer" parent="Checkpoint"]
+libraries = {
+&"": SubResource("AnimationLibrary_f873f")
+}
+speed_scale = 2.0
+
+[node name="Label" type="Label" parent="Checkpoint"]
+visibility_layer = 2
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResourceSetter" type="Node" parent="Checkpoint" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("27_6ws8x")
+node_to_affect = NodePath("..")
+property_name = "texture"
+themed_resource = SubResource("Resource_2mfvl")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="HammerTimer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 10.0
+one_shot = true
+
+[node name="SkidSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_hofol")
+bus = &"SFX"
+
+[node name="ResourceSetter" type="Node" parent="SkidSFX" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("27_6ws8x")
+node_to_affect = NodePath("..")
+property_name = "stream"
+themed_resource = SubResource("Resource_cekpg")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="ControllerOverlay" type="Sprite2D" parent="CanvasLayer/Control"]
+position = Vector2(4, -21)
+texture = ExtResource("19_bc3q3")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 36, 16)
+
+[node name="Up" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay"]
+position = Vector2(5, 6)
+texture = SubResource("AtlasTexture_bc3q3")
+centered = false
+script = SubResource("GDScript_bl5al")
+action_name = "move_up"
+idle_texture = SubResource("AtlasTexture_bl5al")
+pressed_texture = SubResource("AtlasTexture_bc3q3")
+
+[node name="Down" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay"]
+position = Vector2(5, 10)
+texture = SubResource("AtlasTexture_bc3q3")
+centered = false
+script = SubResource("GDScript_bl5al")
+action_name = "move_down"
+idle_texture = SubResource("AtlasTexture_bl5al")
+pressed_texture = SubResource("AtlasTexture_bc3q3")
+
+[node name="Right" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay"]
+position = Vector2(7, 8)
+texture = SubResource("AtlasTexture_bc3q3")
+centered = false
+script = SubResource("GDScript_bl5al")
+action_name = "move_right"
+idle_texture = SubResource("AtlasTexture_bl5al")
+pressed_texture = SubResource("AtlasTexture_bc3q3")
+
+[node name="Left" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay"]
+position = Vector2(3, 8)
+texture = SubResource("AtlasTexture_bc3q3")
+centered = false
+script = SubResource("GDScript_bl5al")
+action_name = "move_left"
+idle_texture = SubResource("AtlasTexture_bl5al")
+pressed_texture = SubResource("AtlasTexture_bc3q3")
+
+[node name="Run" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay"]
+position = Vector2(23, 8)
+scale = Vector2(1.5, 1.5)
+texture = SubResource("AtlasTexture_x2idl")
+centered = false
+script = SubResource("GDScript_bl5al")
+action_name = "run"
+idle_texture = SubResource("AtlasTexture_bl5al")
+pressed_texture = SubResource("AtlasTexture_x2idl")
+
+[node name="Jump" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay"]
+position = Vector2(29, 8)
+scale = Vector2(1.5, 1.5)
+texture = SubResource("AtlasTexture_x2idl")
+centered = false
+script = SubResource("GDScript_bl5al")
+action_name = "jump"
+idle_texture = SubResource("AtlasTexture_bl5al")
+pressed_texture = SubResource("AtlasTexture_x2idl")
+
+[node name="Control2" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Timers" type="VBoxContainer" parent="CanvasLayer/Control2/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 2
+
+[node name="PSwitchTimer" type="Control" parent="CanvasLayer/Control2/MarginContainer/Timers"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 2
+
+[node name="TimerSprite" type="Sprite2D" parent="CanvasLayer/Control2/MarginContainer/Timers/PSwitchTimer" node_paths=PackedStringArray("warn_sfx")]
+texture = ExtResource("29_uwhl4")
+centered = false
+hframes = 7
+region_enabled = true
+region_rect = Rect2(0, 0, 56, 8)
+script = ExtResource("30_o70e0")
+max_value = 10.0
+value_name = "p_switch_timer"
+warn_sfx = NodePath("../../../../../../TimerWarn")
+warn_threshold = 0.8500000000058208
+metadata/_custom_type_script = "uid://dn5efttgugwvb"
+
+[node name="StarTimer" type="Control" parent="CanvasLayer/Control2/MarginContainer/Timers"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 2
+
+[node name="TimerSprite" type="Sprite2D" parent="CanvasLayer/Control2/MarginContainer/Timers/StarTimer" node_paths=PackedStringArray("timer", "warn_sfx")]
+texture = ExtResource("29_uwhl4")
+centered = false
+hframes = 7
+frame = 6
+region_enabled = true
+region_rect = Rect2(0, 8, 56, 8)
+script = ExtResource("30_o70e0")
+max_value = 10.0
+value_name = "time_left"
+object = 2
+timer = NodePath("../../../../../../StarTimer")
+warn_sfx = NodePath("../../../../../../TimerWarn")
+warn_threshold = 0.8500000000058208
+metadata/_custom_type_script = "uid://dn5efttgugwvb"
+
+[node name="WingTimer" type="Control" parent="CanvasLayer/Control2/MarginContainer/Timers"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 2
+
+[node name="TimerSprite" type="Sprite2D" parent="CanvasLayer/Control2/MarginContainer/Timers/WingTimer" node_paths=PackedStringArray("warn_sfx")]
+texture = ExtResource("29_uwhl4")
+centered = false
+hframes = 7
+region_enabled = true
+region_rect = Rect2(0, 16, 56, 8)
+script = ExtResource("30_o70e0")
+max_value = 10.0
+value_name = "flight_meter"
+object = 1
+warn_sfx = NodePath("../../../../../../TimerWarn")
+warn_threshold = 0.8500000000058208
+metadata/_custom_type_script = "uid://dn5efttgugwvb"
+
+[node name="HammerTimer" type="Control" parent="CanvasLayer/Control2/MarginContainer/Timers"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 2
+
+[node name="TimerSprite" type="Sprite2D" parent="CanvasLayer/Control2/MarginContainer/Timers/HammerTimer" node_paths=PackedStringArray("timer", "warn_sfx")]
+texture = ExtResource("29_uwhl4")
+centered = false
+hframes = 7
+region_enabled = true
+region_rect = Rect2(0, 24, 56, 8)
+script = ExtResource("30_o70e0")
+max_value = 10.0
+value_name = "time_left"
+object = 2
+timer = NodePath("../../../../../../HammerTimer")
+warn_sfx = NodePath("../../../../../../TimerWarn")
+warn_threshold = 0.8500000000058208
+metadata/_custom_type_script = "uid://dn5efttgugwvb"
+
+[node name="ThemedToJSONConverter" type="Node" parent="."]
+script = ExtResource("22_445e4")
+resource = SubResource("Resource_vphr8")
+json_file_path = "res://Assets/Sprites/Players/Luigi/Fire.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"
+
+[node name="ResourceSetterNew" type="Node" parent="." node_paths=PackedStringArray("node_to_affect", "property_node")]
+unique_name_in_owner = true
+script = ExtResource("25_cekpg")
+node_to_affect = NodePath("../Sprite")
+property_node = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("26_o4wvw")
+use_cache = false
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="InvinciblePalette" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_bl5al")
+
+[node name="ResourceSetter" type="Node" parent="InvinciblePalette" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("25_cekpg")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("29_vphr8")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="PlayerPalette" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -8)
+scale = Vector2(8, 8)
+texture = ExtResource("3_x2idl")
+
+[node name="ResourceSetterNew" type="Node" parent="PlayerPalette" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("25_cekpg")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("10_xy8gq")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="SmallCollision" type="CollisionPolygon2D" parent="." groups=["SmallCollisions"]]
+polygon = PackedVector2Array(4, -2, 4, -8, 1, -14, -1, -14, -4, -8, -4, -2, -2, 0, 2, 0)
+one_way_collision = true
+script = ExtResource("35_nbkfn")
+
+[node name="BigCollision" type="CollisionPolygon2D" parent="." groups=["BigCollisions"]]
+visible = false
+polygon = PackedVector2Array(-4, -2, -2, 0, 2, 0, 4, -2, 4, -23, 1, -28, -1, -28, -4, -23)
+script = ExtResource("35_nbkfn")
+
+[node name="FootL" type="CollisionShape2D" parent="." groups=["StepCollision"]]
+position = Vector2(-6, -4)
+shape = SubResource("SeparationRayShape2D_6ws8x")
+
+[node name="FootR" type="CollisionShape2D" parent="." groups=["StepCollision"]]
+position = Vector2(6, -4)
+shape = SubResource("SeparationRayShape2D_6ws8x")
+
+[node name="EditorPropertyExposer" type="Node" parent="."]
+script = ExtResource("28_hu5lw")
+properties = Array[String](["starting_power_state"])
+
+[node name="Node" type="Node" parent="."]
+process_mode = 3
+script = SubResource("GDScript_hu5lw")
+
+[node name="CameraHandler" type="Node2D" parent="." node_paths=PackedStringArray("camera", "camera_center_joint")]
+unique_name_in_owner = true
+process_mode = 3
+script = ExtResource("20_d7xah")
+camera = NodePath("../Camera")
+camera_center_joint = NodePath("../CameraCenterJoint")
+
+[node name="StepWallChecks" type="Node2D" parent="."]
+
+[node name="LWall" type="RayCast2D" parent="StepWallChecks"]
+position = Vector2(-6, -4)
+target_position = Vector2(-1, 0)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="RWall" type="RayCast2D" parent="StepWallChecks"]
+position = Vector2(6, -4)
+target_position = Vector2(1, 0)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="BlockCollision" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="SmallShape" type="CollisionShape2D" parent="BlockCollision" node_paths=PackedStringArray("link") groups=["SmallCollisions"]]
+visible = false
+position = Vector2(0, -16.875)
+shape = SubResource("RectangleShape2D_d7xah")
+debug_color = Color(1, 0, 0, 0.419608)
+script = ExtResource("21_jl70t")
+offset = Vector2(0, 13.5)
+link = NodePath("../../SmallCollision")
+
+[node name="BigShape" type="CollisionShape2D" parent="BlockCollision" node_paths=PackedStringArray("link") groups=["BigCollisions"]]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_34tqy")
+disabled = true
+debug_color = Color(1, 0, 0, 0.419608)
+script = ExtResource("21_jl70t")
+offset = Vector2(0, 26)
+link = NodePath("../../BigCollision")
+
+[node name="TimerWarn" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("40_o70e0")
+bus = &"SFX"
+
+[node name="ResourceSetter" type="Node" parent="TimerWarn" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("27_6ws8x")
+node_to_affect = NodePath("..")
+property_name = "stream"
+themed_resource = SubResource("Resource_xy8gq")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[connection signal="frame_changed" from="Sprite" to="Sprite" method="on_frame_changed"]
+[connection signal="sprite_frames_changed" from="Sprite" to="Sprite" method="on_frame_changed"]
+[connection signal="area_entered" from="Sprite/HammerHitbox" to="." method="on_hammer_area_entered"]
+[connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="on_area_exited"]
+[connection signal="body_entered" from="LavaPoisonDetect" to="." method="die" unbinds=1]
+[connection signal="timeout" from="StarTimer" to="." method="on_timeout"]
+[connection signal="timeout" from="HammerTimer" to="." method="on_hammer_timeout"]

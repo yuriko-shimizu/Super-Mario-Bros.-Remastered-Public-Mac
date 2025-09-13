@@ -1,0 +1,13 @@
+[gd_resource type="AudioStreamInteractive" load_steps=3 format=3 uid="uid://dw4c5uhs2wijk"]
+
+[ext_resource type="AudioStream" uid="uid://cp2ur00e2q168" path="res://Assets/Audio/BGM/Mountain.mp3" id="1_017yp"]
+[ext_resource type="AudioStream" uid="uid://cakxd53ds47us" path="res://Assets/Audio/BGM/MountainHurry.mp3" id="2_wdk8a"]
+
+[resource]
+clip_count = 2
+clip_0/name = &"Normal"
+clip_0/stream = ExtResource("1_017yp")
+clip_0/auto_advance = 0
+clip_1/name = &"Hurry"
+clip_1/stream = ExtResource("2_wdk8a")
+clip_1/auto_advance = 0

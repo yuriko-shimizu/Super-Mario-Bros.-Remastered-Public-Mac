@@ -1,0 +1,173 @@
+[gd_scene load_steps=16 format=3 uid="uid://c2ntyej6ddm72"]
+
+[ext_resource type="Script" uid="uid://j76u1aqhwey4" path="res://Scripts/Parts/CastleToad.gd" id="1_hytso"]
+[ext_resource type="Texture2D" uid="uid://dfildm0squweg" path="res://Assets/Sprites/Players/ToadNPC.png" id="2_griru"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_puq45"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_ccewg"]
+[ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="4_griru"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Players/ToadNPC.json" id="5_i6fb7"]
+[ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="11_ccewg"]
+[ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="11_i6fb7"]
+[ext_resource type="Script" uid="uid://b8vmbtoaaq5nc" path="res://Scripts/Parts/EditorToggleDetection.gd" id="13_euu1x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euu1x"]
+atlas = ExtResource("2_griru")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ibpj"]
+atlas = ExtResource("2_griru")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4igc4"]
+atlas = ExtResource("2_griru")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jvnky"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euu1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ibpj")
+}],
+"loop": true,
+"name": &"Emote",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4igc4")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_an0bx"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d5sl2"]
+normal = Vector2(-1, 0)
+
+[node name="CastleToad" type="Node2D"]
+script = ExtResource("1_hytso")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(24, -16)
+sprite_frames = SubResource("SpriteFrames_jvnky")
+animation = &"Emote"
+autoplay = "Emote"
+frame_progress = 0.91931444
+script = ExtResource("3_puq45")
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_ccewg")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("5_i6fb7")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="StandardMSG" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="ThankYou" type="Label" parent="StandardMSG"]
+visible = false
+visibility_layer = 2
+offset_left = -96.0
+offset_top = -128.0
+offset_right = 96.0
+offset_bottom = -112.0
+theme_override_colors/font_shadow_color = Color(0.298039, 0.298039, 0.298039, 1)
+text = "CUTSCENE_CASTLE_TOAD_1"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AnotherCastle" type="Label" parent="StandardMSG"]
+visible = false
+visibility_layer = 2
+offset_left = -96.0
+offset_top = -96.0
+offset_right = 96.0
+offset_bottom = -68.0
+theme_override_colors/font_shadow_color = Color(0.298039, 0.298039, 0.298039, 1)
+text = "CUTSCENE_CASTLE_TOAD_2"
+vertical_alignment = 3
+autowrap_mode = 2
+uppercase = true
+
+[node name="SpeedrunMSG" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="ThankYou" type="Label" parent="SpeedrunMSG"]
+visible = false
+visibility_layer = 2
+offset_left = -112.0
+offset_top = -128.0
+offset_right = 112.0
+offset_bottom = -112.0
+theme_override_colors/font_shadow_color = Color(0.298039, 0.298039, 0.298039, 1)
+text = "CUTSCENE_MARATHON_PEACH_1"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Time" type="Label" parent="SpeedrunMSG"]
+unique_name_in_owner = true
+visible = false
+visibility_layer = 2
+offset_left = -112.0
+offset_top = -112.0
+offset_right = 112.0
+offset_bottom = -84.0
+theme_override_colors/font_shadow_color = Color(0.298039, 0.298039, 0.298039, 1)
+text = "CUTSCENE_MARATHON_PEACH_2"
+horizontal_alignment = 1
+vertical_alignment = 3
+autowrap_mode = 2
+uppercase = true
+
+[node name="PBMessage" type="Label" parent="SpeedrunMSG"]
+unique_name_in_owner = true
+visible = false
+visibility_layer = 2
+offset_left = -112.0
+offset_top = -88.0
+offset_right = 112.0
+offset_bottom = -60.0
+theme_override_colors/font_shadow_color = Color(0.298039, 0.298039, 0.298039, 1)
+text = "CUTSCENE_MARATHON_PEACH_3"
+horizontal_alignment = 1
+vertical_alignment = 3
+autowrap_mode = 2
+uppercase = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_an0bx")
+disabled = true
+
+[node name="CameraRightLimit" type="Node2D" parent="."]
+position = Vector2(128, -80)
+script = ExtResource("4_griru")
+metadata/_custom_type_script = "uid://bdq0373j5n5o0"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraRightLimit"]
+shape = SubResource("WorldBoundaryShape2D_d5sl2")
+
+[node name="TextShadowColourChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+script = ExtResource("11_ccewg")
+labels = [NodePath("../StandardMSG/ThankYou"), NodePath("../StandardMSG/AnotherCastle"), NodePath("../SpeedrunMSG/ThankYou"), NodePath("../SpeedrunMSG/Time"), NodePath("../SpeedrunMSG/PBMessage")]
+metadata/_custom_type_script = "uid://dt2p68xl462v2"
+
+[node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+script = ExtResource("11_i6fb7")
+labels = [NodePath("../StandardMSG/ThankYou"), NodePath("../StandardMSG/AnotherCastle"), NodePath("../SpeedrunMSG/ThankYou"), NodePath("../SpeedrunMSG/Time"), NodePath("../SpeedrunMSG/PBMessage")]
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
+
+[node name="LevelEditorToggleDetection" type="Node" parent="." groups=["CastleBridges", "Flagpole"]]
+script = ExtResource("13_euu1x")
+metadata/_custom_type_script = "uid://b8vmbtoaaq5nc"
+
+[connection signal="toggled" from="LevelEditorToggleDetection" to="." method="_ready"]

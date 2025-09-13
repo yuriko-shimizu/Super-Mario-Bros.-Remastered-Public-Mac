@@ -1,0 +1,309 @@
+[gd_scene load_steps=22 format=3 uid="uid://clbvyne1cr8gp"]
+
+[ext_resource type="Script" uid="uid://ritdlvkpyjd4" path="res://Scripts/Classes/Entities/Objects/Explosion.gd" id="1_aklik"]
+[ext_resource type="Texture2D" uid="uid://brjkrkihadwnj" path="res://Assets/Sprites/Particles/FireballExplosion.png" id="2_4aiuq"]
+[ext_resource type="Texture2D" uid="uid://byy3k1pdrp77" path="res://Assets/Sprites/Particles/Smoke.png" id="3_dvv3e"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="4_hjivi"]
+[ext_resource type="AudioStream" uid="uid://d12v455mw8uvu" path="res://Assets/Audio/SFX/Cannon.wav" id="5_8imqq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnd2t"]
+atlas = ExtResource("2_4aiuq")
+region = Rect2(0, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axqny"]
+atlas = ExtResource("2_4aiuq")
+region = Rect2(18, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk8m3"]
+atlas = ExtResource("2_4aiuq")
+region = Rect2(36, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vewww"]
+atlas = ExtResource("2_4aiuq")
+region = Rect2(54, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5yus"]
+atlas = ExtResource("2_4aiuq")
+region = Rect2(0, 0, 1, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h02ee"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnd2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axqny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk8m3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vewww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5yus")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hp3l"]
+atlas = ExtResource("3_dvv3e")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2rj1"]
+atlas = ExtResource("3_dvv3e")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccfgr"]
+atlas = ExtResource("3_dvv3e")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ei4ln"]
+atlas = ExtResource("3_dvv3e")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4umcr"]
+atlas = ExtResource("3_dvv3e")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pd384"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hp3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2rj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccfgr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ei4ln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4umcr")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_vrsgy"]
+resource_name = "Go"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CloudTL:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-8, -8), Vector2(-40, -40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CloudTR:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(8, -8), Vector2(40, -40)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CloudBR:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(8, 8), Vector2(40, 40)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CloudBL:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-8, 8), Vector2(-40, 40)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hitbox/Shape:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.06),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_anr6o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CloudTL:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CloudTR:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, -8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CloudBR:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 8)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CloudBL:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 8)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hitbox/Shape:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6tdk1"]
+_data = {
+&"Go": SubResource("Animation_vrsgy"),
+&"RESET": SubResource("Animation_anr6o")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6tdk1"]
+radius = 24.0
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource("1_aklik")
+metadata/is_explosion = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h02ee")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+
+[node name="CloudTL" type="AnimatedSprite2D" parent="."]
+position = Vector2(-8, -8)
+sprite_frames = SubResource("SpriteFrames_pd384")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+script = ExtResource("4_hjivi")
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="CloudTR" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, -8)
+sprite_frames = SubResource("SpriteFrames_pd384")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+script = ExtResource("4_hjivi")
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="CloudBR" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_pd384")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+script = ExtResource("4_hjivi")
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="CloudBL" type="AnimatedSprite2D" parent="."]
+position = Vector2(-8, 8)
+sprite_frames = SubResource("SpriteFrames_pd384")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+script = ExtResource("4_hjivi")
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6tdk1")
+}
+autoplay = "Go"
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_8imqq")
+autoplay = true
+max_distance = 256.0
+bus = &"SFX"
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 255
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_6tdk1")
+
+[connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="on_body_entered"]

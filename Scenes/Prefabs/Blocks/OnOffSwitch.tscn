@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://c0020qrw11oy4"]
+
+[ext_resource type="PackedScene" uid="uid://5ua3p0lfl1bf" path="res://Scenes/Prefabs/Blocks/BooRaceBlocks/BooOnOffSwitch.tscn" id="1_bblk7"]
+[ext_resource type="Texture2D" uid="uid://sy6ivu4qc0o3" path="res://Assets/Sprites/Blocks/OnOffSwitch.png" id="2_xglou"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/OnOffSwitch.json" id="3_xglou"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs2ia"]
+atlas = ExtResource("2_xglou")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8o30n"]
+atlas = ExtResource("2_xglou")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_heqbn"]
+atlas = ExtResource("2_xglou")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi63j"]
+atlas = ExtResource("2_xglou")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1gmf"]
+atlas = ExtResource("2_xglou")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d785i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs2ia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8o30n")
+}],
+"loop": true,
+"name": &"Off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_heqbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hi63j")
+}],
+"loop": true,
+"name": &"On",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1gmf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="OnOffSwitch" instance=ExtResource("1_bblk7")]
+destructable = false
+
+[node name="Sprite" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_d785i")
+animation = &"Off"
+autoplay = "Off"
+
+[node name="ResourceSetter" parent="Sprite" index="0"]
+resource_json = ExtResource("3_xglou")
+
+[connection signal="shell_block_hit" from="." to="." method="on_block_hit" unbinds=1]
+[connection signal="shell_block_hit" from="." to="BlockAnimations" method="bounce_block" unbinds=1]

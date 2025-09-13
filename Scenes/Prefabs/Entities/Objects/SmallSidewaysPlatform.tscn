@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3or4h5ke6lni"]
+
+[ext_resource type="PackedScene" uid="uid://c8m8455b6ikrn" path="res://Scenes/Prefabs/Entities/Objects/SidewaysPlatform.tscn" id="1_nuvyr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dspyy"]
+size = Vector2(32, 8)
+
+[node name="SmallSidewaysPlatform" instance=ExtResource("1_nuvyr")]
+
+[node name="Sprite" parent="AnimatableBody2D" index="0"]
+offset_left = -16.0
+offset_right = 16.0
+
+[node name="ResourceSetter" parent="AnimatableBody2D/Sprite" index="0"]
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="Collision" parent="AnimatableBody2D" index="1"]
+visible = true
+shape = SubResource("RectangleShape2D_dspyy")
+
+[node name="SecondQuestReplacer" parent="." index="3"]
+new_scene = ""

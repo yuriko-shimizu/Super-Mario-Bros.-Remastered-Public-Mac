@@ -1,0 +1,198 @@
+[gd_scene load_steps=14 format=3 uid="uid://ci678koo0peoa"]
+
+[ext_resource type="Theme" uid="uid://dtn507x2b5de7" path="res://Resources/Theme.tres" id="1_b1bds"]
+[ext_resource type="Script" uid="uid://d0f4edmfxs2pu" path="res://Scripts/UI/CharacterSelect.gd" id="1_en0c6"]
+[ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="3_8l01y"]
+[ext_resource type="Texture2D" uid="uid://hu770pufown3" path="res://Assets/Sprites/UI/CharacterSelectSpotlight.png" id="4_mgr7r"]
+[ext_resource type="SpriteFrames" uid="uid://df4enjjl84mji" path="res://Resources/SpriteFrames/Player/Mario/Small.tres" id="5_l7t2o"]
+[ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="6_0j631"]
+[ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="6_0oqrn"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Players/Mario/CharacterInfo.json" id="7_agtau"]
+[ext_resource type="Script" uid="uid://dwtrmo82e12ud" path="res://Scripts/Parts/ColourPaletteSampler.gd" id="7_mgr7r"]
+[ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="10_agtau"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="14_a25p8"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_2ehcx"]
+color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_agtau"]
+color = Color(1, 1, 1, 1)
+
+[node name="CharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -48.0
+offset_right = 88.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_b1bds")
+script = ExtResource("1_en0c6")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("3_8l01y")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_top = -4
+theme_override_constants/margin_right = -4
+theme_override_constants/margin_bottom = -4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MENU_CHARA_SELECT"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer/Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_2ehcx")
+
+[node name="Spotlight" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer"]
+self_modulate = Color(0.96862745, 0.22352941, 0.0627451, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("4_mgr7r")
+stretch_mode = 2
+
+[node name="ColourPaletteSampler" type="Node" parent="Panel/MarginContainer/VBoxContainer/Spotlight" node_paths=PackedStringArray("node_to_affect")]
+unique_name_in_owner = true
+script = ExtResource("7_mgr7r")
+node_to_affect = NodePath("..")
+value_to_set = "self_modulate"
+metadata/_custom_type_script = "uid://dwtrmo82e12ud"
+
+[node name="PlayerColourTexture" type="Node" parent="Panel/MarginContainer/VBoxContainer/Spotlight/ColourPaletteSampler" node_paths=PackedStringArray("node_to_affect")]
+unique_name_in_owner = true
+script = ExtResource("14_a25p8")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("7_agtau")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Left" type="AnimatedSprite2D" parent="Panel/MarginContainer/VBoxContainer/Spotlight" node_paths=PackedStringArray("resource_setter")]
+unique_name_in_owner = true
+modulate = Color(0.3491902, 0.3491902, 0.3491902, 1)
+position = Vector2(-32, 60)
+sprite_frames = ExtResource("5_l7t2o")
+animation = &"FaceForward"
+offset = Vector2(0, -16)
+script = ExtResource("6_0oqrn")
+force_character = "Mario"
+resource_setter = NodePath("ResourceSetterNew")
+metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
+
+[node name="ResourceSetterNew" type="Node" parent="Panel/MarginContainer/VBoxContainer/Spotlight/Left" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("14_a25p8")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+use_cache = false
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Selected" type="AnimatedSprite2D" parent="Panel/MarginContainer/VBoxContainer/Spotlight" node_paths=PackedStringArray("resource_setter")]
+unique_name_in_owner = true
+position = Vector2(24, 46)
+sprite_frames = ExtResource("5_l7t2o")
+animation = &"Pose"
+offset = Vector2(0, -16)
+script = ExtResource("6_0oqrn")
+force_character = "Toad"
+resource_setter = NodePath("ResourceSetterNew")
+metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
+
+[node name="ResourceSetterNew" type="Node" parent="Panel/MarginContainer/VBoxContainer/Spotlight/Selected"]
+script = ExtResource("14_a25p8")
+use_cache = false
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Right" type="AnimatedSprite2D" parent="Panel/MarginContainer/VBoxContainer/Spotlight" node_paths=PackedStringArray("resource_setter")]
+unique_name_in_owner = true
+modulate = Color(0.3491902, 0.3491902, 0.38109186, 1)
+position = Vector2(80, 60)
+sprite_frames = ExtResource("5_l7t2o")
+animation = &"FaceForward"
+offset = Vector2(0, -16)
+script = ExtResource("6_0oqrn")
+force_character = "Mario"
+resource_setter = NodePath("ResourceSetterNew")
+metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
+
+[node name="ResourceSetterNew" type="Node" parent="Panel/MarginContainer/VBoxContainer/Spotlight/Right" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("14_a25p8")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+use_cache = false
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Spotlight"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 56.0
+offset_bottom = 36.0
+text = "►"
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer/Spotlight"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 20.0
+offset_right = 8.0
+offset_bottom = 36.0
+text = "◄"
+
+[node name="CharacterName" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+text = "MARIO"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer/CharacterName"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_agtau")
+
+[node name="TextShadowColourChanger" type="Node" parent="Panel/MarginContainer/VBoxContainer/CharacterName" node_paths=PackedStringArray("labels")]
+script = ExtResource("6_0j631")
+labels = [NodePath("..")]
+metadata/_custom_type_script = "uid://dt2p68xl462v2"
+
+[node name="ColourPaletteSampler" type="Node" parent="Panel/MarginContainer/VBoxContainer/CharacterName/TextShadowColourChanger" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("7_mgr7r")
+node_to_affect = NodePath("..")
+value_to_set = "override_shadow_colour"
+metadata/_custom_type_script = "uid://dwtrmo82e12ud"
+
+[node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+script = ExtResource("10_agtau")
+labels = [NodePath("../Panel/MarginContainer/VBoxContainer/Label"), NodePath("../Panel/MarginContainer/VBoxContainer/Spotlight/Label2"), NodePath("../Panel/MarginContainer/VBoxContainer/Spotlight/Label"), NodePath("../Panel/MarginContainer/VBoxContainer/CharacterName")]
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"

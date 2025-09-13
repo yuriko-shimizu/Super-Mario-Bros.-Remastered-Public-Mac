@@ -1,0 +1,17 @@
+{
+	"animations": {
+		"On": {
+			"frames": [
+				[0, 0, 16, 48],
+				[16, 0, 16, 48],
+				[32, 0, 16, 48],
+				[48, 0, 16, 48]
+			],
+			"speed": 30.0,
+			"loop": true
+		}
+	},
+	"variations": {
+		"default": {"source": "Fan.png"}
+	}
+}

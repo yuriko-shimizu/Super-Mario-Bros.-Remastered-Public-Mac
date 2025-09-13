@@ -1,0 +1,162 @@
+[gd_scene load_steps=15 format=3 uid="uid://cdrgm3154qxxy"]
+
+[ext_resource type="Texture2D" uid="uid://fy7jlabgyewp" path="res://Assets/Sprites/Blocks/Trampoline.png" id="1_83ba8"]
+[ext_resource type="Script" uid="uid://bof8ieprith1d" path="res://Scripts/Classes/Entities/Objects/Trampoline.gd" id="1_bwrr1"]
+[ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="3_tlr0c"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_363uu"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="5_b27qj"]
+[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="6_tlr0c"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="7_1knp2"]
+
+[sub_resource type="Resource" id="Resource_uu5rp"]
+script = ExtResource("7_1knp2")
+Overworld = ExtResource("1_83ba8")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwrr1"]
+size = Vector2(16, 23.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_butnk"]
+size = Vector2(14, 28)
+
+[sub_resource type="Animation" id="Animation_cot4p"]
+resource_name = "Bounce"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1, 2, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCollision:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -11), Vector2(0, -3), Vector2(0, -19)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"bounce_players"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_363uu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCollision:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -19)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b27qj"]
+_data = {
+&"Bounce": SubResource("Animation_cot4p"),
+&"RESET": SubResource("Animation_363uu")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_363uu"]
+size = Vector2(16, 7)
+
+[node name="Trampoline" type="AnimatableBody2D"]
+collision_layer = 3
+collision_mask = 0
+script = ExtResource("1_bwrr1")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_83ba8")
+hframes = 3
+region_enabled = true
+region_rect = Rect2(0, 0, 48, 32)
+
+[node name="Brick" type="Sprite2D" parent="Sprite"]
+show_behind_parent = true
+position = Vector2(0, 12)
+texture = ExtResource("3_tlr0c")
+region_enabled = true
+region_rect = Rect2(0, 72, 16, 8)
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite/Brick" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_363uu")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("5_b27qj")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="ResourceSetter" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_tlr0c")
+node_to_affect = NodePath("..")
+property_name = "texture"
+themed_resource = SubResource("Resource_uu5rp")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_bwrr1")
+
+[node name="PlayerJoint" type="Node2D" parent="PlayerCollision"]
+position = Vector2(0, -12)
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -22)
+shape = SubResource("RectangleShape2D_butnk")
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_b27qj")
+}
+
+[node name="Base" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="Base"]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_363uu")
+
+[connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="on_area_exited"]

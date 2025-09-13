@@ -1,0 +1,140 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckpuxdilk5u0"]
+
+[ext_resource type="Script" uid="uid://vwe7y2scu8a1" path="res://Scripts/Parts/LevelTransition.gd" id="1_75ji3"]
+[ext_resource type="SpriteFrames" uid="uid://df4enjjl84mji" path="res://Resources/SpriteFrames/Player/Mario/Small.tres" id="3_y8ytj"]
+[ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="5_jsg51"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="5_mcaat"]
+[ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="8_ehrek"]
+[ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="10_abjth"]
+
+[node name="LevelTransition" type="Node" node_paths=PackedStringArray("text_shadows")]
+script = ExtResource("1_75ji3")
+text_shadows = [NodePath("BG/Control/World"), NodePath("BG/Control/MarathonPB"), NodePath("BG/Control/LivesCount")]
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+z_index = -4096
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="BG"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="World" type="Label" parent="BG/Control"]
+layout_mode = 0
+offset_left = -144.0
+offset_top = -44.0
+offset_right = 4.0
+offset_bottom = -28.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "HUD_WORLD"
+horizontal_alignment = 2
+uppercase = true
+
+[node name="CustomLevelName" type="Label" parent="BG/Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = -128.0
+offset_top = -56.0
+offset_right = 128.0
+offset_bottom = -40.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Test Level"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="CustomLevelAuthor" type="Label" parent="BG/Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = -128.0
+offset_top = -40.0
+offset_right = 128.0
+offset_bottom = -24.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "by Joemama"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="WorldNum" type="Label" parent="BG/Control"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -44.0
+offset_right = 92.0
+offset_bottom = -36.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "1-1"
+uppercase = true
+
+[node name="LivesCount" type="Label" parent="BG/Control"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 60.0
+offset_bottom = -4.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "* 10"
+uppercase = true
+
+[node name="MarathonPB" type="Label" parent="BG/Control"]
+visible = false
+layout_mode = 0
+offset_left = -12.0
+offset_top = -24.0
+offset_right = 84.0
+offset_bottom = -8.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "PB
+00:00:00"
+uppercase = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="BG/Control" node_paths=PackedStringArray("resource_setter")]
+position = Vector2(-24, 1)
+sprite_frames = ExtResource("3_y8ytj")
+animation = &"Idle"
+offset = Vector2(0, -16)
+script = ExtResource("5_jsg51")
+force_power_state = "Small"
+resource_setter = NodePath("ResourceSetterNew")
+
+[node name="ResourceSetterNew" type="Node" parent="BG/Control/Sprite"]
+script = ExtResource("5_mcaat")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+script = ExtResource("8_ehrek")
+labels = [NodePath("../BG/Control/World"), NodePath("../BG/Control/LivesCount"), NodePath("../BG/Control/MarathonPB"), NodePath("../BG/Control/WorldNum"), NodePath("../BG/Control/CustomLevelName"), NodePath("../BG/Control/CustomLevelAuthor")]
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
+
+[node name="TextShadowColourChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+script = ExtResource("10_abjth")
+labels = [NodePath("../BG/Control/World"), NodePath("../BG/Control/LivesCount"), NodePath("../BG/Control/MarathonPB"), NodePath("../BG/Control/WorldNum"), NodePath("../BG/Control/CustomLevelName"), NodePath("../BG/Control/CustomLevelAuthor")]
+metadata/_custom_type_script = "uid://dt2p68xl462v2"
+
+[connection signal="timeout" from="Timer" to="." method="transition"]

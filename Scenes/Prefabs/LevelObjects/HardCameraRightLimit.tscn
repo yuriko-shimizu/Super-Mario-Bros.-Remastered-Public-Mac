@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds5iugeocqd6a"]
+
+[ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="1_f6lpd"]
+[ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="2_gtkaw"]
+[ext_resource type="Texture2D" uid="uid://c8ir37jmcm4f4" path="res://Assets/Sprites/Editor/CameraLock.png" id="3_qhm6g"]
+[ext_resource type="Texture2D" uid="uid://dpdrrkqtcedgm" path="res://Assets/Sprites/Tilesets/DottedLine.png" id="4_qhm6g"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bdd7a"]
+normal = Vector2(-1, 0)
+
+[node name="HardCameraRightLimit" type="Node2D"]
+script = ExtResource("1_f6lpd")
+metadata/_custom_type_script = "uid://bdq0373j5n5o0"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_bdd7a")
+
+[node name="LevelEditorVisibleNode" type="Node2D" parent="."]
+script = ExtResource("2_gtkaw")
+metadata/_custom_type_script = "uid://cpwloakvp672a"
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelEditorVisibleNode"]
+position = Vector2(8, 0)
+texture = ExtResource("3_qhm6g")
+
+[node name="Line2D" type="Line2D" parent="LevelEditorVisibleNode"]
+texture_repeat = 2
+position = Vector2(1, 0)
+points = PackedVector2Array(0, -512, 0, 512)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+texture = ExtResource("4_qhm6g")
+texture_mode = 1

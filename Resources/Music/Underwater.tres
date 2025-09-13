@@ -1,0 +1,21 @@
+[gd_resource type="AudioStreamInteractive" load_steps=3 format=3 uid="uid://b3dxe7or4ahgn"]
+
+[ext_resource type="AudioStream" uid="uid://ddff40dciw6v2" path="res://Assets/Audio/BGM/Underwater.mp3" id="1_ppn62"]
+[ext_resource type="AudioStream" uid="uid://20ecxp6tbyov" path="res://Assets/Audio/BGM/UnderwaterHurry.mp3" id="2_uldv7"]
+
+[resource]
+clip_count = 2
+clip_0/name = &"Normal"
+clip_0/stream = ExtResource("1_ppn62")
+clip_0/auto_advance = 0
+clip_1/name = &"Hurry"
+clip_1/stream = ExtResource("2_uldv7")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+}
+}

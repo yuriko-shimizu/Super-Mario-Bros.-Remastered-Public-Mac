@@ -1,0 +1,127 @@
+{
+	"variations": {
+		"default": {
+			"source": "Cursor.png",
+			"rect": [
+				0.0,
+				0.0,
+				8.0,
+				8.0
+			]
+		},
+		"Underground": {
+			"source": "Cursor.png",
+			"rect": [
+				8.0,
+				0.0,
+				8.0,
+				8.0
+			]
+		},
+		"GhostHouse": {
+			"link": "Underground"
+		},
+		"Castle": {
+			"source": "Cursor.png",
+			"rect": [
+				16.0,
+				0.0,
+				8.0,
+				8.0
+			]
+		},
+		"Underwater": {
+			"source": "Cursor.png",
+			"rect": [
+				24.0,
+				0.0,
+				8.0,
+				8.0
+			]
+		},
+		"CastleWater": {
+			"link": "Underwater"
+		},
+		"Desert": {
+			"source": "Cursor.png",
+			"rect": [
+				0.0,
+				8.0,
+				8.0,
+				8.0
+			]
+		},
+		"Jungle": {
+			"source": "Cursor.png",
+			"rect": [
+				8.0,
+				8.0,
+				8.0,
+				8.0
+			]
+		},
+		"Snow": {
+			"source": "Cursor.png",
+			"rect": [
+				16.0,
+				8.0,
+				8.0,
+				8.0
+			]
+		},
+		"Volcano": {
+			"source": "Cursor.png",
+			"rect": [
+				24.0,
+				8.0,
+				8.0,
+				8.0
+			]
+		},
+		"Autumn": {
+			"source": "Cursor.png",
+			"rect": [
+				0.0,
+				16.0,
+				8.0,
+				8.0
+			]
+		},
+		"Beach": {
+			"source": "Cursor.png",
+			"rect": [
+				8.0,
+				16.0,
+				8.0,
+				8.0
+			]
+		},
+		"Mountain": {
+			"source": "Cursor.png",
+			"rect": [
+				16.0,
+				16.0,
+				8.0,
+				8.0
+			]
+		},
+		"Space": {
+			"source": "Cursor.png",
+			"rect": [
+				24.0,
+				16.0,
+				8.0,
+				8.0
+			]
+		},
+		"Bonus": {
+			"source": "Cursor.png",
+			"rect": [
+				0.0,
+				24.0,
+				8.0,
+				8.0
+			]
+		}
+	}
+}

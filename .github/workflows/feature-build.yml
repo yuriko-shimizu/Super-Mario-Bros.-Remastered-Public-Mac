@@ -1,0 +1,131 @@
+name: "feature build"
+on:
+  workflow_dispatch:
+
+env:
+  GODOT_VERSION: 4.4.stable
+  EXPORT_NAME: SuperMarioBrosRemastered
+
+jobs:
+  export:
+    strategy:
+      max-parallel: 3
+      matrix:
+        environment:
+          [
+            {
+              godot_template: "Windows Desktop x86",
+              output_dir: windows_x86,
+              file_suffix: "exe",
+              os: windows,
+              architecture: x86,
+            },
+            {
+              godot_template: "Linux x86",
+              output_dir: linux_x86,
+              file_suffix: "x86_64",
+              os: linux,
+              architecture: x86,
+            },
+            {
+              godot_template: "Linux arm64",
+              output_dir: linux_arm64,
+              file_suffix: "arm64",
+              os: linux,
+              architecture: arm64,
+            },
+          ]
+    runs-on: ubuntu-22.04
+    container:
+      image: ghcr.io/meldanor/godot-ci:4.4-stable-minimal
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Setup Godot Templates
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          ln -sf /root/.local/share/godot/export_templates/${GODOT_VERSION} ~/.local/share/godot/export_templates/${GODOT_VERSION}
+      - name: Build
+        run: |
+          mkdir -p build/${{matrix.environment.output_dir}}
+          godot --headless --verbose --export-release "${{matrix.environment.godot_template}}" build/${{matrix.environment.output_dir}}/$EXPORT_NAME.${{matrix.environment.file_suffix}}
+          cd build/${{matrix.environment.output_dir}}
+          zip ${{env.EXPORT_NAME}}.zip *
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.environment.output_dir }}
+          path: build/${{ matrix.environment.output_dir }}/${{ env.EXPORT_NAME }}.zip
+
+  create_release:
+    needs: export
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Set Release Tag
+        id: set_release_tag
+        run: echo "RELEASE_TAG=v0.5-dev-$(date +'%Y-%m-%d-%H-%M-%S')" >> $GITHUB_ENV
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.RELEASE_TAG }}
+          release_name: Release ${{ env.RELEASE_TAG }}
+          draft: false  # Set draft to false to publish the release immediately
+          prerelease: true
+
+      - name: Download Windows Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: windows_x86
+          path: build/windows_x86/
+
+      - name: Download Linux x86 Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: linux_x86
+          path: build/linux_x86/
+
+      - name: Download Linux arm64 Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: linux_arm64
+          path: build/linux_arm64/
+
+      - name: Upload Windows Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/windows_x86/${{env.EXPORT_NAME}}.zip
+          asset_name: ${{env.EXPORT_NAME}}_windows_x86.zip
+          asset_content_type: application/zip
+
+      - name: Upload Linux x86 Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/linux_x86/${{env.EXPORT_NAME}}.zip
+          asset_name: ${{env.EXPORT_NAME}}_linux_x86.zip
+          asset_content_type: application/zip
+
+      - name: Upload Linux arm64 Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/linux_arm64/${{env.EXPORT_NAME}}.zip
+          asset_name: ${{env.EXPORT_NAME}}_linux_arm64.zip
+          asset_content_type: application/zip

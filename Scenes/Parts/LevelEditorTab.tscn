@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://m5o0l71ne3u4"]
+
+[ext_resource type="Texture2D" uid="uid://c6pd7cdhx78od" path="res://Assets/Sprites/UI/Tab.png" id="1_3ufth"]
+[ext_resource type="Script" uid="uid://kvlxhhkgtuk2" path="res://Scripts/UI/LevelEditorTab.gd" id="1_8b8gk"]
+[ext_resource type="Texture2D" uid="uid://bgjdnv8n8l1hb" path="res://Assets/Sprites/UI/TabSelected.png" id="2_8b8gk"]
+[ext_resource type="StyleBox" uid="uid://btw30ed0dg4bt" path="res://Resources/UI/Tab.tres" id="2_sup1d"]
+[ext_resource type="Texture2D" uid="uid://xsfs2psb84ql" path="res://Assets/Sprites/UI/EditorButtons.png" id="3_sup1d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mw2n"]
+atlas = ExtResource("3_sup1d")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wt4vx"]
+texture = ExtResource("2_8b8gk")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qebwb"]
+texture = ExtResource("1_3ufth")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5mw2n"]
+texture = ExtResource("2_8b8gk")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[node name="Parts" type="MarginContainer" groups=["EditorTabs"]]
+offset_right = 24.0
+offset_bottom = 24.0
+focus_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+script = ExtResource("1_8b8gk")
+icon = SubResource("AtlasTexture_5mw2n")
+title = "Parts"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("2_sup1d")
+
+[node name="Selected" type="Panel" parent="."]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wt4vx")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_qebwb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qebwb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qebwb")
+theme_override_styles/focus = SubResource("StyleBoxTexture_5mw2n")
+flat = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = -4
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5mw2n")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.96862745, 0.22352941, 0.0627451, 1)
+text = "Parts"
+uppercase = true
+
+[connection signal="focus_entered" from="." to="." method="tab_clicked"]
+[connection signal="pressed" from="Button" to="." method="tab_clicked"]

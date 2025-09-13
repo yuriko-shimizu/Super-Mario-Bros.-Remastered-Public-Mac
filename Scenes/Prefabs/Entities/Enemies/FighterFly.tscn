@@ -1,0 +1,205 @@
+[gd_scene load_steps=28 format=3 uid="uid://cwhvsfp31cuu6"]
+
+[ext_resource type="Script" uid="uid://cemetiu57dblq" path="res://Scripts/Classes/Entities/Enemies/FighterFly.gd" id="1_unlki"]
+[ext_resource type="Texture2D" uid="uid://gnac5qwog2ar" path="res://Assets/Sprites/Enemies/FighterFly.png" id="2_jslnt"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_j4row"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_unlki"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/FighterFly.json" id="5_d7ynx"]
+[ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="5_s0as8"]
+[ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="6_d7ynx"]
+[ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="7_nm5h2"]
+[ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="8_s7wf1"]
+[ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="9_wbo1r"]
+[ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="10_0bgxg"]
+[ext_resource type="Script" uid="uid://dq860i312isk" path="res://Scripts/Classes/Components/IcicleDetection.gd" id="11_aeemo"]
+[ext_resource type="Script" uid="uid://dlq6o2rg1x7in" path="res://Scripts/Classes/Components/BasicEnemyMovement.gd" id="12_g551b"]
+[ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="14_unlki"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="15_s0as8"]
+[ext_resource type="Script" uid="uid://ba18grqjixded" path="res://Scripts/Classes/Components/ExplosionDetection.gd" id="16_s0as8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nm5h2"]
+atlas = ExtResource("2_jslnt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7wf1"]
+atlas = ExtResource("2_jslnt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7ynx"]
+atlas = ExtResource("2_jslnt")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wbo1r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nm5h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7wf1")
+}],
+"loop": true,
+"name": &"Fly",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7ynx")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e62ic"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qm5my"]
+size = Vector2(14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbo1r"]
+atlas = ExtResource("2_jslnt")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bgxg"]
+atlas = ExtResource("2_jslnt")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aeemo"]
+atlas = ExtResource("2_jslnt")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g551b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbo1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bgxg")
+}],
+"loop": true,
+"name": &"Fly",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aeemo")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_g1y3b"]
+script = ExtResource("15_s0as8")
+Overworld = SubResource("SpriteFrames_wbo1r")
+Underground = SubResource("SpriteFrames_g551b")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[node name="FighterFly" type="CharacterBody2D" node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Enemies"]]
+collision_layer = 16
+collision_mask = 50
+script = ExtResource("1_unlki")
+on_screen_enabler = NodePath("VisibleOnScreenEnabler2D")
+score_note_adder = NodePath("ScoreNoteSpawner")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_wbo1r")
+animation = &"Idle"
+autoplay = "Fly"
+frame_progress = 0.526965
+script = ExtResource("3_j4row")
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_unlki")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("5_d7ynx")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_e62ic")
+one_way_collision = true
+
+[node name="Collision2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_e62ic")
+one_way_collision = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+visible = false
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_qm5my")
+
+[node name="EnemyPlayerDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("5_s0as8")
+hitbox = NodePath("../Hitbox")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -8)
+
+[node name="GibSpawner" type="Node" parent="." node_paths=PackedStringArray("visuals")]
+script = ExtResource("6_d7ynx")
+visuals = NodePath("../Sprite")
+
+[node name="BlockBouncingDetection" type="Node" parent="."]
+script = ExtResource("7_nm5h2")
+
+[node name="FireballDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("8_s7wf1")
+hitbox = NodePath("../Hitbox")
+
+[node name="ShellDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("9_wbo1r")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://bbww34oiexbx2"
+
+[node name="ScoreNoteSpawner" type="Node" parent="."]
+script = ExtResource("10_0bgxg")
+add_score = true
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("11_aeemo")
+hitbox = NodePath("../Hitbox")
+
+[node name="BasicEnemyMovement" type="Node" parent="." node_paths=PackedStringArray("visuals")]
+script = ExtResource("12_g551b")
+move_speed = 30
+bounce_on_land = true
+bounce_height = -150
+visuals = NodePath("../Sprite")
+metadata/_custom_type_script = "uid://dlq6o2rg1x7in"
+
+[node name="ThemedToJSONConverter" type="Node" parent="."]
+script = ExtResource("14_unlki")
+resource = SubResource("Resource_g1y3b")
+json_file_path = "res://Assets/Sprites/Enemies/FighterFly.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"
+
+[node name="ExplosionDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("16_s0as8")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://ba18grqjixded"
+
+[connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
+[connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [100]]
+[connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="block_bounced" from="BlockBouncingDetection" to="." method="die_from_object"]
+[connection signal="block_bounced" from="BlockBouncingDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [100]]
+[connection signal="fireball_hit" from="FireballDetection" to="." method="die_from_object"]
+[connection signal="fireball_hit" from="FireballDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [100]]
+[connection signal="moving_shell_entered" from="ShellDetection" to="." method="die_from_object"]
+[connection signal="icicle_detected" from="Node" to="." method="die_from_object"]
+[connection signal="explosion_entered" from="ExplosionDetection" to="." method="die_from_object"]
+[connection signal="explosion_entered" from="ExplosionDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [100]]

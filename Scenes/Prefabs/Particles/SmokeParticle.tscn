@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://d08nv4qtfouv1"]
+
+[ext_resource type="Texture2D" uid="uid://byy3k1pdrp77" path="res://Assets/Sprites/Particles/Smoke.png" id="1_tpri6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2ehg"]
+atlas = ExtResource("1_tpri6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3yun"]
+atlas = ExtResource("1_tpri6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig72b"]
+atlas = ExtResource("1_tpri6")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvxpm"]
+atlas = ExtResource("1_tpri6")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xke1f"]
+atlas = ExtResource("1_tpri6")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6nxch"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2ehg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3yun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ig72b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvxpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xke1f")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="SmokeParticle" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_6nxch")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+offset = Vector2(0, -8)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]

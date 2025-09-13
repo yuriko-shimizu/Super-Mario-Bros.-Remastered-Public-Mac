@@ -1,0 +1,13 @@
+[gd_resource type="AudioStreamInteractive" load_steps=3 format=3 uid="uid://mihebn0ybnjn"]
+
+[ext_resource type="AudioStream" uid="uid://r63keear067" path="res://Assets/Audio/BGM/Garden.mp3" id="1_m265a"]
+[ext_resource type="AudioStream" uid="uid://cemux531rahja" path="res://Assets/Audio/BGM/GardenHurry.mp3" id="2_veq2k"]
+
+[resource]
+clip_count = 2
+clip_0/name = &"Normal"
+clip_0/stream = ExtResource("1_m265a")
+clip_0/auto_advance = 0
+clip_1/name = &"Hurry"
+clip_1/stream = ExtResource("2_veq2k")
+clip_1/auto_advance = 0

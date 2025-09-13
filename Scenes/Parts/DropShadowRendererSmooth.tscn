@@ -1,0 +1,110 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2c5ut4rtjf3p"]
+
+[ext_resource type="Script" uid="uid://cit6racuc8c60" path="res://Scripts/Parts/DropShadowRendererSmooth.gd" id="1_sh8t5"]
+
+[sub_resource type="Shader" id="Shader_xx2dm"]
+code = "shader_type canvas_item;
+
+uniform vec3 shadow_colour: source_color;
+uniform float transparency = 0.0;
+
+void fragment() {
+	if (COLOR.a >= 0.025)
+	{
+		COLOR = vec4(shadow_colour.r, shadow_colour.g, shadow_colour.b, transparency * COLOR.a);
+	}
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o48cx"]
+shader = SubResource("Shader_xx2dm")
+shader_parameter/shadow_colour = Color(0.368102, 0.368102, 0.368102, 1)
+shader_parameter/transparency = 0.25
+
+[sub_resource type="GDScript" id="GDScript_tdilq"]
+script/source = "# https://github.com/godotengine/godot/issues/77149
+class_name SubViewportContainerBug77149
+extends SubViewportContainer
+
+@export var stretch_without_bug_77149 : bool
+
+func _ready() -> void:
+	_on_resized()
+	get_window().size_changed.connect(_on_resized)
+
+var _dont_recurse : bool
+
+func _on_resized() -> void:
+	assert(not stretch)
+	if not stretch_without_bug_77149 or _dont_recurse:
+		return
+
+	var window := get_window()
+	var viewport_size := Vector2(window.size)
+	var reference_size := Vector2(window.content_scale_size)
+	var viewport_scale := viewport_size / reference_size
+	var size_scale := minf(viewport_scale.x, viewport_scale.y)
+
+	var scaled_size := Vector2i((size * scale * size_scale).round()) / stretch_shrink
+	if Vector2i(size.round()) == scaled_size:
+		return
+
+	_dont_recurse = true
+	# we need to set the container's size first or it'll get resized by the viewport resize (ugh)
+	scale = Vector2(1.0 / size_scale, 1.0 / size_scale)
+	size = scaled_size
+
+	for subviewport : SubViewport in find_children(\"*\", \"SubViewport\", false, false):
+		# avoid reallocating textures we don't need to reallocate
+		if subviewport.size != scaled_size:
+			subviewport.size = scaled_size
+
+	_dont_recurse = false
+"
+
+[node name="DropShadowRenderer" type="Node"]
+physics_interpolation_mode = 1
+script = ExtResource("1_sh8t5")
+
+[node name="Point" type="Node2D" parent="."]
+unique_name_in_owner = true
+physics_interpolation_mode = 1
+visibility_layer = 2
+z_index = -45
+position = Vector2(4, 0)
+
+[node name="Container" type="SubViewportContainer" parent="Point"]
+unique_name_in_owner = true
+physics_interpolation_mode = 1
+visibility_layer = 2
+material = SubResource("ShaderMaterial_o48cx")
+offset_left = -240.0
+offset_top = -135.0
+offset_right = 240.0
+offset_bottom = 135.0
+localize_numeral_system = false
+mouse_filter = 2
+script = SubResource("GDScript_tdilq")
+stretch_without_bug_77149 = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="Point/Container"]
+unique_name_in_owner = true
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+canvas_cull_mask = 4293918721
+size = Vector2i(480, 270)
+size_2d_override = Vector2i(1440, 810)
+render_target_update_mode = 4
+
+[node name="Camera" type="Camera2D" parent="Point/Container/SubViewport"]
+unique_name_in_owner = true
+offset = Vector2(-3, -3)
+zoom = Vector2(3, 3)
+process_callback = 0

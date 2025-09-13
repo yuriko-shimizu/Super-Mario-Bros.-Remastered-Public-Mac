@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjysym6bhxljv"]
+
+[ext_resource type="PackedScene" uid="uid://pfhvflypjq6y" path="res://Scenes/Prefabs/Entities/Enemies/TrueBowser.tscn" id="1_qcxx5"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BowsersBro.json" id="2_qcxx5"]
+
+[node name="BowsersBro" instance=ExtResource("1_qcxx5")]
+music_enabled = false
+
+[node name="ResourceSetterNew" parent="SpriteScaleJoint/Sprite" index="2"]
+resource_json = ExtResource("2_qcxx5")
+
+[node name="ResourceSetterNew" parent="SpriteScaleJoint/DeathSprite" index="0"]
+resource_json = ExtResource("2_qcxx5")

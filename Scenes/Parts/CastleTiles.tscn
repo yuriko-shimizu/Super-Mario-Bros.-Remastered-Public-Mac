@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://pi38pjp8fwm6"]
+
+[ext_resource type="Texture2D" uid="uid://deesmqkpjjwds" path="res://Assets/Sprites/Tilesets/CastleTiles.png" id="1_lmh1j"]
+[ext_resource type="Script" uid="uid://cve2q420hiur1" path="res://Scripts/Parts/Tileset.gd" id="2_uyuum"]
+[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="3_74m05"]
+[ext_resource type="Resource" uid="uid://dfmek6gee3f7r" path="res://Resources/ThemedResources/CastleTiles.tres" id="4_p4jkf"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_miuov"]
+texture = ExtResource("1_lmh1j")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_4vrqr"]
+sources/0 = SubResource("TileSetAtlasSource_miuov")
+
+[node name="Tiles" type="TileMapLayer"]
+z_index = -5
+position = Vector2(-8, 8)
+tile_set = SubResource("TileSet_4vrqr")
+script = ExtResource("2_uyuum")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ResourceSetter" type="Node" parent="." node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_74m05")
+node_to_affect = NodePath("../TextureRect")
+property_name = "texture"
+themed_resource = ExtResource("4_p4jkf")
+metadata/_custom_type_script = "uid://cq6f682453q6o"

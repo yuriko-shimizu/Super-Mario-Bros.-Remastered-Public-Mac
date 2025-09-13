@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq0eq3mftva0w"]
+
+[ext_resource type="PackedScene" uid="uid://bjo3ghjnca7i5" path="res://Scenes/Levels/GameOver.tscn" id="1_xms3k"]
+[ext_resource type="AudioStream" uid="uid://bb3bg4c6hsfjm" path="res://Assets/Audio/BGM/ChallengeFail.mp3" id="2_gyxu7"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="3_gyxu7"]
+
+[sub_resource type="Resource" id="Resource_ud4io"]
+script = ExtResource("3_gyxu7")
+Overworld = ExtResource("2_gyxu7")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[node name="Miss" instance=ExtResource("1_xms3k")]
+reset_level = true
+has_menu = false
+
+[node name="Music" parent="." index="0"]
+stream = ExtResource("2_gyxu7")
+
+[node name="ResourceSetter" parent="Music" index="0"]
+themed_resource = SubResource("Resource_ud4io")
+
+[node name="Label" parent="CanvasLayer" index="1"]
+text = "CHALLENGE_MISS"
+
+[node name="VBoxContainer" parent="CanvasLayer" index="2"]
+offset_top = -34.0
+offset_bottom = 34.0

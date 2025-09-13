@@ -1,0 +1,21 @@
+[gd_resource type="AudioStreamInteractive" load_steps=3 format=3 uid="uid://vsom5wgougwy"]
+
+[ext_resource type="AudioStream" uid="uid://c16o17sqx56hg" path="res://Assets/Audio/BGM/Desert.mp3" id="1_2v0s0"]
+[ext_resource type="AudioStream" uid="uid://4nhg43o6u1ii" path="res://Assets/Audio/BGM/DesertHurry.mp3" id="2_reh3y"]
+
+[resource]
+clip_count = 2
+clip_0/name = &"Normal"
+clip_0/stream = ExtResource("1_2v0s0")
+clip_0/auto_advance = 0
+clip_1/name = &"Hurry"
+clip_1/stream = ExtResource("2_reh3y")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+}
+}

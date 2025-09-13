@@ -1,0 +1,2422 @@
+[gd_scene load_steps=81 format=3 uid="uid://bgeh6ex0lbqfq"]
+
+[ext_resource type="Script" uid="uid://b3stoe2kp1nv1" path="res://Scripts/UI/Credits.gd" id="1_db8c5"]
+[ext_resource type="AudioStream" uid="uid://cdhsj02wqdt7y" path="res://Assets/Audio/BGM/Credits.mp3" id="1_k57dj"]
+[ext_resource type="Texture2D" uid="uid://bmvf1l15447r" path="res://Assets/Sprites/UI/Staff.png" id="4_g2gtw"]
+[ext_resource type="Texture2D" uid="uid://vqtqnrt5rco1" path="res://Assets/Sprites/UI/CreditsDioramas/1.png" id="4_j3afk"]
+[ext_resource type="Texture2D" uid="uid://dvo3gs4wg68hl" path="res://Assets/Sprites/UI/CreditsDioramas/2.png" id="6_s34bh"]
+[ext_resource type="Texture2D" uid="uid://c3wphsst0h6ie" path="res://Assets/Sprites/UI/CreditsDioramas/3.png" id="7_k6bv2"]
+[ext_resource type="Texture2D" uid="uid://bn3mqsvovdtbx" path="res://Assets/Sprites/UI/CreditsDioramas/4.png" id="8_3648a"]
+[ext_resource type="Texture2D" uid="uid://deooy8040yx2u" path="res://Assets/Sprites/UI/LocaleFlags.png" id="8_oqk7k"]
+[ext_resource type="Texture2D" uid="uid://cble1pod2v3gd" path="res://Assets/Sprites/UI/CreditsDioramas/5.png" id="9_shsp7"]
+[ext_resource type="Texture2D" uid="uid://dgu0hgrwsu5jk" path="res://Assets/Sprites/UI/CreditsDioramas/6.png" id="11_kpq8t"]
+[ext_resource type="Texture2D" uid="uid://c8xmws8kj7dtd" path="res://Assets/Sprites/UI/CreditsDioramas/7.png" id="12_oe1k8"]
+[ext_resource type="Texture2D" uid="uid://c8bg7co8ic1mm" path="res://Assets/Sprites/UI/CreditsDioramas/9.png" id="13_17gvw"]
+[ext_resource type="Texture2D" uid="uid://brvpi1u1e40th" path="res://Assets/Sprites/UI/CreditsDioramas/8.png" id="13_irr87"]
+[ext_resource type="Texture2D" uid="uid://bw7de0ub8ny3b" path="res://Assets/Sprites/UI/Logos.png" id="14_4e2pw"]
+[ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="15_suvme"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_g2gtw"]
+color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s34bh"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ouss1"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yji2n"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ssyu"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pyc7"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kpe2"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s1o5"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x745s"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2gtw"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_885hu"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5uy1"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqk7k"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ud3pl"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(80, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isghj"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe1k8"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqdyg"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(96, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ixvh"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txoml"]
+atlas = ExtResource("8_oqk7k")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shsp7"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i063v"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(32, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23b0w"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yeh4c"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjy6w"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(96, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irr87"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3diwr"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2gfq"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkf2d"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g72p5"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4e2pw"]
+atlas = ExtResource("8_oqk7k")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwo1j"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17gvw"]
+atlas = ExtResource("8_oqk7k")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suvme"]
+atlas = ExtResource("8_oqk7k")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4vu4"]
+atlas = ExtResource("8_oqk7k")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekvxv"]
+atlas = ExtResource("8_oqk7k")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uea8q"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kd4b0"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(48, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2mcn"]
+atlas = ExtResource("8_oqk7k")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbk6s"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(16, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igtl7"]
+atlas = ExtResource("8_oqk7k")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipar5"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(64, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjira"]
+atlas = ExtResource("8_oqk7k")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c51sb"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(32, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2n2q"]
+atlas = ExtResource("8_oqk7k")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw0vd"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdyah"]
+atlas = ExtResource("8_oqk7k")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi5il"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mysjn"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq5ck"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8vsx"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtb0f"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j783k"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(64, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2q3a5"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(80, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ybgs"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gclpm"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knejk"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(96, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwa3s"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml8dk"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(80, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tm746"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(48, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8m53"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(64, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1n3p2"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk6gj"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(16, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3nva"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(96, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7s4gc"]
+atlas = ExtResource("14_4e2pw")
+region = Rect2(144, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xhay"]
+atlas = ExtResource("14_4e2pw")
+region = Rect2(0, 16, 144, 48)
+
+[node name="Credits" type="Node"]
+script = ExtResource("1_db8c5")
+campaign = "SMBLL"
+world_id = 8
+level_id = 4
+
+[node name="BG" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_k57dj")
+bus = &"Music"
+
+[node name="Labels" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="Labels"]
+visible = false
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Super Mario Bros. Remastered"
+horizontal_alignment = 1
+uppercase = true
+metadata/time = 2
+
+[node name="Label2" type="Label" parent="Labels"]
+visible = false
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Created by JoeMama"
+horizontal_alignment = 1
+uppercase = true
+metadata/time = 2
+
+[node name="TileArtists" type="Control" parent="Labels"]
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 240.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Labels/TileArtists"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 112.0
+offset_bottom = 32.0
+text = "Tile Artists"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Labels/TileArtists/Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_g2gtw")
+
+[node name="Label2" type="Label" parent="Labels/TileArtists/Label"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 40.0
+offset_bottom = 32.0
+text = "amer241"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/TileArtists/Label/Label2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_s34bh")
+stretch_mode = 2
+
+[node name="Label3" type="Label" parent="Labels/TileArtists/Label"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 112.0
+offset_bottom = 48.0
+text = "HOT CROSS BUN"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/TileArtists/Label/Label3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_ouss1")
+stretch_mode = 2
+
+[node name="Label4" type="Label" parent="Labels/TileArtists/Label"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 56.0
+offset_bottom = 64.0
+text = "MARTIN LOZANO"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/TileArtists/Label/Label4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_yji2n")
+stretch_mode = 2
+
+[node name="Label5" type="Label" parent="Labels/TileArtists/Label"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 40.0
+offset_bottom = 96.0
+text = "hdtv"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/TileArtists/Label/Label5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_4ssyu")
+stretch_mode = 2
+
+[node name="Label6" type="Label" parent="Labels/TileArtists/Label"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 200.0
+offset_bottom = 80.0
+text = "DIAMOND-LOCK PRODUCTIONS"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/TileArtists/Label/Label6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_8pyc7")
+stretch_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Labels/TileArtists"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 120.0
+offset_right = 248.0
+offset_bottom = 232.0
+texture = ExtResource("4_j3afk")
+
+[node name="BGArtists" type="Control" parent="Labels"]
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 240.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Labels/BGArtists"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 104.0
+offset_bottom = 40.0
+text = "BG ARTISTS"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Labels/BGArtists/Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_g2gtw")
+
+[node name="Label2" type="Label" parent="Labels/BGArtists/Label"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 32.0
+text = "amer241"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BGArtists/Label/Label2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_s34bh")
+stretch_mode = 2
+
+[node name="Label3" type="Label" parent="Labels/BGArtists/Label"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 112.0
+offset_bottom = 48.0
+text = "HOT CROSS BUN"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BGArtists/Label/Label3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_6kpe2")
+stretch_mode = 2
+
+[node name="Label4" type="Label" parent="Labels/BGArtists/Label"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 200.0
+offset_bottom = 64.0
+text = "Diamond-Lock Productions"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BGArtists/Label/Label4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_3s1o5")
+stretch_mode = 2
+
+[node name="Label6" type="Label" parent="Labels/BGArtists/Label"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 80.0
+offset_bottom = 80.0
+text = "vannyarts"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BGArtists/Label/Label6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_x745s")
+stretch_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BGArtists"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 112.0
+offset_right = 144.0
+offset_bottom = 224.0
+texture = ExtResource("6_s34bh")
+
+[node name="EnemyArtists" type="Control" parent="Labels"]
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 240.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Labels/EnemyArtists"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 128.0
+offset_bottom = 24.0
+text = "ENEMY, PLAYER, NPC ARTISTS"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Labels/EnemyArtists/Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_g2gtw")
+
+[node name="Label2" type="Label" parent="Labels/EnemyArtists/Label"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 32.0
+text = "amer241"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/EnemyArtists/Label/Label2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_s34bh")
+stretch_mode = 2
+
+[node name="Label3" type="Label" parent="Labels/EnemyArtists/Label"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 80.0
+offset_bottom = 48.0
+text = "SamButSam"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/EnemyArtists/Label/Label3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_g2gtw")
+stretch_mode = 2
+
+[node name="Label4" type="Label" parent="Labels/EnemyArtists/Label"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 200.0
+offset_bottom = 64.0
+text = "Diamond-Lock Productions"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/EnemyArtists/Label/Label4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_885hu")
+stretch_mode = 2
+
+[node name="Label5" type="Label" parent="Labels/EnemyArtists/Label"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 112.0
+offset_bottom = 80.0
+text = "Hot Cross Bun"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/EnemyArtists/Label/Label5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_j5uy1")
+stretch_mode = 2
+
+[node name="Label6" type="Label" parent="Labels/EnemyArtists/Label"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 128.0
+offset_bottom = 96.0
+text = "GLACIALSIREN484"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/EnemyArtists/Label/Label6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_oqk7k")
+stretch_mode = 2
+
+[node name="Label7" type="Label" parent="Labels/EnemyArtists/Label"]
+layout_mode = 0
+offset_top = 96.0
+offset_right = 64.0
+offset_bottom = 112.0
+text = "FUNGICAPTAIN"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/EnemyArtists/Label/Label7"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_ud3pl")
+stretch_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Labels/EnemyArtists"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 120.0
+offset_right = 248.0
+offset_bottom = 232.0
+texture = ExtResource("7_k6bv2")
+
+[node name="Label10" type="Label" parent="Labels/EnemyArtists"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 120.0
+offset_right = 96.0
+offset_bottom = 136.0
+text = "OhthatGuy"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/EnemyArtists/Label10"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_isghj")
+stretch_mode = 2
+
+[node name="LevelDesign" type="Control" parent="Labels"]
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 240.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Labels/LevelDesign"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 112.0
+offset_right = 112.0
+offset_bottom = 128.0
+text = "Level Design"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Labels/LevelDesign/Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_g2gtw")
+
+[node name="Label2" type="Label" parent="Labels/LevelDesign/Label"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 32.0
+text = "amer241"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/LevelDesign/Label/Label2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_s34bh")
+stretch_mode = 2
+
+[node name="Label4" type="Label" parent="Labels/LevelDesign/Label"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 72.0
+offset_bottom = 48.0
+text = "SlavaWow"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/LevelDesign/Label/Label4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_oe1k8")
+stretch_mode = 2
+
+[node name="Label5" type="Label" parent="Labels/LevelDesign/Label/Label4"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 32.0
+text = "Makerk6"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/LevelDesign/Label/Label4/Label5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_sqdyg")
+stretch_mode = 2
+
+[node name="Label5" type="Label" parent="Labels/LevelDesign/Label"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 40.0
+offset_bottom = 80.0
+text = "hdtv"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/LevelDesign/Label/Label5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_4ssyu")
+stretch_mode = 2
+
+[node name="Label7" type="Label" parent="Labels/LevelDesign/Label"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 96.0
+offset_bottom = 96.0
+text = "speedymcfly"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/LevelDesign/Label/Label7"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_0ixvh")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Labels/LevelDesign/Label/Label7/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_txoml")
+stretch_mode = 2
+
+[node name="Label3" type="Label" parent="Labels/LevelDesign/Label"]
+layout_mode = 0
+offset_top = 96.0
+offset_right = 80.0
+offset_bottom = 112.0
+text = "SamButSam"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/LevelDesign/Label/Label3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_g2gtw")
+stretch_mode = 2
+
+[node name="Label2" type="Label" parent="Labels/LevelDesign"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 56.0
+offset_right = 136.0
+offset_bottom = 72.0
+text = "UI DESIGN + ART"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Labels/LevelDesign/Label2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_g2gtw")
+
+[node name="Label4" type="Label" parent="Labels/LevelDesign/Label2"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 64.0
+offset_bottom = 48.0
+text = "amer241"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/LevelDesign/Label2/Label4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_s34bh")
+stretch_mode = 2
+
+[node name="Label2" type="Label" parent="Labels/LevelDesign/Label2"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 32.0
+text = "VannyArts"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/LevelDesign/Label2/Label2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_shsp7")
+stretch_mode = 2
+
+[node name="Label3" type="Label" parent="Labels/LevelDesign"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 96.0
+offset_bottom = 32.0
+text = "LSS BANNER + ICON"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Labels/LevelDesign/Label3"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_g2gtw")
+
+[node name="Label2" type="Label" parent="Labels/LevelDesign/Label3"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 32.0
+text = "KrystalPhantasm"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/LevelDesign/Label3/Label2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_i063v")
+stretch_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Labels/LevelDesign"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 120.0
+offset_right = 248.0
+offset_bottom = 232.0
+texture = ExtResource("8_3648a")
+
+[node name="Sound" type="Control" parent="Labels"]
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 240.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Labels/Sound"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 88.0
+offset_bottom = 32.0
+text = "Composers"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Labels/Sound/Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_g2gtw")
+
+[node name="Label2" type="Label" parent="Labels/Sound/Label"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 32.0
+text = "amer241"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Sound/Label/Label2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_s34bh")
+stretch_mode = 2
+
+[node name="Label3" type="Label" parent="Labels/Sound/Label"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 40.0
+offset_bottom = 48.0
+text = "hdtv"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Sound/Label/Label3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_23b0w")
+stretch_mode = 2
+
+[node name="Label4" type="Label" parent="Labels/Sound/Label"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 88.0
+offset_bottom = 64.0
+text = "Blindspuut"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Sound/Label/Label4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_yeh4c")
+stretch_mode = 2
+
+[node name="Label6" type="Label" parent="Labels/Sound/Label"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 88.0
+offset_bottom = 80.0
+text = "LeviR.star"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Sound/Label/Label6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_mjy6w")
+stretch_mode = 2
+
+[node name="Label2" type="Label" parent="Labels/Sound"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 104.0
+offset_right = 48.0
+offset_bottom = 120.0
+text = "SFXs"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Labels/Sound/Label2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_g2gtw")
+
+[node name="Label2" type="Label" parent="Labels/Sound/Label2"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 32.0
+text = "QuagIsCool"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Sound/Label2/Label2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_irr87")
+stretch_mode = 2
+
+[node name="Label6" type="Label" parent="Labels/Sound/Label2"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 88.0
+offset_bottom = 48.0
+text = "LeviR.star"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Sound/Label2/Label6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_mjy6w")
+stretch_mode = 2
+
+[node name="Label7" type="Label" parent="Labels/Sound/Label2"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 88.0
+offset_bottom = 64.0
+text = "BlindSpuut"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Sound/Label2/Label7"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_3diwr")
+stretch_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Sound"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 120.0
+texture = ExtResource("9_shsp7")
+
+[node name="Label3" type="Label" parent="Labels/Sound"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 184.0
+offset_right = 104.0
+offset_bottom = 200.0
+text = "PROGRAMMING"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Labels/Sound/Label3"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_g2gtw")
+
+[node name="Label2" type="Label" parent="Labels/Sound/Label3"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 40.0
+offset_bottom = 32.0
+text = "JOEMAMA"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Sound/Label3/Label2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_o2gfq")
+stretch_mode = 2
+
+[node name="Label3" type="Label" parent="Labels/Sound/Label3"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 104.0
+offset_bottom = 48.0
+text = "ALOELUCIDITY"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Sound/Label3/Label3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_wkf2d")
+stretch_mode = 2
+
+[node name="Localizers" type="Control" parent="Labels"]
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 240.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Labels/Localizers"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 104.0
+offset_bottom = 24.0
+text = "localizers"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Labels/Localizers/Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_g2gtw")
+
+[node name="Label2" type="Label" parent="Labels/Localizers/Label"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 40.0
+offset_bottom = 32.0
+text = "Cube"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_g72p5")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label2/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_4e2pw")
+stretch_mode = 2
+
+[node name="Label3" type="Label" parent="Labels/Localizers/Label"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 40.0
+offset_bottom = 48.0
+text = "TRIPPY"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_mwo1j")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label3/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_17gvw")
+stretch_mode = 2
+
+[node name="Label4" type="Label" parent="Labels/Localizers/Label"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 40.0
+offset_bottom = 64.0
+text = "SlavaWow"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_oe1k8")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label4/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_suvme")
+stretch_mode = 2
+
+[node name="Label5" type="Label" parent="Labels/Localizers/Label"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 64.0
+offset_bottom = 80.0
+text = "Makerk6"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_sqdyg")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label5/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_d4vu4")
+stretch_mode = 2
+
+[node name="Label6" type="Label" parent="Labels/Localizers/Label"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 64.0
+offset_bottom = 96.0
+text = "vannyarts"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_x745s")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label6/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_ekvxv")
+stretch_mode = 2
+
+[node name="Label7" type="Label" parent="Labels/Localizers/Label"]
+layout_mode = 0
+offset_top = 96.0
+offset_right = 80.0
+offset_bottom = 112.0
+text = "speedymcfly"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label7"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_0ixvh")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label7/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_txoml")
+stretch_mode = 2
+
+[node name="Label8" type="Label" parent="Labels/Localizers/Label"]
+layout_mode = 0
+offset_top = 112.0
+offset_right = 96.0
+offset_bottom = 128.0
+text = "Kirbo The Poyo"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label8"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_uea8q")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label8/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_txoml")
+stretch_mode = 2
+
+[node name="Label9" type="Label" parent="Labels/Localizers/Label"]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 96.0
+offset_bottom = 144.0
+text = "_Apostrophe"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label9"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_kd4b0")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label9/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_d2mcn")
+stretch_mode = 2
+
+[node name="Label10" type="Label" parent="Labels/Localizers/Label"]
+layout_mode = 0
+offset_top = 144.0
+offset_right = 56.0
+offset_bottom = 160.0
+text = "TBB369"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label10"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_tbk6s")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label10/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_igtl7")
+stretch_mode = 2
+
+[node name="Label11" type="Label" parent="Labels/Localizers/Label"]
+layout_mode = 0
+offset_top = 160.0
+offset_right = 56.0
+offset_bottom = 176.0
+text = "CHRYSS"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label11"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_ipar5")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label11/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_wjira")
+stretch_mode = 2
+
+[node name="Label12" type="Label" parent="Labels/Localizers/Label"]
+layout_mode = 0
+offset_top = 176.0
+offset_right = 56.0
+offset_bottom = 192.0
+text = "TheOliveOli"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label12"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_c51sb")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label12/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_s2n2q")
+stretch_mode = 2
+
+[node name="Label13" type="Label" parent="Labels/Localizers/Label"]
+layout_mode = 0
+offset_top = 192.0
+offset_right = 96.0
+offset_bottom = 208.0
+text = "Edwrin (Skopler)"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label13"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_uw0vd")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label13/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_bdyah")
+stretch_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 120.0
+texture = ExtResource("11_kpq8t")
+
+[node name="BetaTesters" type="Control" parent="Labels"]
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 240.0
+grow_horizontal = 2
+metadata/time = 5
+
+[node name="Label" type="Label" parent="Labels/BetaTesters"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 112.0
+offset_bottom = 24.0
+text = "Beta Testers"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Labels/BetaTesters/Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_g2gtw")
+
+[node name="Label2" type="Label" parent="Labels/BetaTesters/Label"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 32.0
+offset_bottom = 32.0
+text = "ian"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters/Label/Label2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_wi5il")
+stretch_mode = 2
+
+[node name="Label3" type="Label" parent="Labels/BetaTesters/Label"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 32.0
+offset_bottom = 48.0
+text = "Raykol"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters/Label/Label3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_mysjn")
+stretch_mode = 2
+
+[node name="Label4" type="Label" parent="Labels/BetaTesters/Label"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 56.0
+offset_bottom = 64.0
+text = "Gweenie"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters/Label/Label4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_iq5ck")
+stretch_mode = 2
+
+[node name="Label5" type="Label" parent="Labels/BetaTesters/Label"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 64.0
+offset_bottom = 80.0
+text = "Cr4ftex"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters/Label/Label5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_g8vsx")
+stretch_mode = 2
+
+[node name="Label6" type="Label" parent="Labels/BetaTesters/Label"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 72.0
+offset_bottom = 96.0
+text = "Pincelle"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters/Label/Label6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_rtb0f")
+stretch_mode = 2
+
+[node name="Label7" type="Label" parent="Labels/BetaTesters/Label"]
+layout_mode = 0
+offset_top = 96.0
+offset_right = 88.0
+offset_bottom = 112.0
+text = "JamiesName"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters/Label/Label7"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_j783k")
+stretch_mode = 2
+
+[node name="Label8" type="Label" parent="Labels/BetaTesters/Label"]
+layout_mode = 0
+offset_top = 112.0
+offset_right = 48.0
+offset_bottom = 128.0
+text = "vorzo"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters/Label/Label8"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_2q3a5")
+stretch_mode = 2
+
+[node name="Label9" type="Label" parent="Labels/BetaTesters/Label"]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 72.0
+offset_bottom = 144.0
+text = "leanycat"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters/Label/Label9"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_8ybgs")
+stretch_mode = 2
+
+[node name="Label12" type="Label" parent="Labels/BetaTesters/Label"]
+layout_mode = 0
+offset_top = 160.0
+offset_right = 56.0
+offset_bottom = 176.0
+text = "Hooked"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters/Label/Label12"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_gclpm")
+stretch_mode = 2
+
+[node name="Label14" type="Label" parent="Labels/BetaTesters/Label"]
+layout_mode = 0
+offset_top = 176.0
+offset_right = 112.0
+offset_bottom = 192.0
+text = "Pixelcraftian"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters/Label/Label14"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_knejk")
+stretch_mode = 2
+
+[node name="Label13" type="Label" parent="Labels/BetaTesters/Label"]
+layout_mode = 0
+offset_top = 144.0
+offset_right = 56.0
+offset_bottom = 160.0
+text = "Rhyvit"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters/Label/Label13"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_bwa3s")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 32.0
+offset_right = 248.0
+offset_bottom = 144.0
+texture = ExtResource("12_oe1k8")
+
+[node name="Label2" type="Label" parent="Labels/BetaTesters"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 200.0
+offset_right = 96.0
+offset_bottom = 216.0
+text = "Starrymari"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters/Label2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_ml8dk")
+stretch_mode = 2
+
+[node name="Label3" type="Label" parent="Labels/BetaTesters"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 216.0
+offset_right = 96.0
+offset_bottom = 232.0
+text = "Jonthejeph"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters/Label3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_tm746")
+stretch_mode = 2
+
+[node name="BetaTesters2" type="Control" parent="Labels"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 240.0
+grow_horizontal = 2
+metadata/time = 5
+
+[node name="Label" type="Label" parent="Labels/BetaTesters2"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 144.0
+offset_bottom = 32.0
+text = "Beta Testers..."
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Labels/BetaTesters2/Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_g2gtw")
+
+[node name="Label4" type="Label" parent="Labels/BetaTesters2/Label"]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 56.0
+offset_bottom = 32.0
+text = "kosmic"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters2/Label/Label4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_t8m53")
+stretch_mode = 2
+
+[node name="Label5" type="Label" parent="Labels/BetaTesters2/Label"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 80.0
+offset_bottom = 48.0
+text = "TheLBcats"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters2/Label/Label5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_1n3p2")
+stretch_mode = 2
+
+[node name="Label6" type="Label" parent="Labels/BetaTesters2/Label"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 104.0
+offset_bottom = 64.0
+text = "LadiesMan217"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters2/Label/Label6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+stretch_mode = 2
+
+[node name="Label7" type="Label" parent="Labels/BetaTesters2/Label"]
+layout_mode = 0
+offset_top = 96.0
+offset_right = 104.0
+offset_bottom = 112.0
+text = "MusicalMan"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters2/Label/Label7"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+stretch_mode = 2
+
+[node name="Label8" type="Label" parent="Labels/BetaTesters2/Label"]
+layout_mode = 0
+offset_top = 112.0
+offset_right = 72.0
+offset_bottom = 128.0
+text = "bluseven"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters2/Label/Label8"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_vk6gj")
+stretch_mode = 2
+
+[node name="Label9" type="Label" parent="Labels/BetaTesters2/Label"]
+layout_mode = 0
+offset_top = 144.0
+offset_right = 104.0
+offset_bottom = 160.0
+text = "MRGERUND"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters2/Label/Label9"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_right = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_i3nva")
+stretch_mode = 2
+
+[node name="Label10" type="Label" parent="Labels/BetaTesters2/Label"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 112.0
+offset_bottom = 96.0
+text = "popthatcorn14"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters2/Label/Label10"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+stretch_mode = 2
+
+[node name="Label11" type="Label" parent="Labels/BetaTesters2/Label"]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 112.0
+offset_bottom = 144.0
+text = "LuigiBonus"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters2/Label/Label11"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+stretch_mode = 2
+
+[node name="Label12" type="Label" parent="Labels/BetaTesters2/Label"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 136.0
+offset_bottom = 80.0
+text = "EngingerBreadMan"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters2/Label/Label12"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+stretch_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters2"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 120.0
+offset_right = 248.0
+offset_bottom = 232.0
+texture = ExtResource("13_17gvw")
+
+[node name="SpecialThanks" type="Control" parent="Labels"]
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 240.0
+grow_horizontal = 2
+metadata/time = 6
+
+[node name="TextureRect" type="TextureRect" parent="Labels/SpecialThanks"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 7.0
+offset_right = 188.0
+offset_bottom = 119.0
+texture = ExtResource("13_irr87")
+
+[node name="Label" type="Label" parent="Labels/SpecialThanks"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 56.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Special Thanks"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Labels/SpecialThanks/Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_g2gtw")
+
+[node name="Label" type="Label" parent="Labels/SpecialThanks/Label"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 104.0
+offset_right = 112.0
+offset_bottom = 132.0
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Labels/SpecialThanks/Label"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 17.0
+offset_right = 120.0
+offset_bottom = 113.0
+grow_horizontal = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = -4
+alignment = 1
+
+[node name="Label" type="Label" parent="Labels/SpecialThanks/Label/HFlowContainer"]
+layout_mode = 2
+text = "ALESAN99"
+uppercase = true
+
+[node name="Label2" type="Label" parent="Labels/SpecialThanks/Label/HFlowContainer"]
+layout_mode = 2
+text = "StabYourself"
+uppercase = true
+
+[node name="Label3" type="Label" parent="Labels/SpecialThanks/Label/HFlowContainer"]
+layout_mode = 2
+text = "exploding rabbit"
+uppercase = true
+
+[node name="Label4" type="Label" parent="Labels/SpecialThanks/Label/HFlowContainer"]
+layout_mode = 2
+text = "Portponky"
+uppercase = true
+
+[node name="Label5" type="Label" parent="Labels/SpecialThanks/Label/HFlowContainer"]
+layout_mode = 2
+text = "nintendo"
+uppercase = true
+
+[node name="Label7" type="Label" parent="Labels/SpecialThanks/Label/HFlowContainer"]
+layout_mode = 2
+text = "mika"
+uppercase = true
+
+[node name="Label8" type="Label" parent="Labels/SpecialThanks/Label/HFlowContainer"]
+layout_mode = 2
+text = "kaze emanuar"
+uppercase = true
+
+[node name="Label9" type="Label" parent="Labels/SpecialThanks/Label/HFlowContainer"]
+layout_mode = 2
+text = "Level share Square"
+uppercase = true
+
+[node name="Label10" type="Label" parent="Labels/SpecialThanks/Label/HFlowContainer"]
+layout_mode = 2
+text = "
+...and you!"
+uppercase = true
+
+[node name="MadeWith" type="Control" parent="Labels"]
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 240.0
+grow_horizontal = 2
+metadata/time = 5
+
+[node name="Label" type="Label" parent="Labels/MadeWith"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -104.0
+offset_right = 40.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Made With"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Labels/MadeWith/Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_g2gtw")
+
+[node name="Label2" type="Label" parent="Labels/MadeWith/Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = 64.0
+offset_right = 16.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Godot Engine"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/MadeWith/Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("AtlasTexture_7s4gc")
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="Labels/MadeWith"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -68.0
+offset_top = 17.0
+offset_right = 68.0
+offset_bottom = 33.0
+grow_horizontal = 2
+text = "original game by"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Labels/MadeWith/Label2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_g2gtw")
+
+[node name="TextureRect" type="TextureRect" parent="Labels/MadeWith/Label2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = 4.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("AtlasTexture_2xhay")
+stretch_mode = 3
+
+[node name="MadeWith2" type="Control" parent="Labels"]
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 240.0
+grow_horizontal = 2
+metadata/time = 9999
+
+[node name="Label2" type="Label" parent="Labels/MadeWith2"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Thank you for Playing! :)"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Skip" type="Label" parent="."]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_right = 168.0
+grow_vertical = 0
+text = "Press Any To Skip..."
+uppercase = true
+
+[node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+script = ExtResource("15_suvme")
+labels = [NodePath("../Skip")]
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
+
+[connection signal="finished" from="Music" to="." method="exit"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh2jvsv1dluwe"]
+
+[ext_resource type="Script" uid="uid://dcx77vdfvwq4y" path="res://Scripts/Parts/ResourcePackTemplateCreator.gd" id="1_xmawd"]
+
+[node name="ResourcePackTemplateCreator" type="Node"]
+script = ExtResource("1_xmawd")

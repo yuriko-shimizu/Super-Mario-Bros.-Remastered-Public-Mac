@@ -1,0 +1,245 @@
+[gd_scene load_steps=33 format=3 uid="uid://cbs645wiwmaxq"]
+
+[ext_resource type="Script" uid="uid://clareynx710qb" path="res://Scripts/Classes/Entities/Objects/Burner.gd" id="1_4fveq"]
+[ext_resource type="Texture2D" uid="uid://dhk5jdqjqo77p" path="res://Assets/Sprites/Blocks/BurnerFlame.png" id="1_vrk50"]
+[ext_resource type="Texture2D" uid="uid://4l2medldwrwh" path="res://Assets/Sprites/Blocks/Burner.png" id="2_4fveq"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_fsldu"]
+[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_sqxap"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/BurnerFlame.json" id="4_m4qew"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="5_sqxap"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/BurnerBlock.json" id="5_w52fl"]
+[ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="7_w52fl"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="8_oeevx"]
+[ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="10_oeevx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amjrr"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_od61c"]
+atlas = ExtResource("1_vrk50")
+region = Rect2(80, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsldu"]
+atlas = ExtResource("1_vrk50")
+region = Rect2(64, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w52fl"]
+atlas = ExtResource("1_vrk50")
+region = Rect2(48, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oeevx"]
+atlas = ExtResource("1_vrk50")
+region = Rect2(32, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4qew"]
+atlas = ExtResource("1_vrk50")
+region = Rect2(16, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_je1ke"]
+atlas = ExtResource("1_vrk50")
+region = Rect2(0, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_liwv0"]
+atlas = ExtResource("1_vrk50")
+region = Rect2(0, 0, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t81wb"]
+atlas = ExtResource("1_vrk50")
+region = Rect2(64, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yyyj"]
+atlas = ExtResource("1_vrk50")
+region = Rect2(80, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drojf"]
+atlas = ExtResource("1_vrk50")
+region = Rect2(0, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdqi0"]
+atlas = ExtResource("1_vrk50")
+region = Rect2(16, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywbh4"]
+atlas = ExtResource("1_vrk50")
+region = Rect2(32, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2mql"]
+atlas = ExtResource("1_vrk50")
+region = Rect2(48, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seql0"]
+atlas = ExtResource("1_vrk50")
+region = Rect2(64, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ex0w"]
+atlas = ExtResource("1_vrk50")
+region = Rect2(80, 0, 16, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8axu6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_od61c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsldu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w52fl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oeevx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4qew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_je1ke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_liwv0")
+}],
+"loop": false,
+"name": &"Fall",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t81wb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yyyj")
+}],
+"loop": true,
+"name": &"Loop",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drojf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdqi0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywbh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2mql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seql0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ex0w")
+}],
+"loop": false,
+"name": &"Rise",
+"speed": 15.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jhml"]
+atlas = ExtResource("2_4fveq")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jssei"]
+size = Vector2(8, 32)
+
+[sub_resource type="GDScript" id="GDScript_4fveq"]
+script/source = "extends Node
+
+@export var sprite: Node2D = null
+
+func _process(_delta: float) -> void:
+	$\"..\".global_rotation_degrees = [0, 180, -90, 90][owner.direction]
+	sprite.global_rotation_degrees = [0, 0, 90, 90][owner.direction]
+	sprite.flip_v = owner.direction == 1 or owner.direction == 2
+"
+
+[sub_resource type="Resource" id="Resource_m4qew"]
+script = ExtResource("8_oeevx")
+Overworld = SubResource("SpriteFrames_8axu6")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[node name="Burner" type="AnimatableBody2D"]
+collision_layer = 6
+collision_mask = 0
+sync_to_physics = false
+script = ExtResource("1_4fveq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_amjrr")
+
+[node name="RotationJoint" type="Node2D" parent="."]
+physics_interpolation_mode = 2
+
+[node name="Flame" type="AnimatedSprite2D" parent="RotationJoint"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_8axu6")
+animation = &"Rise"
+frame = 5
+frame_progress = 1.0
+
+[node name="ResourceSetterNew" type="Node" parent="RotationJoint/Flame" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_fsldu")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("4_m4qew")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="RotationJoint"]
+remote_path = NodePath("../Block")
+update_rotation = false
+update_scale = false
+
+[node name="Block" type="Sprite2D" parent="RotationJoint"]
+texture = SubResource("AtlasTexture_5jhml")
+
+[node name="ResourceSetterNew" type="Node" parent="RotationJoint/Block" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_fsldu")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("5_w52fl")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="PlayerDetection" type="Area2D" parent="RotationJoint"]
+script = ExtResource("3_sqxap")
+metadata/_custom_type_script = "uid://cnheej0sxmoxg"
+
+[node name="Hitbox" type="CollisionShape2D" parent="RotationJoint/PlayerDetection"]
+unique_name_in_owner = true
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_jssei")
+disabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+process_mode = 3
+script = SubResource("GDScript_4fveq")
+sprite = NodePath("../RotationJoint/Block")
+
+[node name="EditorPropertyExposer" type="Node" parent="."]
+script = ExtResource("5_sqxap")
+properties = Array[String](["direction"])
+metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
+
+[node name="ThemedToJSONConverter" type="Node" parent="."]
+script = ExtResource("7_w52fl")
+resource = SubResource("Resource_m4qew")
+json_file_path = "res://Assets/Sprites/Blocks/BurnerFlame.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"
+
+[node name="TrackJoint" type="Node" parent="."]
+script = ExtResource("10_oeevx")
+offset = Vector2(0, 0)
+disable_physics = false
+metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
+
+[connection signal="player_entered" from="RotationJoint/PlayerDetection" to="." method="damage_player"]
+[connection signal="timeout" from="Timer" to="." method="do_cycle"]

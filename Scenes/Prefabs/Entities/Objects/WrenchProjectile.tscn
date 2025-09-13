@@ -1,0 +1,104 @@
+[gd_scene load_steps=14 format=3 uid="uid://p42vcj0qmhxl"]
+
+[ext_resource type="Texture2D" uid="uid://cop8x5m20cqal" path="res://Assets/Sprites/Items/WrenchProjectile.png" id="1_bh1cs"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_wtsxo"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_7wlxe"]
+[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_tfqn5"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/WrenchProjectile.json" id="4_5s4r1"]
+[ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="4_7wlxe"]
+
+[sub_resource type="GDScript" id="GDScript_5s4r1"]
+script/source = "extends Node2D
+
+var direction := -1
+
+const MOVE_SPEED := 80
+
+func _physics_process(delta: float) -> void:
+	$Sprite.flip_h = direction == 1
+	global_position.x += MOVE_SPEED * direction * delta
+
+func damage_player(player: Player) -> void:
+	player.damage()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bn4i0"]
+atlas = ExtResource("1_bh1cs")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytcl6"]
+atlas = ExtResource("1_bh1cs")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tf2mk"]
+atlas = ExtResource("1_bh1cs")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfd5u"]
+atlas = ExtResource("1_bh1cs")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4d740"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bn4i0")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytcl6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tf2mk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfd5u")
+}],
+"loop": true,
+"name": &"Spin",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_srvot"]
+radius = 2.0
+
+[node name="WrenchProjectile" type="Node2D"]
+script = SubResource("GDScript_5s4r1")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4d740")
+animation = &"Spin"
+autoplay = "Spin"
+frame_progress = 0.89535326
+script = ExtResource("2_wtsxo")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_7wlxe")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("4_5s4r1")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+script = ExtResource("3_tfqn5")
+metadata/_custom_type_script = "uid://cnheej0sxmoxg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+shape = SubResource("CircleShape2D_srvot")
+
+[node name="EnemyPlayerDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("4_7wlxe")
+hitbox = NodePath("../PlayerDetection")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="queue_free"]

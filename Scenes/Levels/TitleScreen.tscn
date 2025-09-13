@@ -1,0 +1,1538 @@
+[gd_scene load_steps=67 format=4 uid="uid://dnlgawye840rs"]
+
+[ext_resource type="Script" uid="uid://bqetotvkgfpta" path="res://Scripts/Parts/TitleScreen.gd" id="1_1wpe0"]
+[ext_resource type="Texture2D" uid="uid://d01emqx4qafd7" path="res://Assets/Sprites/UI/TitleSMB1.png" id="2_1j3pg"]
+[ext_resource type="PackedScene" uid="uid://ct5rrpa7uehkk" path="res://Scenes/Parts/Tiles.tscn" id="3_4kc87"]
+[ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="5_8t4ah"]
+[ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="6_8d7lx"]
+[ext_resource type="Texture2D" uid="uid://brk81yoyccym" path="res://Assets/Sprites/UI/TitleScreenStars.png" id="6_28b2v"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="6_100cl"]
+[ext_resource type="SpriteFrames" uid="uid://df4enjjl84mji" path="res://Resources/SpriteFrames/Player/Mario/Small.tres" id="6_oofmi"]
+[ext_resource type="Texture2D" uid="uid://3p2l7rec0gh5" path="res://Assets/Sprites/UI/Cursor.png" id="8_jmbsi"]
+[ext_resource type="Script" uid="uid://c3c1o65wvi6tq" path="res://Scripts/UI/TitleScreenOptions.gd" id="9_dsf7o"]
+[ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="9_kugbg"]
+[ext_resource type="PackedScene" uid="uid://dntk2js0tu3y2" path="res://Scenes/Prefabs/UI/WorldSelect.tscn" id="10_emltp"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="11_28b2v"]
+[ext_resource type="PackedScene" uid="uid://dnksdgorle8su" path="res://Scenes/Prefabs/UI/SettingsMenu.tscn" id="12_5iq4f"]
+[ext_resource type="PackedScene" uid="uid://ci678koo0peoa" path="res://Scenes/Prefabs/UI/CharacterSelect.tscn" id="13_8wrri"]
+[ext_resource type="PackedScene" uid="uid://c7w8dmlmj0hoh" path="res://Scenes/Prefabs/UI/CampaignSelect.tscn" id="14_1wnbq"]
+[ext_resource type="PackedScene" uid="uid://br018ivvrtsjd" path="res://Scenes/Prefabs/UI/SaveDeletionWarning.tscn" id="15_s06mt"]
+[ext_resource type="PackedScene" uid="uid://bpx20uohhikd7" path="res://Scenes/Prefabs/UI/QuestSelect.tscn" id="16_s06mt"]
+[ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="18_3wltv"]
+[ext_resource type="PackedScene" uid="uid://bvgigoyn7lrc2" path="res://Scenes/Prefabs/UI/SpeedrunTypeSelect.tscn" id="19_6t4fx"]
+[ext_resource type="PackedScene" uid="uid://r2n1ka3mc5v6" path="res://Scenes/Prefabs/UI/GhostSelect.tscn" id="20_p54in"]
+[ext_resource type="PackedScene" uid="uid://ud3ktt2adw8l" path="res://Scenes/Prefabs/UI/AchievementUnlockPopup.tscn" id="21_p54in"]
+[ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="21_qti1l"]
+[ext_resource type="PackedScene" uid="uid://b75f3fd7xjeya" path="res://Scenes/Prefabs/UI/QuitDialog.tscn" id="22_wjo1g"]
+[ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="23_8swpx"]
+[ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="23_s06mt"]
+[ext_resource type="JSON" path="res://Assets/Sprites/UI/TitleScreenStars.json" id="30_p54in"]
+[ext_resource type="Shader" uid="uid://x7lh23cq2u38" path="res://Scenes/Parts/ShadowShader.gdshader" id="31_wjo1g"]
+[ext_resource type="JSON" path="res://Assets/Audio/BGM/TitleBGM.json" id="37_twc32"]
+[ext_resource type="PackedScene" uid="uid://b8e82usnfbw1t" path="res://Scenes/Prefabs/UI/ExtraWorldSelect.tscn" id="41_obcl5"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="48_b3nob"]
+[ext_resource type="JSON" path="res://Assets/Sprites/UI/Title1.json" id="51_la5b0"]
+[ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="52_ur12k"]
+[ext_resource type="JSON" path="res://Assets/Sprites/UI/Title2.json" id="53_b3nob"]
+[ext_resource type="Texture2D" uid="uid://0kyh2v6vfhqp" path="res://Assets/Sprites/UI/Title2.png" id="54_gp1md"]
+[ext_resource type="PackedScene" uid="uid://bsfkt344e6j38" path="res://Scenes/Prefabs/UI/LevelSelectNew.tscn" id="58_qgapq"]
+[ext_resource type="PackedScene" uid="uid://60t5mugrgvlt" path="res://Scenes/Prefabs/UI/MarathonSelect.tscn" id="58_sul0v"]
+
+[sub_resource type="GDScript" id="GDScript_8peil"]
+script/source = "extends Label
+
+
+func _ready() -> void:
+	text = \"V\" + Global.version_number
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgapq"]
+atlas = ExtResource("2_1j3pg")
+region = Rect2(0, 0, 176, 88)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sul0v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgapq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kugbg"]
+atlas = ExtResource("6_28b2v")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rn7o"]
+atlas = ExtResource("6_28b2v")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtnxj"]
+atlas = ExtResource("6_28b2v")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l3ok6"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_kugbg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rn7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtnxj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rn7o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wsi03"]
+shader = ExtResource("31_wjo1g")
+shader_parameter/shadow_colour = Vector4(0, 0, 0, 1)
+shader_parameter/allow_transparency = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8erf6"]
+atlas = ExtResource("54_gp1md")
+region = Rect2(0, 0, 176, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7t6p"]
+atlas = ExtResource("54_gp1md")
+region = Rect2(176, 0, 176, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8peil"]
+atlas = ExtResource("54_gp1md")
+region = Rect2(352, 0, 176, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gxk2n"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_8erf6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7t6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8peil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7t6p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkrxe"]
+atlas = ExtResource("2_1j3pg")
+region = Rect2(0, 128, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygit5"]
+atlas = ExtResource("2_1j3pg")
+region = Rect2(176, 128, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt5h5"]
+atlas = ExtResource("2_1j3pg")
+region = Rect2(352, 128, 176, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6t4fx"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_mkrxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygit5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt5h5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygit5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p54in"]
+atlas = ExtResource("2_1j3pg")
+region = Rect2(0, 384, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twc32"]
+atlas = ExtResource("2_1j3pg")
+region = Rect2(176, 384, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjo1g"]
+atlas = ExtResource("2_1j3pg")
+region = Rect2(352, 384, 176, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wsi03"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_p54in")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twc32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjo1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twc32")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3ok6"]
+atlas = ExtResource("2_1j3pg")
+region = Rect2(0, 0, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41kgj"]
+atlas = ExtResource("2_1j3pg")
+region = Rect2(176, 0, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k68s0"]
+atlas = ExtResource("2_1j3pg")
+region = Rect2(352, 0, 176, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8t4ah"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_l3ok6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41kgj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k68s0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41kgj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqo3h"]
+atlas = ExtResource("2_1j3pg")
+region = Rect2(0, 256, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vckrk"]
+atlas = ExtResource("2_1j3pg")
+region = Rect2(176, 256, 176, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ft22"]
+atlas = ExtResource("2_1j3pg")
+region = Rect2(352, 256, 176, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f6f73"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_rqo3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vckrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ft22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vckrk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Resource" id="Resource_jt40r"]
+script = ExtResource("11_28b2v")
+Overworld = SubResource("SpriteFrames_8t4ah")
+Desert = SubResource("SpriteFrames_6t4fx")
+Snow = SubResource("SpriteFrames_f6f73")
+Jungle = SubResource("SpriteFrames_wsi03")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[node name="TitleScreen" type="Node" node_paths=PackedStringArray("active_options")]
+script = ExtResource("1_1wpe0")
+active_options = NodePath("CanvasLayer/Options1")
+auto_set_theme = true
+time_limit = 0
+vertical_height = -186
+metadata/_custom_type_script = "uid://bcqr1v25ygedb"
+
+[node name="LevelBG" parent="." instance=ExtResource("23_8swpx")]
+time_of_day = 2
+primary_layer = 3
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -88)
+process_callback = 0
+
+[node name="Tiles" parent="." instance=ExtResource("3_4kc87")]
+position = Vector2(0, -528)
+tile_map_data = PackedByteArray("AAAAACIAAAACAAAAAAAAACMAAAACAAIAAAABACIAAAACAAAAAAABACMAAAACAAIAAAACACIAAAACAAAAAAACACMAAAACAAIAAAADACIAAAACAAAAAAADACMAAAACAAIAAAAEACIAAAACAAAAAAAEACMAAAACAAIAAAAFACIAAAACAAAAAAAFACMAAAACAAIAAAAGACIAAAACAAAAAAAGACMAAAACAAIAAAAHACIAAAACAAAAAAAHACMAAAACAAIAAAAIACIAAAACAAAAAAAIACMAAAACAAIAAAAJACIAAAACAAAAAAAJACMAAAACAAIAAAAKACIAAAACAAAAAAAKACMAAAACAAIAAAALACIAAAACAAAAAAALACMAAAACAAIAAAAMACIAAAACAAAAAAAMACMAAAACAAIAAAANACIAAAACAAAAAAANACMAAAACAAIAAAAOACIAAAACAAAAAAAOACMAAAACAAIAAAAPACIAAAACAAAAAAAPACMAAAACAAIAAAAQACIAAAACAAAAAAAQACMAAAACAAIAAAARACIAAAACAAAAAAARACMAAAACAAIAAAASACIAAAACAAAAAAASACMAAAACAAIAAAATACIAAAACAAAAAAATACMAAAACAAIAAAAUACIAAAACAAAAAAAUACMAAAACAAIAAAAVACIAAAACAAAAAAAVACMAAAACAAIAAAAWACIAAAACAAAAAAAWACMAAAACAAIAAAAXACIAAAACAAAAAAAXACMAAAACAAIAAAAYACIAAAACAAAAAAAYACMAAAACAAIAAAAZACIAAAACAAAAAAAZACMAAAACAAIAAAAaACIAAAACAAAAAAAaACMAAAACAAIAAAAbACIAAAACAAAAAAAbACMAAAACAAIAAAAcACIAAAACAAAAAAAcACMAAAACAAIAAAAdACIAAAACAAAAAAAdACMAAAACAAIAAAAeACIAAAACAAAAAAAeACMAAAACAAIAAAAfACIAAAACAAAAAAAfACMAAAACAAIAAADm/yIAAAACAAAAAADm/yMAAAACAAIAAADn/yIAAAACAAAAAADn/yMAAAACAAIAAADo/yIAAAACAAAAAADo/yMAAAACAAIAAADp/yIAAAACAAAAAADp/yMAAAACAAIAAADq/yIAAAACAAAAAADq/yMAAAACAAIAAADr/yIAAAACAAAAAADr/yMAAAACAAIAAADs/yIAAAACAAAAAADs/yMAAAACAAIAAADt/yIAAAACAAAAAADt/yMAAAACAAIAAADu/yIAAAACAAAAAADu/yMAAAACAAIAAADv/yIAAAACAAAAAADv/yMAAAACAAIAAADw/yIAAAACAAAAAADw/yMAAAACAAIAAADx/yIAAAACAAAAAADx/yMAAAACAAIAAADy/yIAAAACAAAAAADy/yMAAAACAAIAAADz/yIAAAACAAAAAADz/yMAAAACAAIAAAD0/yIAAAACAAAAAAD0/yMAAAACAAIAAAD1/yIAAAACAAAAAAD1/yMAAAACAAIAAAD2/yIAAAACAAAAAAD2/yMAAAACAAIAAAD3/yIAAAACAAAAAAD3/yMAAAACAAIAAAD4/yIAAAACAAAAAAD4/yMAAAACAAIAAAD5/yIAAAACAAAAAAD5/yMAAAACAAIAAAD6/yIAAAACAAAAAAD6/yMAAAACAAIAAAD7/yIAAAACAAAAAAD7/yMAAAACAAIAAAD8/yIAAAACAAAAAAD8/yMAAAACAAIAAAD9/yIAAAACAAAAAAD9/yMAAAACAAIAAAD+/yIAAAACAAAAAAD+/yMAAAACAAIAAAD//yIAAAACAAAAAAD//yMAAAACAAIAAAAgACIAAAACAAAAAAAgACMAAAACAAIAAAAhACIAAAACAAAAAAAhACMAAAACAAIAAAAiACIAAAACAAAAAAAiACMAAAACAAIAAAAjACIAAAACAAAAAAAjACMAAAACAAIAAAAkACIAAAACAAAAAAAkACMAAAACAAIAAAAlACIAAAACAAAAAAAlACMAAAACAAIAAAAmACIAAAACAAAAAAAmACMAAAACAAIAAAAnACIAAAACAAAAAAAnACMAAAACAAIAAAAoACIAAAACAAAAAAAoACMAAAACAAIAAAApACIAAAACAAAAAAApACMAAAACAAIAAAAqACIAAAACAAAAAAAqACMAAAACAAIAAAArACIAAAACAAAAAAArACMAAAACAAIAAAAsACIAAAACAAAAAAAsACMAAAACAAIAAAAtACIAAAACAAAAAAAtACMAAAACAAIAAAAuACIAAAACAAAAAAAuACMAAAACAAIAAAAvACIAAAACAAAAAAAvACMAAAACAAIAAAAwACIAAAACAAAAAAAwACMAAAACAAIAAAAxACIAAAACAAAAAAAxACMAAAACAAIAAAAyACIAAAACAAAAAAAyACMAAAACAAIAAAAzACIAAAACAAAAAAAzACMAAAACAAIAAAA0ACIAAAACAAAAAAA0ACMAAAACAAIAAAA1ACIAAAACAAAAAAA1ACMAAAACAAIAAAA2ACIAAAACAAAAAAA2ACMAAAACAAIAAAA3ACIAAAACAAAAAAA3ACMAAAACAAIAAAA4ACIAAAACAAAAAAA4ACMAAAACAAIAAAA5ACIAAAACAAAAAAA5ACMAAAACAAIAAAA6ACIAAAACAAAAAAA6ACMAAAACAAIAAAA7ACIAAAACAAAAAAA7ACMAAAACAAIAAAA8ACIAAAACAAAAAAA8ACMAAAACAAIAAAA9ACIAAAACAAAAAAA9ACMAAAACAAIAAAA+ACIAAAACAAAAAAA+ACMAAAACAAIAAAA/ACIAAAACAAAAAAA/ACMAAAACAAIAAABAACIAAAACAAAAAABAACMAAAACAAIAAABBACIAAAACAAAAAABBACMAAAACAAIAAABCACIAAAACAAAAAABCACMAAAACAAIAAABDACIAAAACAAAAAABDACMAAAACAAIAAABEACIAAAACAAAAAABEACMAAAACAAIAAABFACIAAAACAAAAAABFACMAAAACAAIAAABGACIAAAACAAAAAABGACMAAAACAAIAAABHACIAAAACAAAAAABHACMAAAACAAIAAABIACIAAAACAAAAAABIACMAAAACAAIAAABJACIAAAACAAAAAABJACMAAAACAAIAAABKACIAAAACAAAAAABKACMAAAACAAIAAABLACIAAAACAAAAAABLACMAAAACAAIAAABMACIAAAACAAAAAABMACMAAAACAAIAAABNACIAAAACAAAAAABNACMAAAACAAIAAABOACIAAAACAAAAAABOACMAAAACAAIAAABPACIAAAACAAAAAABPACMAAAACAAIAAABQACIAAAACAAAAAABQACMAAAACAAIAAABRACIAAAACAAAAAABRACMAAAACAAIAAABSACIAAAACAAAAAABSACMAAAACAAIAAABTACIAAAACAAAAAABTACMAAAACAAIAAABUACIAAAACAAAAAABUACMAAAACAAIAAABVACIAAAACAAAAAABVACMAAAACAAIAAABWACIAAAACAAAAAABWACMAAAACAAIAAABXACIAAAACAAAAAABXACMAAAACAAIAAABYACIAAAACAAAAAABYACMAAAACAAIAAABZACIAAAACAAAAAABZACMAAAACAAIAAABaACIAAAACAAAAAABaACMAAAACAAIAAABbACIAAAACAAAAAABbACMAAAACAAIAAABcACIAAAACAAAAAABcACMAAAACAAIAAABdACIAAAACAAAAAABdACMAAAACAAIAAABeACIAAAACAAAAAABeACMAAAACAAIAAABfACIAAAACAAAAAABfACMAAAACAAIAAABgACIAAAACAAAAAABgACMAAAACAAIAAABhACIAAAACAAAAAABhACMAAAACAAIAAABiACIAAAACAAAAAABiACMAAAACAAIAAABjACIAAAACAAAAAABjACMAAAACAAIAAABkACIAAAACAAAAAABkACMAAAACAAIAAABlACIAAAACAAAAAABlACMAAAACAAIAAABmACIAAAACAAAAAABmACMAAAACAAIAAABnACIAAAACAAAAAABnACMAAAACAAIAAABoACIAAAACAAAAAABoACMAAAACAAIAAABpACIAAAACAAAAAABpACMAAAACAAIAAABqACIAAAACAAAAAABqACMAAAACAAIAAABrACIAAAACAAAAAABrACMAAAACAAIAAABsACIAAAACAAAAAABsACMAAAACAAIAAABtACIAAAACAAAAAABtACMAAAACAAIAAABuACIAAAACAAAAAABuACMAAAACAAIAAABvACIAAAADAAAAAABvACMAAAADAAIAAACR/yIAAAABAAMAAACS/yIAAAACAAMAAACT/yIAAAACAAMAAACU/yIAAAACAAMAAACV/yIAAAACAAMAAACW/yIAAAACAAMAAACX/yIAAAACAAMAAACY/yIAAAACAAMAAACZ/yIAAAACAAMAAACa/yIAAAACAAMAAACb/yIAAAACAAMAAACc/yIAAAACAAMAAACd/yIAAAACAAMAAACe/yIAAAACAAMAAACf/yIAAAACAAMAAACg/yIAAAABAAAAAACh/yIAAAACAAAAAACi/yIAAAACAAAAAACj/yIAAAACAAAAAACk/yIAAAACAAAAAACl/yIAAAACAAAAAACm/yIAAAACAAAAAACn/yIAAAACAAAAAACo/yIAAAACAAAAAACp/yIAAAACAAAAAACq/yIAAAACAAAAAACr/yIAAAACAAAAAACs/yIAAAACAAAAAACt/yIAAAACAAAAAACu/yIAAAACAAAAAACv/yIAAAACAAAAAACw/yIAAAACAAAAAACx/yIAAAACAAAAAACy/yIAAAACAAAAAACz/yIAAAACAAAAAAC0/yIAAAACAAAAAAC1/yIAAAACAAAAAAC2/yIAAAACAAAAAAC3/yIAAAACAAAAAAC4/yIAAAACAAAAAAC5/yIAAAACAAAAAAC6/yIAAAACAAAAAAC7/yIAAAACAAAAAAC8/yIAAAACAAAAAAC9/yIAAAACAAAAAAC+/yIAAAACAAAAAAC//yIAAAACAAAAAADA/yIAAAACAAAAAADB/yIAAAACAAAAAADC/yIAAAACAAAAAADD/yIAAAACAAAAAADE/yIAAAACAAAAAADF/yIAAAACAAAAAADG/yIAAAACAAAAAADH/yIAAAACAAAAAADI/yIAAAACAAAAAADJ/yIAAAACAAAAAADK/yIAAAACAAAAAADL/yIAAAACAAAAAADM/yIAAAACAAAAAADN/yIAAAACAAAAAADO/yIAAAACAAAAAADP/yIAAAACAAAAAADQ/yIAAAACAAAAAADR/yIAAAACAAAAAADS/yIAAAACAAAAAADT/yIAAAACAAAAAADU/yIAAAACAAAAAADV/yIAAAACAAAAAADW/yIAAAACAAAAAADX/yIAAAACAAAAAADY/yIAAAACAAAAAADZ/yIAAAACAAAAAADa/yIAAAACAAAAAADb/yIAAAACAAAAAADc/yIAAAACAAAAAADd/yIAAAACAAAAAADe/yIAAAACAAAAAADf/yIAAAACAAAAAADg/yIAAAACAAAAAADh/yIAAAACAAAAAADi/yIAAAACAAAAAADj/yIAAAACAAAAAADk/yIAAAACAAAAAADl/yIAAAACAAAAAADj/yMAAAACAAIAAADk/yMAAAACAAIAAADl/yMAAAACAAIAAACg/yMAAAABAAIAAACh/yMAAAACAAIAAACi/yMAAAACAAIAAACj/yMAAAACAAIAAACk/yMAAAACAAIAAACl/yMAAAACAAIAAACm/yMAAAACAAIAAACn/yMAAAACAAIAAACo/yMAAAACAAIAAACp/yMAAAACAAIAAACq/yMAAAACAAIAAACr/yMAAAACAAIAAACs/yMAAAACAAIAAACt/yMAAAACAAIAAACu/yMAAAACAAIAAACv/yMAAAACAAIAAACw/yMAAAACAAIAAACx/yMAAAACAAIAAACy/yMAAAACAAIAAACz/yMAAAACAAIAAAC0/yMAAAACAAIAAAC1/yMAAAACAAIAAAC2/yMAAAACAAIAAAC3/yMAAAACAAIAAAC4/yMAAAACAAIAAAC5/yMAAAACAAIAAAC6/yMAAAACAAIAAAC7/yMAAAACAAIAAAC8/yMAAAACAAIAAAC9/yMAAAACAAIAAAC+/yMAAAACAAIAAAC//yMAAAACAAIAAADA/yMAAAACAAIAAADB/yMAAAACAAIAAADC/yMAAAACAAIAAADD/yMAAAACAAIAAADE/yMAAAACAAIAAADF/yMAAAACAAIAAADG/yMAAAACAAIAAADH/yMAAAACAAIAAADI/yMAAAACAAIAAADJ/yMAAAACAAIAAADK/yMAAAACAAIAAADL/yMAAAACAAIAAADM/yMAAAACAAIAAADN/yMAAAACAAIAAADO/yMAAAACAAIAAADP/yMAAAACAAIAAADQ/yMAAAACAAIAAADR/yMAAAACAAIAAADS/yMAAAACAAIAAADT/yMAAAACAAIAAADU/yMAAAACAAIAAADV/yMAAAACAAIAAADW/yMAAAACAAIAAADX/yMAAAACAAIAAADY/yMAAAACAAIAAADZ/yMAAAACAAIAAADa/yMAAAACAAIAAADb/yMAAAACAAIAAADc/yMAAAACAAIAAADd/yMAAAACAAIAAADe/yMAAAACAAIAAADf/yMAAAACAAIAAADg/yMAAAACAAIAAADh/yMAAAACAAIAAADi/yMAAAACAAIAAAA=")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("resource_setter")]
+position = Vector2(-64, 17)
+sprite_frames = ExtResource("6_oofmi")
+animation = &"Idle"
+script = ExtResource("6_8d7lx")
+resource_setter = NodePath("ResourceSetterNew")
+metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
+
+[node name="ResourceSetterNew" type="Node" parent="PlayerSprite"]
+script = ExtResource("6_100cl")
+use_cache = false
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect3" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Options1" type="VBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("options")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(9, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -64.0
+offset_right = 84.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_constants/separation = 0
+alignment = 2
+script = ExtResource("9_dsf7o")
+active = true
+options = [NodePath("PlayGame"), NodePath("Settings"), NodePath("Quit Game")]
+
+[node name="PlayGame" type="Label" parent="CanvasLayer/Options1"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "MENU_PLAY_GAME"
+uppercase = true
+
+[node name="Settings" type="Label" parent="CanvasLayer/Options1"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "MENU_SETTINGS"
+uppercase = true
+
+[node name="Quit Game" type="Label" parent="CanvasLayer/Options1"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "MENU_EXTRAS"
+uppercase = true
+
+[node name="Buffer" type="Control" parent="CanvasLayer/Options1"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Options2" type="VBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("options")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(9, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -64.0
+offset_right = 320.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_constants/separation = 0
+alignment = 2
+script = ExtResource("9_dsf7o")
+options = [NodePath("Story"), NodePath("Challenges"), NodePath("Marathon")]
+
+[node name="Story" type="Label" parent="CanvasLayer/Options2"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "MENU_STORY"
+uppercase = true
+
+[node name="Challenges" type="Label" parent="CanvasLayer/Options2"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "MENU_CHALLENGES"
+uppercase = true
+
+[node name="Marathon" type="Label" parent="CanvasLayer/Options2"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "MENU_MARATHON"
+uppercase = true
+
+[node name="Buffer" type="Control" parent="CanvasLayer/Options2"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Extras" type="VBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("options")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(9, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -64.0
+offset_right = 320.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_constants/separation = 0
+script = ExtResource("9_dsf7o")
+options = [NodePath("Achiements"), NodePath("Credits")]
+
+[node name="Achiements" type="Label" parent="CanvasLayer/Extras"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "MENU_ACHIEVEMENTS"
+uppercase = true
+
+[node name="Credits" type="Label" parent="CanvasLayer/Extras"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "MENU_CREDITS"
+uppercase = true
+
+[node name="Buffer" type="Control" parent="CanvasLayer/Extras"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="StoryMode" type="Node" parent="CanvasLayer"]
+
+[node name="StoryOptions" type="VBoxContainer" parent="CanvasLayer/StoryMode" node_paths=PackedStringArray("options")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(9, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -64.0
+offset_right = 320.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_constants/separation = 0
+alignment = 2
+script = ExtResource("9_dsf7o")
+options = [NodePath("New Game"), NodePath("Continue")]
+
+[node name="New Game" type="Label" parent="CanvasLayer/StoryMode/StoryOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "MENU_NEW_GAME"
+uppercase = true
+
+[node name="Continue" type="Label" parent="CanvasLayer/StoryMode/StoryOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "MENU_CONTINUE"
+uppercase = true
+
+[node name="HighScore" type="Label" parent="CanvasLayer/StoryMode/StoryOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "MENU_HIGH_SCORE"
+uppercase = true
+
+[node name="Buffer" type="Control" parent="CanvasLayer/StoryMode/StoryOptions"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="NoBeatenCharSelect" parent="CanvasLayer/StoryMode" instance=ExtResource("13_8wrri")]
+visible = false
+offset_left = -62.0
+offset_top = -35.0
+offset_right = 62.0
+offset_bottom = 35.0
+
+[node name="QuestSelect" parent="CanvasLayer/StoryMode" instance=ExtResource("16_s06mt")]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = -30.5
+offset_right = 63.0
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorldSelect" parent="CanvasLayer/StoryMode" instance=ExtResource("10_emltp")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -26.0
+offset_right = 92.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelSelect" parent="CanvasLayer/StoryMode" instance=ExtResource("58_qgapq")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -40.0
+offset_right = 128.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BeatenCharSelect" parent="CanvasLayer/StoryMode" instance=ExtResource("13_8wrri")]
+visible = false
+offset_left = -62.0
+offset_top = -35.0
+offset_right = 62.0
+offset_bottom = 35.0
+
+[node name="ChallengeOptions" type="VBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("options")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(9, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -64.0
+offset_right = 320.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_constants/separation = 0
+script = ExtResource("9_dsf7o")
+options = [NodePath("BooRace"), NodePath("ChallengeHunt")]
+
+[node name="BooRace" type="Label" parent="CanvasLayer/ChallengeOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "CHALLENGE_BOO"
+uppercase = true
+
+[node name="ChallengeHunt" type="Label" parent="CanvasLayer/ChallengeOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "CHALLENGE_HUNT"
+uppercase = true
+
+[node name="Buffer" type="Control" parent="CanvasLayer/ChallengeOptions"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ChallengeHunt" type="Node" parent="CanvasLayer"]
+
+[node name="WorldSelect" parent="CanvasLayer/ChallengeHunt" instance=ExtResource("10_emltp")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -32.5
+offset_right = 90.0
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelSelect" parent="CanvasLayer/ChallengeHunt" instance=ExtResource("58_qgapq")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -40.0
+offset_right = 128.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharacterSelect" parent="CanvasLayer/ChallengeHunt" instance=ExtResource("13_8wrri")]
+visible = false
+offset_left = -64.0
+offset_top = -36.0
+offset_right = 64.0
+offset_bottom = 36.0
+
+[node name="World9" type="Node" parent="CanvasLayer"]
+
+[node name="ExtraWorldSelect" parent="CanvasLayer/World9" instance=ExtResource("41_obcl5")]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -24.0
+offset_right = 90.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ExtraLevelSelect" parent="CanvasLayer/World9" instance=ExtResource("58_qgapq")]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -40.0
+offset_right = 128.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharacterSelect" parent="CanvasLayer/World9" instance=ExtResource("13_8wrri")]
+visible = false
+offset_left = -64.0
+offset_top = -36.0
+offset_right = 64.0
+offset_bottom = 36.0
+
+[node name="Cursor" type="TextureRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 80.0
+offset_top = 176.0
+offset_right = 88.0
+offset_bottom = 184.0
+texture = ExtResource("8_jmbsi")
+stretch_mode = 2
+
+[node name="ResourceSetter" type="Node" parent="CanvasLayer/Cursor" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("9_kugbg")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="AllNightNippon" type="Node" parent="CanvasLayer"]
+
+[node name="WorldSelect" parent="CanvasLayer/AllNightNippon" instance=ExtResource("10_emltp")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -32.5
+offset_right = 90.0
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelSelect" parent="CanvasLayer/AllNightNippon" instance=ExtResource("58_qgapq")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -40.0
+offset_right = 128.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharacterSelect" parent="CanvasLayer/AllNightNippon" instance=ExtResource("13_8wrri")]
+visible = false
+offset_left = -64.0
+offset_top = -36.0
+offset_right = 64.0
+offset_bottom = 36.0
+
+[node name="MarathonMode" type="Node" parent="CanvasLayer"]
+
+[node name="MarathonSelect" parent="CanvasLayer/MarathonMode" instance=ExtResource("58_sul0v")]
+unique_name_in_owner = true
+visible = false
+
+[node name="SpeedrunTypeSelect" parent="CanvasLayer/MarathonMode" instance=ExtResource("19_6t4fx")]
+visible = false
+
+[node name="CharacterSelect2" parent="CanvasLayer/MarathonMode" instance=ExtResource("13_8wrri")]
+visible = false
+offset_left = -64.0
+offset_top = -36.0
+offset_right = 64.0
+offset_bottom = 36.0
+
+[node name="WorldSelect" parent="CanvasLayer/MarathonMode" instance=ExtResource("10_emltp")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -32.5
+offset_right = 90.0
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelSelect" parent="CanvasLayer/MarathonMode" instance=ExtResource("58_qgapq")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -40.0
+offset_right = 128.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+has_speedrun_stuff = true
+
+[node name="CharacterSelect" parent="CanvasLayer/MarathonMode" instance=ExtResource("13_8wrri")]
+visible = false
+offset_left = -64.0
+offset_top = -36.0
+offset_right = 64.0
+offset_bottom = 36.0
+
+[node name="HasWarp" type="Node" parent="CanvasLayer/MarathonMode"]
+
+[node name="SpeedrunTypeSelect" parent="CanvasLayer/MarathonMode/HasWarp" instance=ExtResource("19_6t4fx")]
+unique_name_in_owner = true
+visible = false
+
+[node name="CharacterSelect" parent="CanvasLayer/MarathonMode/HasWarp" instance=ExtResource("13_8wrri")]
+visible = false
+offset_left = -64.0
+offset_top = -36.0
+offset_right = 64.0
+offset_bottom = 36.0
+
+[node name="HasRan" type="Node" parent="CanvasLayer/MarathonMode"]
+
+[node name="GhostSelect" parent="CanvasLayer/MarathonMode/HasRan" instance=ExtResource("20_p54in")]
+visible = false
+
+[node name="CharacterSelect" parent="CanvasLayer/MarathonMode/HasRan" instance=ExtResource("13_8wrri")]
+visible = false
+offset_left = -64.0
+offset_top = -36.0
+offset_right = 64.0
+offset_bottom = 36.0
+
+[node name="SettingsMenu" parent="CanvasLayer" instance=ExtResource("12_5iq4f")]
+unique_name_in_owner = true
+offset_left = 0.0
+offset_right = 0.0
+
+[node name="LabelFontChanger" parent="CanvasLayer/SettingsMenu" index="1" node_paths=PackedStringArray("labels")]
+labels = [NodePath("../PanelContainer/MarginContainer/VBoxContainer/Title"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer/Category"), null, null, null, null, null, null, null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode/Value"), null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode2/Value"), null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode3/Value"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/Difficulty/Description/AutoScrollContainer/MarginContainer/Desc")]
+
+[node name="CampaignSelect" parent="CanvasLayer" instance=ExtResource("14_1wnbq")]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -32.0
+offset_right = 128.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SaveDeletionWarning" parent="CanvasLayer" instance=ExtResource("15_s06mt")]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -66.0
+offset_right = 84.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AchievementUnlock" parent="CanvasLayer" instance=ExtResource("21_p54in")]
+unique_name_in_owner = true
+
+[node name="QuitDialog" parent="CanvasLayer" instance=ExtResource("22_wjo1g")]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Label" type="Label" parent="CanvasLayer2"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_right = 184.0
+grow_vertical = 0
+text = "v1.0.0"
+uppercase = true
+script = SubResource("GDScript_8peil")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2/Label"]
+visible = false
+show_behind_parent = true
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Timer" type="Timer" parent="CanvasLayer2/Label"]
+autostart = true
+
+[node name="DropShadow" parent="." instance=ExtResource("5_8t4ah")]
+
+[node name="CameraRightLimit" type="Node2D" parent="."]
+script = ExtResource("18_3wltv")
+metadata/_custom_type_script = "uid://bdq0373j5n5o0"
+
+[node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+script = ExtResource("21_qti1l")
+labels = [NodePath("../CanvasLayer/Options2/Story"), NodePath("../CanvasLayer/Options2/Challenges"), NodePath("../CanvasLayer/Options2/Marathon"), NodePath("../CanvasLayer/StoryMode/StoryOptions/New Game"), NodePath("../CanvasLayer/StoryMode/StoryOptions/Continue"), NodePath("../CanvasLayer/StoryMode/StoryOptions/HighScore"), NodePath("../CanvasLayer/Extras/Achiements"), NodePath("../CanvasLayer/Extras/Credits"), null, NodePath("../CanvasLayer/ChallengeOptions/BooRace"), NodePath("../CanvasLayer/ChallengeOptions/ChallengeHunt"), null, NodePath("../CanvasLayer2/Label"), NodePath("../CanvasLayer/Options1/PlayGame"), NodePath("../CanvasLayer/Options1/Settings"), NodePath("../CanvasLayer/Options1/Quit Game"), NodePath("../CanvasLayer2/Label")]
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
+
+[node name="TextShadowColourChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+script = ExtResource("23_s06mt")
+labels = [NodePath("../CanvasLayer/Options2/Story"), NodePath("../CanvasLayer/Options2/Challenges"), NodePath("../CanvasLayer/Options2/Marathon"), NodePath("../CanvasLayer/StoryMode/StoryOptions/New Game"), NodePath("../CanvasLayer/StoryMode/StoryOptions/Continue"), NodePath("../CanvasLayer/StoryMode/StoryOptions/HighScore"), NodePath("../CanvasLayer/Extras/Achiements"), NodePath("../CanvasLayer/Extras/Credits"), null, NodePath("../CanvasLayer/ChallengeOptions/BooRace"), NodePath("../CanvasLayer/ChallengeOptions/ChallengeHunt"), null, NodePath("../CanvasLayer2/Label"), NodePath("../CanvasLayer/Options1/PlayGame"), NodePath("../CanvasLayer/Options1/Settings"), NodePath("../CanvasLayer/Options1/Quit Game"), NodePath("../CanvasLayer2/Label"), null]
+
+[node name="Logo" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -120)
+sprite_frames = SubResource("SpriteFrames_sul0v")
+autoplay = "default"
+script = ExtResource("48_b3nob")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="Control" type="Control" parent="Logo"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -88.0
+offset_top = -44.0
+offset_right = -80.0
+offset_bottom = 180.0
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Logo/Control"]
+layout_mode = 1
+offset_left = 88.0
+offset_top = 12.0
+offset_right = 160.0
+offset_bottom = 44.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+
+[node name="Star1" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star1"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star1/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star2" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star2"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star2/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star3" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star3"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star3/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star4" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star4"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star4/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star5" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star5"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star5/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star6" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star6"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star6/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star7" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star7"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star7/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star8" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star8"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star8/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star9" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star9"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star9/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star10" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star10"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star10/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star11" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star11"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star11/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star12" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star12"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star12/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star13" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star13"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star13/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star14" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star14"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star14/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star15" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star15"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star15/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star16" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star16"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star16/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star17" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star17"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star17/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star18" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star18"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star18/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star19" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star19"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star19/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star20" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star20"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star20/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star21" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star21"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star21/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star22" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star22"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star22/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star23" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star23"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star23/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star24" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star24"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star24/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star25" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star25"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star25/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star26" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star26"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star26/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star27" type="Control" parent="Logo/Control/HFlowContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star27"]
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star27/Main" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Star28" type="Control" parent="Logo/Control/HFlowContainer"]
+top_level = true
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Logo/Control/HFlowContainer/Star28"]
+layout_mode = 0
+offset_left = -88.0
+offset_top = -176.0
+offset_right = -48.0
+offset_bottom = -160.0
+text = "♕"
+
+[node name="Shadow" type="Label" parent="Logo/Control/HFlowContainer/Star28/Label"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_wsi03")
+layout_mode = 1
+anchors_preset = -1
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 17.0
+offset_bottom = 17.0
+text = "♕"
+uppercase = true
+
+[node name="Main" type="AnimatedSprite2D" parent="Logo/Control/HFlowContainer/Star28"]
+position = Vector2(612, 2272)
+sprite_frames = SubResource("SpriteFrames_l3ok6")
+autoplay = "default"
+frame_progress = 0.877984
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star28/Main"]
+script = ExtResource("6_100cl")
+resource_json = ExtResource("30_p54in")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="ResourceSetter" type="Node" parent="Logo" node_paths=PackedStringArray("node_to_affect", "property_node")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_node = NodePath("../..")
+property_name = "sprite_frames"
+resource_json = ExtResource("51_la5b0")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Logo2" type="AnimatedSprite2D" parent="Logo"]
+position = Vector2(0, 64)
+sprite_frames = SubResource("SpriteFrames_gxk2n")
+autoplay = "default"
+frame_progress = 0.7019163
+script = ExtResource("48_b3nob")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Logo/Logo2" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("53_b3nob")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="TextShadowColourChanger2" type="Node" parent="."]
+script = ExtResource("23_s06mt")
+metadata/_custom_type_script = "uid://dt2p68xl462v2"
+
+[node name="ThemedToJSONConverter" type="Node" parent="."]
+script = ExtResource("52_ur12k")
+resource = SubResource("Resource_jt40r")
+json_file_path = "res://Assets/Sprites/UI/Title2.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="ResourceSetterNew" type="Node" parent="BGM" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_100cl")
+node_to_affect = NodePath("..")
+property_name = "stream"
+mode = 2
+resource_json = ExtResource("37_twc32")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[connection signal="closed" from="CanvasLayer/Options1" to="CanvasLayer/Options1" method="show"]
+[connection signal="closed" from="CanvasLayer/Options1" to="CanvasLayer/QuitDialog" method="start"]
+[connection signal="option_1_selected" from="CanvasLayer/Options1" to="CanvasLayer/CampaignSelect" method="open"]
+[connection signal="option_2_selected" from="CanvasLayer/Options1" to="." method="open_options"]
+[connection signal="option_3_selected" from="CanvasLayer/Options1" to="CanvasLayer/Options1" method="close"]
+[connection signal="option_3_selected" from="CanvasLayer/Options1" to="CanvasLayer/Extras" method="open"]
+[connection signal="closed" from="CanvasLayer/Options2" to="CanvasLayer/Options1" method="open"]
+[connection signal="option_1_selected" from="CanvasLayer/Options2" to="." method="continue_story"]
+[connection signal="option_2_selected" from="CanvasLayer/Options2" to="CanvasLayer/Options2" method="close"]
+[connection signal="option_2_selected" from="CanvasLayer/Options2" to="CanvasLayer/ChallengeOptions" method="open"]
+[connection signal="option_3_selected" from="CanvasLayer/Options2" to="CanvasLayer/MarathonMode/MarathonSelect" method="open"]
+[connection signal="closed" from="CanvasLayer/Extras" to="CanvasLayer/Options1" method="open"]
+[connection signal="option_1_selected" from="CanvasLayer/Extras" to="." method="go_to_achievement_menu"]
+[connection signal="option_2_selected" from="CanvasLayer/Extras" to="." method="go_to_credits"]
+[connection signal="closed" from="CanvasLayer/StoryMode/StoryOptions" to="." method="on_story_options_closed"]
+[connection signal="option_1_selected" from="CanvasLayer/StoryMode/StoryOptions" to="." method="new_game"]
+[connection signal="option_2_selected" from="CanvasLayer/StoryMode/StoryOptions" to="." method="continue_story"]
+[connection signal="cancelled" from="CanvasLayer/StoryMode/NoBeatenCharSelect" to="CanvasLayer/Options2" method="open"]
+[connection signal="selected" from="CanvasLayer/StoryMode/NoBeatenCharSelect" to="." method="start_game"]
+[connection signal="cancelled" from="CanvasLayer/StoryMode/QuestSelect" to="CanvasLayer/Options2" method="open"]
+[connection signal="selected" from="CanvasLayer/StoryMode/QuestSelect" to="CanvasLayer/StoryMode/WorldSelect" method="open"]
+[connection signal="cancelled" from="CanvasLayer/StoryMode/WorldSelect" to="CanvasLayer/StoryMode/QuestSelect" method="open"]
+[connection signal="world_selected" from="CanvasLayer/StoryMode/WorldSelect" to="CanvasLayer/StoryMode/LevelSelect" method="open"]
+[connection signal="cancelled" from="CanvasLayer/StoryMode/LevelSelect" to="CanvasLayer/StoryMode/WorldSelect" method="open"]
+[connection signal="level_selected" from="CanvasLayer/StoryMode/LevelSelect" to="CanvasLayer/StoryMode/BeatenCharSelect" method="open"]
+[connection signal="cancelled" from="CanvasLayer/StoryMode/BeatenCharSelect" to="CanvasLayer/StoryMode/LevelSelect" method="open"]
+[connection signal="selected" from="CanvasLayer/StoryMode/BeatenCharSelect" to="." method="start_game"]
+[connection signal="closed" from="CanvasLayer/ChallengeOptions" to="CanvasLayer/Options2" method="open"]
+[connection signal="option_1_selected" from="CanvasLayer/ChallengeOptions" to="." method="go_to_boo_menu"]
+[connection signal="option_2_selected" from="CanvasLayer/ChallengeOptions" to="." method="challenge_hunt_selected"]
+[connection signal="option_3_selected" from="CanvasLayer/ChallengeOptions" to="." method="world_9_selected"]
+[connection signal="cancelled" from="CanvasLayer/ChallengeHunt/WorldSelect" to="CanvasLayer/ChallengeOptions" method="open"]
+[connection signal="world_selected" from="CanvasLayer/ChallengeHunt/WorldSelect" to="CanvasLayer/ChallengeHunt/LevelSelect" method="open"]
+[connection signal="cancelled" from="CanvasLayer/ChallengeHunt/LevelSelect" to="CanvasLayer/ChallengeHunt/WorldSelect" method="open"]
+[connection signal="level_selected" from="CanvasLayer/ChallengeHunt/LevelSelect" to="CanvasLayer/ChallengeHunt/CharacterSelect" method="open"]
+[connection signal="cancelled" from="CanvasLayer/ChallengeHunt/CharacterSelect" to="CanvasLayer/ChallengeHunt/LevelSelect" method="open"]
+[connection signal="selected" from="CanvasLayer/ChallengeHunt/CharacterSelect" to="." method="challenge_hunt_start"]
+[connection signal="cancelled" from="CanvasLayer/World9/ExtraWorldSelect" to="CanvasLayer/ChallengeOptions" method="open"]
+[connection signal="world_selected" from="CanvasLayer/World9/ExtraWorldSelect" to="CanvasLayer/World9/ExtraLevelSelect" method="open"]
+[connection signal="cancelled" from="CanvasLayer/World9/ExtraLevelSelect" to="CanvasLayer/World9/ExtraWorldSelect" method="open"]
+[connection signal="level_selected" from="CanvasLayer/World9/ExtraLevelSelect" to="CanvasLayer/World9/CharacterSelect" method="open"]
+[connection signal="cancelled" from="CanvasLayer/World9/CharacterSelect" to="CanvasLayer/World9/ExtraLevelSelect" method="open"]
+[connection signal="selected" from="CanvasLayer/World9/CharacterSelect" to="." method="start_game"]
+[connection signal="cancelled" from="CanvasLayer/AllNightNippon/WorldSelect" to="CanvasLayer/Options1" method="open"]
+[connection signal="world_selected" from="CanvasLayer/AllNightNippon/WorldSelect" to="CanvasLayer/AllNightNippon/LevelSelect" method="open"]
+[connection signal="cancelled" from="CanvasLayer/AllNightNippon/LevelSelect" to="CanvasLayer/AllNightNippon/WorldSelect" method="open"]
+[connection signal="level_selected" from="CanvasLayer/AllNightNippon/LevelSelect" to="CanvasLayer/AllNightNippon/CharacterSelect" method="open"]
+[connection signal="cancelled" from="CanvasLayer/AllNightNippon/CharacterSelect" to="CanvasLayer/AllNightNippon/LevelSelect" method="open"]
+[connection signal="selected" from="CanvasLayer/AllNightNippon/CharacterSelect" to="." method="start_game"]
+[connection signal="cancelled" from="CanvasLayer/MarathonMode/MarathonSelect" to="CanvasLayer/Options2" method="open"]
+[connection signal="full_run_selected" from="CanvasLayer/MarathonMode/MarathonSelect" to="CanvasLayer/MarathonMode/SpeedrunTypeSelect" method="open"]
+[connection signal="level_run_selected" from="CanvasLayer/MarathonMode/MarathonSelect" to="CanvasLayer/MarathonMode/WorldSelect" method="open"]
+[connection signal="cancelled" from="CanvasLayer/MarathonMode/SpeedrunTypeSelect" to="CanvasLayer/MarathonMode/MarathonSelect" method="open"]
+[connection signal="selected" from="CanvasLayer/MarathonMode/SpeedrunTypeSelect" to="CanvasLayer/MarathonMode/CharacterSelect2" method="open"]
+[connection signal="cancelled" from="CanvasLayer/MarathonMode/CharacterSelect2" to="CanvasLayer/MarathonMode/SpeedrunTypeSelect" method="open"]
+[connection signal="selected" from="CanvasLayer/MarathonMode/CharacterSelect2" to="." method="start_full_run"]
+[connection signal="cancelled" from="CanvasLayer/MarathonMode/WorldSelect" to="CanvasLayer/MarathonMode/MarathonSelect" method="open"]
+[connection signal="world_selected" from="CanvasLayer/MarathonMode/WorldSelect" to="CanvasLayer/MarathonMode/LevelSelect" method="open"]
+[connection signal="cancelled" from="CanvasLayer/MarathonMode/LevelSelect" to="CanvasLayer/MarathonMode/WorldSelect" method="open"]
+[connection signal="level_selected" from="CanvasLayer/MarathonMode/LevelSelect" to="." method="check_for_warpless"]
+[connection signal="cancelled" from="CanvasLayer/MarathonMode/CharacterSelect" to="CanvasLayer/MarathonMode/LevelSelect" method="open"]
+[connection signal="selected" from="CanvasLayer/MarathonMode/CharacterSelect" to="." method="start_level_run"]
+[connection signal="cancelled" from="CanvasLayer/MarathonMode/HasWarp/SpeedrunTypeSelect" to="CanvasLayer/MarathonMode/LevelSelect" method="open"]
+[connection signal="selected" from="CanvasLayer/MarathonMode/HasWarp/SpeedrunTypeSelect" to="." method="check_for_ghost"]
+[connection signal="cancelled" from="CanvasLayer/MarathonMode/HasWarp/CharacterSelect" to="CanvasLayer/MarathonMode/HasWarp/SpeedrunTypeSelect" method="open"]
+[connection signal="selected" from="CanvasLayer/MarathonMode/HasWarp/CharacterSelect" to="." method="start_level_run"]
+[connection signal="cancelled" from="CanvasLayer/MarathonMode/HasRan/GhostSelect" to="CanvasLayer/MarathonMode/LevelSelect" method="open"]
+[connection signal="selected" from="CanvasLayer/MarathonMode/HasRan/GhostSelect" to="CanvasLayer/MarathonMode/HasRan/CharacterSelect" method="open"]
+[connection signal="cancelled" from="CanvasLayer/MarathonMode/HasRan/CharacterSelect" to="CanvasLayer/MarathonMode/HasRan/GhostSelect" method="open"]
+[connection signal="selected" from="CanvasLayer/MarathonMode/HasRan/CharacterSelect" to="." method="start_level_run"]
+[connection signal="achievements_deleted" from="CanvasLayer/SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" to="." method="setup_stars"]
+[connection signal="cancelled" from="CanvasLayer/CampaignSelect" to="CanvasLayer/Options1" method="open"]
+[connection signal="selected" from="CanvasLayer/CampaignSelect" to="." method="campaign_selected"]
+[connection signal="cancelled" from="CanvasLayer/SaveDeletionWarning" to="CanvasLayer/StoryMode/StoryOptions" method="open"]
+[connection signal="cancelled" from="CanvasLayer/QuitDialog" to="CanvasLayer/Options1" method="open"]
+[connection signal="timeout" from="CanvasLayer2/Label/Timer" to="CanvasLayer2/Label" method="update"]
+[connection signal="updated" from="BGM/ResourceSetterNew" to="." method="play_bgm"]
+
+[editable path="CanvasLayer/SettingsMenu"]
+[editable path="CanvasLayer/SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Video/Language"]
+[editable path="CanvasLayer/SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode"]
+[editable path="CanvasLayer/SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode2"]
+[editable path="CanvasLayer/SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode3"]

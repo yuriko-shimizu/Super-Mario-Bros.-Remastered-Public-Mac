@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://87lcnsa0epi1"]
+
+[ext_resource type="Script" uid="uid://codql1f5eca56" path="res://Scripts/Classes/Editor/OptionButtonThatIsntFuckingBlurry.gd" id="1_r12ps"]
+
+[sub_resource type="GDScript" id="GDScript_dvo62"]
+script/source = "extends TilePropertyContainer
+
+func _ready() -> void:
+	$Label.text = tile_property_name.replace(\"_\", \" \")
+	for i in values:
+		$OptionButton.add_item(values[i].to_upper(), i)
+"
+
+[node name="TilePropertyEnum" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+offset_right = 145.0
+offset_bottom = 24.0
+script = SubResource("GDScript_dvo62")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PROPERTY_NAME:"
+uppercase = true
+
+[node name="OptionButton" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_r12ps")
+metadata/_custom_type_script = "uid://codql1f5eca56"
+
+[connection signal="start_value_changed" from="." to="OptionButton" method="select"]
+[connection signal="item_selected" from="OptionButton" to="." method="set_value"]

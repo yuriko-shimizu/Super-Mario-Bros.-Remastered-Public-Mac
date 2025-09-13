@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://c75cko8tyt467"]
+
+[ext_resource type="Script" uid="uid://v5rwovoqjpag" path="res://Scripts/Parts/CastleChallengeEnd.gd" id="1_nomt5"]
+[ext_resource type="Texture2D" uid="uid://jucsm1aw6fv5" path="res://Assets/Sprites/Tilesets/ChallengeCastleEnd.png" id="3_nomt5"]
+[ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="8_che3x"]
+
+[sub_resource type="Animation" id="Animation_d5sl2"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_griru"]
+resource_name = "Speak"
+length = 5.0
+step = 0.1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y2uvy"]
+_data = {
+&"RESET": SubResource("Animation_d5sl2"),
+&"Speak": SubResource("Animation_griru")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_an0bx"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d5sl2"]
+normal = Vector2(-1, 0)
+
+[node name="CastleChallengeEnd" type="Node2D"]
+script = ExtResource("1_nomt5")
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_y2uvy")
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(48, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_an0bx")
+
+[node name="CameraRightLimit" type="Node2D" parent="."]
+position = Vector2(128, -80)
+script = ExtResource("8_che3x")
+reset_on_delete = false
+metadata/_custom_type_script = "uid://bdq0373j5n5o0"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraRightLimit"]
+shape = SubResource("WorldBoundaryShape2D_d5sl2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(0, -32)
+texture = ExtResource("3_nomt5")
+vframes = 2
+
+[node name="Overlay" type="Sprite2D" parent="Sprite2D"]
+z_index = 10
+z_as_relative = false
+texture = ExtResource("3_nomt5")
+vframes = 2
+frame = 1
+region_rect = Rect2(99, 0, 65, 92)
+
+[node name="Overlay2" type="Sprite2D" parent="Sprite2D"]
+show_behind_parent = true
+z_index = 10
+z_as_relative = false
+texture = ExtResource("3_nomt5")
+vframes = 2
+frame = 1
+region_rect = Rect2(0, 80, 80, 48)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+show_behind_parent = true
+texture = ExtResource("3_nomt5")
+vframes = 2

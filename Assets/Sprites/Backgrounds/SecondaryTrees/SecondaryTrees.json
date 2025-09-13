@@ -1,0 +1,213 @@
+{
+	"properties": {
+		"can_tree_tint": true
+	},
+	"variations": {
+		"default": {
+			"SMB1": {
+				"Day": {
+					"source": "Trees.png"
+				},
+				"Night": {
+					"source": "NightTrees.png"
+				}
+			},
+			"SMBLL": {
+				"Day": {
+					"source": "TreesLL.png"
+				},
+				"Night": {
+					"source": "NightTreesLL.png"
+				}
+			}
+		},
+		"Jungle": {
+			"SMB1": {
+				"Day": {
+					"source": "JungleTrees.png"
+				},
+				"Night": {
+					"source": "JungleNightTrees.png"
+				}
+			},
+			"SMBLL": {
+				"Day": {
+					"source": "JungleTreesLL.png"
+				},
+				"Night": {
+					"source": "JungleNightTreesLL.png"
+				}
+			}
+		},
+		"Snow": {
+			"SMB1": {
+				"Day": {
+					"source": "SnowTrees.png"
+				},
+				"Night": {
+					"source": "SnowNightTrees.png"
+				}
+			},
+			"SMBLL": {
+				"Day": {
+					"source": "SnowTreesLL.png"
+				},
+				"Night": {
+					"source": "SnowNightTreesLL.png"
+				}
+			}
+		},
+		"Autumn": {
+			"SMB1": {
+				"Day": {
+					"source": "AutumnTrees.png"
+				},
+				"Night": {
+					"source": "AutumnNightTrees.png"
+				}
+			},
+			"SMBLL": {
+				"Day": {
+					"source": "AutumnTreesLL.png"
+				},
+				"Night": {
+					"source": "AutumnNightTreesLL.png"
+				}
+			}
+		},
+		"Beach": {
+			"SMB1": {
+				"Day": {
+					"source": "BeachTrees.png"
+				},
+				"Night": {
+					"source": "BeachNightTrees.png"
+				}
+			},
+			"SMBLL": {
+				"Day": {
+					"source": "BeachTreesLL.png"
+				},
+				"Night": {
+					"source": "BeachNightTreesLL.png"
+				}
+			}
+		},
+		"Castle": {
+			"SMB1": {
+				"Day": {
+					"source": "CastleTrees.png"
+				},
+				"Night": {
+					"source": "CastleNightTrees.png"
+				}
+			},
+			"SMBLL": {
+				"Day": {
+					"source": "CastleTreesLL.png"
+				},
+				"Night": {
+					"source": "CastleNightTreesLL.png"
+				}
+			}
+		},
+		"Space": {
+			"SMB1": {
+				"Day": {
+					"source": "SpaceTrees.png"
+				},
+				"Night": {
+					"source": "SpaceTrees.png"
+				}
+			},
+			"SMBLL": {
+				"Day": {
+					"source": "SpaceTreesLL.png"
+				},
+				"Night": {
+					"source": "SpaceTreesLL.png"
+				}
+			}
+		},
+		"Underground": {
+			"SMB1": {
+				"source": "UndergroundTrees.png"
+			},
+			"SMBLL": {
+				"source": "UndergroundTreesLL.png"
+			}
+		},
+		"GhostHouse": {
+			"link": "Underground"
+		},
+		"Underwater": {
+			"SMB1": {
+				"Day": {
+					"source": "UnderwaterTrees.png",
+					"properties": {
+						"can_tree_tint": false
+					}
+				},
+				"Night": {
+					"source": "UnderwaterTreesNight.png",
+					"properties": {
+						"can_tree_tint": false
+					}
+				}
+			},
+			"SMBLL": {
+				"Day": {
+					"source": "UnderwaterTreesLL.png",
+					"properties": {
+						"can_tree_tint": false
+					}
+				},
+				"Night": {
+					"source": "UnderwaterTreesLLNight.png",
+					"properties": {
+						"can_tree_tint": false
+					}
+				}
+			}
+		},
+		"CastleWater": {
+			"link": "Underwater"
+		},
+		"Volcano": {
+			"SMB1": {
+				"Day": {
+					"source": "VolcanoTrees.png"
+				},
+				"Night": {
+					"source": "VolcanoTrees.png"
+				}
+			},
+			"SMBLL": {
+				"Day": {
+					"source": "VolcanoTreesLL.png"
+				},
+				"Night": {
+					"source": "VolcanoTreesLL.png"
+				}
+			}
+		},
+		"Bonus": {
+			"SMB1": {
+				"Day": {
+					"source": "BonusTrees.png"
+				},
+				"Night": {
+					"source": "BonusTreesNight.png"
+				}
+			},
+			"SMBLL": {
+				"Day": {
+					"source": "BonusTreesLL.png"
+				},
+				"Night": {
+					"source": "BonusTreesNightLL.png"
+				}
+			}
+		}
+	}
+}

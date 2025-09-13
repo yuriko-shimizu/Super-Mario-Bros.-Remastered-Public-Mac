@@ -1,0 +1,22 @@
+[gd_resource type="AudioStreamInteractive" load_steps=3 format=3 uid="uid://d205cxhmqwsws"]
+
+[ext_resource type="AudioStream" uid="uid://dbaf3vhbmeer8" path="res://Assets/Audio/BGM/Athletic.mp3" id="1_p1h3u"]
+[ext_resource type="AudioStream" uid="uid://bvsm8432et3hv" path="res://Assets/Audio/BGM/AthleticHurry.mp3" id="2_din1e"]
+
+[resource]
+clip_count = 2
+clip_0/name = &"Normal"
+clip_0/stream = ExtResource("1_p1h3u")
+clip_0/auto_advance = 0
+clip_1/name = &"Hurry"
+clip_1/stream = ExtResource("2_din1e")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+}
+}
+metadata/BPM = 100

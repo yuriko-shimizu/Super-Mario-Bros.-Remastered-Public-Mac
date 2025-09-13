@@ -1,0 +1,200 @@
+[gd_scene load_steps=19 format=4 uid="uid://bney0cc8cfm5s"]
+
+[ext_resource type="Script" uid="uid://qq26qw7ltflb" path="res://Scripts/Parts/EndCastle.gd" id="1_hwcne"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_1kswc"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_gbn2t"]
+[ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="4_w7qld"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/CastleFlag.json" id="4_wqi45"]
+[ext_resource type="PackedScene" uid="uid://bikdod5ra10ra" path="res://Scenes/Parts/LargeCastleVisual.tscn" id="6_w7qld"]
+[ext_resource type="Script" uid="uid://73oviwf6bbys" path="res://Scripts/Classes/Components/TilesetTextureSetter.gd" id="8_akqko"]
+[ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="10_wqi45"]
+[ext_resource type="Texture2D" uid="uid://dkcs5i8l1y4y6" path="res://Assets/Sprites/Tilesets/EndingFinalCastleSprite.png" id="11_wqi45"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/FinalCastle.json" id="12_kd4m5"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="12_rgjtr"]
+[ext_resource type="PackedScene" uid="uid://ct5rrpa7uehkk" path="res://Scenes/Parts/Tiles.tscn" id="13_kd4m5"]
+
+[sub_resource type="Animation" id="Animation_an8pi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, -128)]
+}
+
+[sub_resource type="Animation" id="Animation_1x3lf"]
+resource_name = "Raise"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.02, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(32, -128), Vector2(32, -160)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fnvmm"]
+_data = {
+&"RESET": SubResource("Animation_an8pi"),
+&"Raise": SubResource("Animation_1x3lf")
+}
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wqi45"]
+texture = ExtResource("10_wqi45")
+texture_region_size = Vector2i(8, 8)
+5:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+7:20/0 = 0
+13:20/0 = 0
+14:14/0 = 0
+14:15/0 = 0
+15:15/0 = 0
+15:14/0 = 0
+12:20/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_kd4m5"]
+tile_size = Vector2i(8, 8)
+sources/0 = SubResource("TileSetAtlasSource_wqi45")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6fi1c"]
+size = Vector2(6, 20)
+
+[node name="EndFinalCastle" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_hwcne")
+
+[node name="FlagJoint" type="Node2D" parent="."]
+visible = false
+z_index = -5
+position = Vector2(32, -128)
+
+[node name="Flag" type="AnimatedSprite2D" parent="FlagJoint"]
+show_behind_parent = true
+z_index = -6
+position = Vector2(0, -24.1121)
+offset = Vector2(0, -16)
+script = ExtResource("2_1kswc")
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FlagJoint/Flag"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_fnvmm")
+}
+
+[node name="ResourceSetterNew" type="Node" parent="FlagJoint/Flag" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_gbn2t")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("4_wqi45")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="CameraRightLimit" type="Node2D" parent="."]
+position = Vector2(128, 0)
+script = ExtResource("4_w7qld")
+metadata/_custom_type_script = "uid://bdq0373j5n5o0"
+
+[node name="Framerule" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.351
+autostart = true
+
+[node name="SmallCastleVisual" parent="." instance=ExtResource("6_w7qld")]
+z_index = -10
+position = Vector2(0, -40)
+
+[node name="OverlaySprite" type="Sprite2D" parent="."]
+visible = false
+z_index = 10
+position = Vector2(32, -88)
+texture = ExtResource("11_wqi45")
+hframes = 2
+frame = 1
+region_rect = Rect2(0, 80, 80, 80)
+
+[node name="ResourceSetterNew" type="Node" parent="OverlaySprite" node_paths=PackedStringArray("node_to_affect", "property_node")]
+script = ExtResource("3_gbn2t")
+node_to_affect = NodePath("..")
+property_node = NodePath("../..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("12_kd4m5")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Wall" parent="." instance=ExtResource("13_kd4m5")]
+unique_name_in_owner = true
+position = Vector2(8, 0)
+tile_map_data = PackedByteArray("AAAGAPr/AAAGAAcAAAAHAPr/AAAGAAcAAAAIAPr/AAAGAAcAAAAJAPr/AAAGAAcAAAAKAPr/AAAGAAcAAAALAPr/AAAGAAcAAAAMAPr/AAAGAAcAAAANAPr/AAAGAAcAAAAOAPr/AAAGAAcAAAAPAPr/AAAGAAcAAAAQAPr/AAAGAAcAAAARAPr/AAAGAAcAAAASAPr/AAAGAAcAAAATAPr/AAAGAAcAAAAUAPr/AAAGAAcAAAAVAPr/AAAGAAcAAAAWAPr/AAAGAAcAAAAXAPr/AAAGAAcAAAAYAPr/AAAGAAcAAAAZAPr/AAAGAAcAAAAaAPr/AAAGAAcAAAAbAPr/AAAGAAcAAAAcAPr/AAAGAAcAAAAdAPr/AAAGAAcAAAAeAPr/AAAGAAcAAAAfAPr/AAAGAAcAAAAgAPr/AAAGAAcAAAAhAPr/AAAGAAcAAAAiAPr/AAAGAAcAAAAjAPr/AAAGAAcAAAAkAPr/AAAGAAcAAAAlAPr/AAAGAAcAAAAmAPr/AAAGAAcAAAAnAPr/AAAGAAcAAAAoAPr/AAAGAAcAAAApAPr/AAAGAAcAAAAqAPr/AAAGAAcAAAArAPr/AAAGAAcAAAAsAPr/AAAGAAcAAAAtAPr/AAAGAAcAAAAuAPr/AAAGAAcAAAAvAPr/AAAGAAcAAAAwAPr/AAAGAAcAAAAxAPr/AAAGAAcAAAAyAPr/AAAGAAcAAAAzAPr/AAAGAAcAAAA0APr/AAAGAAcAAAAHAPv/AAAHAAcAAAAHAPz/AAAHAAcAAAAHAP3/AAAHAAcAAAAHAP7/AAAHAAcAAAAHAP//AAAHAAcAAAAIAPv/AAAHAAcAAAAIAPz/AAAHAAcAAAAIAP3/AAAHAAcAAAAIAP7/AAAHAAcAAAAIAP//AAAHAAcAAAAJAPv/AAAHAAcAAAAJAPz/AAAHAAcAAAAJAP3/AAAHAAcAAAAJAP7/AAAHAAcAAAAJAP//AAAHAAcAAAAKAPv/AAAHAAcAAAAKAPz/AAAHAAcAAAAKAP3/AAAHAAcAAAAKAP7/AAAHAAcAAAAKAP//AAAHAAcAAAALAPv/AAAHAAcAAAALAPz/AAAHAAcAAAALAP3/AAAHAAcAAAALAP7/AAAHAAcAAAALAP//AAAHAAcAAAAMAPv/AAAHAAcAAAAMAPz/AAAHAAcAAAAMAP3/AAAHAAcAAAAMAP7/AAAHAAcAAAAMAP//AAAHAAcAAAANAPv/AAAHAAcAAAANAPz/AAAHAAcAAAANAP3/AAAHAAcAAAANAP7/AAAHAAcAAAANAP//AAAHAAcAAAAOAPv/AAAHAAcAAAAOAPz/AAAHAAcAAAAOAP3/AAAHAAcAAAAOAP7/AAAHAAcAAAAOAP//AAAHAAcAAAAPAPv/AAAHAAcAAAAPAPz/AAAHAAcAAAAPAP3/AAAHAAcAAAAPAP7/AAAHAAcAAAAPAP//AAAHAAcAAAAQAPv/AAAHAAcAAAAQAPz/AAAHAAcAAAAQAP3/AAAHAAcAAAAQAP7/AAAHAAcAAAAQAP//AAAHAAcAAAARAPv/AAAHAAcAAAARAPz/AAAHAAcAAAARAP3/AAAHAAcAAAARAP7/AAAHAAcAAAARAP//AAAHAAcAAAASAPv/AAAHAAcAAAASAPz/AAAHAAcAAAASAP3/AAAHAAcAAAASAP7/AAAHAAcAAAASAP//AAAHAAcAAAATAPv/AAAHAAcAAAATAPz/AAAHAAcAAAATAP3/AAAHAAcAAAATAP7/AAAHAAcAAAATAP//AAAHAAcAAAAUAPv/AAAHAAcAAAAUAPz/AAAHAAcAAAAUAP3/AAAHAAcAAAAUAP7/AAAHAAcAAAAUAP//AAAHAAcAAAAVAPv/AAAHAAcAAAAVAPz/AAAHAAcAAAAVAP3/AAAHAAcAAAAVAP7/AAAHAAcAAAAVAP//AAAHAAcAAAAWAPv/AAAHAAcAAAAWAPz/AAAHAAcAAAAWAP3/AAAHAAcAAAAWAP7/AAAHAAcAAAAWAP//AAAHAAcAAAAXAPv/AAAHAAcAAAAXAPz/AAAHAAcAAAAXAP3/AAAHAAcAAAAXAP7/AAAHAAcAAAAXAP//AAAHAAcAAAAYAPv/AAAHAAcAAAAYAPz/AAAHAAcAAAAYAP3/AAAHAAcAAAAYAP7/AAAHAAcAAAAYAP//AAAHAAcAAAAZAPv/AAAHAAcAAAAZAPz/AAAHAAcAAAAZAP3/AAAHAAcAAAAZAP7/AAAHAAcAAAAZAP//AAAHAAcAAAAaAPv/AAAHAAcAAAAaAPz/AAAHAAcAAAAaAP3/AAAHAAcAAAAaAP7/AAAHAAcAAAAaAP//AAAHAAcAAAAbAPv/AAAHAAcAAAAbAPz/AAAHAAcAAAAbAP3/AAAHAAcAAAAbAP7/AAAHAAcAAAAbAP//AAAHAAcAAAAcAPv/AAAHAAcAAAAcAPz/AAAHAAcAAAAcAP3/AAAHAAcAAAAcAP7/AAAHAAcAAAAcAP//AAAHAAcAAAAdAPv/AAAHAAcAAAAdAPz/AAAHAAcAAAAdAP3/AAAHAAcAAAAdAP7/AAAHAAcAAAAdAP//AAAHAAcAAAAeAPv/AAAHAAcAAAAeAPz/AAAHAAcAAAAeAP3/AAAHAAcAAAAeAP7/AAAHAAcAAAAeAP//AAAHAAcAAAAfAPv/AAAHAAcAAAAfAPz/AAAHAAcAAAAfAP3/AAAHAAcAAAAfAP7/AAAHAAcAAAAfAP//AAAHAAcAAAAgAPv/AAAHAAcAAAAgAPz/AAAHAAcAAAAgAP3/AAAHAAcAAAAgAP7/AAAHAAcAAAAgAP//AAAHAAcAAAAhAPv/AAAHAAcAAAAhAPz/AAAHAAcAAAAhAP3/AAAHAAcAAAAhAP7/AAAHAAcAAAAhAP//AAAHAAcAAAAiAPv/AAAHAAcAAAAiAPz/AAAHAAcAAAAiAP3/AAAHAAcAAAAiAP7/AAAHAAcAAAAiAP//AAAHAAcAAAAjAPv/AAAHAAcAAAAjAPz/AAAHAAcAAAAjAP3/AAAHAAcAAAAjAP7/AAAHAAcAAAAjAP//AAAHAAcAAAAkAPv/AAAHAAcAAAAkAPz/AAAHAAcAAAAkAP3/AAAHAAcAAAAkAP7/AAAHAAcAAAAkAP//AAAHAAcAAAAlAPv/AAAHAAcAAAAlAPz/AAAHAAcAAAAlAP3/AAAHAAcAAAAlAP7/AAAHAAcAAAAlAP//AAAHAAcAAAAmAPv/AAAHAAcAAAAmAPz/AAAHAAcAAAAmAP3/AAAHAAcAAAAmAP7/AAAHAAcAAAAmAP//AAAHAAcAAAAnAPv/AAAHAAcAAAAnAPz/AAAHAAcAAAAnAP3/AAAHAAcAAAAnAP7/AAAHAAcAAAAnAP//AAAHAAcAAAAoAPv/AAAHAAcAAAAoAPz/AAAHAAcAAAAoAP3/AAAHAAcAAAAoAP7/AAAHAAcAAAAoAP//AAAHAAcAAAApAPv/AAAHAAcAAAApAPz/AAAHAAcAAAApAP3/AAAHAAcAAAApAP7/AAAHAAcAAAApAP//AAAHAAcAAAAqAPv/AAAHAAcAAAAqAPz/AAAHAAcAAAAqAP3/AAAHAAcAAAAqAP7/AAAHAAcAAAAqAP//AAAHAAcAAAArAPv/AAAHAAcAAAArAPz/AAAHAAcAAAArAP3/AAAHAAcAAAArAP7/AAAHAAcAAAArAP//AAAHAAcAAAAsAPv/AAAHAAcAAAAsAPz/AAAHAAcAAAAsAP3/AAAHAAcAAAAsAP7/AAAHAAcAAAAsAP//AAAHAAcAAAAtAPv/AAAHAAcAAAAtAPz/AAAHAAcAAAAtAP3/AAAHAAcAAAAtAP7/AAAHAAcAAAAtAP//AAAHAAcAAAAuAPv/AAAHAAcAAAAuAPz/AAAHAAcAAAAuAP3/AAAHAAcAAAAuAP7/AAAHAAcAAAAuAP//AAAHAAcAAAAvAPv/AAAHAAcAAAAvAPz/AAAHAAcAAAAvAP3/AAAHAAcAAAAvAP7/AAAHAAcAAAAvAP//AAAHAAcAAAAwAPv/AAAHAAcAAAAwAPz/AAAHAAcAAAAwAP3/AAAHAAcAAAAwAP7/AAAHAAcAAAAwAP//AAAHAAcAAAAxAPv/AAAHAAcAAAAxAPz/AAAHAAcAAAAxAP3/AAAHAAcAAAAxAP7/AAAHAAcAAAAxAP//AAAHAAcAAAAyAPv/AAAHAAcAAAAyAPz/AAAHAAcAAAAyAP3/AAAHAAcAAAAyAP7/AAAHAAcAAAAyAP//AAAHAAcAAAAzAPv/AAAHAAcAAAAzAPz/AAAHAAcAAAAzAP3/AAAHAAcAAAAzAP7/AAAHAAcAAAAzAP//AAAHAAcAAAA0APv/AAAHAAcAAAA0APz/AAAHAAcAAAA0AP3/AAAHAAcAAAA0AP7/AAAHAAcAAAA0AP//AAAHAAcAAAA1APv/AAAHAAcAAAA1APz/AAAHAAcAAAA1AP3/AAAHAAcAAAA1AP7/AAAHAAcAAAA1AP//AAAHAAcAAAA2APv/AAAHAAcAAAA2APz/AAAHAAcAAAA2AP3/AAAHAAcAAAA2AP7/AAAHAAcAAAA2AP//AAAHAAcAAAAGAPv/AAAHAAcAAAAGAPz/AAAHAAcAAAAGAP3/AAAHAAcAAAAGAP7/AAAHAAcAAAAGAP//AAAHAAcAAAA=")
+
+[node name="Overlay" type="TileMapLayer" parent="."]
+visible = false
+z_index = 10
+position = Vector2(-8, -32)
+tile_map_data = PackedByteArray("AAABAAAAAAANABQAAAAFAAAAAAANABQAAAAJAAAAAAANABQAAAACAAAAAAAOAA4AAAACAAEAAAAOAA8AAAADAAAAAAAPAA4AAAADAAEAAAAPAA8AAAACAAIAAAAOAA4AAAACAAMAAAAOAA8AAAADAAIAAAAPAA4AAAADAAMAAAAPAA8AAAAGAAAAAAAOAA4AAAAGAAEAAAAOAA8AAAAHAAAAAAAPAA4AAAAHAAEAAAAPAA8AAAAGAAIAAAAOAA4AAAAGAAMAAAAOAA8AAAAHAAIAAAAPAA4AAAAHAAMAAAAPAA8AAAAEAAAAAAAMABQAAAAIAAAAAAAMABQAAAABAP7/AAAPAA4AAAABAP//AAAPAA8AAAACAP7/AAAOAA4AAAACAP//AAAOAA8AAAADAP7/AAAPAA4AAAADAP//AAAPAA8AAAAEAP7/AAAOAA4AAAAEAP//AAAOAA8AAAAFAP7/AAAPAA4AAAAFAP//AAAPAA8AAAAGAP7/AAAOAA4AAAAGAP//AAAOAA8AAAAHAP7/AAAPAA4AAAAHAP//AAAPAA8AAAAIAP7/AAAOAA4AAAAIAP//AAAOAA8AAAAJAP7/AAAPAA4AAAAJAP//AAAPAA8AAAA=")
+tile_set = SubResource("TileSet_kd4m5")
+
+[node name="TilesetTextureSetter" type="Node" parent="Overlay" node_paths=PackedStringArray("tile_map")]
+script = ExtResource("8_akqko")
+tile_map = NodePath("..")
+metadata/_custom_type_script = "uid://73oviwf6bbys"
+
+[node name="ResourceSetter" type="Node" parent="Overlay/TilesetTextureSetter" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_gbn2t")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("12_rgjtr")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="PlayerDetection" type="StaticBody2D" parent="Overlay"]
+position = Vector2(24, 32)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Overlay/PlayerDetection"]
+position = Vector2(21, -9)
+shape = SubResource("RectangleShape2D_6fi1c")
+
+[node name="Overlay2" type="TileMapLayer" parent="Overlay"]
+show_behind_parent = true
+tile_map_data = PackedByteArray("AAAEAAAAAAAHABQAAAAEAAEAAAAHABQAAAAEAAIAAAAHABQAAAAEAAMAAAAHABQAAAAFAAAAAAAHABQAAAAFAAEAAAAHABQAAAAFAAIAAAAHABQAAAAFAAMAAAAHABQAAAAIAAAAAAAHABQAAAAIAAEAAAAHABQAAAAIAAIAAAAHABQAAAAIAAMAAAAHABQAAAAJAAAAAAAHABQAAAAJAAEAAAAHABQAAAAJAAIAAAAHABQAAAAJAAMAAAAHABQAAAA=")
+tile_set = SubResource("TileSet_kd4m5")
+
+[node name="TilesetTextureSetter" type="Node" parent="Overlay/Overlay2" node_paths=PackedStringArray("tile_map")]
+script = ExtResource("8_akqko")
+tile_map = NodePath("..")
+metadata/_custom_type_script = "uid://73oviwf6bbys"
+
+[node name="ResourceSetter" type="Node" parent="Overlay/Overlay2/TilesetTextureSetter" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_gbn2t")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("12_rgjtr")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="PlayerDetection" type="StaticBody2D" parent="Overlay/Overlay2"]
+position = Vector2(24, 32)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Overlay/Overlay2/PlayerDetection"]
+position = Vector2(21, -9)
+shape = SubResource("RectangleShape2D_6fi1c")
+
+[connection signal="timeout" from="Framerule" to="." method="on_timeout"]

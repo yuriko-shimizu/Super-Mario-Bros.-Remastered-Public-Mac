@@ -1,0 +1,13 @@
+[gd_resource type="AudioStreamInteractive" load_steps=3 format=3 uid="uid://d2xfr70cpxnhp"]
+
+[ext_resource type="AudioStream" uid="uid://cqvlnj5ycwybf" path="res://Assets/Audio/BGM/BooRace.mp3" id="1_acs2e"]
+[ext_resource type="AudioStream" uid="uid://b865lxccqc8fw" path="res://Assets/Audio/BGM/BooRaceHurry.mp3" id="2_cdpsb"]
+
+[resource]
+clip_count = 2
+clip_0/name = &"Normal"
+clip_0/stream = ExtResource("1_acs2e")
+clip_0/auto_advance = 0
+clip_1/name = &"Hurry"
+clip_1/stream = ExtResource("2_cdpsb")
+clip_1/auto_advance = 0

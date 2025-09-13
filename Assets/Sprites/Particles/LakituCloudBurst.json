@@ -1,0 +1,102 @@
+{
+	"animations": {
+		"default": {
+			"frames": [
+				[
+					0.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					16.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					32.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					0.0,
+					0.0,
+					1.0,
+					1.0
+				]
+			],
+			"speed": 15.0,
+			"loop": false
+		}
+	},
+	"variations": {
+		"default": {
+			"source": "LakituCloudBurst.png",
+			"rect": [
+				0.0,
+				0.0,
+				48.0,
+				16.0
+			]
+		},
+		"Underground": {
+			"source": "LakituCloudBurst.png",
+			"rect": [
+				0.0,
+				16.0,
+				48.0,
+				16.0
+			]
+		},
+		"GhostHouse": {
+			"link": "Underground"
+		},
+		"Castle": {
+			"source": "LakituCloudBurst.png",
+			"rect": [
+				0.0,
+				32.0,
+				48.0,
+				16.0
+			]
+		},
+		"Snow": {
+			"source": "LakituCloudBurst.png",
+			"rect": [
+				0.0,
+				48.0,
+				48.0,
+				16.0
+			]
+		},
+		"Space": {
+			"source": "LakituCloudBurst.png",
+			"rect": [
+				0.0,
+				64.0,
+				48.0,
+				16.0
+			]
+		},
+		"Volcano": {
+			"source": "LakituCloudBurst.png",
+			"rect": [
+				0.0,
+				80.0,
+				48.0,
+				16.0
+			]
+		},
+		"Bonus": {
+			"source": "LakituCloudBurst.png",
+			"rect": [
+				0.0,
+				96.0,
+				48.0,
+				16.0
+			]
+		}
+	}
+}

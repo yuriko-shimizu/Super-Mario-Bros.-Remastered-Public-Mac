@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="ThemedResource" load_steps=32 format=3 uid="uid://b3uqx71poted1"]
+
+[ext_resource type="Texture2D" uid="uid://cnkidb1wdx000" path="res://Assets/Sprites/Tilesets/Terrain/Autumn.png" id="1_kopdp"]
+[ext_resource type="Texture2D" uid="uid://co20dp5hbejik" path="res://Assets/Sprites/Tilesets/Terrain/CastleSP.png" id="1_v1uin"]
+[ext_resource type="Texture2D" uid="uid://3flklmluw5rd" path="res://Assets/Sprites/Tilesets/Terrain/Space.png" id="2_67vvt"]
+[ext_resource type="Texture2D" uid="uid://vok5es8ssgf" path="res://Assets/Sprites/Tilesets/Terrain/Beach.png" id="2_hyuh7"]
+[ext_resource type="Script" uid="uid://cixtosud3mfaq" path="res://Scripts/Classes/Resources/CampaignResource.gd" id="3_g1un6"]
+[ext_resource type="Texture2D" uid="uid://boc6yagywb1lu" path="res://Assets/Sprites/Tilesets/Terrain/Castle.png" id="3_t31it"]
+[ext_resource type="Texture2D" uid="uid://b358t5lkyoefi" path="res://Assets/Sprites/Tilesets/Terrain/CastleLL.png" id="4_8m7hy"]
+[ext_resource type="Texture2D" uid="uid://b0b7saed5pcra" path="res://Assets/Sprites/Tilesets/Terrain/PipeLand.png" id="4_p4y00"]
+[ext_resource type="Texture2D" uid="uid://dquurvxoax6p8" path="res://Assets/Sprites/Tilesets/Terrain/Desert.png" id="5_ktnva"]
+[ext_resource type="Texture2D" uid="uid://cfavovwoifelp" path="res://Assets/Sprites/Tilesets/Terrain/DesertLL.png" id="6_t31it"]
+[ext_resource type="Texture2D" uid="uid://bdqa4iuvu1me8" path="res://Assets/Sprites/Tilesets/Terrain/Garden.png" id="7_8m7hy"]
+[ext_resource type="Texture2D" uid="uid://bgum7gmgaufrd" path="res://Assets/Sprites/Tilesets/Terrain/Jungle.png" id="8_r11dc"]
+[ext_resource type="Texture2D" uid="uid://10hu4op00ldo" path="res://Assets/Sprites/Tilesets/Terrain/JungleLL.png" id="9_wolgd"]
+[ext_resource type="Texture2D" uid="uid://ceeo6pq2ydq1r" path="res://Assets/Sprites/Tilesets/Terrain/Mountain.png" id="10_x6shq"]
+[ext_resource type="Texture2D" uid="uid://bkgw370uwx2dj" path="res://Assets/Sprites/Tilesets/Terrain/OverworldLL.png" id="11_uhkvl"]
+[ext_resource type="Texture2D" uid="uid://c66mv47gtjsm2" path="res://Assets/Sprites/Tilesets/Terrain/OverworldANN.png" id="13_8m7hy"]
+[ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="13_rmflr"]
+[ext_resource type="Texture2D" uid="uid://cb8k4fs22m3eq" path="res://Assets/Sprites/Tilesets/Terrain/Snow.png" id="13_sstxi"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="13_x6shq"]
+[ext_resource type="Texture2D" uid="uid://cget0bmaqxwnl" path="res://Assets/Sprites/Tilesets/Terrain/SnowLL.png" id="14_rmflr"]
+[ext_resource type="Texture2D" uid="uid://cwjnljj6aahol" path="res://Assets/Sprites/Tilesets/Terrain/Underground.png" id="16_mln4a"]
+[ext_resource type="Texture2D" uid="uid://cw17ekbn7smso" path="res://Assets/Sprites/Tilesets/Terrain/SkyLL.png" id="16_r11dc"]
+[ext_resource type="Texture2D" uid="uid://bvilvcff0op8h" path="res://Assets/Sprites/Tilesets/Terrain/UndergroundLL.png" id="17_skl36"]
+[ext_resource type="Texture2D" uid="uid://ocip11wxnwa8" path="res://Assets/Sprites/Tilesets/Terrain/Underwater.png" id="18_wugss"]
+[ext_resource type="Texture2D" uid="uid://dhviikrqow61p" path="res://Assets/Sprites/Tilesets/Terrain/Volcano.png" id="23_wolgd"]
+
+[sub_resource type="Resource" id="Resource_d4nyf"]
+script = ExtResource("3_g1un6")
+SMB1 = ExtResource("3_t31it")
+SMBLL = ExtResource("4_8m7hy")
+SMBS = ExtResource("1_v1uin")
+metadata/_custom_type_script = ExtResource("3_g1un6")
+
+[sub_resource type="Resource" id="Resource_rmflr"]
+script = ExtResource("3_g1un6")
+SMB1 = ExtResource("5_ktnva")
+SMBLL = ExtResource("6_t31it")
+metadata/_custom_type_script = ExtResource("3_g1un6")
+
+[sub_resource type="Resource" id="Resource_y1awv"]
+script = ExtResource("3_g1un6")
+SMB1 = ExtResource("8_r11dc")
+SMBLL = ExtResource("9_wolgd")
+metadata/_custom_type_script = ExtResource("3_g1un6")
+
+[sub_resource type="Resource" id="Resource_8uk86"]
+script = ExtResource("3_g1un6")
+SMB1 = ExtResource("13_rmflr")
+SMBLL = ExtResource("11_uhkvl")
+SMBANN = ExtResource("13_8m7hy")
+metadata/_custom_type_script = ExtResource("3_g1un6")
+
+[sub_resource type="Resource" id="Resource_g1un6"]
+script = ExtResource("3_g1un6")
+SMB1 = ExtResource("13_sstxi")
+SMBLL = ExtResource("14_rmflr")
+metadata/_custom_type_script = ExtResource("3_g1un6")
+
+[sub_resource type="Resource" id="Resource_b6qiv"]
+script = ExtResource("3_g1un6")
+SMB1 = ExtResource("16_mln4a")
+SMBLL = ExtResource("17_skl36")
+metadata/_custom_type_script = ExtResource("3_g1un6")
+
+[resource]
+script = ExtResource("13_x6shq")
+Overworld = SubResource("Resource_8uk86")
+Underground = SubResource("Resource_b6qiv")
+Desert = SubResource("Resource_rmflr")
+Snow = SubResource("Resource_g1un6")
+Jungle = SubResource("Resource_y1awv")
+Underwater = ExtResource("18_wugss")
+Beach = ExtResource("2_hyuh7")
+Garden = ExtResource("7_8m7hy")
+Mountain = ExtResource("10_x6shq")
+Autumn = ExtResource("1_kopdp")
+Skyland = ExtResource("16_r11dc")
+Pipeland = ExtResource("4_p4y00")
+Space = ExtResource("2_67vvt")
+Volcano = ExtResource("23_wolgd")
+Castle = SubResource("Resource_d4nyf")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://vgcgj3k2k8oy"]
+
+[ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="1_y3riq"]
+[ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="2_y0tan"]
+[ext_resource type="Texture2D" uid="uid://c8ir37jmcm4f4" path="res://Assets/Sprites/Editor/CameraLock.png" id="3_c8trh"]
+[ext_resource type="Texture2D" uid="uid://dpdrrkqtcedgm" path="res://Assets/Sprites/Tilesets/DottedLine.png" id="4_ouaip"]
+
+[node name="CameraRightLimit" type="Node2D"]
+script = ExtResource("1_y3riq")
+metadata/_custom_type_script = "uid://bdq0373j5n5o0"
+
+[node name="LevelEditorVisibleNode" type="Node2D" parent="."]
+script = ExtResource("2_y0tan")
+metadata/_custom_type_script = "uid://cpwloakvp672a"
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelEditorVisibleNode"]
+position = Vector2(8, 0)
+texture = ExtResource("3_c8trh")
+
+[node name="Line2D" type="Line2D" parent="LevelEditorVisibleNode"]
+texture_repeat = 2
+position = Vector2(1, 0)
+points = PackedVector2Array(0, -512, 0, 512)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+texture = ExtResource("4_ouaip")
+texture_mode = 1
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(8, 0)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_enter_tree"]

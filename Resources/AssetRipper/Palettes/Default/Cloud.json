@@ -1,0 +1,88 @@
+{
+	"palettes": {
+		"default": [
+			"00000000",
+			"FFFFFF",
+			"1f1f1f",
+			"1f1f1f"
+		],
+		"Underground": [
+			"00000000",
+			"FFFFFF",
+			"98b6ad",
+            "165966"
+		],
+		"Castle": [
+			"00000000",
+			"FFFFFF",
+			"ffffff",
+            "bcbcbc"
+		],
+		"Underwater": [
+			"00000000",
+			"1f1f1f",
+			"b5ffbd",
+            "21ad10"
+		],
+		"Desert": [
+			"00000000",
+			"ba6111",
+			"ffd9b2",
+            "ffaa47"
+		],
+		"Jungle": [
+			"00000000",
+			"1f1f1f",
+			"ffb762",
+            "ba6111"
+		],
+		"Snow": [
+			"00000000",
+			"4c4c78",
+			"ffffff",
+            "bcbce6"
+		],
+		"Volcano": [
+			"00000000",
+			"FFFFFF",
+			"FFFFFF",
+			"7c1d08",
+		],
+		"Autumn": [
+			"00000000",
+			"1f1f1f",
+			"ffbe6e",
+            "c7643e"
+		],
+		"Beach": [
+			"00000000",
+			"a2330f",
+			"ffd9b2",
+            "ffa044"
+		],
+		"Mountain": [
+			"00000000",
+			"c5c5c5",
+			"676767",
+            "1f1f1f"
+		],
+		"Space": [
+			"00000000",
+			"FFFFFF",
+			"a8a3d9",
+            "585f80"
+		],
+		"Bonus": [
+			"00000000",
+			"FFFFFF",
+			"FFFFFF",
+            "490047"
+		],
+		"Overlay": [
+			"00000000",
+			"e8ebff",
+			"00000000",
+            "00000000"
+		]
+	}
+}

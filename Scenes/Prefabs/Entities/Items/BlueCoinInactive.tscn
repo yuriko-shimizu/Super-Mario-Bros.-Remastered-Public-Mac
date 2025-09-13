@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://rjs2k335jmb5"]
+
+[ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="1_isf0s"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_3gxgc"]
+[ext_resource type="Texture2D" uid="uid://c82ui0uuhsyle" path="res://Assets/Sprites/Items/BlueCoin.png" id="2_558gv"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_ssesj"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/BlueCoin.json" id="3_3gxgc"]
+[ext_resource type="Script" uid="uid://bul1nbd2in1gn" path="res://Scripts/Classes/Components/PSwitcher.gd" id="4_ssesj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ip28o"]
+atlas = ExtResource("2_558gv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3gxgc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ip28o")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="BlueCoinInactive" type="Node2D"]
+script = ExtResource("1_isf0s")
+metadata/_custom_type_script = "uid://cpwloakvp672a"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.497)
+sprite_frames = SubResource("SpriteFrames_3gxgc")
+animation = &"Idle"
+script = ExtResource("2_3gxgc")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("2_ssesj")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("3_3gxgc")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="PSwitcher" type="Node" parent="."]
+script = ExtResource("4_ssesj")
+new_scene = "uid://dplnidrqshecd"
+metadata/_custom_type_script = "uid://bul1nbd2in1gn"

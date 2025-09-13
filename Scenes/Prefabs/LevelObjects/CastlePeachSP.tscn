@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://o573jl3f2hvk"]
+
+[ext_resource type="PackedScene" uid="uid://ckrna543ixu1b" path="res://Scenes/Prefabs/LevelObjects/CastlePeach.tscn" id="1_v6xdq"]
+
+[node name="CastlePeach" instance=ExtResource("1_v6xdq")]
+
+[node name="ThankYou" parent="StandardMSG" index="0"]
+text = "CUTSCENE_SP_PEACH_1"
+
+[node name="AnotherCastle4" parent="EndingSpeech" index="0"]
+text = "CUTSCENE_SP_PEACH_2"
+
+[node name="AnotherCastle5" parent="EndingSpeech" index="1"]
+text = "CUTSCENE_SP_PEACH_3"
+
+[node name="AnotherCastle6" parent="EndingSpeech" index="2"]
+text = ""

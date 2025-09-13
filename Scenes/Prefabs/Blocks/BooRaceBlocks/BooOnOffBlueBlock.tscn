@@ -1,0 +1,113 @@
+[gd_scene load_steps=16 format=3 uid="uid://c1xle3fplnxtr"]
+
+[ext_resource type="PackedScene" uid="uid://by6ndsjhlkmbt" path="res://Scenes/Prefabs/Blocks/BooRaceBlocks/BooOnOffBlock.tscn" id="1_snfqb"]
+[ext_resource type="Texture2D" uid="uid://coe8j7vfyvmh8" path="res://Assets/Sprites/Blocks/BooOnOffBlock.png" id="2_vdgbk"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/BooBlueOnOffBlock.json" id="3_yech7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snfqb"]
+atlas = ExtResource("2_vdgbk")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nofac"]
+atlas = ExtResource("2_vdgbk")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptbl1"]
+atlas = ExtResource("2_vdgbk")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqmci"]
+atlas = ExtResource("2_vdgbk")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7e20"]
+atlas = ExtResource("2_vdgbk")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8xmr"]
+atlas = ExtResource("2_vdgbk")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kj2p"]
+atlas = ExtResource("2_vdgbk")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4r68e"]
+atlas = ExtResource("2_vdgbk")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1ywa"]
+atlas = ExtResource("2_vdgbk")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyt6e"]
+atlas = ExtResource("2_vdgbk")
+region = Rect2(112, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpy10"]
+atlas = ExtResource("2_vdgbk")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yh3se"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snfqb")
+}],
+"loop": true,
+"name": &"Default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nofac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptbl1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqmci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7e20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8xmr")
+}],
+"loop": false,
+"name": &"Off",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kj2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4r68e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1ywa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyt6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpy10")
+}],
+"loop": false,
+"name": &"On",
+"speed": 15.0
+}]
+
+[node name="BooOnOffBlock" instance=ExtResource("1_snfqb")]
+active = true
+
+[node name="Sprite" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_yh3se")
+animation = &"Off"
+
+[node name="ResourceSetter" parent="Sprite" index="0"]
+resource_json = ExtResource("3_yech7")
+
+[node name="Collision" parent="." index="1"]
+disabled = false

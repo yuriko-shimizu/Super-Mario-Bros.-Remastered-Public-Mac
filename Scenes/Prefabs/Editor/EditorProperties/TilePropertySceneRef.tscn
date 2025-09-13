@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://clfxxcxk3fobh"]
+
+[ext_resource type="Script" uid="uid://c1jo8djcruqbf" path="res://Scripts/Parts/TilePropertySceneRef.gd" id="1_p4kuk"]
+[ext_resource type="Texture2D" uid="uid://bnv2ocqgws3p7" path="res://Assets/Sprites/UI/Panel.png" id="2_xqybm"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_v8h6y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p4kuk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v8h6y"]
+texture = ExtResource("2_xqybm")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[node name="TilePropertySCENE" type="HBoxContainer"]
+script = ExtResource("1_p4kuk")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "PROPERTY_NAME:"
+uppercase = true
+
+[node name="SceneName" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "PROPERTY_NAME:"
+uppercase = true
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_p4kuk")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_v8h6y")
+theme_override_styles/hover = SubResource("StyleBoxTexture_v8h6y")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_v8h6y")
+theme_override_styles/normal = SubResource("StyleBoxTexture_v8h6y")
+text = "+"
+
+[node name="ResourceSetterNew" type="Node" parent="."]
+script = ExtResource("3_v8h6y")
+property_name = "texture"
+mode = 1
+use_cache = false
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[connection signal="pressed" from="Button" to="." method="open_tile_selection_menu"]

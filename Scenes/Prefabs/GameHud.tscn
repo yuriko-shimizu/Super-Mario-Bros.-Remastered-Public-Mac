@@ -1,0 +1,1060 @@
+[gd_scene load_steps=41 format=3 uid="uid://bod0jkf7jc5pm"]
+
+[ext_resource type="Script" uid="uid://bjbd3a6su47si" path="res://Scripts/Classes/UI/GameHUD.gd" id="1_f34v2"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_cbrve"]
+[ext_resource type="Texture2D" uid="uid://bf81l78knoaqd" path="res://Assets/Sprites/UI/CoinIcon.png" id="3_80r3s"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_jt73e"]
+[ext_resource type="JSON" path="res://Assets/Sprites/UI/CoinIcon.json" id="4_niy8w"]
+[ext_resource type="PackedScene" uid="uid://do28cwi8t6ptt" path="res://Scenes/Prefabs/UI/StoryPause.tscn" id="5_6nbcw"]
+[ext_resource type="Texture2D" uid="uid://j586m4ipf4dq" path="res://Assets/Sprites/UI/RedCoinBorders.png" id="5_gmuut"]
+[ext_resource type="Texture2D" uid="uid://de6otencrflfo" path="res://Assets/Sprites/UI/RedCoins.png" id="6_2ww58"]
+[ext_resource type="PackedScene" uid="uid://b3diry65fdrj6" path="res://Scenes/Prefabs/UI/MarathonPause.tscn" id="6_h6tvq"]
+[ext_resource type="JSON" path="res://Assets/Sprites/UI/KeyIcon.json" id="6_mqa5s"]
+[ext_resource type="Shader" uid="uid://x7lh23cq2u38" path="res://Scenes/Parts/ShadowShader.gdshader" id="6_r3m7e"]
+[ext_resource type="PackedScene" uid="uid://b4fv851s0h11f" path="res://Scenes/Prefabs/UI/BooRacePauseMenu.tscn" id="7_35c0k"]
+[ext_resource type="Texture2D" uid="uid://ccqgekbac45f8" path="res://Assets/Sprites/UI/YoshiEggs.png" id="7_r3m7e"]
+[ext_resource type="Texture2D" uid="uid://bgfsdyjhoies2" path="res://Assets/Sprites/UI/ScoreMedal.png" id="9_m8toq"]
+[ext_resource type="Shader" uid="uid://cjfd0fbhvx370" path="res://Scenes/Parts/DitheredTransparency.gdshader" id="9_oqalm"]
+[ext_resource type="Texture2D" uid="uid://bgckb78kobtx3" path="res://Assets/Sprites/Players/Mario/LifeIcon.png" id="10_2w8b3"]
+[ext_resource type="Texture2D" uid="uid://kudshfhlo5ic" path="res://Assets/Sprites/UI/RankMedals.png" id="13_40ba1"]
+[ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="13_h6dkv"]
+[ext_resource type="Texture2D" uid="uid://cgqnb67m635k8" path="res://Assets/Sprites/UI/HUDTemplate.png" id="13_r3m7e"]
+[ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="14_h6dkv"]
+[ext_resource type="Script" uid="uid://dwtrmo82e12ud" path="res://Scripts/Parts/ColourPaletteSampler.gd" id="15_8qasw"]
+[ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="15_jwl8o"]
+[ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="15_niy8w"]
+[ext_resource type="PackedScene" uid="uid://n2e3jgmkilvt" path="res://Scenes/Prefabs/UI/MarathonResults.tscn" id="16_cfljn"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="16_jt73e"]
+[ext_resource type="FontVariation" uid="uid://djxdgxy1iv8yv" path="res://Resources/ThemedResources/FontLLMain.tres" id="17_2w8b3"]
+[ext_resource type="PackedScene" uid="uid://b85i7uni0twpe" path="res://Scenes/Prefabs/UI/DiscoResults.tscn" id="17_ocsy5"]
+[ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="18_jwl8o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eon7h"]
+shader = ExtResource("6_r3m7e")
+shader_parameter/shadow_colour = Vector4(0, 0, 0, 1)
+shader_parameter/allow_transparency = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfljn"]
+atlas = ExtResource("3_80r3s")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocsy5"]
+atlas = ExtResource("3_80r3s")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62gff"]
+atlas = ExtResource("3_80r3s")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_40ba1"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_cfljn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocsy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62gff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocsy5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cfljn"]
+shader = ExtResource("9_oqalm")
+
+[sub_resource type="Animation" id="Animation_niy8w"]
+resource_name = "Flash"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_oqalm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cfljn"]
+_data = {
+&"Flash": SubResource("Animation_niy8w"),
+&"RESET": SubResource("Animation_oqalm")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwl8o"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w8b3"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_jwl8o"]
+script/source = "extends Node
+
+@export var sprites: Array[Sprite2D] = []
+@export var rects: Array[TextureRect] = []
+
+var old_textures := {}
+
+func _ready() -> void:
+	Global.level_theme_changed.connect(update_sprites)
+	Global.level_time_changed.connect(update_sprites)
+	update_sprites()
+
+func update_sprites() -> void:
+	for i in sprites:
+		if old_textures.has(i) == false:
+			old_textures[i] = i.texture
+		var texture_to_get = old_textures[i]
+		i.texture = ResourceSetter.get_resource(texture_to_get, i)
+	for i in rects:
+		i.texture = ResourceSetter.get_resource(i.texture, i)
+"
+
+[node name="GameHUD" type="CanvasLayer"]
+process_mode = 3
+layer = 0
+script = ExtResource("1_f34v2")
+
+[node name="Main" type="HBoxContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(256, 32)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+theme_override_constants/separation = 0
+
+[node name="Buffer" type="Control" parent="Main"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[node name="ScoreName" type="Control" parent="Main"]
+custom_minimum_size = Vector2(48, 16)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="CharacterName" type="Label" parent="Main/ScoreName"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 44.0
+offset_bottom = 4.0
+text = "Mario"
+uppercase = true
+
+[node name="Score" type="Label" parent="Main/ScoreName"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = -16.0
+offset_top = 4.0
+offset_right = 52.0
+offset_bottom = 20.0
+text = "000000"
+horizontal_alignment = 2
+uppercase = true
+
+[node name="Buffer2" type="Control" parent="Main"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CoinCount" type="Control" parent="Main"]
+custom_minimum_size = Vector2(32, 8)
+layout_mode = 2
+size_flags_vertical = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="KeyCount" type="Control" parent="Main/CoinCount"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Icon" type="AnimatedSprite2D" parent="Main/CoinCount/KeyCount"]
+position = Vector2(0, -8)
+centered = false
+script = ExtResource("2_cbrve")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="Shadow" type="AnimatedSprite2D" parent="Main/CoinCount/KeyCount/Icon"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+centered = false
+script = ExtResource("2_cbrve")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Main/CoinCount/KeyCount/Icon/Shadow" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_jt73e")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("6_mqa5s")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="ResourceSetterNew" type="Node" parent="Main/CoinCount/KeyCount/Icon" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_jt73e")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("6_mqa5s")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="KeyAmount" type="Label" parent="Main/CoinCount/KeyCount"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = 4.0
+offset_top = -12.0
+offset_right = 36.0
+offset_bottom = 4.0
+theme_override_fonts/font = ExtResource("17_2w8b3")
+text = "*03"
+
+[node name="CoinIcon" type="AnimatedSprite2D" parent="Main/CoinCount"]
+sprite_frames = SubResource("SpriteFrames_40ba1")
+autoplay = "default"
+frame_progress = 0.132926
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="Main/CoinCount/CoinIcon" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_jt73e")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("4_niy8w")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="CoinLabel" type="Label" parent="Main/CoinCount"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = 4.0
+offset_top = -4.0
+offset_right = 36.0
+offset_bottom = 12.0
+theme_override_fonts/font = ExtResource("17_2w8b3")
+text = "*00"
+
+[node name="RedCoins" type="Control" parent="Main"]
+visible = false
+custom_minimum_size = Vector2(32, 8)
+layout_mode = 2
+size_flags_vertical = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="BorderL" type="Sprite2D" parent="Main/RedCoins"]
+position = Vector2(-16, 0)
+texture = ExtResource("5_gmuut")
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2(8, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/BorderL"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("5_gmuut")
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2(8, 0, 8, 8)
+
+[node name="Coin1" type="Sprite2D" parent="Main/RedCoins"]
+position = Vector2(-8, 0)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/Coin1"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Coin2" type="Sprite2D" parent="Main/RedCoins"]
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/Coin2"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Coin3" type="Sprite2D" parent="Main/RedCoins"]
+position = Vector2(8, 0)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/Coin3"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Coin4" type="Sprite2D" parent="Main/RedCoins"]
+position = Vector2(16, 0)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/Coin4"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Coin5" type="Sprite2D" parent="Main/RedCoins"]
+position = Vector2(24, 0)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/Coin5"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="BorderR" type="Sprite2D" parent="Main/RedCoins"]
+position = Vector2(32, 0)
+texture = ExtResource("5_gmuut")
+centered = false
+region_enabled = true
+region_rect = Rect2(8, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/BorderR"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("5_gmuut")
+centered = false
+region_enabled = true
+region_rect = Rect2(8, 0, 8, 8)
+
+[node name="YoshiEgg" type="Sprite2D" parent="Main/RedCoins"]
+position = Vector2(36, 0)
+texture = ExtResource("7_r3m7e")
+centered = false
+hframes = 3
+vframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/YoshiEgg"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("7_r3m7e")
+centered = false
+hframes = 3
+vframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Radar" type="Sprite2D" parent="Main/RedCoins/YoshiEgg"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_cfljn")
+texture = ExtResource("7_r3m7e")
+centered = false
+hframes = 3
+vframes = 2
+frame = 1
+region_rect = Rect2(0, 0, 8, 8)
+script = ExtResource("13_h6dkv")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/YoshiEgg/Radar"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("7_r3m7e")
+centered = false
+hframes = 3
+vframes = 2
+frame = 1
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Main/RedCoins/YoshiEgg/Radar"]
+libraries = {
+&"": SubResource("AnimationLibrary_cfljn")
+}
+
+[node name="ScoreMedal" type="Sprite2D" parent="Main/RedCoins"]
+position = Vector2(43, -2)
+texture = ExtResource("9_m8toq")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/ScoreMedal"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("9_m8toq")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Buffer3" type="Control" parent="Main"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LevelDisplay" type="Control" parent="Main"]
+custom_minimum_size = Vector2(40, 16)
+layout_mode = 2
+size_flags_vertical = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="WorldTitle" type="Label" parent="Main/LevelDisplay"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 44.0
+offset_bottom = 4.0
+text = "HUD_WORLD"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="LevelNum" type="Label" parent="Main/LevelDisplay/WorldTitle"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 16.0
+text = "1-1"
+uppercase = true
+
+[node name="Crown" type="Label" parent="Main/LevelDisplay/WorldTitle/LevelNum"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = -9.0
+offset_right = 23.0
+offset_bottom = 16.0
+text = "♕"
+uppercase = true
+
+[node name="Shadow" type="Label" parent="Main/LevelDisplay/WorldTitle/LevelNum/Crown"]
+unique_name_in_owner = true
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+layout_mode = 1
+anchors_preset = -1
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 33.0
+offset_bottom = 17.0
+text = "♕"
+uppercase = true
+
+[node name="Buffer4" type="Control" parent="Main"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TimeDisplay" type="Control" parent="Main"]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_vertical = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="TimeLabel" type="Label" parent="Main/TimeDisplay"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 36.0
+offset_bottom = 4.0
+text = "HUD_TIME"
+uppercase = true
+
+[node name="Time" type="Label" parent="Main/TimeDisplay/TimeLabel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = -12.0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 24.0
+text = " 000"
+horizontal_alignment = 2
+uppercase = true
+
+[node name="Stopwatch" type="Label" parent="Main/TimeDisplay/TimeLabel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = -16.0
+offset_top = 8.0
+offset_right = 24.0
+offset_bottom = 16.0
+text = "00:00:00"
+uppercase = true
+
+[node name="PB" type="Label" parent="Main/TimeDisplay/TimeLabel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+offset_left = -24.0
+offset_top = 16.0
+offset_right = 16.0
+offset_bottom = 24.0
+text = "+00:00:00"
+uppercase = true
+
+[node name="Buffer5" type="Control" parent="Main"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[node name="ModernHUD" type="Control" parent="."]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+
+[node name="TopLeft" type="Control" parent="ModernHUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_right = 64.0
+grow_vertical = 0
+
+[node name="CoinCount" type="Control" parent="ModernHUD/TopLeft"]
+custom_minimum_size = Vector2(0, 8)
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 36.0
+offset_right = 64.0
+offset_bottom = 44.0
+size_flags_vertical = 8
+
+[node name="Coin" type="AnimatedSprite2D" parent="ModernHUD/TopLeft/CoinCount"]
+position = Vector2(4, 0)
+sprite_frames = SubResource("SpriteFrames_40ba1")
+autoplay = "default"
+frame_progress = 0.982312
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="ModernHUD/TopLeft/CoinCount/Coin" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_jt73e")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("4_niy8w")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="ModernCoinCount" type="Label" parent="ModernHUD/TopLeft/CoinCount"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = -4.0
+offset_right = 48.0
+offset_bottom = 4.0
+text = "*100"
+
+[node name="RedCoins" type="Control" parent="ModernHUD/TopLeft"]
+custom_minimum_size = Vector2(32, 8)
+layout_mode = 1
+anchor_left = 0.125
+anchor_top = 0.9166667
+anchor_right = 0.25
+anchor_bottom = 1.25
+offset_left = 24.0
+offset_top = 6.666666
+offset_right = 48.0
+offset_bottom = 6.666664
+size_flags_vertical = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="BorderL" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
+position = Vector2(-16, 0)
+texture = ExtResource("5_gmuut")
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2(8, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/BorderL"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("5_gmuut")
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2(8, 0, 8, 8)
+
+[node name="Coin1" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
+position = Vector2(-8, 0)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/Coin1"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Coin2" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/Coin2"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Coin3" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
+position = Vector2(8, 0)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/Coin3"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Coin4" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
+position = Vector2(16, 0)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/Coin4"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Coin5" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
+position = Vector2(24, 0)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/Coin5"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="BorderR" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
+position = Vector2(32, 0)
+texture = ExtResource("5_gmuut")
+centered = false
+region_enabled = true
+region_rect = Rect2(8, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/BorderR"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("5_gmuut")
+centered = false
+region_enabled = true
+region_rect = Rect2(8, 0, 8, 8)
+
+[node name="YoshiEgg" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
+position = Vector2(36, 0)
+texture = ExtResource("7_r3m7e")
+centered = false
+hframes = 3
+vframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/YoshiEgg"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("7_r3m7e")
+centered = false
+hframes = 3
+vframes = 2
+frame = 1
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="ModernRadar" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/YoshiEgg"]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("7_r3m7e")
+centered = false
+hframes = 3
+vframes = 2
+frame = 1
+region_rect = Rect2(0, 0, 8, 8)
+script = ExtResource("13_h6dkv")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/YoshiEgg/ModernRadar"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("7_r3m7e")
+centered = false
+hframes = 3
+vframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ModernHUD/TopLeft/RedCoins/YoshiEgg/ModernRadar"]
+libraries = {
+&"": SubResource("AnimationLibrary_cfljn")
+}
+
+[node name="ScoreMedal" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
+position = Vector2(43, -2)
+texture = ExtResource("9_m8toq")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/ScoreMedal"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("9_m8toq")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="LifeCount" type="HBoxContainer" parent="ModernHUD/TopLeft"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 44.0
+offset_right = 56.0
+offset_bottom = 60.0
+theme_override_constants/separation = -4
+
+[node name="CharacterIcon" type="TextureRect" parent="ModernHUD/TopLeft/LifeCount"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("10_2w8b3")
+stretch_mode = 2
+
+[node name="Shadow" type="TextureRect" parent="ModernHUD/TopLeft/LifeCount/CharacterIcon"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 9.0
+offset_bottom = 9.0
+texture = ExtResource("10_2w8b3")
+stretch_mode = 3
+
+[node name="ResourceSetterNew" type="Node" parent="ModernHUD/TopLeft/LifeCount/CharacterIcon" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_jt73e")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="ModernLifeCount" type="Label" parent="ModernHUD/TopLeft/LifeCount"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+text = "*"
+
+[node name="ModernKeyCount" type="Control" parent="ModernHUD/TopLeft"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 68.0
+offset_right = 60.0
+offset_bottom = 108.0
+
+[node name="Icon" type="AnimatedSprite2D" parent="ModernHUD/TopLeft/ModernKeyCount"]
+position = Vector2(0, -8)
+centered = false
+script = ExtResource("2_cbrve")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="Shadow" type="AnimatedSprite2D" parent="ModernHUD/TopLeft/ModernKeyCount/Icon"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+centered = false
+script = ExtResource("2_cbrve")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="ModernHUD/TopLeft/ModernKeyCount/Icon/Shadow" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_jt73e")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("6_mqa5s")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="ResourceSetterNew" type="Node" parent="ModernHUD/TopLeft/ModernKeyCount/Icon" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_jt73e")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("6_mqa5s")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="ModernKeyAmount" type="Label" parent="ModernHUD/TopLeft/ModernKeyCount"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = 4.0
+offset_top = -12.0
+offset_right = 36.0
+offset_bottom = 4.0
+theme_override_fonts/font = ExtResource("17_2w8b3")
+text = "*03"
+
+[node name="Right" type="Control" parent="ModernHUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 32.0
+grow_horizontal = 0
+
+[node name="ModernTime" type="Label" parent="ModernHUD/Right"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -8.0
+offset_right = -16.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+text = "⏲000"
+horizontal_alignment = 2
+
+[node name="ModernScore" type="Label" parent="ModernHUD/Right/ModernTime"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = -88.0
+offset_right = -8.0
+offset_bottom = 16.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "000000000"
+
+[node name="ModernPB" type="Label" parent="ModernHUD/Right/ModernTime"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 28.0
+size_flags_horizontal = 10
+size_flags_vertical = 8
+text = "⏲00"
+horizontal_alignment = 2
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 0.4
+autostart = true
+
+[node name="Combo" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -88.0
+offset_bottom = 48.0
+grow_horizontal = 0
+
+[node name="ComboAmount" type="Label" parent="Combo"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_right = 72.0
+grow_vertical = 0
+text = "COMBO*10"
+uppercase = true
+
+[node name="ComboMeter" type="ProgressBar" parent="Combo/ComboAmount"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_jwl8o")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2w8b3")
+value = 100.0
+show_percentage = false
+
+[node name="MedalIcon" type="NinePatchRect" parent="Combo"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("13_40ba1")
+region_rect = Rect2(0, 0, 16, 16)
+script = ExtResource("14_h6dkv")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="StoryPause" parent="." instance=ExtResource("5_6nbcw")]
+visible = false
+
+[node name="MarathonPause" parent="." instance=ExtResource("6_h6tvq")]
+visible = false
+
+[node name="BooRacePause" parent="." instance=ExtResource("7_35c0k")]
+visible = false
+
+[node name="MarathonResults" parent="." instance=ExtResource("16_cfljn")]
+visible = false
+
+[node name="DiscoResults" parent="." instance=ExtResource("17_ocsy5")]
+visible = false
+
+[node name="ColourPaletteSampler" type="Node" parent="." node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("15_8qasw")
+texture = ExtResource("15_niy8w")
+coords = Vector2i(67, 16)
+node_to_affect = NodePath("../TextShadowColourChanger")
+value_to_set = "global_text_shadow_color"
+metadata/_custom_type_script = "uid://dwtrmo82e12ud"
+
+[node name="ResourceSetterNew" type="Node" parent="ColourPaletteSampler" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_jt73e")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("16_jt73e")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="TextShadowColourChanger" type="Node" parent="." node_paths=PackedStringArray("labels", "shadow_node")]
+script = ExtResource("18_jwl8o")
+labels = [NodePath("../Main/ScoreName/CharacterName"), NodePath("../Main/ScoreName/Score"), NodePath("../Main/CoinCount/CoinLabel"), NodePath("../Main/LevelDisplay/WorldTitle"), NodePath("../Main/LevelDisplay/WorldTitle/LevelNum"), NodePath("../Main/TimeDisplay/TimeLabel"), NodePath("../Main/TimeDisplay/TimeLabel/Time"), NodePath("../Main/TimeDisplay/TimeLabel/Stopwatch"), NodePath("../Main/TimeDisplay/TimeLabel/PB"), NodePath("../ModernHUD/TopLeft/CoinCount/ModernCoinCount"), NodePath("../ModernHUD/Right/ModernTime"), NodePath("../ModernHUD/Right/ModernTime/ModernScore"), NodePath("../Main/CoinCount/KeyCount/KeyAmount"), NodePath("../ModernHUD/TopLeft/ModernKeyCount/ModernKeyAmount"), NodePath("../ModernHUD/TopLeft/LifeCount/ModernLifeCount"), NodePath("../Combo/ComboAmount"), null, null, NodePath("../ModernHUD/Right/ModernTime/ModernPB")]
+shadow_node = NodePath("../Main/RedCoins/BorderL/Shadow")
+
+[node name="HudTemplate" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.418279, 0.418279, 0.418279, 1)
+z_index = -50
+texture = ExtResource("13_r3m7e")
+centered = false
+
+[node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+script = ExtResource("15_jwl8o")
+labels = [NodePath("../Main/ScoreName/CharacterName"), NodePath("../Main/ScoreName/Score"), NodePath("../Main/CoinCount/CoinLabel"), NodePath("../Main/LevelDisplay/WorldTitle"), NodePath("../Main/LevelDisplay/WorldTitle/LevelNum"), NodePath("../Main/TimeDisplay/TimeLabel"), NodePath("../Main/TimeDisplay/TimeLabel/Time"), NodePath("../ModernHUD/TopLeft/CoinCount/ModernCoinCount"), NodePath("../ModernHUD/Right/ModernTime"), NodePath("../ModernHUD/Right/ModernTime/ModernScore"), NodePath("../Main/CoinCount/KeyCount/KeyAmount"), NodePath("../Main/TimeDisplay/TimeLabel/Stopwatch"), NodePath("../Main/TimeDisplay/TimeLabel/PB"), NodePath("../ModernHUD/TopLeft/LifeCount/ModernLifeCount"), NodePath("../Main/CoinCount/KeyCount/KeyAmount"), NodePath("../Combo/ComboAmount"), NodePath("../ModernHUD/TopLeft/ModernKeyCount/ModernKeyAmount"), NodePath("../Main/LevelDisplay/WorldTitle/LevelNum/Crown"), NodePath("../ModernHUD/Right/ModernTime/ModernPB")]
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
+
+[node name="TextureUpdater" type="Node" parent="." node_paths=PackedStringArray("sprites")]
+script = SubResource("GDScript_jwl8o")
+sprites = [NodePath("../Main/RedCoins/BorderL"), NodePath("../Main/RedCoins/BorderL/Shadow"), NodePath("../Main/RedCoins/Coin1"), NodePath("../Main/RedCoins/Coin1/Shadow"), NodePath("../Main/RedCoins/Coin2"), NodePath("../Main/RedCoins/Coin2/Shadow"), NodePath("../Main/RedCoins/Coin3"), NodePath("../Main/RedCoins/Coin3/Shadow"), NodePath("../Main/RedCoins/Coin4"), NodePath("../Main/RedCoins/Coin4/Shadow"), NodePath("../Main/RedCoins/Coin5"), NodePath("../Main/RedCoins/Coin5/Shadow"), NodePath("../Main/RedCoins/BorderR"), NodePath("../Main/RedCoins/BorderR/Shadow"), NodePath("../Main/RedCoins/YoshiEgg"), NodePath("../Main/RedCoins/YoshiEgg/Shadow"), NodePath("../Main/RedCoins/ScoreMedal"), NodePath("../Main/RedCoins/ScoreMedal/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/BorderL"), NodePath("../ModernHUD/TopLeft/RedCoins/BorderL/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin1"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin1/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin2"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin2/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin3"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin3/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin4"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin4/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin5"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin5/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/BorderR"), NodePath("../ModernHUD/TopLeft/RedCoins/BorderR/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/YoshiEgg"), NodePath("../ModernHUD/TopLeft/RedCoins/YoshiEgg/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/ScoreMedal"), NodePath("../ModernHUD/TopLeft/RedCoins/ScoreMedal/Shadow")]
+
+[connection signal="timeout" from="Timer" to="." method="on_timeout"]
+[connection signal="updated" from="ColourPaletteSampler" to="TextShadowColourChanger" method="handle_shadow_colours"]

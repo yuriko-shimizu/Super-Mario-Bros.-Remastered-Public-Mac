@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnoc8w00gkwba"]
+
+[ext_resource type="Script" uid="uid://f50767fxajwh" path="res://Scripts/Parts/BlockDestructionParticles.gd" id="1_grxvh"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_3y2s4"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Particles/IcicleDestructionParticles.json" id="3_rw0un"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gw0u"]
+region = Rect2(0, 0, 8, 8)
+
+[node name="BlockDestructionParticles" type="Node2D"]
+z_index = 5
+script = ExtResource("1_grxvh")
+
+[node name="TL" type="Node2D" parent="."]
+position = Vector2(-4, -4)
+
+[node name="Sprite" type="Sprite2D" parent="TL"]
+texture = SubResource("AtlasTexture_8gw0u")
+
+[node name="ResourceSetter" type="Node" parent="TL" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("2_3y2s4")
+node_to_affect = NodePath("../Sprite")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("3_rw0un")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="TR" type="Node2D" parent="."]
+position = Vector2(4, -4)
+
+[node name="Sprite" type="Sprite2D" parent="TR"]
+texture = SubResource("AtlasTexture_8gw0u")
+
+[node name="ResourceSetter" type="Node" parent="TR" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("2_3y2s4")
+node_to_affect = NodePath("../Sprite")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("3_rw0un")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="BL" type="Node2D" parent="."]
+position = Vector2(-4, 4)
+
+[node name="Sprite" type="Sprite2D" parent="BL"]
+texture = SubResource("AtlasTexture_8gw0u")
+
+[node name="ResourceSetter" type="Node" parent="BL" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("2_3y2s4")
+node_to_affect = NodePath("../Sprite")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("3_rw0un")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="BR" type="Node2D" parent="."]
+position = Vector2(4, 4)
+
+[node name="Sprite" type="Sprite2D" parent="BR"]
+texture = SubResource("AtlasTexture_8gw0u")
+
+[node name="ResourceSetter" type="Node" parent="BR" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("2_3y2s4")
+node_to_affect = NodePath("../Sprite")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("3_rw0un")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]

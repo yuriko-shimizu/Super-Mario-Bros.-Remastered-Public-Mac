@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://bk0no5p6sifgu"
+path="res://.godot/imported/ScoreFont.fnt-8517e399bb822414e5cb42a48838e82d.fontdata"
+
+[deps]
+
+source_file="res://Assets/Sprites/UI/ScoreFont.fnt"
+dest_files=["res://.godot/imported/ScoreFont.fnt-8517e399bb822414e5cb42a48838e82d.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=0

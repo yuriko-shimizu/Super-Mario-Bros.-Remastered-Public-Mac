@@ -1,0 +1,90 @@
+{
+	"animations": {
+		"Fall": {
+			"frames": [
+				[
+					16.0,
+					0.0,
+					16.0,
+					24.0
+				]
+			],
+			"speed": 5.0,
+			"loop": true
+		},
+		"Rise": {
+			"frames": [
+				[
+					0.0,
+					0.0,
+					16.0,
+					24.0
+				]
+			],
+			"speed": 5.0,
+			"loop": true
+		}
+	},
+	"variations": {
+		"default": {
+			"source": "Blooper.png",
+			"rect": [0, 0, 32, 24]
+		},
+		"Underground": {
+			"source": "Blooper.png",
+			"rect": [32, 0, 32, 24]
+		},
+		"GhostHouse": {
+			"source": "Blooper.png",
+			"rect": [32, 0, 32, 24]
+		},
+		"Castle": {
+			"source": "Blooper.png",
+			"rect": [64, 0, 32, 24]
+		},
+		"Underwater": {
+			"source": "Blooper.png",
+			"rect": [96, 0, 32, 24]
+		},
+		"CastleWater": {
+			"source": "Blooper.png",
+			"rect": [96, 0, 32, 24]
+		},
+		"Desert": {
+			"source": "Blooper.png",
+			"rect": [0, 24, 32, 24]
+		},
+		"Jungle": {
+			"source": "Blooper.png",
+			"rect": [32, 24, 32, 24]
+		},
+		"Snow": {
+			"source": "Blooper.png",
+			"rect": [64, 24, 32, 24]
+		},
+		"Volcano": {
+			"source": "Blooper.png",
+			"rect": [96, 24, 32, 24]
+		},
+		"Autumn": {
+			"source": "Blooper.png",
+			"rect": [0, 48, 32, 24]
+		},
+		"Beach": {
+			"source": "Blooper.png",
+			"rect": [32, 48, 32, 24]
+		},
+		"Mountain": {
+			"source": "Blooper.png",
+			"rect": [64, 48, 32, 24]
+		},
+		"Space": {
+			"source": "Blooper.png",
+			"rect": [96, 48, 32, 24]
+		},
+		"Bonus": {
+			"source": "Blooper.png",
+			"rect": [0, 72, 32, 24]
+		}
+	}
+}

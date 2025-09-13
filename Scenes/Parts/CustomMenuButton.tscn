@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckc73w2p3cdvj"]
+
+[ext_resource type="Texture2D" uid="uid://3p2l7rec0gh5" path="res://Assets/Sprites/UI/Cursor.png" id="1_744m4"]
+[ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="2_oamdf"]
+[ext_resource type="StyleBox" uid="uid://dlbdmqmnl30sq" path="res://Resources/UI/PanelSelected.tres" id="3_d66fe"]
+[ext_resource type="Texture2D" uid="uid://hg5ql8d3dck7" path="res://Assets/Sprites/UI/CustomLevelActionIcon.png" id="4_g3205"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="5_d66fe"]
+[ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="6_g3205"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hykrg"]
+atlas = ExtResource("4_g3205")
+region = Rect2(24, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_744m4"]
+atlas = ExtResource("1_744m4")
+region = Rect2(0, 0, 8, 8)
+
+[node name="BoxContainer" type="MarginContainer"]
+offset_right = 16.0
+offset_bottom = 16.0
+focus_mode = 2
+focus_behavior_recursive = 2
+theme_override_constants/margin_left = 8
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_behavior_recursive = 2
+theme_override_styles/normal = ExtResource("2_oamdf")
+theme_override_styles/pressed = ExtResource("3_d66fe")
+theme_override_styles/hover = ExtResource("2_oamdf")
+theme_override_styles/focus = ExtResource("3_d66fe")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_hykrg")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 2
+text = "Play"
+uppercase = true
+
+[node name="Cursor" type="Control" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Cursor"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Cursor/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -4.0
+offset_right = -1.0
+offset_bottom = 4.0
+grow_vertical = 2
+texture = SubResource("AtlasTexture_744m4")
+
+[node name="ResourceSetterNew" type="Node" parent="Cursor/Control/TextureRect" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("5_d66fe")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("6_g3205")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[connection signal="focus_entered" from="." to="." method="show"]
+[connection signal="focus_entered" from="." to="Button" method="grab_focus"]
+[connection signal="focus_entered" from="Button" to="Icon" method="hide"]
+[connection signal="focus_entered" from="Button" to="Label" method="show"]
+[connection signal="focus_entered" from="Button" to="Cursor" method="show"]
+[connection signal="focus_exited" from="Button" to="Icon" method="show"]
+[connection signal="focus_exited" from="Button" to="Label" method="hide"]
+[connection signal="focus_exited" from="Button" to="Cursor" method="hide"]

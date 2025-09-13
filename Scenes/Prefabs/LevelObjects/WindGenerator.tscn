@@ -1,0 +1,127 @@
+[gd_scene load_steps=16 format=3 uid="uid://c108uri4ql2wh"]
+
+[ext_resource type="PackedScene" uid="uid://bn1kect7h2dlp" path="res://Scenes/Prefabs/LevelObjects/BulletBillGenerator.tscn" id="1_mpgoo"]
+[ext_resource type="Script" uid="uid://cxkh8cic78uog" path="res://Scripts/Parts/WindGenerator.gd" id="2_06nk3"]
+[ext_resource type="Texture2D" uid="uid://dimtvmmic8y1u" path="res://Assets/Sprites/Editor/WindGenerator.png" id="3_mtw7j"]
+[ext_resource type="Texture2D" uid="uid://dy3p03djelkb3" path="res://Assets/Sprites/Particles/Leaves.png" id="4_3cn4y"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="5_3cn4y"]
+[ext_resource type="AudioStream" uid="uid://g5cjhcnpp1fp" path="res://Assets/Audio/SFX/Wind.wav" id="5_u3e45"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Particles/WindParticles.json" id="6_u3e45"]
+[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="6_wacow"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="7_swgot"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="8_mtw7j"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i3xr0"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_xqrrq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.894444, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_68lil"]
+curve = SubResource("Curve_xqrrq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_am6ww"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, 15, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 8, 1)
+spread = 0.0
+initial_velocity_min = 100.0
+initial_velocity_max = 500.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_68lil")
+anim_offset_max = 1.0
+
+[sub_resource type="Resource" id="Resource_tvrnh"]
+script = ExtResource("7_swgot")
+Overworld = ExtResource("5_u3e45")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[node name="EntityGenerator" instance=ExtResource("1_mpgoo")]
+script = ExtResource("2_06nk3")
+wind_force = 4
+wind_direction = 0
+entity_scene = null
+
+[node name="Sprite" parent="LevelEditorVisibleNode" index="0"]
+texture = ExtResource("3_mtw7j")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="2"]
+layer = 0
+
+[node name="Left" type="Control" parent="CanvasLayer" index="0"]
+visible = false
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Particles" type="GPUParticles2D" parent="CanvasLayer/Left" index="0"]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_i3xr0")
+position = Vector2(-64, 0)
+amount = 64
+texture = ExtResource("4_3cn4y")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_am6ww")
+
+[node name="ResourceSetterNew" type="Node" parent="CanvasLayer/Left/Particles" index="0" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("5_3cn4y")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("6_u3e45")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Right" type="Control" parent="CanvasLayer" index="1"]
+visible = false
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Particles" type="GPUParticles2D" parent="CanvasLayer/Right" index="0"]
+material = SubResource("CanvasItemMaterial_i3xr0")
+position = Vector2(64, 0)
+scale = Vector2(-1, 1)
+amount = 64
+texture = ExtResource("4_3cn4y")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_am6ww")
+
+[node name="ResourceSetterNew" type="Node" parent="CanvasLayer/Right/Particles" index="0" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("5_3cn4y")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("6_u3e45")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="SFX" type="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource("5_u3e45")
+bus = &"SFX"
+
+[node name="ResourceSetter" type="Node" parent="SFX" index="0" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_wacow")
+node_to_affect = NodePath("..")
+property_name = "stream"
+themed_resource = SubResource("Resource_tvrnh")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="EditorPropertyExposer" type="Node" parent="." index="4"]
+script = ExtResource("8_mtw7j")
+properties = Array[String](["wind_force", "wind_direction"])
+metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"

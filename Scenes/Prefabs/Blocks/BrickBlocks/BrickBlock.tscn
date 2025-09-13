@@ -1,0 +1,74 @@
+[gd_scene load_steps=12 format=3 uid="uid://dsa8lpl7n8ge0"]
+
+[ext_resource type="Script" uid="uid://y53avulrmfx1" path="res://Scripts/Classes/Blocks/BrickBlock.gd" id="1_ci56s"]
+[ext_resource type="PackedScene" uid="uid://55lw62f6ol33" path="res://Scenes/Prefabs/Particles/BrickDestructionParticles.tscn" id="2_x80g6"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_j224x"]
+[ext_resource type="PackedScene" uid="uid://cijkvfkthetn5" path="res://Scenes/Parts/BlockAnimations.tscn" id="3_nyd82"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_x80g6"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/BrickBlock.json" id="4_b3g5f"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="6_e3l5j"]
+[ext_resource type="Script" uid="uid://bul1nbd2in1gn" path="res://Scripts/Classes/Components/PSwitcher.gd" id="7_43oa6"]
+[ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="8_7ej1a"]
+[ext_resource type="Script" uid="uid://maqpreddu5kg" path="res://Scripts/Classes/Components/LevelPersistance.gd" id="9_10eph"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3g5f"]
+size = Vector2(16, 16)
+
+[node name="BrickBlock" type="AnimatableBody2D" node_paths=PackedStringArray("visuals") groups=["Blocks"]]
+z_index = -1
+collision_layer = 6
+collision_mask = 0
+script = ExtResource("1_ci56s")
+visuals = NodePath("Sprite")
+destruction_particle_scene = ExtResource("2_x80g6")
+metadata/_custom_type_script = "uid://b5ejlbl0vp1gm"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+script = ExtResource("3_x80g6")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_j224x")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("4_b3g5f")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_b3g5f")
+
+[node name="BlockAnimations" parent="." instance=ExtResource("3_nyd82")]
+
+[node name="EditorPropertyExposer" type="Node" parent="."]
+script = ExtResource("6_e3l5j")
+properties = Array[String](["item", "item_amount", "mushroom_if_small"])
+filters = Dictionary[String, String]({
+"item": "can_be_stored"
+})
+
+[node name="PSwitcher" type="Node" parent="."]
+script = ExtResource("7_43oa6")
+new_scene = "uid://chjxyhlwohmi6"
+
+[node name="TrackJoint" type="Node" parent="."]
+script = ExtResource("8_7ej1a")
+offset = Vector2(0, 0)
+disable_physics = false
+metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
+
+[node name="LevelPersistance" type="Node" parent="."]
+script = ExtResource("9_10eph")
+metadata/_custom_type_script = "uid://maqpreddu5kg"
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[connection signal="block_destroyed" from="." to="LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="." to="LevelPersistance" method="set_as_active"]
+[connection signal="player_block_hit" from="." to="." method="on_block_hit"]
+[connection signal="player_block_hit" from="." to="BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="." to="." method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="." to="BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="enabled" from="LevelPersistance" to="." method="spawn_empty_block"]
+[connection signal="enabled_2" from="LevelPersistance" to="." method="queue_free"]

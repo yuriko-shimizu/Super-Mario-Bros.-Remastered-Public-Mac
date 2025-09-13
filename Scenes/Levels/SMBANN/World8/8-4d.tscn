@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmk3afhnnr7m5"]
+
+[ext_resource type="PackedScene" uid="uid://b427j864nhby4" path="res://Scenes/Levels/SMBLL/World8/8-4d.tscn" id="1_kj182"]
+[ext_resource type="Script" uid="uid://bjs5mlc3xrxud" path="res://Scripts/Parts/DiscoLevel.gd" id="2_63pcd"]
+[ext_resource type="PackedScene" uid="uid://1rxw4k4wq3ni" path="res://Scenes/Prefabs/Entities/Enemies/PiranhaPlant.tscn" id="2_txs8t"]
+
+[node name="8-4d" instance=ExtResource("1_kj182")]
+campaign = "SMBANN"
+
+[node name="Player" parent="." index="0"]
+position = Vector2(-224, 0)
+
+[node name="RedPirannhaPlant" parent="Enemies" index="0"]
+position = Vector2(-208, 296)
+
+[node name="RedPirannhaPlant2" parent="Enemies" index="1"]
+position = Vector2(-32, 328)
+
+[node name="RedPirannhaPlant3" parent="Enemies" index="2"]
+position = Vector2(432, 280)
+
+[node name="PirannhaPlant" parent="Enemies" index="4" instance=ExtResource("2_txs8t")]
+position = Vector2(-192, -32)
+
+[node name="PirannhaPlant2" parent="Enemies" index="5" instance=ExtResource("2_txs8t")]
+position = Vector2(-16, 0)
+
+[node name="PirannhaPlant3" parent="Enemies" index="6" instance=ExtResource("2_txs8t")]
+position = Vector2(448, -48)
+rotation = 3.1415927
+
+[node name="PipeArea2" parent="." index="4"]
+target_level = "uid://bij088rfbprdk"
+
+[node name="LostLevelsEndingDoor" parent="." index="8"]
+scene = "uid://b712pxr3iuo7x"
+
+[node name="DiscoLevel" type="Node" parent="." index="14"]
+script = ExtResource("2_63pcd")
+combo_meter_rate = 0.25
+metadata/_custom_type_script = "uid://bjs5mlc3xrxud"
+
+[connection signal="block_destroyed" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/LevelPersistance" method="set_as_active"]
+[connection signal="player_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@137986" to="Tiles/@AnimatableBody2D@137986/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@137986" to="Tiles/@AnimatableBody2D@137986/LevelPersistance" method="set_as_active"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@137986" to="Tiles/@AnimatableBody2D@137986" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@137986" to="Tiles/@AnimatableBody2D@137986" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@137986" to="Tiles/@AnimatableBody2D@137986/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@137986" to="Tiles/@AnimatableBody2D@137986" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@137986" to="Tiles/@AnimatableBody2D@137986/BlockAnimations" method="bounce_block" unbinds=1]

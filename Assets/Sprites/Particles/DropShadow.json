@@ -1,0 +1,16 @@
+{
+	"variations": {
+		"default": {
+			"Day": {"source": "ShadowColours.png", "rect": [0, 0, 1, 1]},
+			"Night": {"source": "ShadowColours.png", "rect": [1, 0, 1, 1]}
+		},
+		"Underground": {"source": "ShadowColours.png", "rect": [1, 0, 1, 1]},
+		"GhostHouse": {"link": "Underground"},
+		"Jungle": {"link": "Underground"},
+		"Castle": {"link": "Underground"},
+		"Bonus": {"link": "Underground"},
+		"Underwater": {"source": "ShadowColours.png", "rect": [0, 0, 1, 1]},
+		"CastleWater": {"link": "Underwater"},
+		"Volcano": {"link": "Underground"}
+	}
+}

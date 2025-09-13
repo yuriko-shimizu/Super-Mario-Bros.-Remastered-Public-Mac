@@ -1,0 +1,24 @@
+{
+	"name": "CHAR_MARIO",
+	"physics": {
+		"AIR_ACCEL": 3.0,
+		"AIR_SKID": 1.5,
+		"DECEL": 3.0,
+		"FALL_GRAVITY": 25.0,
+		"GROUND_RUN_ACCEL": 1.25,
+		"GROUND_WALK_ACCEL": 4.0,
+		"JUMP_GRAVITY": 11.0,
+		"JUMP_HEIGHT": 300.0,
+		"JUMP_INCR": 8.0,
+		"SWIM_GRAVITY": 2.5,
+		"SWIM_SPEED": 95.0,
+		"MAX_FALL_SPEED": 280,
+		"MAX_SWIM_FALL_SPEED": 200,
+		"RUN_SKID": 8.0,
+		"RUN_SPEED": 160,
+		"WALK_SKID": 8.0,
+		"WALK_SPEED": 90.0
+	},
+	"small_hitbox_scale": [1.0, 1.0],
+	"big_hitbox_scale": [1.0, 1.0]
+}

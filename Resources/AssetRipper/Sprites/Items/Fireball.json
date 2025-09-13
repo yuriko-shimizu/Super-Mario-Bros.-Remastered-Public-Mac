@@ -1,0 +1,1 @@
+{"columns":"4","palette_base":"Red","palettes":"{\n\"Red\": [\"default\"]\n}","sheet_size":"Vector2i(16, 16)","source_path":"res://Assets/Sprites/Items/Fireball.png","tiles":"{\nVector2(0, 0): {\n\"flip_h\": true,\n\"flip_v\": true,\n\"index\": 101\n}\n}"}

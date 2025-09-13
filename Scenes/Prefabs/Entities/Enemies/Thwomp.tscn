@@ -1,0 +1,150 @@
+[gd_scene load_steps=19 format=3 uid="uid://dq6syqkg4qjf0"]
+
+[ext_resource type="Script" uid="uid://bxfc7hxw13s6q" path="res://Scripts/Classes/Entities/Enemies/Thwomp.gd" id="1_bl7l2"]
+[ext_resource type="Texture2D" uid="uid://dw5k3dr3kedw3" path="res://Assets/Sprites/Enemies/Thwomp.png" id="2_kdp37"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_bl7l2"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Thwomp.json" id="4_426pe"]
+[ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="5_gvuxk"]
+[ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="6_5xuvp"]
+[ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="7_01c5y"]
+[ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="8_5xuvp"]
+[ext_resource type="Script" uid="uid://dq860i312isk" path="res://Scripts/Classes/Components/IcicleDetection.gd" id="9_01c5y"]
+[ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="10_f8b23"]
+[ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="11_jkv5r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bl7l2"]
+atlas = ExtResource("2_kdp37")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_426pe"]
+atlas = ExtResource("2_kdp37")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elu2h"]
+atlas = ExtResource("2_kdp37")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gvuxk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bl7l2")
+}],
+"loop": true,
+"name": &"Fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_426pe")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elu2h")
+}],
+"loop": true,
+"name": &"Look",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xuvp"]
+size = Vector2(24, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8b23"]
+size = Vector2(20, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvuxk"]
+size = Vector2(16, 1)
+
+[node name="Thwomp" type="CharacterBody2D" node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Enemies"]]
+collision_layer = 16
+collision_mask = 6
+script = ExtResource("1_bl7l2")
+on_screen_enabler = NodePath("VisibleOnScreenEnabler2D")
+score_note_adder = NodePath("ScoreNoteSpawner")
+metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_gvuxk")
+animation = &"Idle"
+autoplay = "Idle"
+offset = Vector2(0, 1)
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_bl7l2")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("4_426pe")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15.5)
+shape = SubResource("RectangleShape2D_5xuvp")
+one_way_collision = true
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0, -16)
+rect = Rect2(-16, -24, 32, 512)
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_f8b23")
+
+[node name="EnemyPlayerDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("5_gvuxk")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
+[node name="BlockBouncingDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("6_5xuvp")
+detection_type = 1
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://cmg61722ktg2m"
+
+[node name="GibSpawner" type="Node" parent="." node_paths=PackedStringArray("visuals")]
+script = ExtResource("7_01c5y")
+visuals = NodePath("../Sprite")
+metadata/_custom_type_script = "uid://c3gg32ivrlq8n"
+
+[node name="BlockBreakingHitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockBreakingHitbox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_gvuxk")
+
+[node name="FireballDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("8_5xuvp")
+hitbox = NodePath("../Hitbox")
+play_sfx_on_hit = true
+metadata/_custom_type_script = "uid://dri2d5jtu0fbq"
+
+[node name="IcicleDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("9_01c5y")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://dq860i312isk"
+
+[node name="TrackJoint" type="Node" parent="."]
+script = ExtResource("10_f8b23")
+disable_physics = false
+metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
+
+[node name="ScoreNoteSpawner" type="Node" parent="."]
+script = ExtResource("11_jkv5r")
+metadata/_custom_type_script = "uid://5octqlf4ohel"
+
+[connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
+[connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="block_bounced" from="BlockBouncingDetection" to="." method="die_from_object"]

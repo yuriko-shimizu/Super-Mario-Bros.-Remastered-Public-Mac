@@ -1,0 +1,1016 @@
+[gd_scene load_steps=82 format=4 uid="uid://bksxgpygrdjl7"]
+
+[ext_resource type="Script" uid="uid://erdjx03phltn" path="res://Scripts/Classes/LevelBGNew.gd" id="1_pkg8e"]
+[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="3_6m0f5"]
+[ext_resource type="Texture2D" uid="uid://bha24bbe5qth1" path="res://Assets/Sprites/Backgrounds/Hills/Overworld.png" id="3_xdw86"]
+[ext_resource type="Texture2D" uid="uid://dtfe33kjuo60w" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/Trees.png" id="4_r8svn"]
+[ext_resource type="Script" uid="uid://cixtosud3mfaq" path="res://Scripts/Classes/Resources/CampaignResource.gd" id="5_vsau7"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="6_m4ndh"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="7_y7xk0"]
+[ext_resource type="Texture2D" uid="uid://b86x8nf8nso3" path="res://Assets/Sprites/Backgrounds/Skies/NightStars.png" id="7_yxjfg"]
+[ext_resource type="Texture2D" uid="uid://rv5wcnjulem0" path="res://Assets/Sprites/Backgrounds/Bushes/BushNight.png" id="8_b1lev"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="10_lvidp"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/Hills/Hill.json" id="11_kmegu"]
+[ext_resource type="Texture2D" uid="uid://4d5oglq575l1" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/TreesLL.png" id="12_qbp4r"]
+[ext_resource type="Texture2D" uid="uid://bsssrchx6qe0i" path="res://Assets/Sprites/Backgrounds/Hills/Jungle.png" id="13_i5r0m"]
+[ext_resource type="Texture2D" uid="uid://cx54ubn3schon" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/SnowTrees.png" id="13_kf1vm"]
+[ext_resource type="Script" uid="uid://ca3bew33g45eq" path="res://Scripts/Classes/UI/PackTextureRect.gd" id="13_q0lxs"]
+[ext_resource type="Texture2D" uid="uid://wyrrj7wts6xe" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/SnowTreesLL.png" id="14_ob0l2"]
+[ext_resource type="Texture2D" uid="uid://d4kkcpn1bahcf" path="res://Assets/Sprites/Backgrounds/Hills/JungleLL.png" id="15_413gx"]
+[ext_resource type="AudioStream" uid="uid://mgub7yupxkau" path="res://Assets/Audio/SFX/ANNCheering1.wav" id="15_b1lev"]
+[ext_resource type="Texture2D" uid="uid://hiwsjulaojy1" path="res://Assets/Sprites/Backgrounds/CloudOverlays/CloudOverlay.png" id="15_whv0w"]
+[ext_resource type="AudioStream" uid="uid://dxpllussaq340" path="res://Assets/Audio/SFX/ANNCheering2.wav" id="16_ugdi7"]
+[ext_resource type="AudioStream" uid="uid://cp0qfxaqq5v25" path="res://Assets/Audio/SFX/ANNCheering3.wav" id="17_aw4cr"]
+[ext_resource type="Script" uid="uid://dpoo4pluhin8p" path="res://Scripts/Classes/Resources/TimedResource.gd" id="17_q1cch"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/Bushes/Bush.json" id="17_yxjfg"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/CloudOverlays/OverlayClouds.json" id="24_aw4cr"]
+[ext_resource type="Texture2D" uid="uid://d3m2nrl4js67e" path="res://Assets/Sprites/Backgrounds/SpotLight.png" id="24_ibh57"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Particles/Snow.json" id="25_aw4cr"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/SecondaryTrees.json" id="25_dmpyo"]
+[ext_resource type="Texture2D" uid="uid://dy3p03djelkb3" path="res://Assets/Sprites/Particles/Leaves.png" id="25_q36g4"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Particles/Leaves.json" id="28_ugdi7"]
+[ext_resource type="Texture2D" uid="uid://cgiahmwr41yvd" path="res://Assets/Sprites/Backgrounds/SecondaryMushrooms/Mushrooms.png" id="29_7urbp"]
+[ext_resource type="Texture2D" uid="uid://ufcdaihxe85c" path="res://Assets/Sprites/Backgrounds/Lighting.png" id="31_78nlv"]
+[ext_resource type="Texture2D" uid="uid://lvw7a4ckko5x" path="res://Assets/Sprites/Backgrounds/FGs/Default.png" id="31_aw4cr"]
+[ext_resource type="Script" uid="uid://dwtrmo82e12ud" path="res://Scripts/Parts/ColourPaletteSampler.gd" id="31_dmpyo"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/FGs/FGLayer.json" id="31_ugdi7"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/SecondaryMushrooms/Mushrooms.json" id="32_nfso6"]
+[ext_resource type="PackedScene" uid="uid://ct5rrpa7uehkk" path="res://Scenes/Parts/Tiles.tscn" id="33_7urbp"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/Skies/Sky.json" id="34_78nlv"]
+[ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="36_ekspk"]
+[ext_resource type="Texture2D" uid="uid://3y5hetq5n21x" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/SnowNightTrees.png" id="36_ibh57"]
+[ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="37_nfso6"]
+[ext_resource type="Texture2D" uid="uid://dfildm0squweg" path="res://Assets/Sprites/Players/ToadNPC.png" id="43_joqdr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8hji"]
+atlas = ExtResource("7_yxjfg")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkl8a"]
+atlas = ExtResource("7_yxjfg")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e5ylw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8hji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkl8a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0lxs"]
+atlas = ExtResource("3_xdw86")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ekspk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0lxs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b1lev"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_b1lev")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ibh57"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_78nlv"]
+resource_name = "Rainbow"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0.5, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1), Color(1, 0, 1, 1), Color(0.5, 0, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_joqdr"]
+_data = {
+&"RESET": SubResource("Animation_ibh57"),
+&"Rainbow": SubResource("Animation_78nlv")
+}
+
+[sub_resource type="Animation" id="Animation_joqdr"]
+resource_name = "Bob"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -224), Vector2(0, -220), Vector2(0, -224)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RemoteTransform2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 238), Vector2(0, 230), Vector2(0, 238)]
+}
+
+[sub_resource type="Animation" id="Animation_q1cch"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -224)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RemoteTransform2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 230)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lvidp"]
+_data = {
+&"Bob": SubResource("Animation_joqdr"),
+&"RESET": SubResource("Animation_q1cch")
+}
+
+[sub_resource type="Animation" id="Animation_kmegu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("L:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.436332]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("R:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.436332]
+}
+
+[sub_resource type="Animation" id="Animation_lvidp"]
+resource_name = "Turn"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("L:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.436332, 0.436332]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("R:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.436332, -0.436332]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_34fd5"]
+_data = {
+&"RESET": SubResource("Animation_kmegu"),
+&"Turn": SubResource("Animation_lvidp")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_413gx"]
+emission_shape = 3
+emission_box_extents = Vector3(256, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 15.0
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7urbp"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_yxjfg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.738889, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_e4hrf"]
+curve = SubResource("Curve_yxjfg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b8hji"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(512, 1, 1)
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 100.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_e4hrf")
+anim_offset_max = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dmpyo"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_dmpyo"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.333333, 0.666667)
+colors = PackedColorArray(0.52549, 0.192157, 0.054902, 1, 1, 0.717647, 0.384314, 1, 0.968627, 0.223529, 0.0627451, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 3
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_78nlv"]
+gradient = SubResource("Gradient_dmpyo")
+width = 3
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dmpyo"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(256, 1, 1)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -10, 0)
+anim_offset_max = 1.0
+
+[sub_resource type="Gradient" id="Gradient_qkl8a"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.266667, 0.137255, 0.0235294, 1)
+
+[sub_resource type="Gradient" id="Gradient_b8hji"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.372549, 0.372549, 0.290196, 1)
+
+[sub_resource type="Gradient" id="Gradient_e5ylw"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.372549, 0.372549, 0.686275, 1)
+
+[sub_resource type="Resource" id="Resource_e5ylw"]
+script = ExtResource("6_m4ndh")
+Overworld = SubResource("Gradient_b8hji")
+Desert = SubResource("Gradient_qkl8a")
+Snow = SubResource("Gradient_e5ylw")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[sub_resource type="Resource" id="Resource_q0lxs"]
+metadata/__load_path__ = "res://Assets/Sprites/Backgrounds/Trees/BeachTrees.png"
+
+[sub_resource type="Resource" id="Resource_idbei"]
+metadata/__load_path__ = "res://Assets/Sprites/Backgrounds/SecondaryTrees/DesertTrees.png"
+
+[sub_resource type="Resource" id="Resource_y7xk0"]
+metadata/__load_path__ = "res://Assets/Sprites/Backgrounds/SecondaryTrees/DesertNightTrees.png"
+
+[sub_resource type="Resource" id="Resource_ibh57"]
+script = ExtResource("17_q1cch")
+Day = SubResource("Resource_idbei")
+Night = SubResource("Resource_y7xk0")
+metadata/_custom_type_script = "uid://dpoo4pluhin8p"
+
+[sub_resource type="Resource" id="Resource_cja53"]
+script = ExtResource("5_vsau7")
+SMB1 = ExtResource("4_r8svn")
+SMBLL = ExtResource("12_qbp4r")
+metadata/_custom_type_script = "uid://cixtosud3mfaq"
+
+[sub_resource type="Resource" id="Resource_lvidp"]
+script = ExtResource("17_q1cch")
+Day = ExtResource("13_kf1vm")
+Night = ExtResource("36_ibh57")
+metadata/_custom_type_script = "uid://dpoo4pluhin8p"
+
+[sub_resource type="Resource" id="Resource_wxktm"]
+script = ExtResource("5_vsau7")
+SMB1 = SubResource("Resource_lvidp")
+SMBLL = ExtResource("14_ob0l2")
+metadata/_custom_type_script = "uid://cixtosud3mfaq"
+
+[sub_resource type="Resource" id="Resource_4apf8"]
+script = ExtResource("6_m4ndh")
+Overworld = SubResource("Resource_cja53")
+Desert = SubResource("Resource_ibh57")
+Snow = SubResource("Resource_wxktm")
+Beach = SubResource("Resource_q0lxs")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[sub_resource type="Resource" id="Resource_ekspk"]
+metadata/__load_path__ = "res://Assets/Sprites/Backgrounds/Trees/AutumnLL.png"
+
+[sub_resource type="Resource" id="Resource_7urbp"]
+script = ExtResource("5_vsau7")
+SMB1 = ExtResource("13_i5r0m")
+SMBLL = ExtResource("15_413gx")
+metadata/_custom_type_script = "uid://cixtosud3mfaq"
+
+[sub_resource type="Resource" id="Resource_t06j2"]
+metadata/__load_path__ = "res://Assets/Sprites/Backgrounds/Trees/Forest.png"
+
+[sub_resource type="Resource" id="Resource_yxjfg"]
+script = ExtResource("6_m4ndh")
+Overworld = SubResource("Resource_t06j2")
+Jungle = SubResource("Resource_7urbp")
+Autumn = SubResource("Resource_ekspk")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[node name="LevelBG" type="Node2D"]
+process_mode = 3
+z_index = -4096
+script = ExtResource("1_pkg8e")
+
+[node name="SkyLayer" type="Parallax2D" parent="."]
+process_mode = 1
+visibility_layer = 2
+z_index = -4096
+scroll_scale = Vector2(0.25, 1)
+scroll_offset = Vector2(0, 32)
+repeat_size = Vector2(512, 512)
+autoscroll = Vector2(-4, 0)
+repeat_times = 4
+
+[node name="Sky" type="AnimatedSprite2D" parent="SkyLayer"]
+process_mode = 1
+sprite_frames = SubResource("SpriteFrames_e5ylw")
+autoplay = "default"
+frame_progress = 0.8146292
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="SkyLayer/Sky" node_paths=PackedStringArray("node_to_affect", "property_node")]
+process_mode = 1
+script = ExtResource("10_lvidp")
+node_to_affect = NodePath("..")
+property_node = NodePath("../../..")
+property_name = "sprite_frames"
+resource_json = ExtResource("34_78nlv")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="PrimaryLayer" type="Parallax2D" parent="."]
+process_mode = 1
+visibility_layer = 2
+z_index = 1
+scroll_scale = Vector2(0.5, 1)
+scroll_offset = Vector2(0, 32)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="Hills" type="AnimatedSprite2D" parent="PrimaryLayer"]
+process_mode = 1
+position = Vector2(0, -512)
+sprite_frames = SubResource("SpriteFrames_ekspk")
+centered = false
+script = ExtResource("7_y7xk0")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetter" type="Node" parent="PrimaryLayer/Hills" node_paths=PackedStringArray("node_to_affect", "property_node")]
+process_mode = 1
+script = ExtResource("10_lvidp")
+node_to_affect = NodePath("..")
+property_node = NodePath("../../..")
+property_name = "sprite_frames"
+resource_json = ExtResource("11_kmegu")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Bush" type="AnimatedSprite2D" parent="PrimaryLayer"]
+process_mode = 1
+position = Vector2(0, -512)
+sprite_frames = SubResource("SpriteFrames_b1lev")
+centered = false
+script = ExtResource("7_y7xk0")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetter" type="Node" parent="PrimaryLayer/Bush" node_paths=PackedStringArray("node_to_affect")]
+process_mode = 1
+script = ExtResource("10_lvidp")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("17_yxjfg")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="TopEdge" type="ColorRect" parent="PrimaryLayer"]
+process_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -608.0
+offset_right = 512.0
+offset_bottom = -480.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="DiscoBits" type="Node2D" parent="."]
+process_mode = 1
+visible = false
+z_index = 1
+
+[node name="Rainbow" type="Parallax2D" parent="DiscoBits"]
+process_mode = 1
+scroll_scale = Vector2(0.75, 1)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="Joint" type="Node2D" parent="DiscoBits/Rainbow"]
+process_mode = 1
+
+[node name="DiscoRainbow" type="TextureRect" parent="DiscoBits/Rainbow/Joint"]
+process_mode = 1
+modulate = Color(1, 0, 0, 1)
+self_modulate = Color(1, 1, 1, 0.5)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -224.0
+offset_right = 512.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("31_78nlv")
+stretch_mode = 1
+script = ExtResource("13_q0lxs")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DiscoBits/Rainbow/Joint/DiscoRainbow"]
+process_mode = 1
+libraries = {
+&"": SubResource("AnimationLibrary_joqdr")
+}
+autoplay = "Rainbow"
+speed_scale = 0.1
+
+[node name="Rhythm" type="AnimationPlayer" parent="DiscoBits/Rainbow/Joint/DiscoRainbow"]
+process_mode = 1
+libraries = {
+&"": SubResource("AnimationLibrary_lvidp")
+}
+autoplay = "Bob"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="DiscoBits/Rainbow/Joint/DiscoRainbow"]
+process_mode = 1
+position = Vector2(0, 230)
+remote_path = NodePath("../../../../../Parallax2D/Toads")
+use_global_coordinates = false
+
+[node name="SpotLights" type="Parallax2D" parent="DiscoBits"]
+process_mode = 1
+modulate = Color(1, 1, 1, 0.213)
+z_index = 10
+z_as_relative = false
+scroll_offset = Vector2(0, 16)
+repeat_size = Vector2(1024, 0)
+repeat_times = 4
+
+[node name="L" type="Sprite2D" parent="DiscoBits/SpotLights"]
+process_mode = 1
+position = Vector2(0, 32)
+rotation = -0.436332
+texture = ExtResource("24_ibh57")
+offset = Vector2(128, -128)
+
+[node name="R" type="Sprite2D" parent="DiscoBits/SpotLights"]
+process_mode = 1
+position = Vector2(512, 32)
+rotation = 0.436332
+texture = ExtResource("24_ibh57")
+offset = Vector2(-128, -128)
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DiscoBits/SpotLights"]
+process_mode = 1
+libraries = {
+&"": SubResource("AnimationLibrary_34fd5")
+}
+autoplay = "Turn"
+speed_scale = 0.2
+
+[node name="Parallax2D" type="Parallax2D" parent="DiscoBits"]
+process_mode = 1
+
+[node name="Cheer1" type="AudioStreamPlayer" parent="DiscoBits"]
+process_mode = 1
+stream = ExtResource("15_b1lev")
+bus = &"SFX"
+
+[node name="Cheer2" type="AudioStreamPlayer" parent="DiscoBits"]
+process_mode = 1
+stream = ExtResource("16_ugdi7")
+bus = &"SFX"
+
+[node name="Cheer3" type="AudioStreamPlayer" parent="DiscoBits"]
+process_mode = 1
+stream = ExtResource("17_aw4cr")
+bus = &"SFX"
+
+[node name="SecondaryLayer" type="Parallax2D" parent="."]
+process_mode = 1
+visible = false
+visibility_layer = 2
+scroll_scale = Vector2(0.4, 1)
+scroll_offset = Vector2(80, 64)
+repeat_size = Vector2(512, 512)
+repeat_times = 4
+
+[node name="Trees" type="Sprite2D" parent="SecondaryLayer"]
+process_mode = 1
+visible = false
+clip_children = 2
+position = Vector2(0, -32)
+texture = ExtResource("4_r8svn")
+centered = false
+
+[node name="Tint" type="ColorRect" parent="SecondaryLayer/Trees"]
+process_mode = 1
+modulate = Color(1, 1, 1, 0.7)
+offset_right = 512.0
+offset_bottom = 512.0
+color = Color(0.462745, 0.52549, 1, 1)
+
+[node name="ColourPaletteSampler" type="Node" parent="SecondaryLayer/Trees/Tint" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("31_dmpyo")
+coords = Vector2i(192, 255)
+node_to_affect = NodePath("..")
+value_to_set = "color"
+metadata/_custom_type_script = "uid://dwtrmo82e12ud"
+
+[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Trees/Tint/ColourPaletteSampler" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("10_lvidp")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("34_78nlv")
+use_cache = false
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Trees" node_paths=PackedStringArray("node_to_affect", "property_node")]
+process_mode = 1
+script = ExtResource("10_lvidp")
+node_to_affect = NodePath("..")
+property_node = NodePath("../../..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("25_dmpyo")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Mushrooms" type="Sprite2D" parent="SecondaryLayer"]
+process_mode = 1
+visible = false
+clip_children = 2
+position = Vector2(0, -32)
+texture = ExtResource("29_7urbp")
+centered = false
+
+[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Mushrooms" node_paths=PackedStringArray("node_to_affect", "property_node")]
+process_mode = 1
+script = ExtResource("10_lvidp")
+node_to_affect = NodePath("..")
+property_node = NodePath("../../..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("32_nfso6")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Tint" type="ColorRect" parent="SecondaryLayer/Mushrooms"]
+process_mode = 1
+modulate = Color(1, 1, 1, 0.7)
+offset_right = 512.0
+offset_bottom = 512.0
+color = Color(0.32156864, 0.36862746, 0.69803923, 1)
+
+[node name="ColourPaletteSampler" type="Node" parent="SecondaryLayer/Mushrooms/Tint" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("31_dmpyo")
+coords = Vector2i(6, 255)
+node_to_affect = NodePath("..")
+value_to_set = "color"
+metadata/_custom_type_script = "uid://dwtrmo82e12ud"
+
+[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Mushrooms/Tint/ColourPaletteSampler" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("10_lvidp")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("34_78nlv")
+use_cache = false
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="OverlayLayer" type="Node2D" parent="."]
+process_mode = 1
+visibility_layer = 2
+z_index = 50
+z_as_relative = false
+
+[node name="CloudLayer" type="Parallax2D" parent="OverlayLayer"]
+process_mode = 1
+scroll_scale = Vector2(1.2, 1)
+repeat_size = Vector2(512, 321)
+autoscroll = Vector2(-12, 0)
+repeat_times = 4
+
+[node name="Clouds" type="Sprite2D" parent="OverlayLayer/CloudLayer"]
+process_mode = 1
+self_modulate = Color(1, 1, 1, 0.52549)
+texture = ExtResource("15_whv0w")
+centered = false
+
+[node name="ResourceSetter" type="Node" parent="OverlayLayer/CloudLayer/Clouds" node_paths=PackedStringArray("node_to_affect")]
+process_mode = 1
+script = ExtResource("10_lvidp")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("24_aw4cr")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Particles" type="Parallax2D" parent="OverlayLayer"]
+process_mode = 1
+repeat_size = Vector2(512, 512)
+repeat_times = 4
+
+[node name="Snow" type="GPUParticles2D" parent="OverlayLayer/Particles"]
+process_mode = 1
+visible = false
+position = Vector2(256, 256)
+amount = 128
+lifetime = 20.0
+preprocess = 20.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_413gx")
+
+[node name="ResourceSetter" type="Node" parent="OverlayLayer/Particles/Snow" node_paths=PackedStringArray("node_to_affect")]
+process_mode = 1
+script = ExtResource("10_lvidp")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("25_aw4cr")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Leaves" type="GPUParticles2D" parent="OverlayLayer/Particles"]
+process_mode = 1
+visible = false
+material = SubResource("CanvasItemMaterial_7urbp")
+position = Vector2(256, 256)
+amount = 64
+texture = ExtResource("25_q36g4")
+lifetime = 30.0
+preprocess = 20.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_b8hji")
+
+[node name="ResourceSetterNew" type="Node" parent="OverlayLayer/Particles/Leaves" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("10_lvidp")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("28_ugdi7")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="LavaEmber" type="GPUParticles2D" parent="OverlayLayer/Particles"]
+process_mode = 1
+visibility_layer = 2
+z_index = -50
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_dmpyo")
+position = Vector2(256, 32)
+amount = 64
+texture = SubResource("GradientTexture1D_78nlv")
+lifetime = 5.0
+preprocess = 10.0
+fract_delta = false
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_dmpyo")
+
+[node name="FGLayer" type="Parallax2D" parent="."]
+process_mode = 1
+visibility_layer = 2
+z_index = 51
+z_as_relative = false
+scroll_scale = Vector2(1.25, 1)
+scroll_offset = Vector2(0, 32)
+repeat_size = Vector2(512, 512)
+repeat_times = 4
+
+[node name="Sprite" type="Sprite2D" parent="FGLayer"]
+process_mode = 1
+texture = ExtResource("31_aw4cr")
+centered = false
+
+[node name="ResourceSetterNew" type="Node" parent="FGLayer/Sprite" node_paths=PackedStringArray("node_to_affect", "property_node")]
+process_mode = 1
+script = ExtResource("10_lvidp")
+node_to_affect = NodePath("..")
+property_node = NodePath("../../..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("31_ugdi7")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="LiquidLayer" type="Parallax2D" parent="."]
+process_mode = 1
+visible = false
+visibility_layer = 2
+z_index = 50
+z_as_relative = false
+scroll_offset = Vector2(0, 8)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="Water" parent="LiquidLayer" instance=ExtResource("33_7urbp")]
+process_mode = 1
+visible = false
+z_as_relative = false
+tile_map_data = PackedByteArray("AAAwAAAAAgAAAAAAAAAwAAEAAgAAAAEAAAAxAAAAAgAAAAAAAAAxAAEAAgAAAAEAAAAyAAAAAgAAAAAAAAAyAAEAAgAAAAEAAAAzAAAAAgAAAAAAAAAzAAEAAgAAAAEAAAA0AAAAAgAAAAAAAAA0AAEAAgAAAAEAAAA1AAAAAgAAAAAAAAA1AAEAAgAAAAEAAAA2AAAAAgAAAAAAAAA2AAEAAgAAAAEAAAA3AAAAAgAAAAAAAAA3AAEAAgAAAAEAAAA4AAAAAgAAAAAAAAA4AAEAAgAAAAEAAAA5AAAAAgAAAAAAAAA5AAEAAgAAAAEAAAA6AAAAAgAAAAAAAAA6AAEAAgAAAAEAAAA7AAAAAgAAAAAAAAA7AAEAAgAAAAEAAAA8AAAAAgAAAAAAAAA8AAEAAgAAAAEAAAA9AAAAAgAAAAAAAAA9AAEAAgAAAAEAAAA+AAAAAgAAAAAAAAA+AAEAAgAAAAEAAAA/AAAAAgAAAAAAAAA/AAEAAgAAAAEAAABAAAAAAgAAAAAAAABAAAEAAgAAAAEAAABBAAAAAgAAAAAAAABBAAEAAgAAAAEAAABCAAAAAgAAAAAAAABCAAEAAgAAAAEAAABDAAAAAgAAAAAAAABDAAEAAgAAAAEAAABEAAAAAgAAAAAAAABEAAEAAgAAAAEAAABFAAAAAgAAAAAAAABFAAEAAgAAAAEAAABGAAAAAgAAAAAAAABGAAEAAgAAAAEAAABHAAAAAgAAAAAAAABHAAEAAgAAAAEAAABIAAAAAgAAAAAAAABIAAEAAgAAAAEAAABJAAAAAgAAAAAAAABJAAEAAgAAAAEAAABKAAAAAgAAAAAAAABKAAEAAgAAAAEAAABLAAAAAgAAAAAAAABLAAEAAgAAAAEAAABMAAAAAgAAAAAAAABMAAEAAgAAAAEAAABNAAAAAgAAAAAAAABNAAEAAgAAAAEAAABOAAAAAgAAAAAAAABOAAEAAgAAAAEAAABPAAAAAgAAAAAAAABPAAEAAgAAAAEAAAA=")
+
+[node name="Lava" parent="LiquidLayer" instance=ExtResource("33_7urbp")]
+process_mode = 1
+visible = false
+tile_map_data = PackedByteArray("AAAwAAAAAgAAAAIAAAAwAAEAAgAAAAMAAAAxAAAAAgAAAAIAAAAxAAEAAgAAAAMAAAAyAAAAAgAAAAIAAAAyAAEAAgAAAAMAAAAzAAAAAgAAAAIAAAAzAAEAAgAAAAMAAAA0AAAAAgAAAAIAAAA0AAEAAgAAAAMAAAA1AAAAAgAAAAIAAAA1AAEAAgAAAAMAAAA2AAAAAgAAAAIAAAA2AAEAAgAAAAMAAAA3AAAAAgAAAAIAAAA3AAEAAgAAAAMAAAA4AAAAAgAAAAIAAAA4AAEAAgAAAAMAAAA5AAAAAgAAAAIAAAA5AAEAAgAAAAMAAAA6AAAAAgAAAAIAAAA6AAEAAgAAAAMAAAA7AAAAAgAAAAIAAAA7AAEAAgAAAAMAAAA8AAAAAgAAAAIAAAA8AAEAAgAAAAMAAAA9AAAAAgAAAAIAAAA9AAEAAgAAAAMAAAA+AAAAAgAAAAIAAAA+AAEAAgAAAAMAAAA/AAAAAgAAAAIAAAA/AAEAAgAAAAMAAABAAAAAAgAAAAIAAABAAAEAAgAAAAMAAABBAAAAAgAAAAIAAABBAAEAAgAAAAMAAABCAAAAAgAAAAIAAABCAAEAAgAAAAMAAABDAAAAAgAAAAIAAABDAAEAAgAAAAMAAABEAAAAAgAAAAIAAABEAAEAAgAAAAMAAABFAAAAAgAAAAIAAABFAAEAAgAAAAMAAABGAAAAAgAAAAIAAABGAAEAAgAAAAMAAABHAAAAAgAAAAIAAABHAAEAAgAAAAMAAABIAAAAAgAAAAIAAABIAAEAAgAAAAMAAABJAAAAAgAAAAIAAABJAAEAAgAAAAMAAABKAAAAAgAAAAIAAABKAAEAAgAAAAMAAABLAAAAAgAAAAIAAABLAAEAAgAAAAMAAABMAAAAAgAAAAIAAABMAAEAAgAAAAMAAABNAAAAAgAAAAIAAABNAAEAAgAAAAMAAABOAAAAAgAAAAIAAABOAAEAAgAAAAMAAABPAAAAAgAAAAIAAABPAAEAAgAAAAMAAAA=")
+
+[node name="Poison" parent="LiquidLayer" instance=ExtResource("33_7urbp")]
+process_mode = 1
+visible = false
+tile_map_data = PackedByteArray("AAAwAAAAAgAAAAYAAAAwAAEAAgAAAAcAAAAxAAAAAgAAAAYAAAAxAAEAAgAAAAcAAAAyAAAAAgAAAAYAAAAyAAEAAgAAAAcAAAAzAAAAAgAAAAYAAAAzAAEAAgAAAAcAAAA0AAAAAgAAAAYAAAA0AAEAAgAAAAcAAAA1AAAAAgAAAAYAAAA1AAEAAgAAAAcAAAA2AAAAAgAAAAYAAAA2AAEAAgAAAAcAAAA3AAAAAgAAAAYAAAA3AAEAAgAAAAcAAAA4AAAAAgAAAAYAAAA4AAEAAgAAAAcAAAA5AAAAAgAAAAYAAAA5AAEAAgAAAAcAAAA6AAAAAgAAAAYAAAA6AAEAAgAAAAcAAAA7AAAAAgAAAAYAAAA7AAEAAgAAAAcAAAA8AAAAAgAAAAYAAAA8AAEAAgAAAAcAAAA9AAAAAgAAAAYAAAA9AAEAAgAAAAcAAAA+AAAAAgAAAAYAAAA+AAEAAgAAAAcAAAA/AAAAAgAAAAYAAAA/AAEAAgAAAAcAAABAAAAAAgAAAAYAAABAAAEAAgAAAAcAAABBAAAAAgAAAAYAAABBAAEAAgAAAAcAAABCAAAAAgAAAAYAAABCAAEAAgAAAAcAAABDAAAAAgAAAAYAAABDAAEAAgAAAAcAAABEAAAAAgAAAAYAAABEAAEAAgAAAAcAAABFAAAAAgAAAAYAAABFAAEAAgAAAAcAAABGAAAAAgAAAAYAAABGAAEAAgAAAAcAAABHAAAAAgAAAAYAAABHAAEAAgAAAAcAAABIAAAAAgAAAAYAAABIAAEAAgAAAAcAAABJAAAAAgAAAAYAAABJAAEAAgAAAAcAAABKAAAAAgAAAAYAAABKAAEAAgAAAAcAAABLAAAAAgAAAAYAAABLAAEAAgAAAAcAAABMAAAAAgAAAAYAAABMAAEAAgAAAAcAAABNAAAAAgAAAAYAAABNAAEAAgAAAAcAAABOAAAAAgAAAAYAAABOAAEAAgAAAAcAAABPAAAAAgAAAAYAAABPAAEAAgAAAAcAAAA=")
+
+[node name="NightTint" type="Node" parent="." node_paths=PackedStringArray("node_to_affect")]
+process_mode = 1
+script = ExtResource("3_6m0f5")
+node_to_affect = NodePath("..")
+property_name = "night_tint_texture"
+themed_resource = SubResource("Resource_e5ylw")
+use_classic_theming = true
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="ThemedToJSONConverter" type="Node" parent="."]
+process_mode = 1
+script = ExtResource("37_nfso6")
+resource = SubResource("Resource_4apf8")
+json_file_path = "res://Assets/Sprites/Backgrounds/SecondaryTrees/Trees.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+process_mode = 1
+visible = false
+modulate = Color(0, 0, 0, 1)
+z_index = 4096
+z_as_relative = false
+scroll_scale = Vector2(0, 1)
+scroll_offset = Vector2(0, -200)
+repeat_size = Vector2(256, 0)
+repeat_times = 4
+
+[node name="Toads" type="Node2D" parent="Parallax2D"]
+process_mode = 1
+modulate = Color(1, 1, 1, 0.9)
+position = Vector2(0, 230)
+
+[node name="Toad1" type="Sprite2D" parent="Parallax2D/Toads"]
+process_mode = 1
+position = Vector2(56, 17.7592)
+texture = ExtResource("43_joqdr")
+offset = Vector2(0, -6)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("36_ekspk")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Toad2" type="Sprite2D" parent="Parallax2D/Toads"]
+process_mode = 1
+position = Vector2(196, 24)
+texture = ExtResource("43_joqdr")
+offset = Vector2(0, -5)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("36_ekspk")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Toad17" type="Sprite2D" parent="Parallax2D/Toads"]
+process_mode = 1
+position = Vector2(99, 20.2981)
+texture = ExtResource("43_joqdr")
+offset = Vector2(0, -5)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("36_ekspk")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Toad3" type="Sprite2D" parent="Parallax2D/Toads"]
+process_mode = 1
+position = Vector2(184, 17.7592)
+texture = ExtResource("43_joqdr")
+offset = Vector2(0, -6)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("36_ekspk")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Toad4" type="Sprite2D" parent="Parallax2D/Toads"]
+process_mode = 1
+position = Vector2(256, 17.7592)
+texture = ExtResource("43_joqdr")
+offset = Vector2(0, -5)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("36_ekspk")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Toad5" type="Sprite2D" parent="Parallax2D/Toads"]
+process_mode = 1
+position = Vector2(112, 17.7592)
+texture = ExtResource("43_joqdr")
+offset = Vector2(0, -5)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("36_ekspk")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Toad6" type="Sprite2D" parent="Parallax2D/Toads"]
+process_mode = 1
+position = Vector2(224, 17.7592)
+texture = ExtResource("43_joqdr")
+offset = Vector2(0, -5)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("36_ekspk")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Toad7" type="Sprite2D" parent="Parallax2D/Toads"]
+process_mode = 1
+position = Vector2(144, 17.7592)
+texture = ExtResource("43_joqdr")
+offset = Vector2(0, -6)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("36_ekspk")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Toad8" type="Sprite2D" parent="Parallax2D/Toads"]
+process_mode = 1
+position = Vector2(24, 17.7592)
+texture = ExtResource("43_joqdr")
+offset = Vector2(0, -5)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("36_ekspk")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Toad9" type="Sprite2D" parent="Parallax2D/Toads"]
+process_mode = 1
+position = Vector2(88, 17.7592)
+texture = ExtResource("43_joqdr")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("36_ekspk")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Toad10" type="Sprite2D" parent="Parallax2D/Toads"]
+process_mode = 1
+position = Vector2(-16, 17.7592)
+texture = ExtResource("43_joqdr")
+offset = Vector2(0, -5)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("36_ekspk")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Toad11" type="Sprite2D" parent="Parallax2D/Toads"]
+process_mode = 1
+position = Vector2(40, 17.7592)
+texture = ExtResource("43_joqdr")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("36_ekspk")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Toad12" type="Sprite2D" parent="Parallax2D/Toads"]
+process_mode = 1
+position = Vector2(72, 17.7592)
+texture = ExtResource("43_joqdr")
+offset = Vector2(0, -5)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("36_ekspk")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Toad13" type="Sprite2D" parent="Parallax2D/Toads"]
+process_mode = 1
+position = Vector2(128, 17.7592)
+texture = ExtResource("43_joqdr")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("36_ekspk")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Toad14" type="Sprite2D" parent="Parallax2D/Toads"]
+process_mode = 1
+position = Vector2(-48, 17.7592)
+texture = ExtResource("43_joqdr")
+offset = Vector2(0, -6)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("36_ekspk")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Toad15" type="Sprite2D" parent="Parallax2D/Toads"]
+process_mode = 1
+position = Vector2(-83, 17.7592)
+texture = ExtResource("43_joqdr")
+offset = Vector2(0, -1)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("36_ekspk")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Toad16" type="Sprite2D" parent="Parallax2D/Toads"]
+process_mode = 1
+position = Vector2(-96, 17.7592)
+texture = ExtResource("43_joqdr")
+offset = Vector2(0, -5)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("36_ekspk")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="ThemedToJSONConverter2" type="Node" parent="."]
+process_mode = 1
+script = ExtResource("37_nfso6")
+resource = SubResource("Resource_yxjfg")
+json_file_path = "res://Assets/Sprites/Backgrounds/Trees/Trees.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"

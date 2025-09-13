@@ -1,0 +1,107 @@
+[gd_scene load_steps=17 format=3 uid="uid://chjxyhlwohmi6"]
+
+[ext_resource type="Script" uid="uid://cexcll4frt0t6" path="res://Scripts/Classes/Entities/Items/Coin.gd" id="1_c6elg"]
+[ext_resource type="Texture2D" uid="uid://b6o28xa83npb1" path="res://Assets/Sprites/Items/StaticCoin.png" id="2_7vxr7"]
+[ext_resource type="PackedScene" uid="uid://clxssds8sj8pf" path="res://Scenes/Prefabs/Entities/Items/SpinningCoin.tscn" id="2_k3746"]
+[ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="3_korlu"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_uahob"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/Coin.json" id="4_thymr"]
+[ext_resource type="Script" uid="uid://bul1nbd2in1gn" path="res://Scripts/Classes/Components/PSwitcher.gd" id="6_uahob"]
+[ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="7_thymr"]
+[ext_resource type="Script" uid="uid://maqpreddu5kg" path="res://Scripts/Classes/Components/LevelPersistance.gd" id="8_apfal"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uahob"]
+atlas = ExtResource("2_7vxr7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thymr"]
+atlas = ExtResource("2_7vxr7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apfal"]
+atlas = ExtResource("2_7vxr7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3746"]
+atlas = ExtResource("2_7vxr7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nu35s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uahob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thymr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apfal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3746")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_edpyv"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjj6w"]
+size = Vector2(8, 8)
+
+[node name="Coin" type="Node2D" groups=["Coins"]]
+z_index = -2
+script = ExtResource("1_c6elg")
+spinning_coin_scene = ExtResource("2_k3746")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nu35s")
+autoplay = "default"
+frame_progress = 0.487032
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_uahob")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("4_thymr")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Hitbox" type="Area2D" parent="."]
+visible = false
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_edpyv")
+
+[node name="BlockBouncingDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("3_korlu")
+detection_type = 1
+hitbox = NodePath("../BlockHitbox")
+metadata/_custom_type_script = "uid://cmg61722ktg2m"
+
+[node name="BlockHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="Shape" type="CollisionShape2D" parent="BlockHitbox"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_qjj6w")
+
+[node name="PSwitcher" type="Node" parent="."]
+script = ExtResource("6_uahob")
+new_scene = "uid://dsa8lpl7n8ge0"
+
+[node name="TrackJoint" type="Node" parent="."]
+script = ExtResource("7_thymr")
+offset = Vector2(0, 0)
+metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
+
+[node name="LevelPersistance" type="Node" parent="."]
+script = ExtResource("8_apfal")
+
+[connection signal="collected" from="." to="LevelPersistance" method="set_as_active"]
+[connection signal="area_entered" from="Hitbox" to="." method="area_entered"]
+[connection signal="block_bounced" from="BlockBouncingDetection" to="." method="summon_block_coin" unbinds=1]
+[connection signal="enabled" from="LevelPersistance" to="." method="queue_free"]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://4fwln7wo5cja"]
+
+[ext_resource type="PackedScene" uid="uid://r6dlmokkdyar" path="res://Scenes/Prefabs/Entities/Enemies/GreenKoopaTroopa.tscn" id="1_j41ky"]
+
+[node name="GreenKoopaTroopa" instance=ExtResource("1_j41ky")]
+winged = true
+
+[node name="Wing" parent="Sprite" index="1"]
+visible = true
+
+[node name="BasicEnemyMovement" parent="." index="14"]
+bounce_height = -250

@@ -1,0 +1,71 @@
+{
+	"animations": {
+		"default": {
+		"frames": [[0, 0, 16, 16]],
+			"speed": 5.0,
+			"loop": true
+		}
+	},
+	"variations": {
+		"default": {
+			"source": "BulletBill.png",
+			"rect": [0, 0, 16, 16]
+		},
+		"Underground": {
+			"source": "BulletBill.png",
+			"rect": [16, 0, 16, 16]
+		},
+		"GhostHouse": {
+			"source": "BulletBill.png",
+			"rect": [16, 0, 16, 16]
+		},
+		"Castle": {
+			"source": "BulletBill.png",
+			"rect": [32, 0, 16, 16]
+		},
+		"Underwater": {
+			"source": "BulletBill.png",
+			"rect": [48, 0, 16, 16]
+		},
+		"CastleWater": {
+			"source": "BulletBill.png",
+			"rect": [48, 0, 16, 16]
+		},
+		"Desert": {
+			"source": "BulletBill.png",
+			"rect": [0, 16, 16, 16]
+		},
+		"Jungle": {
+			"source": "BulletBill.png",
+			"rect": [16, 16, 16, 16]
+		},
+		"Snow": {
+			"source": "BulletBill.png",
+			"rect": [32, 16, 16, 16]
+		},
+		"Volcano": {
+			"source": "BulletBill.png",
+			"rect": [48, 16, 16, 16]
+		},
+		"Autumn": {
+			"source": "BulletBill.png",
+			"rect": [0, 32, 16, 16]
+		},
+		"Beach": {
+			"source": "BulletBill.png",
+			"rect": [16, 32, 16, 16]
+		},
+		"Mountain": {
+			"source": "BulletBill.png",
+			"rect": [32, 32, 16, 16]
+		},
+		"Space": {
+			"source": "BulletBill.png",
+			"rect": [48, 32, 16, 16]
+		},
+		"Bonus": {
+			"source": "BulletBill.png",
+			"rect": [0, 48, 16, 16]
+		}
+	}
+}

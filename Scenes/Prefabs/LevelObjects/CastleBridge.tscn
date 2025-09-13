@@ -1,0 +1,227 @@
+[gd_scene load_steps=23 format=3 uid="uid://dtpyjucfl16sw"]
+
+[ext_resource type="Script" uid="uid://drigdwsriqtma" path="res://Scripts/Parts/CastleBridge.gd" id="1_7m65m"]
+[ext_resource type="Texture2D" uid="uid://boc6yagywb1lu" path="res://Assets/Sprites/Tilesets/Terrain/Castle.png" id="1_030qv"]
+[ext_resource type="PackedScene" uid="uid://c3mc7ptiywhvw" path="res://Scenes/Parts/CastleBridgeSegment.tscn" id="2_rdab3"]
+[ext_resource type="Texture2D" uid="uid://iiepujg1uywt" path="res://Assets/Sprites/Items/BridgeAxe.png" id="2_wg8ck"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="4_s4k02"]
+[ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="4_tmf7w"]
+[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="5_vt2ac"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="8_geany"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="9_m5y50"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/BridgeAxe.json" id="10_kvynl"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="10_wgdlx"]
+[ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="11_puc3y"]
+[ext_resource type="Texture2D" uid="uid://dlldh5aks0wff" path="res://Assets/Sprites/Editor/GhostTile.png" id="12_do8w3"]
+[ext_resource type="Script" uid="uid://b8vmbtoaaq5nc" path="res://Scripts/Parts/EditorToggleDetection.gd" id="13_do8w3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m65m"]
+atlas = ExtResource("2_wg8ck")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmf7w"]
+atlas = ExtResource("2_wg8ck")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xijkc"]
+atlas = ExtResource("2_wg8ck")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_13fwi"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_7m65m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmf7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xijkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmf7w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7m65m"]
+size = Vector2(2, 8)
+
+[sub_resource type="Resource" id="Resource_8q7qv"]
+script = ExtResource("8_geany")
+Overworld = ExtResource("1_030qv")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tmf7w"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="GDScript" id="GDScript_wgdlx"]
+script/source = "@tool
+extends Node
+@onready var bridge: Node2D = $\"../Bridge\"
+
+func _process(_delta: float) -> void:
+	var idx := 0
+	for i in bridge.get_children():
+		if owner.length > idx:
+			i.show()
+			i.position.x = idx * -16 + 192
+		else:
+			i.hide()
+			i.global_position.x = -999
+		idx += 1
+		
+"
+
+[node name="CastleBridge" type="Node2D" groups=["CastleBridges"]]
+process_mode = 3
+script = ExtResource("1_7m65m")
+
+[node name="Bridge" type="Node2D" parent="."]
+
+[node name="CastleBridgeSegment" parent="Bridge" instance=ExtResource("2_rdab3")]
+position = Vector2(192, 0)
+
+[node name="CastleBridgeSegment2" parent="Bridge" instance=ExtResource("2_rdab3")]
+position = Vector2(176, 0)
+
+[node name="CastleBridgeSegment3" parent="Bridge" instance=ExtResource("2_rdab3")]
+position = Vector2(160, 0)
+
+[node name="CastleBridgeSegment4" parent="Bridge" instance=ExtResource("2_rdab3")]
+position = Vector2(144, 0)
+
+[node name="CastleBridgeSegment5" parent="Bridge" instance=ExtResource("2_rdab3")]
+position = Vector2(128, 0)
+
+[node name="CastleBridgeSegment6" parent="Bridge" instance=ExtResource("2_rdab3")]
+position = Vector2(112, 0)
+
+[node name="CastleBridgeSegment7" parent="Bridge" instance=ExtResource("2_rdab3")]
+position = Vector2(96, 0)
+
+[node name="CastleBridgeSegment8" parent="Bridge" instance=ExtResource("2_rdab3")]
+position = Vector2(80, 0)
+
+[node name="CastleBridgeSegment9" parent="Bridge" instance=ExtResource("2_rdab3")]
+position = Vector2(64, 0)
+
+[node name="CastleBridgeSegment10" parent="Bridge" instance=ExtResource("2_rdab3")]
+position = Vector2(48, 0)
+
+[node name="CastleBridgeSegment11" parent="Bridge" instance=ExtResource("2_rdab3")]
+position = Vector2(32, 0)
+
+[node name="CastleBridgeSegment12" parent="Bridge" instance=ExtResource("2_rdab3")]
+position = Vector2(16, 0)
+
+[node name="CastleBridgeSegment13" parent="Bridge" instance=ExtResource("2_rdab3")]
+
+[node name="CastleBridgeSegment14" parent="Bridge" instance=ExtResource("2_rdab3")]
+visible = false
+position = Vector2(-999, 0)
+
+[node name="CastleBridgeSegment15" parent="Bridge" instance=ExtResource("2_rdab3")]
+visible = false
+position = Vector2(-999, 0)
+
+[node name="CastleBridgeSegment16" parent="Bridge" instance=ExtResource("2_rdab3")]
+visible = false
+position = Vector2(-999, 0)
+
+[node name="CastleBridgeSegment17" parent="Bridge" instance=ExtResource("2_rdab3")]
+visible = false
+position = Vector2(-999, 0)
+
+[node name="CastleBridgeSegment18" parent="Bridge" instance=ExtResource("2_rdab3")]
+visible = false
+position = Vector2(-999, 0)
+
+[node name="CastleBridgeSegment19" parent="Bridge" instance=ExtResource("2_rdab3")]
+visible = false
+position = Vector2(-999, 0)
+
+[node name="CastleBridgeSegment20" parent="Bridge" instance=ExtResource("2_rdab3")]
+visible = false
+position = Vector2(-999, 0)
+
+[node name="Axe" type="AnimatedSprite2D" parent="."]
+position = Vector2(208, -32)
+sprite_frames = SubResource("SpriteFrames_13fwi")
+autoplay = "default"
+frame_progress = 0.124132
+script = ExtResource("4_s4k02")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="Hitbox" type="Area2D" parent="Axe"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Axe/Hitbox"]
+shape = SubResource("RectangleShape2D_7m65m")
+
+[node name="Sprite2D14" type="Sprite2D" parent="Axe"]
+position = Vector2(-16, 16)
+texture = ExtResource("1_030qv")
+region_enabled = true
+region_rect = Rect2(208, 128, 16, 16)
+region_filter_clip_enabled = true
+
+[node name="ResourceSetterNew" type="Node" parent="Axe/Sprite2D14" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("5_vt2ac")
+node_to_affect = NodePath("..")
+property_name = "texture"
+themed_resource = SubResource("Resource_8q7qv")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="CameraRightLimit" type="Node2D" parent="Axe"]
+position = Vector2(24, 8)
+script = ExtResource("4_tmf7w")
+metadata/_custom_type_script = "uid://bdq0373j5n5o0"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Axe"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Axe/StaticBody2D"]
+position = Vector2(8, 0)
+shape = SubResource("WorldBoundaryShape2D_tmf7w")
+
+[node name="ResourceSetterNew" type="Node" parent="Axe" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("9_m5y50")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("10_kvynl")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(216, -56)
+process_callback = 0
+limit_left = -256
+limit_top = -208
+limit_bottom = 32
+editor_draw_limits = true
+
+[node name="EditorPropertyExposer" type="Node" parent="."]
+script = ExtResource("10_wgdlx")
+properties = Array[String](["length"])
+metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
+
+[node name="Node" type="Node" parent="."]
+process_mode = 3
+script = SubResource("GDScript_wgdlx")
+
+[node name="LevelEditorVisibleNode" type="Node2D" parent="."]
+script = ExtResource("11_puc3y")
+metadata/_custom_type_script = "uid://cpwloakvp672a"
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelEditorVisibleNode"]
+z_index = 4096
+position = Vector2(192, 0)
+texture = ExtResource("12_do8w3")
+
+[node name="EditorToggleDetection" type="Node" parent="."]
+script = ExtResource("13_do8w3")
+
+[connection signal="area_entered" from="Axe/Hitbox" to="." method="on_area_entered" flags=3]
+[connection signal="toggled" from="EditorToggleDetection" to="Axe/CameraRightLimit" method="_enter_tree"]

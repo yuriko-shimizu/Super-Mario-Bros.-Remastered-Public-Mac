@@ -1,0 +1,9 @@
+{
+	"properties":
+	{
+		"use_sprite": false
+	},
+	"variations": {
+		"default": {"source": "NULL"}
+	}
+}

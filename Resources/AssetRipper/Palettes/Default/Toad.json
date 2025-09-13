@@ -1,0 +1,46 @@
+{
+	"palettes": {
+		"Red": [
+			"00000000",
+			"f73910",
+			"ffffff",
+            "ffaa47"
+		],
+		"Yellow": [
+			"00000000",
+			"DC852C",
+			"ffffff",
+            "ffaa47"
+		],
+		"Pink": [
+			"00000000",
+			"FF50C8",
+			"ffffff",
+            "ffaa47"
+		],
+		"Purple": [
+			"00000000",
+			"AA1FBE",
+			"ffffff",
+            "ffaa47"
+		],
+		"Blue": [
+			"00000000",
+			"4242FF",
+			"ffffff",
+            "ffaa47"
+		],
+		"Cyan": [
+			"00000000",
+			"228CB4",
+			"ffffff",
+            "ffaa47"
+		],
+		"Green": [
+			"00000000",
+			"21Ad10",
+			"ffffff",
+            "ffaa47"
+		]
+	}
+}

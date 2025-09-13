@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcilapu1q4pgk"]
+
+[ext_resource type="Shader" uid="uid://dic2q1vuqqxce" path="res://Scenes/Parts/colour_palette.gdshader" id="1_4tvwn"]
+[ext_resource type="Script" uid="uid://bt8mlibikh6ah" path="res://Scripts/Parts/PostProcessingNode.gd" id="1_enso0"]
+[ext_resource type="Texture2D" uid="uid://cmsts1l0f8es7" path="res://Assets/Sprites/NESNTSC.png" id="2_enso0"]
+[ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="3_r14f3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wyqk4"]
+shader = ExtResource("1_4tvwn")
+shader_parameter/palette_texture = ExtResource("2_enso0")
+shader_parameter/shadow_colour = Color(0, 0, 0, 1)
+shader_parameter/y_offset = 1.0
+shader_parameter/palette_size = 64
+shader_parameter/is_debug = false
+
+[node name="PostProcessingNode" type="Node"]
+script = ExtResource("1_enso0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+visibility_layer = 2
+z_index = 4096
+z_as_relative = false
+material = SubResource("ShaderMaterial_wyqk4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2728.0
+offset_top = -1328.0
+offset_right = 7271.0
+offset_bottom = 98671.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="DropShadow" parent="." instance=ExtResource("3_r14f3")]

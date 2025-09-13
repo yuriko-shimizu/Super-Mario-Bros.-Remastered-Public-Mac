@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://dijxmmwdyjbjc"]
+
+[ext_resource type="Script" uid="uid://3heyyx506fnu" path="res://Scripts/Classes/Entities/Objects/Track.gd" id="1_5apin"]
+[ext_resource type="Texture2D" uid="uid://50hm4xgnw8ks" path="res://Assets/Sprites/Tilesets/Tracks.png" id="1_jn31b"]
+[ext_resource type="PackedScene" uid="uid://4gxhnql5bjk6" path="res://Scenes/Prefabs/Entities/Objects/TrackPiece.tscn" id="2_4k6gi"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="4_kxiuq"]
+[ext_resource type="PackedScene" uid="uid://byv4sv3cayrmo" path="res://Scenes/Prefabs/Editor/EditorProperties/TilePropertyTrackPath.tscn" id="5_ivm63"]
+[ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="6_r3crv"]
+[ext_resource type="Texture2D" uid="uid://dlldh5aks0wff" path="res://Assets/Sprites/Editor/GhostTile.png" id="7_eovtp"]
+
+[node name="Track" type="Node2D"]
+process_mode = 3
+z_index = -5
+script = ExtResource("1_5apin")
+
+[node name="Point" type="Sprite2D" parent="."]
+texture = ExtResource("1_jn31b")
+hframes = 2
+frame = 1
+region_enabled = true
+region_rect = Rect2(0, 16, 32, 16)
+
+[node name="Pieces" type="Node2D" parent="."]
+show_behind_parent = true
+
+[node name="TrackPiece" parent="Pieces" instance=ExtResource("2_4k6gi")]
+
+[node name="EditorPropertyExposer" type="Node" parent="."]
+script = ExtResource("4_kxiuq")
+properties = Array[String](["path", "start_point", "end_point", "invisible"])
+properties_force_selector = Dictionary[String, PackedScene]({
+"path": ExtResource("5_ivm63")
+})
+metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
+
+[node name="LevelEditorVisibleNode" type="Node2D" parent="."]
+script = ExtResource("6_r3crv")
+metadata/_custom_type_script = "uid://cpwloakvp672a"
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelEditorVisibleNode"]
+texture = ExtResource("7_eovtp")

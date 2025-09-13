@@ -1,0 +1,135 @@
+[gd_scene load_steps=7 format=3 uid="uid://033s0lgpb33l"]
+
+[ext_resource type="PackedScene" uid="uid://iq86u4w60yee" path="res://Scenes/Prefabs/Entities/Objects/Firebar.tscn" id="1_m6o3e"]
+[ext_resource type="Texture2D" uid="uid://pidoncb5gcax" path="res://Assets/Sprites/Items/Fireball.png" id="2_s1hms"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_s77o2"]
+b = Vector2(0, 80)
+
+[sub_resource type="Animation" id="Animation_vag0n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_oygiu"]
+resource_name = "Spin"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.100442, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5708, 3.14159, 4.71239]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ytedt"]
+_data = {
+&"RESET": SubResource("Animation_vag0n"),
+&"Spin": SubResource("Animation_oygiu")
+}
+
+[node name="Firebar" instance=ExtResource("1_m6o3e")]
+
+[node name="RemoteTransform2D17" type="RemoteTransform2D" parent="RotationJoint" index="6"]
+position = Vector2(0, 48)
+remote_path = NodePath("../../Fireballs/Fireball7")
+update_rotation = false
+update_scale = false
+
+[node name="RemoteTransform2D18" type="RemoteTransform2D" parent="RotationJoint" index="7"]
+position = Vector2(0, 56)
+remote_path = NodePath("../../Fireballs/Fireball8")
+update_rotation = false
+update_scale = false
+
+[node name="RemoteTransform2D19" type="RemoteTransform2D" parent="RotationJoint" index="8"]
+position = Vector2(0, 64)
+remote_path = NodePath("../../Fireballs/Fireball9")
+update_rotation = false
+update_scale = false
+
+[node name="RemoteTransform2D20" type="RemoteTransform2D" parent="RotationJoint" index="9"]
+position = Vector2(0, 72)
+remote_path = NodePath("../../Fireballs/Fireball10")
+update_rotation = false
+update_scale = false
+
+[node name="RemoteTransform2D21" type="RemoteTransform2D" parent="RotationJoint" index="10"]
+position = Vector2(0, 80)
+remote_path = NodePath("../../Fireballs/Fireball11")
+update_rotation = false
+update_scale = false
+
+[node name="Shape" parent="RotationJoint/Hitbox" index="0"]
+shape = SubResource("SegmentShape2D_s77o2")
+
+[node name="Fireballs" parent="." index="2"]
+z_index = 4096
+z_as_relative = false
+
+[node name="Fireball17" type="Sprite2D" parent="Fireballs" index="6"]
+position = Vector2(33.9411, 33.9411)
+texture = ExtResource("2_s1hms")
+
+[node name="Fireball18" type="Sprite2D" parent="Fireballs" index="7"]
+position = Vector2(39.598, 39.598)
+texture = ExtResource("2_s1hms")
+
+[node name="Fireball19" type="Sprite2D" parent="Fireballs" index="8"]
+position = Vector2(45.2548, 45.2548)
+texture = ExtResource("2_s1hms")
+
+[node name="Fireball20" type="Sprite2D" parent="Fireballs" index="9"]
+position = Vector2(50.9117, 50.9117)
+texture = ExtResource("2_s1hms")
+
+[node name="Fireball21" type="Sprite2D" parent="Fireballs" index="10"]
+position = Vector2(56.5685, 56.5686)
+texture = ExtResource("2_s1hms")
+
+[node name="Animation2" type="AnimationPlayer" parent="Fireballs/Fireball7" index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_ytedt")
+}
+autoplay = "Spin"
+
+[node name="Animation2" type="AnimationPlayer" parent="Fireballs/Fireball8" index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_ytedt")
+}
+autoplay = "Spin"
+
+[node name="Animation2" type="AnimationPlayer" parent="Fireballs/Fireball9" index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_ytedt")
+}
+autoplay = "Spin"
+
+[node name="Animation2" type="AnimationPlayer" parent="Fireballs/Fireball10" index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_ytedt")
+}
+autoplay = "Spin"
+
+[node name="Animation2" type="AnimationPlayer" parent="Fireballs/Fireball11" index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_ytedt")
+}
+autoplay = "Spin"

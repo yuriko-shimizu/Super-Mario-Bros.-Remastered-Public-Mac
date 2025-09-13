@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dplnidrqshecd"]
+
+[ext_resource type="PackedScene" uid="uid://chjxyhlwohmi6" path="res://Scenes/Prefabs/Entities/Items/Coin.tscn" id="1_iq4uk"]
+[ext_resource type="PackedScene" uid="uid://bxuxtgn5wg108" path="res://Scenes/Prefabs/Entities/Items/SpinningBlueCoin.tscn" id="2_4rq0g"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/BlueCoin.json" id="2_r2p65"]
+
+[node name="Coin" instance=ExtResource("1_iq4uk")]
+spinning_coin_scene = ExtResource("2_4rq0g")
+
+[node name="Sprite" parent="." index="0"]
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.0
+
+[node name="ResourceSetterNew" parent="Sprite" index="0"]
+resource_json = ExtResource("2_r2p65")
+
+[node name="PSwitcher" parent="." index="4"]
+new_scene = "uid://rjs2k335jmb5"
+
+[connection signal="area_entered" from="Hitbox" to="." method="area_entered"]

@@ -1,0 +1,110 @@
+[gd_scene load_steps=17 format=3 uid="uid://5qg8po86pew4"]
+
+[ext_resource type="Script" uid="uid://dbeg86pjflojw" path="res://Scripts/Classes/Entities/Items/SuperStar.gd" id="1_aowox"]
+[ext_resource type="Texture2D" uid="uid://1o654l3577lv" path="res://Assets/Sprites/Items/SuperStar.png" id="1_gpwv4"]
+[ext_resource type="AudioStream" uid="uid://73b2bhjg5idd" path="res://Assets/Audio/BGM/StarMan.mp3" id="2_orqf5"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_orqf5"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/StarMan.json" id="5_og7mc"]
+[ext_resource type="Script" uid="uid://dlq6o2rg1x7in" path="res://Scripts/Classes/Components/BasicEnemyMovement.gd" id="6_og7mc"]
+[ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="7_sc6oi"]
+[ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="8_yyobd"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_og7mc"]
+clip_count = 1
+clip_0/name = &"Star Man"
+clip_0/stream = ExtResource("2_orqf5")
+clip_0/auto_advance = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptmgm"]
+atlas = ExtResource("1_gpwv4")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aowox"]
+atlas = ExtResource("1_gpwv4")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53gld"]
+atlas = ExtResource("1_gpwv4")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orqf5"]
+atlas = ExtResource("1_gpwv4")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_og7mc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptmgm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aowox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53gld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orqf5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sc6oi"]
+custom_solver_bias = 1.0
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yyobd"]
+size = Vector2(16, 16)
+
+[node name="SuperStar" type="CharacterBody2D"]
+z_index = -1
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_aowox")
+star_bgm = SubResource("AudioStreamInteractive_og7mc")
+metadata/_custom_type_script = "uid://cjkurwybsaywm"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_og7mc")
+autoplay = "default"
+frame_progress = 0.792139
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_orqf5")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("5_og7mc")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_sc6oi")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_yyobd")
+
+[node name="BasicEnemyMovement" type="Node" parent="."]
+script = ExtResource("6_og7mc")
+auto_call = false
+move_speed = 70
+bounce_on_land = true
+bounce_height = -250
+
+[node name="ScoreNoteSpawner" type="Node" parent="."]
+script = ExtResource("7_sc6oi")
+add_score = true
+metadata/_custom_type_script = "uid://5octqlf4ohel"
+
+[node name="TrackJoint" type="Node" parent="." node_paths=PackedStringArray("movement_node")]
+script = ExtResource("8_yyobd")
+movement_node = NodePath("../BasicEnemyMovement")
+metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
+
+[connection signal="collected" from="." to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
+[connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]

@@ -1,0 +1,173 @@
+[gd_scene load_steps=23 format=3 uid="uid://lglmgqp3emy4"]
+
+[ext_resource type="Script" uid="uid://bvplls3ae0oqr" path="res://Scripts/Classes/Entities/Objects/OnOffFanRed.gd" id="1_gfuw1"]
+[ext_resource type="Texture2D" uid="uid://d0o6wgsrow8t1" path="res://Assets/Sprites/Blocks/OnOffFan.png" id="1_y6e5m"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_xmnks"]
+[ext_resource type="Texture2D" uid="uid://dy3p03djelkb3" path="res://Assets/Sprites/Particles/Leaves.png" id="4_wvhkg"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="5_ak3jd"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/OnFan.json" id="5_elapr"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Particles/WindParticles.json" id="6_elapr"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="7_wvhkg"]
+[ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="8_ak3jd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo8qw"]
+atlas = ExtResource("1_y6e5m")
+region = Rect2(0, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa48t"]
+atlas = ExtResource("1_y6e5m")
+region = Rect2(0, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfuw1"]
+atlas = ExtResource("1_y6e5m")
+region = Rect2(16, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvhkg"]
+atlas = ExtResource("1_y6e5m")
+region = Rect2(32, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ak3jd"]
+atlas = ExtResource("1_y6e5m")
+region = Rect2(48, 0, 16, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_elapr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fo8qw")
+}],
+"loop": true,
+"name": &"Off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oa48t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfuw1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvhkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ak3jd")
+}],
+"loop": true,
+"name": &"On",
+"speed": 30.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvrj8"]
+size = Vector2(16, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qr7a"]
+size = Vector2(256, 36)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wo6ri"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_56hbg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.894444, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_8c2la"]
+curve = SubResource("Curve_56hbg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ixtv2"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, 15, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 0.0
+initial_velocity_min = 100.0
+initial_velocity_max = 500.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_8c2la")
+anim_offset_max = 1.0
+
+[sub_resource type="GDScript" id="GDScript_gfuw1"]
+script/source = "extends Node
+
+@export var sprite: AnimatedSprite2D = null
+
+func _process(_delta: float) -> void:
+	$\"..\".global_rotation_degrees = [0, 180, -90, 90][owner.direction]
+	sprite.global_rotation_degrees = [0, 0, 90, 90][owner.direction]
+	sprite.flip_h = owner.direction == 1 or owner.direction == 2
+"
+
+[node name="OnOffFanRed" type="AnimatableBody2D" groups=["BooBlocks"]]
+collision_layer = 6
+collision_mask = 0
+sync_to_physics = false
+script = ExtResource("1_gfuw1")
+
+[node name="RotationJoint" type="Node2D" parent="."]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+top_level = true
+sprite_frames = SubResource("SpriteFrames_elapr")
+animation = &"Off"
+frame_progress = 0.50883424
+script = ExtResource("2_xmnks")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("5_ak3jd")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("5_elapr")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wvrj8")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(128, 0)
+shape = SubResource("RectangleShape2D_4qr7a")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_wo6ri")
+emitting = false
+texture = ExtResource("4_wvhkg")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_ixtv2")
+
+[node name="ResourceSetterNew" type="Node" parent="Particles" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("5_ak3jd")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("6_elapr")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+process_mode = 3
+script = SubResource("GDScript_gfuw1")
+sprite = NodePath("../Sprite")
+
+[node name="EditorPropertyExposer" type="Node" parent="."]
+script = ExtResource("7_wvhkg")
+properties = Array[String](["direction", "strength"])
+metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
+
+[node name="TrackJoint" type="Node" parent="."]
+script = ExtResource("8_ak3jd")
+offset = Vector2(0, 0)
+disable_physics = false
+metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../Sprite")
+update_rotation = false
+update_scale = false

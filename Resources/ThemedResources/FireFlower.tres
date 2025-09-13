@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="ThemedResource" load_steps=13 format=3 uid="uid://bht771w4e6jpw"]
+
+[ext_resource type="Texture2D" uid="uid://cd4uqcrq4m6yb" path="res://Assets/Sprites/Items/PowerUps.png" id="1_ovvlp"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="2_l1l8m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_db8fa"]
+atlas = ExtResource("1_ovvlp")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11cns"]
+atlas = ExtResource("1_ovvlp")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brn7u"]
+atlas = ExtResource("1_ovvlp")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwmx2"]
+atlas = ExtResource("1_ovvlp")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ovvlp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_db8fa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11cns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brn7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwmx2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1l8m"]
+atlas = ExtResource("1_ovvlp")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yi2q"]
+atlas = ExtResource("1_ovvlp")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgmqk"]
+atlas = ExtResource("1_ovvlp")
+region = Rect2(32, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03c8c"]
+atlas = ExtResource("1_ovvlp")
+region = Rect2(48, 64, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bi0rd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1l8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yi2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgmqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03c8c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[resource]
+script = ExtResource("2_l1l8m")
+Overworld = SubResource("SpriteFrames_ovvlp")
+Underground = SubResource("SpriteFrames_bi0rd")
+metadata/_custom_type_script = ExtResource("2_l1l8m")

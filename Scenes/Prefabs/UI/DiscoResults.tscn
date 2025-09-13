@@ -1,0 +1,172 @@
+[gd_scene load_steps=10 format=3 uid="uid://b85i7uni0twpe"]
+
+[ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="1_nfk08"]
+[ext_resource type="Script" uid="uid://b5u7ht2124lfs" path="res://Scripts/UI/DiscoResults.gd" id="1_up7vl"]
+[ext_resource type="Texture2D" uid="uid://kudshfhlo5ic" path="res://Assets/Sprites/UI/RankMedals.png" id="2_lxtk8"]
+[ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="3_up7vl"]
+[ext_resource type="PackedScene" uid="uid://bmn81e10obpjv" path="res://Scenes/Parts/SelectableLabel.tscn" id="4_lxtk8"]
+[ext_resource type="PackedScene" uid="uid://dntk2js0tu3y2" path="res://Scenes/Prefabs/UI/WorldSelect.tscn" id="6_lfyeb"]
+[ext_resource type="PackedScene" uid="uid://bsfkt344e6j38" path="res://Scenes/Prefabs/UI/LevelSelectNew.tscn" id="7_mjrut"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_6886a"]
+color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_lfyeb"]
+color = Color(1, 1, 1, 1)
+
+[node name="DiscoResults" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_up7vl")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -66.0
+offset_right = 73.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_nfk08")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "YOUR RESULTS"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_6886a")
+
+[node name="Score" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/Score"]
+layout_mode = 2
+text = "SCORE:"
+
+[node name="Score" type="Label" parent="PanelContainer/VBoxContainer/Score"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "000000"
+
+[node name="Rank" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/Rank"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "RANK:"
+
+[node name="Medal" type="NinePatchRect" parent="PanelContainer/VBoxContainer/Rank"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_lxtk8")
+region_rect = Rect2(16, 0, 16, 16)
+script = ExtResource("3_up7vl")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="RankMessage" type="Label" parent="PanelContainer/VBoxContainer/Rank"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "FAIL!"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_lfyeb")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Continue" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_lxtk8")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "CONTINUE"
+
+[node name="Retry" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_lxtk8")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "RETRY"
+
+[node name="LevelSelect" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_lxtk8")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "LEVEL SELECT"
+
+[node name="ReturnMenu" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_lxtk8")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "RETURN TO MENU"
+
+[node name="WorldSelect" parent="." instance=ExtResource("6_lfyeb")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -32.5
+offset_right = 90.0
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelSelect" parent="." instance=ExtResource("7_mjrut")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -40.0
+offset_right = 128.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="focus_entered" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Continue" to="." method="set_index" binds= [0]]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Continue" to="." method="continue_to_next_level"]
+[connection signal="focus_entered" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Retry" to="." method="set_index" binds= [1]]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Retry" to="." method="restart_level"]
+[connection signal="focus_entered" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/LevelSelect" to="." method="set_index" binds= [2]]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/LevelSelect" to="WorldSelect" method="open"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/LevelSelect" to="." method="set_focus" binds= [false]]
+[connection signal="focus_entered" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ReturnMenu" to="." method="set_index" binds= [3]]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ReturnMenu" to="." method="go_to_menu"]
+[connection signal="cancelled" from="WorldSelect" to="." method="open"]
+[connection signal="cancelled" from="WorldSelect" to="." method="set_focus" binds= [true]]
+[connection signal="world_selected" from="WorldSelect" to="LevelSelect" method="open"]
+[connection signal="cancelled" from="LevelSelect" to="WorldSelect" method="open"]
+[connection signal="level_selected" from="LevelSelect" to="." method="restart_level"]

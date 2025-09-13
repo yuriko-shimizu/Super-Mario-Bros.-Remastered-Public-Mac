@@ -1,0 +1,288 @@
+[gd_scene load_steps=13 format=3 uid="uid://60t5mugrgvlt"]
+
+[ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="1_14lst"]
+[ext_resource type="Script" uid="uid://bpqtkfuv6a2sx" path="res://Scripts/UI/MarathonSelect.gd" id="1_huaf4"]
+[ext_resource type="Texture2D" uid="uid://dhu46wvad72wp" path="res://Assets/Sprites/UI/MarathonIcons.png" id="2_huaf4"]
+[ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="4_7rxod"]
+[ext_resource type="Script" uid="uid://ca3bew33g45eq" path="res://Scripts/Classes/UI/PackTextureRect.gd" id="5_b42rw"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_c8ql0"]
+color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rxod"]
+atlas = ExtResource("2_huaf4")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b42rw"]
+atlas = ExtResource("2_huaf4")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8vyo"]
+atlas = ExtResource("2_huaf4")
+region = Rect2(96, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1jo0"]
+atlas = ExtResource("2_huaf4")
+region = Rect2(96, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6es3"]
+atlas = ExtResource("2_huaf4")
+region = Rect2(104, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27pna"]
+atlas = ExtResource("2_huaf4")
+region = Rect2(112, 16, 8, 8)
+
+[node name="MarathonSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_huaf4")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -68.0
+offset_right = 84.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_14lst")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MARATHON_SELECT"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_c8ql0")
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="MarathonName" type="Label" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MARATHON_FULL"
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Full" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -5
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/Full"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = SubResource("AtlasTexture_7rxod")
+script = ExtResource("5_b42rw")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/Full"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "^"
+
+[node name="Level" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -5
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/Level"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = SubResource("AtlasTexture_b42rw")
+script = ExtResource("5_b42rw")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/Level"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "^"
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = -3
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "PB:"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="NinePatchRect" parent="PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("2_huaf4")
+region_rect = Rect2(112, 32, 8, 8)
+script = ExtResource("4_7rxod")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="TextureRect2" type="NinePatchRect" parent="PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("2_huaf4")
+region_rect = Rect2(104, 32, 8, 8)
+script = ExtResource("4_7rxod")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = -4
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer2/MarginContainer2"]
+layout_mode = 2
+
+[node name="FullRunPB" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "00:00:00"
+
+[node name="WarpedRunPB" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "00:00:00"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="FullMedals" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Bronze" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/FullMedals"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_w8vyo")
+script = ExtResource("5_b42rw")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="Full" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/FullMedals/Bronze"]
+layout_mode = 1
+offset_right = 8.0
+offset_bottom = 8.0
+texture = SubResource("AtlasTexture_p1jo0")
+script = ExtResource("5_b42rw")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="Silver" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/FullMedals"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_w8vyo")
+script = ExtResource("5_b42rw")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="Full" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/FullMedals/Silver"]
+layout_mode = 1
+offset_right = 8.0
+offset_bottom = 8.0
+texture = SubResource("AtlasTexture_t6es3")
+script = ExtResource("5_b42rw")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="Gold" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/FullMedals"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_w8vyo")
+script = ExtResource("5_b42rw")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="Full" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/FullMedals/Gold"]
+layout_mode = 1
+offset_right = 8.0
+offset_bottom = 8.0
+texture = SubResource("AtlasTexture_27pna")
+script = ExtResource("5_b42rw")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="WarpedMedals" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Bronze" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/WarpedMedals"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_w8vyo")
+script = ExtResource("5_b42rw")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="Full" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/WarpedMedals/Bronze"]
+layout_mode = 1
+offset_right = 8.0
+offset_bottom = 8.0
+texture = SubResource("AtlasTexture_p1jo0")
+script = ExtResource("5_b42rw")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="Silver" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/WarpedMedals"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_w8vyo")
+script = ExtResource("5_b42rw")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="Full" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/WarpedMedals/Silver"]
+layout_mode = 1
+offset_right = 8.0
+offset_bottom = 8.0
+texture = SubResource("AtlasTexture_t6es3")
+script = ExtResource("5_b42rw")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="Gold" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/WarpedMedals"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_w8vyo")
+script = ExtResource("5_b42rw")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="Full" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/WarpedMedals/Gold"]
+layout_mode = 1
+offset_right = 8.0
+offset_bottom = 8.0
+texture = SubResource("AtlasTexture_27pna")
+script = ExtResource("5_b42rw")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"

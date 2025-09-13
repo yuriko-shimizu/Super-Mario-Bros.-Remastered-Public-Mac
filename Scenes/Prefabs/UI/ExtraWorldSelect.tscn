@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8e82usnfbw1t"]
+
+[ext_resource type="PackedScene" uid="uid://dntk2js0tu3y2" path="res://Scenes/Prefabs/UI/WorldSelect.tscn" id="1_fvn0p"]
+
+[node name="WorldSelect" instance=ExtResource("1_fvn0p")]
+world_offset = 8
+num_of_worlds = 4
+
+[node name="Slot1" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" index="0"]
+focus_neighbor_left = NodePath("../Slot5")
+
+[node name="Slot5" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" index="4"]
+focus_neighbor_right = NodePath("../Slot1")
+
+[node name="Slot6" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" index="5"]
+visible = false
+
+[node name="Slot7" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" index="6"]
+visible = false
+
+[node name="Slot8" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" index="7"]
+visible = false

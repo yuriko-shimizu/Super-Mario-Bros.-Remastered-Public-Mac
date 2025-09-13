@@ -1,0 +1,214 @@
+[gd_scene load_steps=25 format=3 uid="uid://bxsay5e6dhcqb"]
+
+[ext_resource type="Script" uid="uid://n123x5yuqpjd" path="res://Scripts/Classes/Entities/Enemies/DryBones.gd" id="1_8c647"]
+[ext_resource type="Texture2D" uid="uid://c5snfukhcacyf" path="res://Assets/Sprites/Enemies/DryBones.png" id="2_qya46"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_kio7v"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_br3pe"]
+[ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="4_y8gga"]
+[ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="5_br3pe"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/DryBones.json" id="5_l4h6l"]
+[ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="6_l4h6l"]
+[ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="7_qya46"]
+[ext_resource type="Script" uid="uid://dlq6o2rg1x7in" path="res://Scripts/Classes/Components/BasicEnemyMovement.gd" id="10_br3pe"]
+[ext_resource type="Script" uid="uid://ba18grqjixded" path="res://Scripts/Classes/Components/ExplosionDetection.gd" id="11_l4h6l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4qtl"]
+atlas = ExtResource("2_qya46")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ewll"]
+atlas = ExtResource("2_qya46")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6txc0"]
+atlas = ExtResource("2_qya46")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihwve"]
+atlas = ExtResource("2_qya46")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jnbq"]
+atlas = ExtResource("2_qya46")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0gtr"]
+atlas = ExtResource("2_qya46")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rrs2"]
+atlas = ExtResource("2_qya46")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bqbi3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4qtl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ewll")
+}],
+"loop": false,
+"name": &"Crumble",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6txc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihwve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jnbq")
+}],
+"loop": false,
+"name": &"GetUp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0gtr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rrs2")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cngyw"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tsi1c"]
+size = Vector2(12, 14)
+
+[sub_resource type="Animation" id="Animation_qya46"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8c647"]
+resource_name = "Shake"
+length = 0.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2, 1), Vector2(2, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kio7v"]
+_data = {
+&"RESET": SubResource("Animation_qya46"),
+&"Shake": SubResource("Animation_8c647")
+}
+
+[node name="DryBones" type="CharacterBody2D" node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Enemies"]]
+collision_layer = 16
+collision_mask = 50
+script = ExtResource("1_8c647")
+on_screen_enabler = NodePath("VisibleOnScreenEnabler2D")
+score_note_adder = NodePath("ScoreNoteSpawner")
+metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_bqbi3")
+animation = &"Walk"
+autoplay = "Walk"
+offset = Vector2(0, 1)
+flip_h = true
+script = ExtResource("3_kio7v")
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_br3pe")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("5_l4h6l")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="LCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_cngyw")
+one_way_collision = true
+
+[node name="RCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_cngyw")
+one_way_collision = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_tsi1c")
+
+[node name="EnemyPlayerDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("4_y8gga")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
+[node name="FireballDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("5_br3pe")
+hitbox = NodePath("../Hitbox")
+play_sfx_on_hit = true
+metadata/_custom_type_script = "uid://dri2d5jtu0fbq"
+
+[node name="ShellDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("6_l4h6l")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://bbww34oiexbx2"
+
+[node name="ShakeAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kio7v")
+}
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0, -9)
+rect = Rect2(-10, -13, 20, 23)
+
+[node name="ScoreNoteSpawner" type="Node" parent="."]
+script = ExtResource("7_qya46")
+metadata/_custom_type_script = "uid://5octqlf4ohel"
+
+[node name="BasicEnemyMovement" type="Node" parent="."]
+script = ExtResource("10_br3pe")
+
+[node name="ExplosionDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("11_l4h6l")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://ba18grqjixded"
+
+[connection signal="killed" from="." to="." method="summon_particle" unbinds=1]
+[connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
+[connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="stomped_on"]
+[connection signal="moving_shell_entered" from="ShellDetection" to="." method="die_from_object"]
+[connection signal="explosion_entered" from="ExplosionDetection" to="." method="die_from_object"]
+[connection signal="explosion_entered" from="ExplosionDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]

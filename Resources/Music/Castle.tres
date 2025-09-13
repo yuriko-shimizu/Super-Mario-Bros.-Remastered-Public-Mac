@@ -1,0 +1,22 @@
+[gd_resource type="AudioStreamInteractive" load_steps=3 format=3 uid="uid://d2i4md8tt78jh"]
+
+[ext_resource type="AudioStream" uid="uid://msvxdaechxh7" path="res://Assets/Audio/BGM/Castle.mp3" id="1_x0jjj"]
+[ext_resource type="AudioStream" uid="uid://bomy1dgx8hw25" path="res://Assets/Audio/BGM/CastleHurry.mp3" id="2_rs117"]
+
+[resource]
+clip_count = 2
+clip_0/name = &"Normal"
+clip_0/stream = ExtResource("1_x0jjj")
+clip_0/auto_advance = 0
+clip_1/name = &"Hurry"
+clip_1/stream = ExtResource("2_rs117")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+}
+}
+metadata/BPM = 168

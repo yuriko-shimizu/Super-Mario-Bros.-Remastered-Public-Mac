@@ -1,0 +1,220 @@
+[gd_scene load_steps=9 format=3 uid="uid://bn66tnn8nlpi7"]
+
+[ext_resource type="Script" uid="uid://bjsdmqxwrb6sd" path="res://Scripts/Parts/Disclaimer.gd" id="1_esyiu"]
+[ext_resource type="AudioStream" uid="uid://o8wqcv7gjfkn" path="res://Assets/Audio/SFX/Pause.wav" id="3_x4k0q"]
+[ext_resource type="AudioStream" uid="uid://02i3v6iqndob" path="res://Assets/Audio/SFX/Bump.wav" id="4_j7oxo"]
+[ext_resource type="AudioStream" uid="uid://b2i8bjhlcvruw" path="res://Assets/Audio/SFX/Coin.wav" id="5_ou832"]
+
+[sub_resource type="Animation" id="Animation_j7oxo"]
+resource_name = "Go"
+length = 9.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Title:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Enjoy:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_x4k0q")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_j7oxo")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_ou832")
+}],
+"times": PackedFloat32Array(0.3, 1, 8)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("1:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ou832"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Title:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Enjoy:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f4ecw"]
+_data = {
+&"Go": SubResource("Animation_j7oxo"),
+&"RESET": SubResource("Animation_ou832")
+}
+
+[sub_resource type="SystemFont" id="SystemFont_x4k0q"]
+font_names = PackedStringArray("Monospace")
+
+[node name="Disclaimer" type="Node"]
+script = ExtResource("1_esyiu")
+
+[node name="BG" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_f4ecw")
+}
+autoplay = "Go"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="Title" type="Label" parent="."]
+visible = false
+modulate = Color(0.968627, 0.223529, 0.0627451, 1)
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 17.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("SystemFont_x4k0q")
+theme_override_font_sizes/font_size = 12
+text = "TITLE_DISCLAIMER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="1" type="Label" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_x4k0q")
+theme_override_font_sizes/font_size = 12
+text = "TITLE_DISCLAIM_1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="2" type="Label" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_x4k0q")
+theme_override_font_sizes/font_size = 12
+text = "TITLE_DISCLAIM_2"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Enjoy" type="Label" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_x4k0q")
+theme_override_font_sizes/font_size = 12
+text = "TITLE_DISCLAIM_3"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="go_to_menu" unbinds=1]

@@ -1,0 +1,108 @@
+# Super Mario Bros. Remastered
+
+Created by JoeMama
+
+# Tile Artists
+- Martin Lozano
+- amer241
+- Hot Cross Bun
+- Diamond-Lock Productions
+- hdtv
+- VannyArts
+
+# Programmers
+- JoeMama
+- aloelucidity
+
+# BG Artists
+- amer241
+- Hot Cross Bun
+- Diamond-Lock Productions
+- VannyArts
+
+# Enemy Artists
+- amer241
+- SamButSam
+- Diamond-Lock Productions
+- Hot Cross Bun
+
+# Player Artist
+- GlacialSiren484
+
+# Level Design
+- JoeMama
+- amer241
+- MakerK6
+- SamButSam
+
+# UI Design + UI Artist
+- VannyArts
+- aloelucidity
+- amer241
+
+# LSS banner + Icon
+- KrystalPhantasm
+
+# Composers
+- hdtv
+- amer241
+- Blindspuut
+- LeviR.star
+- aloelucidity
+
+# SFXs
+- QuagIsCool
+- LeviR.star
+
+# Localizers
+- Cube (pl)
+- TRIPPY (it)
+- SlavaWOW (ru)
+- MakerK6 (fr)
+- VannyArts (fil)
+- SpeedyMcFly (es)
+- Kirbo The Poyo (es)
+- _Apostrophe (tr)
+- TBB369 (in)
+- Chryss (pt)
+- TheOliveOli (de)
+- Edwrin (Skopler) (jp)
+
+# Beta Testers
+- Miai0
+- Raykol
+- Gweenie
+- CR4FTEX
+- Pincelle
+- JamiesName
+- Not Vorzo
+- leanycat
+- OhThatGuy
+- OhThatGuy's neighbour
+- Rhyvit
+- Hooked_Ones
+- Pixelcraftian
+- Starrymari
+- Jontheph
+- Kosmic
+- TheLBcats
+- LadiesMan217
+- Musicalman
+- bluSeven
+- The Flying Dutchman
+- Popthatcorn14
+- Snailbonus
+
+
+# Special Thanks
+- alesan99
+- StabYourself
+- Exploding Rabbit
+- Portponky
+- Nintendo
+- MIKA
+- Kaze Emanuar
+- Level Share Square
+
+# Made using
+- Godot Engine

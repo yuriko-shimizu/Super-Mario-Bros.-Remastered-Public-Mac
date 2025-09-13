@@ -1,0 +1,193 @@
+[gd_scene load_steps=6 format=3 uid="uid://cabk5huwjo06p"]
+
+[ext_resource type="Script" uid="uid://bhplwsmbalqng" path="res://Scripts/UI/RomAssetEditor.gd" id="1_rj2ho"]
+[ext_resource type="Texture2D" uid="uid://biikrttwchk12" path="res://Assets/Sprites/UI/EditorGridSmall.png" id="2_ayc5w"]
+
+[sub_resource type="SystemFont" id="SystemFont_potm2"]
+font_names = PackedStringArray("Monospace")
+font_weight = 600
+
+[sub_resource type="Theme" id="Theme_0rwsj"]
+default_font = SubResource("SystemFont_potm2")
+default_font_size = 12
+
+[sub_resource type="SystemFont" id="SystemFont_nik6x"]
+font_names = PackedStringArray("Monospace")
+font_weight = 600
+font_stretch = 50
+
+[node name="RomAssetEditor" type="Node"]
+script = ExtResource("1_rj2ho")
+metadata/_custom_type_script = "uid://bcqr1v25ygedb"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+oversampling_override = 1.0
+title = "Open a File"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.nes;NES ROMs")
+use_native_dialog = true
+
+[node name="BG" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RomRequired" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_potm2")
+theme_override_font_sizes/font_size = 12
+text = "No ROM path set...
+
+Open the game normally, and
+provide a ROM."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_0rwsj")
+alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Buttons"]
+custom_minimum_size = Vector2(215, 240)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+alignment = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Buttons/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 210)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ImageContainer" type="BoxContainer" parent="Buttons/VBoxContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="ImagePreview" type="TextureRect" parent="Buttons/VBoxContainer2/ScrollContainer/ImageContainer"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.5019608)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+stretch_mode = 2
+
+[node name="GreenPreview" type="TextureRect" parent="Buttons/VBoxContainer2/ScrollContainer/ImageContainer/ImagePreview"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stretch_mode = 2
+
+[node name="TilesPreview" type="TextureRect" parent="Buttons/VBoxContainer2/ScrollContainer/ImageContainer/ImagePreview"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stretch_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Buttons/VBoxContainer2/ScrollContainer/ImageContainer/ImagePreview/TilesPreview"]
+modulate = Color(0.50928617, 0.50928617, 0.50928617, 0.4392157)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_ayc5w")
+stretch_mode = 1
+
+[node name="Preview" type="Sprite2D" parent="Buttons/VBoxContainer2/ScrollContainer/ImageContainer/ImagePreview"]
+unique_name_in_owner = true
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="JSONContainer" type="VBoxContainer" parent="Buttons/VBoxContainer2"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="JSONEdit" type="TextEdit" parent="Buttons/VBoxContainer2/JSONContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 8
+
+[node name="Update" type="Button" parent="Buttons/VBoxContainer2/JSONContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Update"
+
+[node name="CurSprite" type="Label" parent="Buttons/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_fonts/font = SubResource("SystemFont_nik6x")
+theme_override_font_sizes/font_size = 12
+text = "CURRENT SPRITE:
+MARIO.PNG"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
+layout_mode = 2
+alignment = 2
+
+[node name="PaletteOverride" type="LineEdit" parent="Buttons/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+placeholder_text = "Palette"
+
+[node name="LastImage" type="Button" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Last"
+
+[node name="NextImage" type="Button" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Next"
+
+[node name="SaveImage" type="Button" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Save"
+
+[node name="JSON" type="Button" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+text = "JSON"
+
+[connection signal="file_selected" from="FileDialog" to="." method="on_file_selected"]
+[connection signal="pressed" from="Buttons/VBoxContainer2/JSONContainer/Update" to="." method="update_palettes" binds= [true]]
+[connection signal="pressed" from="Buttons/VBoxContainer/LastImage" to="." method="cycle_list" binds= [-1]]
+[connection signal="pressed" from="Buttons/VBoxContainer/NextImage" to="." method="cycle_list" binds= [1]]
+[connection signal="pressed" from="Buttons/VBoxContainer/SaveImage" to="." method="save_sprite"]
+[connection signal="toggled" from="Buttons/VBoxContainer/JSON" to="." method="toggle_palettes_view"]

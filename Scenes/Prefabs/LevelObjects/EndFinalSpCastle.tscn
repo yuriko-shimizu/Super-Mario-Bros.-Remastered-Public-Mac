@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5o0j3kfv2xys"]
+
+[ext_resource type="PackedScene" uid="uid://bney0cc8cfm5s" path="res://Scenes/Prefabs/LevelObjects/EndFinalCastle.tscn" id="1_fa5ur"]
+[ext_resource type="PackedScene" uid="uid://bem5ht17ukgcs" path="res://Scenes/Parts/LargeSPCastleVisual.tscn" id="2_jlw6s"]
+[ext_resource type="Texture2D" uid="uid://gnqt7rl36kxy" path="res://Assets/Sprites/Tilesets/CastleFlag.png" id="2_jp1ee"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq0jd"]
+atlas = ExtResource("2_jp1ee")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t8sum"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uq0jd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EndFinalCastle" instance=ExtResource("1_fa5ur")]
+
+[node name="Flag" parent="FlagJoint" index="0"]
+position = Vector2(0, 8.00001)
+sprite_frames = SubResource("SpriteFrames_t8sum")
+do_offset = false
+
+[node name="SmallCastleVisual" parent="." index="3"]
+visible = false
+
+[node name="SmallCastleVisual2" parent="." index="6" instance=ExtResource("2_jlw6s")]
+position = Vector2(32, -40)
+
+[node name="Overlay" parent="." index="7"]
+visible = true

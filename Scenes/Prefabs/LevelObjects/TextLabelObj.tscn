@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bri8d364obssw"]
+
+[ext_resource type="PackedScene" uid="uid://ccwil8rmgvund" path="res://Scenes/Prefabs/LevelObjects/TextLabel.tscn" id="1_lckm4"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="2_xh6kd"]
+[ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="3_4ffmy"]
+[ext_resource type="Texture2D" uid="uid://dlldh5aks0wff" path="res://Assets/Sprites/Editor/GhostTile.png" id="4_evdjo"]
+
+[sub_resource type="GDScript" id="GDScript_lckm4"]
+script/source = "extends Node2D
+
+@export var text := \"\"
+
+func _process(_delta: float) -> void:
+	$TextLabel.text = text
+"
+
+[node name="TextLabelOBJ" type="Node2D"]
+process_mode = 3
+script = SubResource("GDScript_lckm4")
+
+[node name="TextLabel" parent="." instance=ExtResource("1_lckm4")]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 32.0
+offset_bottom = 8.0
+
+[node name="EditorPropertyExposer" type="Node" parent="."]
+script = ExtResource("2_xh6kd")
+properties = Array[String](["text"])
+metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
+
+[node name="LevelEditorVisibleNode" type="Node2D" parent="."]
+visibility_layer = 2
+position = Vector2(-8, -8)
+script = ExtResource("3_4ffmy")
+metadata/_custom_type_script = "uid://cpwloakvp672a"
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelEditorVisibleNode"]
+position = Vector2(8, 8)
+texture = ExtResource("4_evdjo")

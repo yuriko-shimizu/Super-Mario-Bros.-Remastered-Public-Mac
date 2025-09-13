@@ -1,0 +1,33 @@
+{
+	"variations": {
+		"default": {
+			"source": "Flag.png",
+			"rect": [0, 0, 16, 16]
+		},
+		"Underground": {
+			"source": "Flag.png",
+			"rect": [16, 0, 16, 16]
+		},
+		"GhostHouse": {"link": "Underground"},
+		"Castle": {
+			"source": "Flag.png",
+			"rect": [32, 0, 16, 16]
+		},
+		"Snow": {
+			"source": "Flag.png",
+			"rect": [0, 16, 16, 16]
+		},
+		"Space": {
+			"source": "Flag.png",
+			"rect": [16, 16, 16, 16]
+		},
+		"Volcano": {
+			"source": "Flag.png",
+			"rect": [32, 16, 16, 16]
+		},
+		"Bonus": {
+			"source": "Flag.png",
+			"rect": [0, 32, 16, 16]
+		}
+	}
+}

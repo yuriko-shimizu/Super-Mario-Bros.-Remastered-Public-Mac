@@ -1,0 +1,1104 @@
+[gd_scene load_steps=61 format=3 uid="uid://blv1d12smlibh"]
+
+[ext_resource type="Script" uid="uid://bqhrq7sabq811" path="res://Scripts/UI/ChallengeModeResults.gd" id="1_3x4fv"]
+[ext_resource type="Texture2D" uid="uid://116yaio262mj" path="res://Assets/Sprites/UI/ChallengeResultsTemplate.png" id="3_um36a"]
+[ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="3_xe6g7"]
+[ext_resource type="SpriteFrames" uid="uid://d2f5cir67f1l0" path="res://Resources/SpriteFrames/Player/Toad/Small.tres" id="4_u7ohs"]
+[ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="5_x1tpn"]
+[ext_resource type="Texture2D" uid="uid://dyofh87knjqog" path="res://Assets/Sprites/UI/ChallengeResultsArrow.png" id="6_moc5y"]
+[ext_resource type="AudioStream" uid="uid://7qietyafewl0" path="res://Assets/Audio/BGM/ChallengeResults.mp3" id="7_6dwpv"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="7_bob8r"]
+[ext_resource type="Texture2D" uid="uid://dfildm0squweg" path="res://Assets/Sprites/Players/ToadNPC.png" id="7_y11uu"]
+[ext_resource type="Texture2D" uid="uid://pjlt0tmutk8w" path="res://Assets/Sprites/UI/SpeechBubble.png" id="8_nud7a"]
+[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="9_iyieq"]
+[ext_resource type="AudioStream" uid="uid://dtuo0r8boftsg" path="res://Assets/Audio/SFX/Speaking.wav" id="9_qaelr"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="10_bylb3"]
+[ext_resource type="Texture2D" uid="uid://de6otencrflfo" path="res://Assets/Sprites/UI/RedCoins.png" id="10_d76il"]
+[ext_resource type="Texture2D" uid="uid://wx6yyqabrelf" path="res://Assets/Sprites/UI/ChallengeResultsPanel.png" id="11_02i7h"]
+[ext_resource type="AudioStream" uid="uid://n07ty0sc76em" path="res://Assets/Audio/SFX/ChallengeModeGive.mp3" id="11_nym8o"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Players/ToadNPC.json" id="14_sv6qk"]
+[ext_resource type="Texture2D" uid="uid://cxtan2ap83u3d" path="res://Assets/Sprites/UI/ChallengeMedals.png" id="14_woqpu"]
+[ext_resource type="Texture2D" uid="uid://c7jq6t1d2mhur" path="res://Assets/Sprites/Items/YoshiEgg.png" id="16_1h3k2"]
+[ext_resource type="AudioStream" uid="uid://bvyklj5qhjkvn" path="res://Assets/Audio/SFX/ChallengeMedalAward.wav" id="16_eupxr"]
+[ext_resource type="Texture2D" uid="uid://hdpdek7jitea" path="res://Assets/Sprites/Players/Yoshi.png" id="18_n4lt1"]
+[ext_resource type="AudioStream" uid="uid://cl4e0p4fnpjn1" path="res://Assets/Audio/SFX/Yoshi.wav" id="19_n4lt1"]
+[ext_resource type="Texture2D" uid="uid://byy3k1pdrp77" path="res://Assets/Sprites/Particles/Smoke.png" id="20_n4lt1"]
+[ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="21_bob8r"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Players/Yoshi.json" id="23_vohx7"]
+[ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="24_cq5a1"]
+[ext_resource type="Texture2D" uid="uid://ccb8wtuolj7i3" path="res://Assets/Sprites/Backgrounds/ChallengeModeResults/Results3.png" id="27_w3bjn"]
+[ext_resource type="Texture2D" uid="uid://dyckss38aqmvl" path="res://Assets/Sprites/Backgrounds/ChallengeModeResults/Results2.png" id="28_vohx7"]
+[ext_resource type="Texture2D" uid="uid://c62qmaatddm0h" path="res://Assets/Sprites/Backgrounds/ChallengeModeResults/Results1.png" id="29_1l20f"]
+[ext_resource type="PackedScene" uid="uid://jv82ssp7gwn4" path="res://Scenes/Prefabs/UI/ChallengeModeEnd.tscn" id="31_1l20f"]
+[ext_resource type="PackedScene" uid="uid://dntk2js0tu3y2" path="res://Scenes/Prefabs/UI/WorldSelect.tscn" id="32_xk7j8"]
+[ext_resource type="PackedScene" uid="uid://bsfkt344e6j38" path="res://Scenes/Prefabs/UI/LevelSelectNew.tscn" id="33_x7w5s"]
+
+[sub_resource type="Resource" id="Resource_cq5a1"]
+script = ExtResource("10_bylb3")
+Overworld = ExtResource("7_6dwpv")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[sub_resource type="Animation" id="Animation_6dwpv"]
+resource_name = "Main"
+length = 30.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-96, 16), Vector2(-40, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"Move", &"Idle"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpeechBubble:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 3.5, 6.5, 7, 9.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpeechBubble/Coins:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.1, 6.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpeechBubble/Score:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 6.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SpeechBubble/Your:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D/Sprite2D3/Coins:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 5.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SpeechBubble/Score/ScoreLabel:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(6.7, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Toad:animation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.5, 3.5, 5.5, 7, 8.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [&"Idle", &"Emote", &"Emote", &"Idle", &"Emote", &"Idle"]
+}
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("TalkSFX")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_qaelr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_qaelr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_qaelr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_qaelr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_qaelr")
+}],
+"times": PackedFloat32Array(1.5, 3.5, 4.5, 7, 8)
+}
+tracks/9/use_blend = true
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(5.5, 6, 8.6, 9.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"update_coins_display"
+}, {
+"args": [],
+"method": &"give_red_coin_medal"
+}, {
+"args": [],
+"method": &"update_score"
+}, {
+"args": [],
+"method": &"give_score_medal"
+}, {
+"args": [],
+"method": &"give_yoshi_medal"
+}]
+}
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("AudioStreamPlayer")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_nym8o")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_nym8o")
+}],
+"times": PackedFloat32Array(5.5, 8.5)
+}
+tracks/11/use_blend = true
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Label2:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(11),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath(".:can_exit")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(11),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("SpeechBubble/Coins/Node2D:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(4.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_y11uu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-96, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Move"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpeechBubble:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpeechBubble/Coins:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpeechBubble/Score:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SpeechBubble/Your:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D/Sprite2D3/Coins:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SpeechBubble/Score/ScoreLabel:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Toad:animation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"1Idle"]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Label2:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".:can_exit")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("SpeechBubble/Coins/Node2D:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nud7a"]
+_data = {
+&"Main": SubResource("Animation_6dwpv"),
+&"RESET": SubResource("Animation_y11uu")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qaelr"]
+atlas = ExtResource("7_y11uu")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_moc5y"]
+atlas = ExtResource("7_y11uu")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nud7a"]
+atlas = ExtResource("7_y11uu")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d76il"]
+atlas = ExtResource("7_y11uu")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02i7h"]
+atlas = ExtResource("7_y11uu")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_woqpu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qaelr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_moc5y")
+}],
+"loop": true,
+"name": &"1Neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nud7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d76il")
+}],
+"loop": true,
+"name": &"Emote",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02i7h")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Shader" id="Shader_vohx7"]
+code = "shader_type canvas_item;
+
+void fragment() {
+    vec4 color = texture(TEXTURE, UV);
+	if (COLOR == vec4(1, 1, 1, 1) || COLOR == vec4(0, 0, 0, 1)){
+	 	COLOR = vec4(vec3(1.0) - color.rgb, color.a);
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1l20f"]
+shader = SubResource("Shader_vohx7")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ntsy"]
+atlas = ExtResource("18_n4lt1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6x77t"]
+atlas = ExtResource("18_n4lt1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vchd"]
+atlas = ExtResource("18_n4lt1")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8mei"]
+atlas = ExtResource("18_n4lt1")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhwve"]
+atlas = ExtResource("18_n4lt1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvhj2"]
+atlas = ExtResource("18_n4lt1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh1gf"]
+atlas = ExtResource("18_n4lt1")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qdj5"]
+atlas = ExtResource("18_n4lt1")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_21ujm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ntsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6x77t")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vchd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8mei")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhwve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvhj2")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh1gf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qdj5")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_vohx7"]
+script = ExtResource("10_bylb3")
+Overworld = ExtResource("19_n4lt1")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2ehg"]
+atlas = ExtResource("20_n4lt1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3yun"]
+atlas = ExtResource("20_n4lt1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig72b"]
+atlas = ExtResource("20_n4lt1")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvxpm"]
+atlas = ExtResource("20_n4lt1")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xke1f"]
+atlas = ExtResource("20_n4lt1")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bob8r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2ehg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3yun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ig72b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvxpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xke1f")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="ChallengeModeResults" type="Node"]
+script = ExtResource("1_3x4fv")
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Camera" type="Camera2D" parent="."]
+process_callback = 0
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.261477, 0.261477, 0.261477, 1)
+visibility_layer = 2
+z_index = -4096
+texture = ExtResource("3_um36a")
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visibility_layer = 2
+z_index = -4096
+position = Vector2(0, -8)
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D"]
+visibility_layer = 2
+z_index = 5
+z_as_relative = false
+position = Vector2(-76, 56)
+region_enabled = true
+region_rect = Rect2(0, 0, 8, 64)
+
+[node name="Overlay" type="ColorRect" parent="Sprite2D/Sprite2D3"]
+visible = false
+offset_left = -60.0
+offset_top = -32.0
+offset_right = -4.0
+offset_bottom = 32.0
+color = Color(0, 0, 0, 1)
+
+[node name="Score" type="Label" parent="Sprite2D/Sprite2D3"]
+offset_left = 8.0
+offset_top = 56.0
+offset_right = 56.0
+offset_bottom = 64.0
+text = "CHALLENGE_DIALOGUE_SCORE"
+uppercase = true
+
+[node name="ScoreText" type="Label" parent="Sprite2D/Sprite2D3"]
+offset_left = 44.0
+offset_top = 56.0
+offset_right = 108.0
+offset_bottom = 79.0
+text = "0"
+horizontal_alignment = 2
+
+[node name="Target" type="Label" parent="Sprite2D/Sprite2D3/ScoreText"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_right = 8.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.462745, 0.52549, 1, 1)
+text = "/00000"
+horizontal_alignment = 2
+
+[node name="Coins2" type="Label" parent="Sprite2D/Sprite2D3"]
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 56.0
+offset_bottom = 48.0
+text = "CHALLENGE_DIALOGUE_COINS"
+uppercase = true
+
+[node name="Coins" type="Node2D" parent="Sprite2D/Sprite2D3"]
+visible = false
+position = Vector2(72, 12)
+
+[node name="1" type="Sprite2D" parent="Sprite2D/Sprite2D3/Coins"]
+position = Vector2(-5, 36)
+texture = ExtResource("10_d76il")
+hframes = 2
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="2" type="Sprite2D" parent="Sprite2D/Sprite2D3/Coins"]
+position = Vector2(3, 36)
+texture = ExtResource("10_d76il")
+hframes = 2
+frame = 1
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="3" type="Sprite2D" parent="Sprite2D/Sprite2D3/Coins"]
+position = Vector2(11, 36)
+texture = ExtResource("10_d76il")
+hframes = 2
+frame = 1
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="4" type="Sprite2D" parent="Sprite2D/Sprite2D3/Coins"]
+position = Vector2(19, 36)
+texture = ExtResource("10_d76il")
+hframes = 2
+frame = 1
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="5" type="Sprite2D" parent="Sprite2D/Sprite2D3/Coins"]
+position = Vector2(27, 36)
+texture = ExtResource("10_d76il")
+hframes = 2
+frame = 1
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-28, 44)
+texture = ExtResource("6_moc5y")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-28, 60)
+texture = ExtResource("6_moc5y")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("resource_setter")]
+position = Vector2(-96, 0)
+sprite_frames = ExtResource("4_u7ohs")
+animation = &"Move"
+autoplay = "Move"
+speed_scale = 2.0
+offset = Vector2(0, -16)
+script = ExtResource("5_x1tpn")
+resource_setter = NodePath("ResourceSetterNew")
+metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
+
+[node name="ResourceSetterNew" type="Node" parent="PlayerSprite"]
+script = ExtResource("7_bob8r")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("7_6dwpv")
+autoplay = true
+bus = &"Music"
+
+[node name="ResourceSetter" type="Node" parent="Music" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("9_iyieq")
+node_to_affect = NodePath("..")
+property_name = "stream"
+themed_resource = SubResource("Resource_cq5a1")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="MainSequence" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nud7a")
+}
+autoplay = "Main"
+speed_scale = 0.8
+
+[node name="Toad" type="AnimatedSprite2D" parent="."]
+position = Vector2(56, 0)
+sprite_frames = SubResource("SpriteFrames_woqpu")
+animation = &"1Idle"
+autoplay = "Idle"
+speed_scale = 2.0
+
+[node name="ResourceSetterNew" type="Node" parent="Toad" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("7_bob8r")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("14_sv6qk")
+use_cache = false
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="SpeechBubble" type="Sprite2D" parent="."]
+visible = false
+visibility_layer = 2
+position = Vector2(-24, -40)
+texture = ExtResource("8_nud7a")
+centered = false
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Your" type="Label" parent="SpeechBubble"]
+visible = false
+material = SubResource("ShaderMaterial_1l20f")
+offset_left = 1.0
+offset_top = 4.0
+offset_right = 105.0
+offset_bottom = 27.0
+text = "your"
+uppercase = true
+
+[node name="Results" type="Label" parent="SpeechBubble/Your"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 27.0
+offset_top = 8.0
+offset_right = 131.0
+offset_bottom = 31.0
+text = "results"
+uppercase = true
+
+[node name="Coins" type="Label" parent="SpeechBubble"]
+visible = false
+material = SubResource("ShaderMaterial_1l20f")
+offset_left = -1.0
+offset_top = 4.0
+offset_right = 79.0
+offset_bottom = 27.0
+text = "CHALLENGE_DIALOGUE_COINS"
+uppercase = true
+
+[node name="Node2D" type="Node2D" parent="SpeechBubble/Coins"]
+visible = false
+
+[node name="1" type="Sprite2D" parent="SpeechBubble/Coins/Node2D"]
+position = Vector2(52, 12)
+texture = ExtResource("10_d76il")
+centered = false
+hframes = 2
+frame = 1
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="2" type="Sprite2D" parent="SpeechBubble/Coins/Node2D"]
+position = Vector2(60, 12)
+texture = ExtResource("10_d76il")
+centered = false
+hframes = 2
+frame = 1
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="3" type="Sprite2D" parent="SpeechBubble/Coins/Node2D"]
+position = Vector2(68, 12)
+texture = ExtResource("10_d76il")
+centered = false
+hframes = 2
+frame = 1
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="4" type="Sprite2D" parent="SpeechBubble/Coins/Node2D"]
+position = Vector2(76, 12)
+texture = ExtResource("10_d76il")
+centered = false
+hframes = 2
+frame = 1
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="5" type="Sprite2D" parent="SpeechBubble/Coins/Node2D"]
+position = Vector2(84, 12)
+texture = ExtResource("10_d76il")
+centered = false
+hframes = 2
+frame = 1
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Score" type="Label" parent="SpeechBubble"]
+visible = false
+material = SubResource("ShaderMaterial_1l20f")
+offset_left = -1.0
+offset_top = 4.0
+offset_right = 79.0
+offset_bottom = 27.0
+text = "CHALLENGE_DIALOGUE_SCORE"
+uppercase = true
+
+[node name="ScoreLabel" type="Label" parent="SpeechBubble/Score"]
+visible = false
+material = SubResource("ShaderMaterial_1l20f")
+layout_mode = 0
+offset_left = 16.0
+offset_top = 1.0
+offset_right = 96.0
+offset_bottom = 24.0
+text = "10000"
+horizontal_alignment = 2
+vertical_alignment = 2
+uppercase = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(58, -112)
+texture = ExtResource("11_02i7h")
+centered = false
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="RedCoins" type="Sprite2D" parent="Sprite2D3"]
+visible = false
+position = Vector2(14, 13)
+texture = ExtResource("14_woqpu")
+hframes = 2
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Score" type="Sprite2D" parent="Sprite2D3"]
+visible = false
+position = Vector2(30, 13)
+texture = ExtResource("14_woqpu")
+hframes = 2
+frame = 1
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="YoshiEgg" type="Sprite2D" parent="Sprite2D3"]
+visible = false
+position = Vector2(46, 12)
+texture = ExtResource("16_1h3k2")
+hframes = 2
+vframes = 4
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="TalkSFX" type="AudioStreamPlayer2D" parent="."]
+volume_db = 5.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("16_eupxr")
+bus = &"SFX"
+
+[node name="Yoshi" type="AnimatedSprite2D" parent="."]
+process_mode = 3
+visible = false
+position = Vector2(16, 0)
+sprite_frames = SubResource("SpriteFrames_21ujm")
+animation = &"1"
+autoplay = "1"
+frame_progress = 0.466158
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Yoshi"]
+visible = false
+stream = ExtResource("19_n4lt1")
+volume_db = 5.0
+bus = &"SFX"
+
+[node name="ResourceSetter" type="Node" parent="Yoshi/AudioStreamPlayer2D" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("9_iyieq")
+node_to_affect = NodePath("..")
+property_name = "stream"
+themed_resource = SubResource("Resource_vohx7")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="ResourceSetterNew" type="Node" parent="Yoshi" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("7_bob8r")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("23_vohx7")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="SmokeParticle" type="AnimatedSprite2D" parent="."]
+position = Vector2(16, 0)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_bob8r")
+frame = 4
+frame_progress = 1.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = -112.0
+offset_top = -112.0
+offset_right = -64.0
+offset_bottom = -89.0
+text = "world"
+uppercase = true
+
+[node name="WorldLevel" type="Label" parent="."]
+offset_left = -104.0
+offset_top = -104.0
+offset_right = -72.0
+offset_bottom = -88.0
+text = "1-1"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="DropShadow" parent="." instance=ExtResource("21_bob8r")]
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+visibility_layer = 2
+z_index = 4096
+z_as_relative = false
+offset_left = -128.0
+offset_top = 24.0
+offset_right = 128.0
+offset_bottom = 82.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "CHALLENGE_DIALOGUE_EXIT"
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+script = ExtResource("24_cq5a1")
+labels = [NodePath("../Sprite2D/Sprite2D3/Score"), NodePath("../Sprite2D/Sprite2D3/Coins2"), NodePath("../Sprite2D/Sprite2D3/ScoreText"), NodePath("../Sprite2D/Sprite2D3/ScoreText/Target"), null, NodePath("../SpeechBubble/Your"), NodePath("../SpeechBubble/Your/Results"), NodePath("../SpeechBubble/Coins"), NodePath("../SpeechBubble/Score"), NodePath("../SpeechBubble/Score/ScoreLabel"), NodePath("../Label"), NodePath("../WorldLevel"), NodePath("../Label2")]
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
+
+[node name="BG2" type="Node2D" parent="."]
+z_index = -50
+position = Vector2(0, -8)
+
+[node name="PackSprite3" type="Sprite2D" parent="BG2"]
+visibility_layer = 2
+z_index = -4096
+texture = ExtResource("27_w3bjn")
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="PackSprite2" type="Sprite2D" parent="BG2"]
+texture = ExtResource("28_vohx7")
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="PackSprite4" type="Sprite2D" parent="BG2"]
+texture = ExtResource("29_1l20f")
+script = ExtResource("3_xe6g7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("31_1l20f")]
+visible = false
+
+[node name="WorldSelect" parent="CanvasLayer" instance=ExtResource("32_xk7j8")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -32.5
+offset_right = 90.0
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelSelect" parent="CanvasLayer" instance=ExtResource("33_x7w5s")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -40.0
+offset_right = 128.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="sprites_updated" from="Music/ResourceSetter" to="Music" method="play"]
+[connection signal="option_1_selected" from="CanvasLayer/PauseMenu" to="." method="retry_level"]
+[connection signal="option_2_selected" from="CanvasLayer/PauseMenu" to="CanvasLayer/PauseMenu" method="close"]
+[connection signal="option_2_selected" from="CanvasLayer/PauseMenu" to="CanvasLayer/WorldSelect" method="open"]
+[connection signal="option_3_selected" from="CanvasLayer/PauseMenu" to="." method="go_to_title_screen"]
+[connection signal="cancelled" from="CanvasLayer/WorldSelect" to="CanvasLayer/PauseMenu" method="open"]
+[connection signal="world_selected" from="CanvasLayer/WorldSelect" to="CanvasLayer/LevelSelect" method="open"]
+[connection signal="cancelled" from="CanvasLayer/LevelSelect" to="CanvasLayer/WorldSelect" method="open"]
+[connection signal="level_selected" from="CanvasLayer/LevelSelect" to="." method="retry_level"]
+
+[editable path="CanvasLayer/LevelSelect"]

@@ -1,0 +1,110 @@
+[gd_scene load_steps=15 format=3 uid="uid://bh0c141mlkiff"]
+
+[ext_resource type="Texture2D" uid="uid://dleohmr2yvsea" path="res://Assets/Sprites/Blocks/Bumper.png" id="1_7osxe"]
+[ext_resource type="Script" uid="uid://biu4x75tbkfk3" path="res://Scripts/Classes/Entities/Objects/Bumper.gd" id="1_yguea"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_yguea"]
+[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_cgc3p"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_cgc3p"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/Bumper.json" id="5_ix70v"]
+[ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="7_tbo6k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ix70v"]
+atlas = ExtResource("1_7osxe")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tbo6k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ix70v")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tbo6k"]
+radius = 24.0
+
+[sub_resource type="Animation" id="Animation_7osxe"]
+resource_name = "Bounce"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yguea"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cgc3p"]
+_data = {
+&"Bounce": SubResource("Animation_7osxe"),
+&"RESET": SubResource("Animation_yguea")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbo6k"]
+
+[node name="Bumper" type="AnimatableBody2D"]
+sync_to_physics = false
+script = ExtResource("1_yguea")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tbo6k")
+animation = &"Idle"
+autoplay = "Idle"
+script = ExtResource("2_yguea")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_cgc3p")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("5_ix70v")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 255
+script = ExtResource("3_cgc3p")
+metadata/_custom_type_script = "uid://cnheej0sxmoxg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_tbo6k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cgc3p")
+}
+autoplay = "RESET"
+
+[node name="TrackJoint" type="Node" parent="."]
+script = ExtResource("7_tbo6k")
+offset = Vector2(0, 0)
+disable_physics = false
+metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tbo6k")
+
+[connection signal="player_entered" from="Hitbox" to="." method="bounce_player"]

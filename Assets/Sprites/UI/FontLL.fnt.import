@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://b423dxkogqf0a"
+path="res://.godot/imported/FontLL.fnt-b0a4b8976c6dfce9e7529f579de98f07.fontdata"
+
+[deps]
+
+source_file="res://Assets/Sprites/UI/FontLL.fnt"
+dest_files=["res://.godot/imported/FontLL.fnt-b0a4b8976c6dfce9e7529f579de98f07.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=false
+scaling_mode=0

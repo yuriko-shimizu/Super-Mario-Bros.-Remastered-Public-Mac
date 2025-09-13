@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://knfs0rx7n1ry"]
+
+[ext_resource type="Script" uid="uid://dx0yj4sc1lnpu" path="res://Scripts/Classes/Editor/EditorTileSelector.gd" id="1_ecw13"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_bh0ve"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_irc6t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ru7c4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xy0d6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bh0ve"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ecw13"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xy0d6"]
+bg_color = Color(0, 0, 0, 0.580392)
+
+[node name="EditorTileSelector" type="Control"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 3
+anchors_preset = 0
+mouse_default_cursor_shape = 2
+script = ExtResource("1_ecw13")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_irc6t")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ru7c4")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xy0d6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_bh0ve")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ecw13")
+
+[node name="Icon" type="NinePatchRect" parent="Button"]
+unique_name_in_owner = true
+show_behind_parent = true
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="SecondaryIcon" type="NinePatchRect" parent="Button/Icon"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="ResourceSetterNew" type="Node" parent="." node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_bh0ve")
+node_to_affect = NodePath("../Button/Icon")
+property_name = "texture"
+mode = 1
+use_cache = false
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="ResourceSetterNew2" type="Node" parent="." node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_bh0ve")
+node_to_affect = NodePath("../Button/Icon/SecondaryIcon")
+property_name = "texture"
+mode = 1
+use_cache = false
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="NamePanel" type="Node2D" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/NamePanel"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xy0d6")
+
+[node name="NameLabel" type="Label" parent="CanvasLayer/NamePanel/Panel"]
+unique_name_in_owner = true
+layout_mode = 2
+uppercase = true
+
+[connection signal="mouse_entered" from="Button" to="." method="on_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="on_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="on_pressed"]

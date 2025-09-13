@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4w3brnky14rv"]
+
+[ext_resource type="Script" uid="uid://sfu6fevr0yop" path="res://Scripts/Parts/EntityGib.gd" id="1_fif4p"]
+
+[node name="EntityGib" type="Node2D"]
+script = ExtResource("1_fif4p")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]

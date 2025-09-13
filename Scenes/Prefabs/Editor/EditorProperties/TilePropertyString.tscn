@@ -1,0 +1,153 @@
+[gd_scene load_steps=8 format=3 uid="uid://l0lulnbn7v6b"]
+
+[ext_resource type="Script" uid="uid://dq6c5tah580o" path="res://Scripts/Classes/Editor/TilePropertyString.gd" id="1_yptip"]
+[ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="2_4ea2j"]
+[ext_resource type="StyleBox" uid="uid://btw30ed0dg4bt" path="res://Resources/UI/Tab.tres" id="3_yptip"]
+[ext_resource type="Script" uid="uid://dja6281w30iv0" path="res://Scripts/UI/TextValidator.gd" id="4_ibhoq"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_yptip"]
+color = Color(1, 1, 1, 1)
+
+[sub_resource type="FontFile" id="FontFile_yptip"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/15/0/ascent = 0.0
+cache/0/15/0/descent = 0.0
+cache/0/15/0/underline_position = 0.0
+cache/0/15/0/underline_thickness = 0.0
+cache/0/15/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
+cache/0/13/0/ascent = 0.0
+cache/0/13/0/descent = 0.0
+cache/0/13/0/underline_position = 0.0
+cache/0/13/0/underline_thickness = 0.0
+cache/0/13/0/scale = 1.0
+cache/0/12/0/ascent = 0.0
+cache/0/12/0/descent = 0.0
+cache/0/12/0/underline_position = 0.0
+cache/0/12/0/underline_thickness = 0.0
+cache/0/12/0/scale = 1.0
+cache/0/11/0/ascent = 0.0
+cache/0/11/0/descent = 0.0
+cache/0/11/0/underline_position = 0.0
+cache/0/11/0/underline_thickness = 0.0
+cache/0/11/0/scale = 1.0
+cache/0/10/0/ascent = 0.0
+cache/0/10/0/descent = 0.0
+cache/0/10/0/underline_position = 0.0
+cache/0/10/0/underline_thickness = 0.0
+cache/0/10/0/scale = 1.0
+cache/0/9/0/ascent = 0.0
+cache/0/9/0/descent = 0.0
+cache/0/9/0/underline_position = 0.0
+cache/0/9/0/underline_thickness = 0.0
+cache/0/9/0/scale = 1.0
+cache/0/8/0/ascent = 0.0
+cache/0/8/0/descent = 0.0
+cache/0/8/0/underline_position = 0.0
+cache/0/8/0/underline_thickness = 0.0
+cache/0/8/0/scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yptip"]
+bg_color = Color(0.09620471, 0.09620475, 0.09620468, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[node name="TilePropertyBOOL" type="HBoxContainer"]
+offset_right = 184.0
+offset_bottom = 16.0
+script = ExtResource("1_yptip")
+tile_property_name = "text"
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PROPERTY_NAME:"
+uppercase = true
+
+[node name="Value" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "aadadadawsdad"
+text_overrun_behavior = 3
+uppercase = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "…"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -93.0
+offset_right = 119.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_4ea2j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "EDIT TEXT"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Panel/VBoxContainer/Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_yptip")
+
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = SubResource("FontFile_yptip")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_yptip")
+theme_override_styles/focus = SubResource("StyleBoxFlat_yptip")
+context_menu_enabled = false
+emoji_menu_enabled = false
+caret_blink = true
+
+[node name="Button" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("3_yptip")
+text = "SUBMIT"
+
+[node name="TextValidator" type="Node" parent="."]
+script = ExtResource("4_ibhoq")
+metadata/_custom_type_script = "uid://dja6281w30iv0"
+
+[connection signal="start_value_changed" from="." to="CanvasLayer/Panel/VBoxContainer/TextEdit" method="set_text"]
+[connection signal="pressed" from="Button" to="." method="open_menu"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/Button" to="." method="on_pressed"]

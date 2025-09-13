@@ -1,0 +1,230 @@
+[gd_scene load_steps=27 format=3 uid="uid://d0mmkuq7wtpcl"]
+
+[ext_resource type="Theme" uid="uid://dtn507x2b5de7" path="res://Resources/Theme.tres" id="1_qwra1"]
+[ext_resource type="Script" uid="uid://dhxt5av5njyiv" path="res://Scripts/UI/RomVerifier.gd" id="1_r85ci"]
+[ext_resource type="Texture2D" uid="uid://bhuybr2gtuco5" path="res://Assets/Sprites/UI/MenuBG.png" id="2_r85ci"]
+[ext_resource type="Texture2D" uid="uid://3ai0ggxah360" path="res://Assets/Sprites/UI/MenuBorder.png" id="3_4o1wk"]
+[ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="4_2ok7u"]
+[ext_resource type="Texture2D" uid="uid://bghn5xwo51hp4" path="res://Assets/Sprites/Backgrounds/BooMenuBG.png" id="5_qwra1"]
+[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="6_y6sry"]
+[ext_resource type="Script" uid="uid://cixtosud3mfaq" path="res://Scripts/Classes/Resources/CampaignResource.gd" id="7_6q27m"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="8_c20ch"]
+[ext_resource type="AudioStream" uid="uid://b26qanomle5ug" path="res://Assets/Audio/BGM/Setup.mp3" id="9_cloha"]
+[ext_resource type="AudioStream" uid="uid://c70oyr23fyxwb" path="res://Assets/Audio/SFX/1up.wav" id="11_4o1wk"]
+[ext_resource type="AudioStream" uid="uid://02i3v6iqndob" path="res://Assets/Audio/SFX/Bump.wav" id="12_2ok7u"]
+
+[sub_resource type="Shader" id="Shader_mm3k3"]
+code = "shader_type canvas_item;
+
+uniform vec2 motion = vec2(0.0);
+uniform float scale = 1.0;
+uniform vec2 offset = vec2(0.0);
+
+void vertex(){
+	UV = (VERTEX + offset + TIME * motion) * TEXTURE_PIXEL_SIZE * (1.0/scale);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6hpoa"]
+shader = SubResource("Shader_mm3k3")
+shader_parameter/motion = Vector2(-4, -4)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cvbg"]
+atlas = ExtResource("3_4o1wk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vm44"]
+atlas = ExtResource("3_4o1wk")
+region = Rect2(32, 32, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i43xv"]
+atlas = ExtResource("3_4o1wk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sx1vw"]
+atlas = ExtResource("3_4o1wk")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="Resource" id="Resource_22hnx"]
+script = ExtResource("7_6q27m")
+SMB1 = SubResource("AtlasTexture_1cvbg")
+SMBLL = SubResource("AtlasTexture_i43xv")
+SMBS = SubResource("AtlasTexture_sx1vw")
+SMBANN = SubResource("AtlasTexture_8vm44")
+metadata/_custom_type_script = "uid://cixtosud3mfaq"
+
+[sub_resource type="Resource" id="Resource_v5xmg"]
+script = ExtResource("8_c20ch")
+Overworld = SubResource("Resource_22hnx")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxtnd"]
+atlas = ExtResource("2_r85ci")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuqid"]
+atlas = ExtResource("2_r85ci")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eii5q"]
+atlas = ExtResource("2_r85ci")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjtxo"]
+atlas = ExtResource("2_r85ci")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="Resource" id="Resource_euqtg"]
+script = ExtResource("7_6q27m")
+SMB1 = SubResource("AtlasTexture_sxtnd")
+SMBLL = SubResource("AtlasTexture_eii5q")
+SMBS = SubResource("AtlasTexture_hjtxo")
+SMBANN = SubResource("AtlasTexture_xuqid")
+metadata/_custom_type_script = "uid://cixtosud3mfaq"
+
+[sub_resource type="Resource" id="Resource_e3hrc"]
+script = ExtResource("8_c20ch")
+Overworld = SubResource("Resource_euqtg")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[node name="ROMVerifier" type="Node"]
+script = ExtResource("1_r85ci")
+
+[node name="BG" type="NinePatchRect" parent="."]
+texture_repeat = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qwra1")
+texture = ExtResource("2_r85ci")
+region_rect = Rect2(0, 0, 16, 16)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Border" type="NinePatchRect" parent="BG"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_right = 0.95
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4o1wk")
+region_rect = Rect2(0, 0, 31, 32)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+script = ExtResource("4_2ok7u")
+
+[node name="BG" type="TextureRect" parent="BG/Border"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_6hpoa")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_qwra1")
+stretch_mode = 1
+
+[node name="ResourceSetter" type="Node" parent="BG/Border" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_y6sry")
+node_to_affect = NodePath("..")
+property_name = "texture"
+themed_resource = SubResource("Resource_v5xmg")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="MarginContainer" type="MarginContainer" parent="BG/Border"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="DefaultText" type="Control" parent="BG/Border/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BG/Border/MarginContainer/DefaultText"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+size_flags_vertical = 0
+text = "ROM VERIFICATION REQUIRED!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="BG/Border/MarginContainer/DefaultText"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Please Drag and drop your vanilla WORLD \"super mario bros\" rom onto the window."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="Error" type="Label" parent="BG/Border/MarginContainer/DefaultText"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.99999994, 0.17417294, 0.12721592, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+text = "ERROR VERIFYING ROM!
+
+ARE YOU SURE ITS A VALID VANILLA NES SMB1 ROM?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SuccessMSG" type="Label" parent="BG/Border/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+text = "ROM VERIFIED! THANK YOU!
+
+PROCEEDING..."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ResourceSetter" type="Node" parent="BG" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("6_y6sry")
+node_to_affect = NodePath("..")
+property_name = "texture"
+themed_resource = SubResource("Resource_e3hrc")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_cloha")
+autoplay = true
+bus = &"Music"
+
+[node name="SuccessSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_4o1wk")
+
+[node name="ErrorSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_2ok7u")

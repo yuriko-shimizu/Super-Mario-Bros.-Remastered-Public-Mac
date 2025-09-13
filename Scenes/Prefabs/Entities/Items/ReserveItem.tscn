@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://1a8j44cmswcj"]
+
+[ext_resource type="Script" uid="uid://bbeh6dsp1hpan" path="res://Scripts/Classes/Entities/Items/ReserveItem.gd" id="1_ik5mc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_flkw7"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_ik5mc"]
+resource_name = "Flash"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_8acg5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_flkw7"]
+_data = {
+&"Flash": SubResource("Animation_ik5mc"),
+&"RESET": SubResource("Animation_8acg5")
+}
+
+[node name="ReserveItem" type="CharacterBody2D"]
+script = ExtResource("1_ik5mc")
+metadata/_custom_type_script = "uid://cjkurwybsaywm"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_flkw7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 8.0
+autostart = true
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_flkw7")
+}
+autoplay = "Flash"
+speed_scale = 2.0
+
+[connection signal="area_entered" from="Area2D" to="." method="on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="queue_free"]

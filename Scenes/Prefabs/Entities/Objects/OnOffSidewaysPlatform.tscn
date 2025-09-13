@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8cxhsod82kwm"]
+
+[ext_resource type="PackedScene" uid="uid://c8m8455b6ikrn" path="res://Scenes/Prefabs/Entities/Objects/SidewaysPlatform.tscn" id="1_m1s5k"]
+[ext_resource type="Texture2D" uid="uid://dfpbjnd1o5tig" path="res://Assets/Sprites/Tilesets/OnOffPlatform.png" id="2_m1s5k"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/OnOffPlatform.json" id="3_p1l0p"]
+[ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="4_mdd6r"]
+[ext_resource type="Script" uid="uid://cb0spbe0l8mof" path="res://Scripts/Classes/Components/AnimationPauser.gd" id="4_p1l0p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdd6r"]
+size = Vector2(48, 8)
+
+[node name="SidewaysPlatform" instance=ExtResource("1_m1s5k")]
+
+[node name="Sprite" parent="AnimatableBody2D" index="0"]
+offset_left = -20.0
+offset_right = 20.0
+texture = ExtResource("2_m1s5k")
+region_rect = Rect2(0, 0, 24, 8)
+
+[node name="ResourceSetter" parent="AnimatableBody2D/Sprite" index="0"]
+resource_json = ExtResource("3_p1l0p")
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D/Sprite" index="1"]
+position = Vector2(16, 0)
+texture = ExtResource("2_m1s5k")
+centered = false
+hframes = 2
+region_enabled = true
+region_rect = Rect2(24, 0, 16, 8)
+script = ExtResource("4_mdd6r")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Collision" parent="AnimatableBody2D" index="1"]
+visible = true
+shape = SubResource("RectangleShape2D_mdd6r")
+
+[node name="LevelEditorVisibleNode" parent="." index="2"]
+visible = true
+
+[node name="AnimationPauser" type="Node" parent="." index="4" node_paths=PackedStringArray("animation_player") groups=["BooBlocks"]]
+script = ExtResource("4_p1l0p")
+animation_player = NodePath("../AnimationPlayer")
+paused = true
+metadata/_custom_type_script = "uid://cb0spbe0l8mof"
+
+[connection signal="just_paused" from="AnimationPauser" to="AnimatableBody2D/Sprite/Sprite2D" method="set_frame" binds= [0]]
+[connection signal="resumed" from="AnimationPauser" to="AnimatableBody2D/Sprite/Sprite2D" method="set_frame" binds= [1]]

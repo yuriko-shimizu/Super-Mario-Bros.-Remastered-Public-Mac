@@ -1,0 +1,39 @@
+{
+	"animations": {
+		"Body": {
+			"frames": [
+				[
+					32.0,
+					0.0,
+					32.0,
+					32.0
+				]
+			],
+			"speed": 5.0,
+			"loop": true
+		},
+		"Head": {
+			"frames": [
+				[
+					0.0,
+					0.0,
+					32.0,
+					32.0
+				]
+			],
+			"speed": 5.0,
+			"loop": true
+		}
+	},
+	"variations": {
+		"default": {
+			"source": "Pokey.png",
+			"rect": [
+				0.0,
+				0.0,
+				64.0,
+				32.0
+			]
+		}
+	}
+}

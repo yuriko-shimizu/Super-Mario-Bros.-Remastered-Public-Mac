@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://bqhtste1il47d"]
+
+[ext_resource type="Script" uid="uid://0btfo4kjnnrg" path="res://Scripts/Parts/BulletBillCannon.gd" id="1_je07o"]
+[ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="2_vkq2x"]
+[ext_resource type="Texture2D" uid="uid://di0lgq3cojy41" path="res://Assets/Sprites/Editor/BillCannon.png" id="3_xxt5v"]
+[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="4_guvwn"]
+[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="5_84pyo"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="6_guvwn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mi286"]
+size = Vector2(48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rc5av"]
+atlas = ExtResource("3_xxt5v")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ilyi"]
+atlas = ExtResource("3_xxt5v")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="Resource" id="Resource_0rden"]
+script = ExtResource("5_84pyo")
+Overworld = SubResource("AtlasTexture_1ilyi")
+Underground = SubResource("AtlasTexture_rc5av")
+Castle = SubResource("AtlasTexture_rc5av")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[node name="BulletBillCannon" type="Node2D" groups=["Enemies"]]
+visibility_layer = 2
+script = ExtResource("1_je07o")
+
+[node name="PlayerDetect" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="PlayerDetect"]
+shape = SubResource("RectangleShape2D_mi286")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("2_vkq2x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("3_xxt5v")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+region_filter_clip_enabled = true
+
+[node name="ResourceSetter" type="Node" parent="Node2D/Sprite2D" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_guvwn")
+node_to_affect = NodePath("..")
+property_name = "texture"
+themed_resource = SubResource("Resource_0rden")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="EditorPropertyExposer" type="Node" parent="."]
+script = ExtResource("6_guvwn")
+properties = Array[String](["item"])
+filters = Dictionary[String, String]({
+"item": "can_be_stored"
+})
+
+[node name="BlockCheck" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="BlockCheck"]
+position = Vector2(9, 0)
+target_position = Vector2(8, 0)
+collision_mask = 6
+hit_from_inside = true
