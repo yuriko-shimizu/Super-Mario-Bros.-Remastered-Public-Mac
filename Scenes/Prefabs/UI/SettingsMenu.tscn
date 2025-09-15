@@ -257,7 +257,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_VIDEO"
-options = [NodePath("Language"), NodePath("WindowMode"), NodePath("Size"), NodePath("Visuals"), NodePath("Scaling"), NodePath("VSync"), NodePath("DropShadows"), NodePath("HudStyle")]
+options = [NodePath("Language"), NodePath("WindowMode"), NodePath("Size"), NodePath("Visuals"), NodePath("Scaling"), NodePath("VSync"), NodePath("DropShadows"), NodePath("HudStyle"), NodePath("FrameLimit")]
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Video"]
 custom_minimum_size = Vector2(0, 4)
@@ -320,6 +320,13 @@ layout_mode = 2
 option_key = "hud_scaling"
 title = "VIDEO_HUD_SCALING"
 values = ["VIDEO_HUD_STRETCHED", "VIDEO_HUD_CENTER"]
+
+[node name="FrameLimit" parent="PanelContainer/MarginContainer/VBoxContainer/Video" instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "frame_limit"
+title = "Frame_Limit"
+value_descs = Array[String](["Unlimited", "60fps", "120fps", "144fps", "240fps"])
+values = [0, 60, 120, 144, 240]
 
 [node name="WindowChanger" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Video"]
 script = ExtResource("5_hnwhb")
