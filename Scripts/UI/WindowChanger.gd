@@ -22,6 +22,7 @@ func window_size_changed(new_value := 0) -> void:
 
 func vsync_changed(new_value := 0) -> void:
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if new_value == 1 else DisplayServer.VSYNC_DISABLED)
+	
 	Settings.file.video.vsync = new_value
 
 func drop_shadows_changed(new_value := 0) -> void:
@@ -45,7 +46,17 @@ func language_changed(new_value := 0) -> void:
 	%Flag.region_rect.position.x = new_value * 16
 
 func frame_limit_changed(new_value := 0) -> void: 
-	Engine.max_fps = new_value
+	print_debug(str(new_value))
+	
+	var new_framerate := 0
+	match new_value: 
+		
+		1: new_framerate = 60
+		2: new_framerate = 120
+		3: new_framerate = 144
+		4: new_framerate = 240
+	
+	Engine.max_fps = new_framerate
 	Settings.file.video.frame_limit = new_value
 
 func set_value(value_name := "", value := 0) -> void:
