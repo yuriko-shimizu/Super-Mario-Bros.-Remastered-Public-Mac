@@ -533,6 +533,8 @@ func die(pit := false) -> void:
 func death_load() -> void:
 	power_state = get_node("PowerStates/Small")
 	Global.player_power_states = "0000"
+	if Global.death_load:
+		return
 	Global.death_load = true
 	if Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL:
 		LevelTransition.level_to_transition_to = "res://Scenes/Levels/LevelEditor.tscn"
