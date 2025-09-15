@@ -35,6 +35,15 @@ A Remake / Celebration of the original 'Super Mario Bros.' games. Features new l
 ## Contributing
 You are more than welcome to contribute any fixes / improvements you'd like, simply open a pull request, and I'll review it ASAP!
 
+## System Requirements
+
+Please refer to the Godot engine requirements for minimum and recommended hardware specifications.
+
+[Minimum Requirements]([url](https://docs.godotengine.org/en/latest/about/system_requirements.html#desktop-or-laptop-pc-minimum))
+
+[Recommended Requirements]([url](https://docs.godotengine.org/en/latest/about/system_requirements.html#id3))
+
+
 ## Issues
 When opening an issue, please keep it to one report, per post, and try and be as helpful as possible, when telling me what has occured, so that its as easy to fix as possible.
 Please do not open issues, for feature requests, suggestions, or opinions. BUG REPORTS ONLY
