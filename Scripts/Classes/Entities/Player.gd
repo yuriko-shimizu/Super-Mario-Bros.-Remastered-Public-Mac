@@ -507,7 +507,7 @@ func do_i_frames() -> void:
 	refresh_hitbox()
 
 func die(pit := false) -> void:
-	if state_machine.state.name == "Dead" or state_machine.state.name == "Pipe":
+	if ["Dead", "Pipe", "LevelExit"].has(state_machine.state.name):
 		return
 	is_dead = true
 	visible = not pit
