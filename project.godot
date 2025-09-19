@@ -49,7 +49,6 @@ gdscript/warnings/narrowing_conversion=0
 
 window/size/viewport_width=256
 window/size/viewport_height=240
-window/size/mode=2
 window/size/window_width_override=768
 window/size/window_height_override=720
 
