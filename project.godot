@@ -35,10 +35,10 @@ Global="*res://Scenes/Prefabs/Global.tscn"
 Settings="*res://Scenes/Prefabs/Autoload/Settings.tscn"
 SaveManager="*res://Scripts/Classes/Singletons/SaveManager.gd"
 AudioManager="*res://Scenes/Prefabs/Autoload/AudioManager.tscn"
-DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 GameBanana="*res://Scripts/Classes/Singletons/GameBananaManager.gd"
 SpeedrunHandler="*res://Scripts/Classes/Singletons/SpeedrunHandler.gd"
+DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 
 [debug]
 
@@ -49,7 +49,9 @@ gdscript/warnings/narrowing_conversion=0
 
 window/size/viewport_width=256
 window/size/viewport_height=240
-window/stretch/mode="viewport"
+window/size/mode=2
+window/size/window_width_override=768
+window/size/window_height_override=720
 
 [dotnet]
 
