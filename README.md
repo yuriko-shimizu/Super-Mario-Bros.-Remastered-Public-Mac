@@ -1,5 +1,5 @@
 # Super Mario Bros. Remastered - For macOS
-Port of Super Mario Bros. Remastered to macOS!
+Recompile of Super Mario Bros. Remastered to macOS!
 
 ### Original source code: https://github.com/JHDev2006/Super-Mario-Bros.-Remastered-Public/
 
@@ -11,10 +11,10 @@ Port of Super Mario Bros. Remastered to macOS!
 5. Enjoy!
 
 ## System requirements
-This port is built as a Universal 2 binary (natively compatible with Intel and Apple Silicon) and will run on macOS 10.12 Sierra or higher.
+This port is built as a Universal 2 binary (natively compatible with Intel and Apple Silicon) and will run on macOS 10.15 Catalina or higher.
 
 ### Compatible Macs
-This port uses the Metal rendering option, using MoltenVK. Thus, not all Macs compatible with macOS Sierra will be able to run SMB1R. The oldest compatible machines are:
+This port uses the Metal rendering option, using MoltenVK. Thus, not all Macs compatible with macOS Catalina will be able to run SMB1R. The oldest compatible machines are:
 - MacBook (Early 2016)
 - MacBook Air (Early 2015)
 - MacBook Pro (15-inch Mid 2012, NVIDIA) or MacBook Pro (13-inch Early 2015, Intel)
